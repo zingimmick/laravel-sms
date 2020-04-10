@@ -10,6 +10,8 @@ class LogDriver extends Driver
 {
     public function sendMessage(PhoneNumber $number, Message $message)
     {
-        Log::info("number: {$number}, content: {$message->getContent()}.");
+        $channel = $this->config->get('log.channel');
+        $level = $this->config->get('log.level','info');
+        Log::channel($channel)->{$level}("number: {$number}, content: {$message}.");
     }
 }

@@ -3,6 +3,7 @@
 namespace Zing\LaravelSms;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Database\Eloquent\JsonEncodingException;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 
 class Message implements MessageContract
@@ -42,6 +43,11 @@ class Message implements MessageContract
         return new static(MessageContract::VOICE, $content);
     }
 
+    public static function template($template, $data)
+    {
+        return static::text('')->withTemplate($template)->withData($data);
+    }
+
     public function withContent($content)
     {
         $this->content = $content;
@@ -49,7 +55,7 @@ class Message implements MessageContract
         return $this;
     }
 
-    public function getContent($gateway = null): string
+    public function getContent($gateway = null): ?string
     {
         return $this->retrieveValue($this->content, $gateway);
     }
@@ -61,7 +67,7 @@ class Message implements MessageContract
         return $this;
     }
 
-    public function getTemplate($gateway = null): string
+    public function getTemplate($gateway = null): ?string
     {
         return $this->retrieveValue($this->template, $gateway);
     }
@@ -73,7 +79,7 @@ class Message implements MessageContract
         return $this;
     }
 
-    public function getData($gateway = null): array
+    public function getData($gateway = null): ?array
     {
         return $this->retrieveValue($this->data, $gateway);
     }
@@ -96,5 +102,31 @@ class Message implements MessageContract
     protected function useAsCallable($value): bool
     {
         return ! is_string($value) && is_callable($value);
+    }
+
+    public function __toString()
+    {
+        return $this->getContent() ?: $this->toJson();
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'type' => $this->type,
+            'content' => $this->getContent(),
+            'template' => $this->getTemplate(),
+            'data' => $this->getData(),
+        ];
+    }
+
+    public function toJson($options=0):string
+    {
+        $json = json_encode($this->jsonSerialize(), $options);
+
+        if (JSON_ERROR_NONE !== json_last_error()) {
+            throw JsonEncodingException::forModel($this, json_last_error_msg());
+        }
+
+        return $json;
     }
 }

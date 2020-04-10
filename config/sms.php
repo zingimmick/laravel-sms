@@ -9,6 +9,10 @@ return [
     'connections' => [
         'log' => [
             'driver' => LogDriver::class,
+            'log' => [
+                'channel' => null,
+                'level' => 'info',
+            ],
         ],
         'null' => [
             'driver' => NullDriver::class,

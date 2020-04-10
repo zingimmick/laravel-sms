@@ -7,6 +7,7 @@ use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
 use Zing\LaravelSms\Exceptions\CannotSendNotification;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\PhoneNumber;
+use Zing\LaravelSms\Support\Config;
 use Zing\LaravelSms\Support\HasHttpRequest;
 
 abstract class Driver
@@ -19,7 +20,7 @@ abstract class Driver
 
     public function __construct($config = null)
     {
-        $this->config = collect($config);
+        $this->config = new Config($config);
         $this->client = $this->getHttpClient($this->getBaseOptions());
     }
 
@@ -47,13 +48,9 @@ abstract class Driver
         if ($message instanceof MessageContract) {
             return $message;
         }
-        if (! is_array($message)) {
-            $message = [
-                'content' => $message,
-                'template' => $message,
-            ];
+        if (is_array($message)) {
+            return Message::template($message['template'] ?? '', $message['data'] ?? []);
         }
-
         return Message::text($message);
     }
 

@@ -5,6 +5,8 @@ namespace Zing\LaravelSms\Tests;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Mockery;
+use Zing\LaravelSms\Contracts\Message as MessageContract;
+use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
 use Zing\LaravelSms\Drivers\YunPianDriver;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\PhoneNumber;
@@ -15,15 +17,87 @@ class SmsManagerTest extends TestCase
     public function provideNumberAndMessage()
     {
         return [
-            [18817393279, Message::text('验证码 123456，您正在进行如糖身份验证，打死也不要告诉别人哦!11111')],
-            [new PhoneNumber(18817393279,'+86'), Message::text('验证码 123456，您正在进行如糖身份验证，打死也不要告诉别人哦!11111')],
+            ['18888888888', 'test'],
+            [new PhoneNumber('18888888888', '+86'), Message::text('test')],
         ];
+    }
+
+
+    /**
+     * @dataProvider provideNumberAndMessage
+     * @param PhoneNumberContract|string $number
+     * @param MessageContract|string $message
+     */
+    public function test_default_driver($number, $message)
+    {
+        /** @var SmsManager $sms */
+        $sms = app(SmsManager::class);
+        $this->prepareLoggerExpectation()->with("number: {$number}, content: {$message}.");
+        $sms->send($number, $message);
     }
 
     /**
      * @dataProvider provideNumberAndMessage
+     * @param PhoneNumberContract|string $number
+     * @param MessageContract|string $message
      */
-    public function test_get_default_driver($number, $message)
+    public function test_log_channel($number, $message)
+    {
+        $channel = 'test';
+        config()->set('sms.connections.log.log.channel', $channel);
+        /** @var SmsManager $sms */
+        $sms = app(SmsManager::class);
+        $this->prepareLoggerExpectation($channel)->with("number: {$number}, content: {$message}.");
+        $sms->send($number, $message);
+    }
+
+    /**
+     * @dataProvider provideNumberAndMessage
+     * @param PhoneNumberContract|string $number
+     * @param MessageContract|string $message
+     */
+    public function test_log_level($number, $message)
+    {
+        $level = 'info';
+        config()->set('sms.connections.log.log.level', $level);
+        /** @var SmsManager $sms */
+        $sms = app(SmsManager::class);
+        $this->prepareLoggerExpectation(null,$level)->with("number: {$number}, content: {$message}.");
+        $sms->send($number, $message);
+    }
+
+    public function test_notify()
+    {
+        $phone = new Phone('18888888888');
+        $notification = new VerifyCode();
+        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)}.");
+        $phone->notify($notification);
+    }
+
+    public function test_route_notify()
+    {
+        $phone = new Phone('18888888888');
+        $notification = new VerifyCode();
+        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)}.");
+        Notification::route('sms', '18888888888')->notify($notification);
+    }
+
+    public function test_template()
+    {
+        $number = '18888888888';
+        $message = ['template' => 'aaa', 'data' => [111]];
+        $expectedMessage = Message::template($message['template'], $message['data']);
+        $this->prepareLoggerExpectation()->with("number: {$number}, content: {$expectedMessage}.");
+        $sms = app(SmsManager::class);
+        $sms->connection('log')->send($number, $message);
+    }
+
+    /**
+     * @dataProvider provideNumberAndMessage
+     * @param PhoneNumberContract|string $number
+     * @param MessageContract|string $message
+     */
+    public function test_get_yunpian($number, $message)
     {
         $sms = Mockery::mock(SmsManager::class);
         $yunpianDriver = Mockery::mock(YunPianDriver::class);
@@ -35,27 +109,19 @@ class SmsManagerTest extends TestCase
 
     /**
      * @dataProvider provideNumberAndMessage
+     * @param PhoneNumberContract|string $number
+     * @param MessageContract|string $message
      */
     public function test_log($number, $message)
     {
-        Log::shouldReceive('info')->once()->with("number: {$number}, content: {$message->getContent()}.");
+        $this->prepareLoggerExpectation()->with("number: {$number}, content: {$message}.");
         $sms = app(SmsManager::class);
         $sms->connection('log')->send($number, $message);
     }
 
-    public function test_notify()
+    protected function prepareLoggerExpectation($channel = null, $level = 'info')
     {
-        $phone = new Phone('18817393279');
-        $notification = new VerifyCode();
-        Log::shouldReceive('info')->once()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)->getContent()}.");
-        $phone->notify($notification);
-    }
-
-    public function test_route_notify()
-    {
-        $phone = new Phone('18817393279');
-        $notification = new VerifyCode();
-        Log::shouldReceive('info')->once()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)->getContent()}.");
-        Notification::route('sms','18817393279')->notify($notification);
+        Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
+        return $logChannel->shouldReceive($level)->once();
     }
 }
