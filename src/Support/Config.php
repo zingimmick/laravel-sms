@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Zing\LaravelSms\Support;
 
 use ArrayAccess;
@@ -41,12 +40,12 @@ class Config implements ArrayAccess
             return $config[$key];
         }
 
-        if (false === strpos($key, '.')) {
+        if (strpos($key, '.') === false) {
             return $default;
         }
 
         foreach (explode('.', $key) as $segment) {
-            if (!is_array($config) || !array_key_exists($segment, $config)) {
+            if (! is_array($config) || ! array_key_exists($segment, $config)) {
                 return $default;
             }
             $config = $config[$segment];

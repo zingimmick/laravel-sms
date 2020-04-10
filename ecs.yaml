@@ -31,5 +31,6 @@ parameters:
     PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer: ~
     PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer: ~
   paths:
+    - config
     - src
     - tests

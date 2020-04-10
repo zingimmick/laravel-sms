@@ -22,9 +22,9 @@ class SmsManagerTest extends TestCase
         ];
     }
 
-
     /**
      * @dataProvider provideNumberAndMessage
+     *
      * @param PhoneNumberContract|string $number
      * @param MessageContract|string $message
      */
@@ -38,6 +38,7 @@ class SmsManagerTest extends TestCase
 
     /**
      * @dataProvider provideNumberAndMessage
+     *
      * @param PhoneNumberContract|string $number
      * @param MessageContract|string $message
      */
@@ -53,6 +54,7 @@ class SmsManagerTest extends TestCase
 
     /**
      * @dataProvider provideNumberAndMessage
+     *
      * @param PhoneNumberContract|string $number
      * @param MessageContract|string $message
      */
@@ -62,7 +64,7 @@ class SmsManagerTest extends TestCase
         config()->set('sms.connections.log.log.level', $level);
         /** @var SmsManager $sms */
         $sms = app(SmsManager::class);
-        $this->prepareLoggerExpectation(null,$level)->with("number: {$number}, content: {$message}.");
+        $this->prepareLoggerExpectation(null, $level)->with("number: {$number}, content: {$message}.");
         $sms->send($number, $message);
     }
 
@@ -94,8 +96,10 @@ class SmsManagerTest extends TestCase
 
     /**
      * @dataProvider provideNumberAndMessage
+     *
      * @param PhoneNumberContract|string $number
      * @param MessageContract|string $message
+     *
      * @throws \Zing\LaravelSms\Exceptions\CannotSendNotification
      */
     public function test_get_yunpian($number, $message)
@@ -110,6 +114,7 @@ class SmsManagerTest extends TestCase
 
     /**
      * @dataProvider provideNumberAndMessage
+     *
      * @param PhoneNumberContract|string $number
      * @param MessageContract|string $message
      */
@@ -123,6 +128,7 @@ class SmsManagerTest extends TestCase
     protected function prepareLoggerExpectation($channel = null, $level = 'info')
     {
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
+
         return $logChannel->shouldReceive($level)->once();
     }
 }

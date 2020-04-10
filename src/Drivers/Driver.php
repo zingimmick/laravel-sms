@@ -52,6 +52,7 @@ abstract class Driver implements DriverContract
         if (is_array($message)) {
             return Message::template($message['template'] ?? '', $message['data'] ?? []);
         }
+
         return Message::text($message);
     }
 
@@ -67,14 +68,16 @@ abstract class Driver implements DriverContract
     {
         $number = $this->formatPhoneNumber($number);
         $message = $this->formatMessage($message);
-        $result = $this->sendMessage($number, $message);
-        return $result;
+
+        return $this->sendMessage($number, $message);
     }
 
     /**
      * @param \Zing\LaravelSms\Contracts\PhoneNumber $number
      * @param \Zing\LaravelSms\Contracts\Message $message
+     *
      * @return mixed
+     *
      * @throws CannotSendNotification
      */
     abstract protected function sendMessage(PhoneNumberContract $number, MessageContract $message);

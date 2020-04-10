@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Zing\LaravelSms\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
@@ -23,9 +22,10 @@ class TestCase extends BaseTestCase
     {
         return ['sms' => Sms::class];
     }
+
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('sms',[
+        $app['config']->set('sms', [
             'default' => env('SMS_CONNECTION', 'log'),
             'connections' => [
                 'log' => [

@@ -66,8 +66,10 @@ class SmsChannel
             if ($receiver) {
                 return $receiver;
             }
+
             return $notifiable->routeNotificationFor('sms');
         }
+
         return $notifiable->routeNotificationFor('sms', $notification);
     }
 }

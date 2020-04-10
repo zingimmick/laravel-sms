@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Zing\LaravelSms;
 
 use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
@@ -96,5 +95,4 @@ class PhoneNumber implements PhoneNumberContract
     {
         return $this->getUniversalNumber();
     }
-
 }

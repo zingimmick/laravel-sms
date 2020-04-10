@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Zing\LaravelSms\Contracts;
-
 
 use JsonSerializable;
 
