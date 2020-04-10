@@ -45,7 +45,7 @@ class SmsManagerTest extends TestCase
     public function test_log_channel($number, $message)
     {
         $channel = 'test';
-        config()->set('sms.connections.log.log.channel', $channel);
+        config()->set('sms.connections.log.channel', $channel);
         /** @var SmsManager $sms */
         $sms = app(SmsManager::class);
         $this->prepareLoggerExpectation($channel)->with("number: {$number}, content: {$message}.");
@@ -61,7 +61,7 @@ class SmsManagerTest extends TestCase
     public function test_log_level($number, $message)
     {
         $level = 'info';
-        config()->set('sms.connections.log.log.level', $level);
+        config()->set('sms.connections.log.level', $level);
         /** @var SmsManager $sms */
         $sms = app(SmsManager::class);
         $this->prepareLoggerExpectation(null, $level)->with("number: {$number}, content: {$message}.");
