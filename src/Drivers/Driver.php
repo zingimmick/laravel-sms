@@ -2,6 +2,7 @@
 
 namespace Zing\LaravelSms\Drivers;
 
+use Zing\LaravelSms\Contracts\Driver as DriverContract;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
 use Zing\LaravelSms\Exceptions\CannotSendNotification;
@@ -10,7 +11,7 @@ use Zing\LaravelSms\PhoneNumber;
 use Zing\LaravelSms\Support\Config;
 use Zing\LaravelSms\Support\HasHttpRequest;
 
-abstract class Driver
+abstract class Driver implements DriverContract
 {
     use HasHttpRequest;
 

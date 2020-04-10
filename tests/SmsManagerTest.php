@@ -96,6 +96,7 @@ class SmsManagerTest extends TestCase
      * @dataProvider provideNumberAndMessage
      * @param PhoneNumberContract|string $number
      * @param MessageContract|string $message
+     * @throws \Zing\LaravelSms\Exceptions\CannotSendNotification
      */
     public function test_get_yunpian($number, $message)
     {
