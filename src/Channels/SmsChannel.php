@@ -3,9 +3,9 @@
 namespace Zing\LaravelSms\Channels;
 
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
-use RuntimeException;
-use Zing\LaravelSms\Messages\SmsMessage;
+use Zing\LaravelSms\Message;
 use Zing\LaravelSms\SmsManager;
 
 /**
@@ -44,38 +44,30 @@ class SmsChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        $message = $this->getData($notifiable, $notification);
+        $message = $notification->toSms($notifiable);
         $receiver = $notifiable->routeNotificationFor('sms', $notification);
         if (! $receiver) {
             return;
         }
-        if ($message instanceof SmsMessage) {
-            return $this->smsManager->connection($message->connection)->send($receiver, $message);
+        if (is_string($message)) {
+            $message = Message::text($message);
+        }
+        if (! $message instanceof Message) {
+            return;
         }
 
-        return $this->smsManager->send($receiver, $message);
+        return $this->smsManager->connection($message->connection)->send($receiver, $message);
     }
 
-    /**
-     * Get the data for the notification.
-     *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
-     *
-     * @throws \RuntimeException
-     *
-     * @return mixed
-     */
-    protected function getData($notifiable, Notification $notification)
+    public function resolveReceiver($notifiable, Notification $notification)
     {
-        if (method_exists($notification, 'toSms')) {
-            return $notification->toSms($notifiable);
+        if ($notifiable instanceof AnonymousNotifiable) {
+            $receiver = $notifiable->routeNotificationFor(static::class);
+            if ($receiver) {
+                return $receiver;
+            }
+            return $notifiable->routeNotificationFor('sms');
         }
-
-        if (method_exists($notification, 'toArray')) {
-            return $notification->toArray($notifiable);
-        }
-
-        throw new RuntimeException('Notification is missing toArray method.');
+        return $notifiable->routeNotificationFor('sms', $notification);
     }
 }

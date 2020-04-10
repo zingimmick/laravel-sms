@@ -1,16 +1,13 @@
 <?php
 
-namespace Zing\LaravelSms\Messages;
+namespace Zing\LaravelSms;
 
 use Illuminate\Bus\Queueable;
+use Zing\LaravelSms\Contracts\Message as MessageContract;
 
-class SmsMessage
+class Message implements MessageContract
 {
     use Queueable;
-
-    public const TEXT = 'text';
-
-    public const VOICE = 'voice';
 
     protected $type;
 
@@ -37,12 +34,12 @@ class SmsMessage
 
     public static function text($content)
     {
-        return new static(self::TEXT, $content);
+        return new static(MessageContract::TEXT, $content);
     }
 
     public static function voice($content)
     {
-        return new static(self::VOICE, $content);
+        return new static(MessageContract::VOICE, $content);
     }
 
     public function withContent($content)
@@ -52,7 +49,7 @@ class SmsMessage
         return $this;
     }
 
-    public function getContent($gateway = null)
+    public function getContent($gateway = null): string
     {
         return $this->retrieveValue($this->content, $gateway);
     }
@@ -64,7 +61,7 @@ class SmsMessage
         return $this;
     }
 
-    public function getTemplate($gateway)
+    public function getTemplate($gateway = null): string
     {
         return $this->retrieveValue($this->template, $gateway);
     }
@@ -76,7 +73,7 @@ class SmsMessage
         return $this;
     }
 
-    public function getData($gateway)
+    public function getData($gateway = null): array
     {
         return $this->retrieveValue($this->data, $gateway);
     }
@@ -96,7 +93,7 @@ class SmsMessage
         return $property;
     }
 
-    protected function useAsCallable($value)
+    protected function useAsCallable($value): bool
     {
         return ! is_string($value) && is_callable($value);
     }

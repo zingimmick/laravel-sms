@@ -3,9 +3,9 @@
 namespace Zing\LaravelSms\Drivers;
 
 use Exception;
-use Zing\LaravelSms\Exceptions\MessageSendErrorException;
-use Zing\LaravelSms\Messages\SmsMessage;
-use function strpos;
+use Zing\LaravelSms\Contracts\Message;
+use Zing\LaravelSms\Contracts\PhoneNumber;
+use Zing\LaravelSms\Exceptions\CannotSendNotification;
 
 class YunPianDriver extends Driver
 {
@@ -14,7 +14,7 @@ class YunPianDriver extends Driver
         return 'http://yunpian.com';
     }
 
-    public function send($number, SmsMessage $message)
+    public function sendMessage(PhoneNumber $number, Message $message)
     {
         try {
             $signature = $this->config->get('signature');
@@ -28,9 +28,9 @@ class YunPianDriver extends Driver
                 return true;
             }
 
-            throw new MessageSendErrorException(data_get($result, 'msg'), data_get($result, 'code'));
+            throw new CannotSendNotification(data_get($result, 'msg'), data_get($result, 'code'));
         } catch (Exception $exception) {
-            throw new MessageSendErrorException($exception->getMessage(), $exception->getCode());
+            throw new CannotSendNotification($exception->getMessage(), $exception->getCode());
         }
     }
 }

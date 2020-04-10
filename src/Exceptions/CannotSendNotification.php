@@ -4,7 +4,7 @@ namespace Zing\LaravelSms\Exceptions;
 
 use Exception;
 
-class MessageSendErrorException extends Exception
+class CannotSendNotification extends Exception
 {
     public $raw = [];
 

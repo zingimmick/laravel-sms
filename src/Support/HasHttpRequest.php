@@ -90,7 +90,7 @@ trait HasHttpRequest
         return '';
     }
 
-    public function getTimeout()
+    protected function getTimeout()
     {
         return 5.0;
     }
