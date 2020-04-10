@@ -4,7 +4,7 @@ namespace Zing\LaravelSms;
 use GrahamCampbell\Manager\AbstractManager;
 
 /**
- * Class SmsManager.
+ * @method bool send($number, $message) 发送消息
  */
 class SmsManager extends AbstractManager
 {
