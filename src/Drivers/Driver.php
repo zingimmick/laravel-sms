@@ -50,7 +50,7 @@ abstract class Driver implements DriverContract
             return $message;
         }
         if (is_array($message)) {
-            return Message::template($message['template'] ?? '', $message['data'] ?? []);
+            return Message::fromTemplate($message['template'] ?? '', $message['data'] ?? []);
         }
 
         return Message::text($message);

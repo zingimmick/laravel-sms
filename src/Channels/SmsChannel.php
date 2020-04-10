@@ -40,12 +40,12 @@ class SmsChannel
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
-     * @return array|null
+     * @return void
      */
     public function send($notifiable, Notification $notification)
     {
         $message = $notification->toSms($notifiable);
-        $receiver = $notifiable->routeNotificationFor('sms', $notification);
+        $receiver = $this->resolveReceiver($notifiable, $notification);
         if (! $receiver) {
             return;
         }

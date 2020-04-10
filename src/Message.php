@@ -43,7 +43,7 @@ class Message implements MessageContract
         return new static(MessageContract::VOICE, $content);
     }
 
-    public static function template($template, $data)
+    public static function fromTemplate($template, $data)
     {
         return static::text('')->withTemplate($template)->withData($data);
     }

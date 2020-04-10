@@ -5,6 +5,7 @@ namespace Zing\LaravelSms\Tests;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Mockery;
+use Zing\LaravelSms\Channels\SmsChannel;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
 use Zing\LaravelSms\Drivers\YunPianDriver;
@@ -82,6 +83,14 @@ class SmsManagerTest extends TestCase
         $phone = new Phone('18888888888');
         $notification = new VerifyCode();
         $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)}.");
+        Notification::route(SmsChannel::class, '18888888888')->notify($notification);
+    }
+
+    public function test_route_notify_alias()
+    {
+        $phone = new Phone('18888888888');
+        $notification = new VerifyCode();
+        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)}.");
         Notification::route('sms', '18888888888')->notify($notification);
     }
 
@@ -89,7 +98,7 @@ class SmsManagerTest extends TestCase
     {
         $number = '18888888888';
         $message = ['template' => 'aaa', 'data' => [111]];
-        $expectedMessage = Message::template($message['template'], $message['data']);
+        $expectedMessage = Message::fromTemplate($message['template'], $message['data']);
         $this->prepareLoggerExpectation()->with("number: {$number}, content: {$expectedMessage}.");
         $sms = app(SmsManager::class);
         $sms->connection('log')->send($number, $message);
@@ -100,8 +109,6 @@ class SmsManagerTest extends TestCase
      *
      * @param PhoneNumberContract|string $number
      * @param MessageContract|string $message
-     *
-     * @throws \Zing\LaravelSms\Exceptions\CannotSendNotification
      */
     public function test_get_yunpian($number, $message)
     {

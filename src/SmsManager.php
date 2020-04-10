@@ -6,7 +6,6 @@ use GrahamCampbell\Manager\AbstractManager;
 
 /**
  * @method bool send($number, $message) 发送消息
- * @method static \Zing\LaravelSms\Contracts\Driver connection(string $name = null)
  */
 class SmsManager extends AbstractManager
 {
