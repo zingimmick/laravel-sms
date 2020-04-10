@@ -1,0 +1,36 @@
+services:
+  PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
+    spacing: one
+  PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer:
+    align: left
+  PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:
+    syntax: short
+  PhpCsFixer\Fixer\ClassNotation\VisibilityRequiredFixer:
+    elements:
+      - 'property'
+      - 'method'
+      - 'const'
+  PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer:
+    order:
+      - 'use_trait'
+      - 'constant_public'
+      - 'constant_protected'
+      - 'constant_private'
+  PhpCsFixer\Fixer\PhpUnit\PhpUnitMethodCasingFixer:
+    case: snake_case
+  PhpCsFixer\Fixer\Operator\IncrementStyleFixer:
+    style: post
+
+parameters:
+  sets:
+    - symfony
+    - common
+    - clean-code
+  skip:
+    PhpCsFixer\Fixer\Phpdoc\NoSuperfluousPhpdocTagsFixer: ~
+    PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer: ~
+    PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer: ~
+  paths:
+    - config
+    - src
+    - tests
