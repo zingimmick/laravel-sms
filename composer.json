@@ -39,7 +39,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Zing\\LaravelSms\\ServiceProvider"
+                "Zing\\LaravelSms\\SmsServiceProvider"
             ]
         }
     },
