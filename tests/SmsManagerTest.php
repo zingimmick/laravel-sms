@@ -8,6 +8,7 @@ use Mockery;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
 use Zing\LaravelSms\Drivers\YunPianDriver;
+use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\PhoneNumber;
 use Zing\LaravelSms\SmsManager;
@@ -130,5 +131,17 @@ class SmsManagerTest extends TestCase
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
 
         return $logChannel->shouldReceive($level)->once();
+    }
+
+    /**
+     * @dataProvider provideNumberAndMessage
+     *
+     * @param PhoneNumberContract|string $number
+     * @param MessageContract|string $message
+     */
+    public function test_facade($number, $message)
+    {
+        $this->prepareLoggerExpectation()->with("number: {$number}, content: {$message}.");
+        Sms::connection('log')->send($number, $message);
     }
 }
