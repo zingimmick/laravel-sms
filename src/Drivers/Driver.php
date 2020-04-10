@@ -26,9 +26,9 @@ abstract class Driver implements DriverContract
     }
 
     /**
-     * @param string|\Overtrue\EasySms\Contracts\PhoneNumberInterface $number
+     * @param PhoneNumberContract|string $number
      *
-     * @return \Overtrue\EasySms\Contracts\PhoneNumberInterface|string|\Zing\LaravelSms\Contracts\PhoneNumber
+     * @return PhoneNumberContract
      */
     protected function formatPhoneNumber($number)
     {
