@@ -9,10 +9,8 @@ return [
     'connections' => [
         'log' => [
             'driver' => LogDriver::class,
-            'log' => [
-                'channel' => null,
-                'level' => 'info',
-            ],
+            'channel' => env('SMS_LOG_CHANNEL', null),
+            'level' => env('SMS_LOG_LEVEL', 'info'),
         ],
         'null' => [
             'driver' => NullDriver::class,
