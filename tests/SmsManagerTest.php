@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Notification;
 use Mockery;
 use Zing\LaravelSms\Drivers\YunPianDriver;
 use Zing\LaravelSms\Message;
+use Zing\LaravelSms\PhoneNumber;
 use Zing\LaravelSms\SmsManager;
 
 class SmsManagerTest extends TestCase
@@ -15,6 +16,7 @@ class SmsManagerTest extends TestCase
     {
         return [
             [18817393279, Message::text('验证码 123456，您正在进行如糖身份验证，打死也不要告诉别人哦!11111')],
+            [new PhoneNumber(18817393279,'+86'), Message::text('验证码 123456，您正在进行如糖身份验证，打死也不要告诉别人哦!11111')],
         ];
     }
 
