@@ -2,10 +2,11 @@
 
 namespace Zing\LaravelSms\Drivers;
 
+use Illuminate\Support\Facades\Log;
 use Zing\LaravelSms\Contracts\Driver as DriverContract;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
-use Zing\LaravelSms\Exceptions\CannotSendNotification;
+use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\PhoneNumber;
 use Zing\LaravelSms\Support\Config;
@@ -62,23 +63,32 @@ abstract class Driver implements DriverContract
      *
      * @return bool|mixed
      *
-     * @throws \Zing\LaravelSms\Exceptions\CannotSendNotification
+     * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
+     * @throws \Throwable
      */
     public function send($number, $message)
     {
-        $number = $this->formatPhoneNumber($number);
-        $message = $this->formatMessage($message);
+        try {
+            $number = $this->formatPhoneNumber($number);
+            $message = $this->formatMessage($message);
 
-        return $this->sendMessage($number, $message);
+            $this->sending($number, $message);
+            Log::debug("number: {$number}, content: {$message}.");
+            $result = $this->sendFormatted($number, $message);
+            Log::debug("number: {$number}, content: {$message}.", (array) $result);
+            $this->sent($number, $message, $result);
+
+            return $result;
+        } catch (\Exception $exception) {
+            throw CouldNotSendNotification::captureExceptionInDriver($exception);
+        }
     }
 
-    /**
-     * @param \Zing\LaravelSms\Contracts\PhoneNumber $number
-     * @param \Zing\LaravelSms\Contracts\Message $message
-     *
-     * @return mixed
-     *
-     * @throws CannotSendNotification
-     */
-    abstract protected function sendMessage(PhoneNumberContract $number, MessageContract $message);
+    public function sending($number, $message)
+    {
+    }
+
+    public function sent($number, $message, $result)
+    {
+    }
 }

@@ -2,7 +2,7 @@
 
 use Zing\LaravelSms\Drivers\LogDriver;
 use Zing\LaravelSms\Drivers\NullDriver;
-use Zing\LaravelSms\Drivers\YunPianDriver;
+use Zing\LaravelSms\Drivers\YunpianDriver;
 
 return [
     'default' => env('SMS_CONNECTION', 'log'),
@@ -16,7 +16,7 @@ return [
             'driver' => NullDriver::class,
         ],
         'yunpian' => [
-            'driver' => YunPianDriver::class,
+            'driver' => YunpianDriver::class,
             'api_key' => env('YUNPIAN_KEY'),
         ],
     ],

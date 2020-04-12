@@ -5,7 +5,7 @@ namespace Zing\LaravelSms\Tests;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Zing\LaravelSms\Drivers\LogDriver;
 use Zing\LaravelSms\Drivers\NullDriver;
-use Zing\LaravelSms\Drivers\YunPianDriver;
+use Zing\LaravelSms\Drivers\YunpianDriver;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsServiceProvider;
 
@@ -35,7 +35,7 @@ class TestCase extends BaseTestCase
                     'driver' => NullDriver::class,
                 ],
                 'yunpian' => [
-                    'driver' => YunPianDriver::class,
+                    'driver' => YunpianDriver::class,
                     'api_key' => env('YUNPIAN_KEY'),
                 ],
             ],

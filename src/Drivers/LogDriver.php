@@ -8,7 +8,7 @@ use Zing\LaravelSms\Contracts\PhoneNumber;
 
 class LogDriver extends Driver
 {
-    public function sendMessage(PhoneNumber $number, Message $message)
+    public function sendFormatted(PhoneNumber $number, Message $message)
     {
         $channel = $this->config->get('channel');
         $level = $this->config->get('level', 'info');

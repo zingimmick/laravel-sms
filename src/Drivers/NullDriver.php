@@ -7,7 +7,7 @@ use Zing\LaravelSms\Contracts\PhoneNumber;
 
 class NullDriver extends Driver
 {
-    public function sendMessage(PhoneNumber $number, Message $message)
+    public function sendFormatted(PhoneNumber $number, Message $message)
     {
     }
 }

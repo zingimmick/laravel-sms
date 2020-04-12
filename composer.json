@@ -52,6 +52,9 @@
         "test": [
             "@ecs:test",
             "@phpunit:test"
+        ],
+        "fix": [
+            "@ecs:test --fix"
         ]
     }
 }

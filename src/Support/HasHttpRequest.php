@@ -80,19 +80,9 @@ trait HasHttpRequest
     protected function getBaseOptions()
     {
         return [
-            'base_uri' => $this->getBaseUri(),
-            'timeout' => $this->getTimeout(),
+            'base_uri' => method_exists($this, 'getBaseUri') ? $this->getBaseUri() : '',
+            'timeout' => method_exists($this, 'getTimeout') ? $this->getTimeout() : 5.0,
         ];
-    }
-
-    protected function getBaseUri()
-    {
-        return '';
-    }
-
-    protected function getTimeout()
-    {
-        return 5.0;
     }
 
     /**

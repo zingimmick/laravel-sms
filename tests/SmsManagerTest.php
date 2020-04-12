@@ -8,7 +8,7 @@ use Mockery;
 use Zing\LaravelSms\Channels\SmsChannel;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
-use Zing\LaravelSms\Drivers\YunPianDriver;
+use Zing\LaravelSms\Drivers\YunpianDriver;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\PhoneNumber;
@@ -113,10 +113,10 @@ class SmsManagerTest extends TestCase
     public function test_get_yunpian($number, $message)
     {
         $sms = Mockery::mock(SmsManager::class);
-        $yunpianDriver = Mockery::mock(YunPianDriver::class);
+        $yunpianDriver = Mockery::mock(YunpianDriver::class);
         $sms->shouldReceive('connection')->with('yunpian')->andReturn($yunpianDriver);
         $yunpianDriver->shouldReceive('send')->with($number, $message)->andReturn(true);
-        self::assertInstanceOf(YunPianDriver::class, $sms->connection('yunpian'));
+        self::assertInstanceOf(YunpianDriver::class, $sms->connection('yunpian'));
         $sms->connection('yunpian')->send($number, $message);
     }
 
@@ -136,6 +136,7 @@ class SmsManagerTest extends TestCase
     protected function prepareLoggerExpectation($channel = null, $level = 'info')
     {
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
+        Log::shouldReceive('debug')->withAnyArgs()->twice();
 
         return $logChannel->shouldReceive($level)->once();
     }
