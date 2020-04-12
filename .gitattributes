@@ -4,4 +4,5 @@
 /tests export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
+ecs.yaml export-ignore
 phpunit.xml.dist export-ignore
