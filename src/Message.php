@@ -3,7 +3,6 @@
 namespace Zing\LaravelSms;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Database\Eloquent\JsonEncodingException;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 
 class Message implements MessageContract
@@ -121,12 +120,6 @@ class Message implements MessageContract
 
     public function toJson($options = 0): string
     {
-        $json = json_encode($this->jsonSerialize(), $options);
-
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw JsonEncodingException::forModel($this, json_last_error_msg());
-        }
-
-        return $json;
+        return json_encode($this->jsonSerialize(), $options);
     }
 }

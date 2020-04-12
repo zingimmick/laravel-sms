@@ -2,7 +2,6 @@
 
 namespace Zing\LaravelSms\Channels;
 
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
 use Zing\LaravelSms\Message;
@@ -13,24 +12,15 @@ use Zing\LaravelSms\SmsManager;
  */
 class SmsChannel
 {
-    /**
-     * The event dispatcher.
-     *
-     * @var \Illuminate\Contracts\Events\Dispatcher
-     */
-    protected $events;
-
     protected $smsManager;
 
     /**
      * Create a new database channel.
      *
-     * @param \Illuminate\Contracts\Events\Dispatcher $events
      * @param \Zing\LaravelSms\SmsManager $smsManager
      */
-    public function __construct(Dispatcher $events, SmsManager $smsManager)
+    public function __construct(SmsManager $smsManager)
     {
-        $this->events = $events;
         $this->smsManager = $smsManager;
     }
 
