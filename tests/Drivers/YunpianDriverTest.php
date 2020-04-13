@@ -61,7 +61,7 @@ class YunpianDriverTest extends TestCase
     /**
      * @dataProvider provideNumberAndMessage
      */
-    public function test_default_signature($number, $message)
+    public function test_default_signature($number, $message, $expected)
     {
         $config = [
             'api_key' => 'mock-api-key',
@@ -83,7 +83,7 @@ class YunpianDriverTest extends TestCase
             'headers' => [],  'form_params' => [
                 'apikey' => 'mock-api-key',
                 'mobile' => $number,
-                'text' => $message,
+                'text' => $expected,
             ],
         ])->andReturn($response);
 
@@ -93,8 +93,8 @@ class YunpianDriverTest extends TestCase
     public function provideNumberAndMessage()
     {
         return [
-            [18188888888, '【测试】This is a 【test】 message.'],
-            [18188888888, '【已经存在】This is a 【test】 message.'],
+            [18188888888, 'This is a 【test】 message.', '【测试】This is a 【test】 message.'],
+            [18188888888, '【已经存在】This is a 【test】 message.', '【已经存在】This is a 【test】 message.'],
         ];
     }
 }

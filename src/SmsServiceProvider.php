@@ -9,6 +9,7 @@
 namespace Zing\LaravelSms;
 
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 use Zing\LaravelSms\Channels\SmsChannel;
@@ -31,8 +32,10 @@ class SmsServiceProvider extends ServiceProvider
         $this->app->singleton('sms', function (Application $app) {
             return $app->make(SmsManager::class);
         });
-        Notification::extend('sms', function (Application $app) {
-            return $app->make(SmsChannel::class);
+        Notification::resolved(function (ChannelManager $service) {
+            $service->extend('sms', function (Application $app) {
+                return $app->make(SmsChannel::class);
+            });
         });
     }
 }
