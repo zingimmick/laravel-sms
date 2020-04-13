@@ -2,6 +2,7 @@
 
 namespace Zing\LaravelSms\Tests\Drivers;
 
+use Mockery;
 use Zing\LaravelSms\Drivers\YunpianDriver;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Message;
@@ -16,7 +17,7 @@ class YunpianDriverTest extends TestCase
         $config = [
             'api_key' => 'mock-api-key',
         ];
-        $driver = \Mockery::mock(YunpianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = Mockery::mock(YunpianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
 
         $driver->shouldReceive('request')
             ->with('post', '/v1/sms/send.json', [
@@ -77,7 +78,7 @@ class YunpianDriverTest extends TestCase
             'sid' => 3310228982,   // 短信ID
         ];
 
-        $driver = \Mockery::mock(YunpianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = Mockery::mock(YunpianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
         $config = new Config($config);
         $driver->shouldReceive('request')->with('post', '/v1/sms/send.json', [
             'headers' => [],  'form_params' => [

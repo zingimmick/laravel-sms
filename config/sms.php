@@ -1,6 +1,7 @@
 <?php
 
 use Zing\LaravelSms\Drivers\LogDriver;
+use Zing\LaravelSms\Drivers\MeilianDriver;
 use Zing\LaravelSms\Drivers\NullDriver;
 use Zing\LaravelSms\Drivers\YunpianDriver;
 
@@ -20,7 +21,7 @@ return [
             'api_key' => env('SMS_YUNPIAN_API_KEY'),
         ],
         'meilian' => [
-            'driver' => \Zing\LaravelSms\Drivers\MeilianDriver::class,
+            'driver' => MeilianDriver::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
             'password' => env('SMS_MEILIAN_PASSWORD'),
             'api_key' => env('SMS_MEILIAN_API_KEY'),

@@ -2,6 +2,7 @@
 
 namespace Zing\LaravelSms\Drivers;
 
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Zing\LaravelSms\Contracts\Driver as DriverContract;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
@@ -67,7 +68,7 @@ abstract class Driver implements DriverContract
             $this->sent($number, $message, $result);
 
             return $result;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             throw CouldNotSendNotification::captureExceptionInDriver($exception);
         }
     }
