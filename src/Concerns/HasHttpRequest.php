@@ -1,6 +1,6 @@
 <?php
 
-namespace Zing\LaravelSms\Support;
+namespace Zing\LaravelSms\Concerns;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;

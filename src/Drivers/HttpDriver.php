@@ -2,7 +2,7 @@
 
 namespace Zing\LaravelSms\Drivers;
 
-use Zing\LaravelSms\Support\HasHttpRequest;
+use Zing\LaravelSms\Concerns\HasHttpRequest;
 
 abstract class HttpDriver extends LocalDriver
 {
