@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Log;
 use Zing\LaravelSms\Contracts\Message;
 use Zing\LaravelSms\Contracts\PhoneNumber;
 
-class LogDriver extends Driver
+class LogDriver extends LocalDriver
 {
     public function sendFormatted(PhoneNumber $number, Message $message)
     {

@@ -6,7 +6,7 @@ use Zing\LaravelSms\Contracts\Message;
 use Zing\LaravelSms\Contracts\PhoneNumber;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 
-class YunpianDriver extends Driver
+class YunpianDriver extends HttpDriver
 {
     protected function getBaseUri()
     {

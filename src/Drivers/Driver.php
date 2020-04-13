@@ -14,17 +14,9 @@ use Zing\LaravelSms\Support\HasHttpRequest;
 
 abstract class Driver implements DriverContract
 {
-    use HasHttpRequest;
-
-    public $client;
 
     public $config;
 
-    public function __construct($config = null)
-    {
-        $this->config = new Config($config);
-        $this->client = $this->getHttpClient($this->getBaseOptions());
-    }
 
     /**
      * @param PhoneNumberContract|string $number
