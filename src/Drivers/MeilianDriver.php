@@ -7,7 +7,7 @@ use Zing\LaravelSms\Contracts\Message;
 use Zing\LaravelSms\Contracts\PhoneNumber;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 
-class MeiLianDriver extends Driver
+class MeilianDriver extends Driver
 {
     public const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
 

@@ -2,7 +2,7 @@
 
 namespace Zing\LaravelSms\Tests\Drivers;
 
-use Zing\LaravelSms\Drivers\MeiLianDriver;
+use Zing\LaravelSms\Drivers\MeilianDriver;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\PhoneNumber;
@@ -18,7 +18,7 @@ class MeiLianDriverTest extends TestCase
             'password' => 'mock-password',
             'api_key' => 'mock-api-key',
         ];
-        $driver = \Mockery::mock(MeiLianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = \Mockery::mock(MeilianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
 
         $driver->shouldReceive('request')
             ->with('post', 'http://m.5c.com.cn/api/send/index.php', [
@@ -56,7 +56,7 @@ class MeiLianDriverTest extends TestCase
         ];
         $response = 'success:Missing recipient';
 
-        $driver = \Mockery::mock(MeiLianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = \Mockery::mock(MeilianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
         $config = new Config($config);
         $driver->shouldReceive('request')->with('post', 'http://m.5c.com.cn/api/send/index.php', [
             'headers' => [],
