@@ -17,13 +17,13 @@ return [
         ],
         'yunpian' => [
             'driver' => YunpianDriver::class,
-            'api_key' => env('YUNPIAN_API_KEY'),
+            'api_key' => env('SMS_YUNPIAN_API_KEY'),
         ],
         'meilian' => [
             'driver' => \Zing\LaravelSms\Drivers\MeilianDriver::class,
-            'username' => env('MEILIAN_USERNAME'),
-            'password' => env('MEILIAN_PASSWORD'),
-            'api_key' => env('MEILIAN_API_KEY'),
+            'username' => env('SMS_MEILIAN_USERNAME'),
+            'password' => env('SMS_MEILIAN_PASSWORD'),
+            'api_key' => env('SMS_MEILIAN_API_KEY'),
         ],
     ],
 ];
