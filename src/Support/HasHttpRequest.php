@@ -96,6 +96,10 @@ trait HasHttpRequest
      */
     protected function getHttpClient(array $options = [])
     {
+        if ($this->client) {
+            return $this->client;
+        }
+
         return new Client($options);
     }
 
