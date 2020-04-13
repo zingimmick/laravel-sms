@@ -9,14 +9,10 @@ use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\PhoneNumber;
-use Zing\LaravelSms\Support\Config;
-use Zing\LaravelSms\Support\HasHttpRequest;
 
 abstract class Driver implements DriverContract
 {
-
     public $config;
-
 
     /**
      * @param PhoneNumberContract|string $number
