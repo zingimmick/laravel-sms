@@ -1,6 +1,6 @@
 <?php
 
-namespace Zing\LaravelSms;
+namespace Zing\LaravelSms\Connectors;
 
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
 

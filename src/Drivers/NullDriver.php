@@ -9,5 +9,6 @@ class NullDriver extends LocalDriver
 {
     public function sendFormatted(PhoneNumber $number, Message $message)
     {
+        // do nothing.
     }
 }

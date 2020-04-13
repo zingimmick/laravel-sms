@@ -4,6 +4,7 @@ namespace Zing\LaravelSms;
 
 use GrahamCampbell\Manager\AbstractManager;
 use Illuminate\Contracts\Config\Repository;
+use Zing\LaravelSms\Connectors\ConnectionFactory;
 
 /**
  * @method bool send($number, $message) 发送消息
