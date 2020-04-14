@@ -15,7 +15,7 @@ class MeilianDriver extends HttpDriver
      * @param PhoneNumber $to
      * @param Message $message
      *
-     * @return array
+     * @return string
      *
      * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      */
