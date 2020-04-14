@@ -5,10 +5,14 @@ namespace Zing\LaravelSms;
 use Illuminate\Bus\Queueable;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 
+/**
+ * Class Message.
+ */
 class Message implements MessageContract
 {
     use Queueable;
 
+    /** @var string */
     protected $type;
 
     /** @var string|callable */
@@ -32,21 +36,42 @@ class Message implements MessageContract
         $this->content = $content;
     }
 
+    /**
+     * @param string|callable $content
+     *
+     * @return static
+     */
     public static function text($content)
     {
         return new static(MessageContract::TEXT, $content);
     }
 
+    /**
+     * @param string|callable $content
+     *
+     * @return static
+     */
     public static function voice($content)
     {
         return new static(MessageContract::VOICE, $content);
     }
 
+    /**
+     * @param string|callable $template
+     * @param array|callable $data
+     *
+     * @return \Zing\LaravelSms\Message
+     */
     public static function fromTemplate($template, $data)
     {
         return static::text('')->withTemplate($template)->withData($data);
     }
 
+    /**
+     * @param string|callable $content
+     *
+     * @return $this
+     */
     public function withContent($content)
     {
         $this->content = $content;
@@ -54,11 +79,21 @@ class Message implements MessageContract
         return $this;
     }
 
+    /**
+     * @param \Zing\LaravelSms\Contracts\Driver $gateway
+     *
+     * @return string|null
+     */
     public function getContent($gateway = null): ?string
     {
         return $this->retrieveValue($this->content, $gateway);
     }
 
+    /**
+     * @param string|callable $template
+     *
+     * @return $this
+     */
     public function withTemplate($template)
     {
         $this->template = $template;
@@ -66,11 +101,21 @@ class Message implements MessageContract
         return $this;
     }
 
+    /**
+     * @param \Zing\LaravelSms\Contracts\Driver $gateway
+     *
+     * @return string|null
+     */
     public function getTemplate($gateway = null): ?string
     {
         return $this->retrieveValue($this->template, $gateway);
     }
 
+    /**
+     * @param array|callable $data
+     *
+     * @return $this
+     */
     public function withData($data)
     {
         $this->data = $data;
@@ -78,6 +123,11 @@ class Message implements MessageContract
         return $this;
     }
 
+    /**
+     * @param \Zing\LaravelSms\Contracts\Driver $gateway
+     *
+     * @return array|null
+     */
     public function getData($gateway = null): ?array
     {
         return $this->retrieveValue($this->data, $gateway);
@@ -85,7 +135,7 @@ class Message implements MessageContract
 
     /**
      * @param callable|mixed $property
-     * @param null $gateway
+     * @param \Zing\LaravelSms\Contracts\Driver $gateway
      *
      * @return mixed
      */
@@ -98,16 +148,27 @@ class Message implements MessageContract
         return $property;
     }
 
+    /**
+     * @param callable|mixed $value
+     *
+     * @return bool
+     */
     protected function useAsCallable($value): bool
     {
         return ! is_string($value) && is_callable($value);
     }
 
+    /**
+     * @return string|null
+     */
     public function __toString()
     {
         return $this->getContent() ?: $this->toJson();
     }
 
+    /**
+     * @return array|mixed
+     */
     public function jsonSerialize()
     {
         return [
@@ -118,6 +179,11 @@ class Message implements MessageContract
         ];
     }
 
+    /**
+     * @param int $options
+     *
+     * @return string
+     */
     public function toJson($options = 0): string
     {
         return json_encode($this->jsonSerialize(), $options);

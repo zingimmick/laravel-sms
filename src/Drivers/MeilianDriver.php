@@ -36,6 +36,9 @@ class MeilianDriver extends HttpDriver
                 'content' => strpos($content, '【') === 0 ? $content : $signature . $content,
             ]
         );
+        if (! is_string($result)) {
+            throw new CouldNotSendNotification('meilian response does only seem to accept string.');
+        }
         if (strpos($result, 'error') !== false) {
             throw new CouldNotSendNotification($result, 1, Arr::wrap($result));
         }

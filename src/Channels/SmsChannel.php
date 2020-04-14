@@ -34,7 +34,7 @@ class SmsChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        $message = $notification->toSms($notifiable);
+        $message = $this->getData($notifiable, $notification);
         $receiver = $this->resolveReceiver($notifiable, $notification);
         if (! $receiver) {
             return;
@@ -61,5 +61,24 @@ class SmsChannel
         }
 
         return $notifiable->routeNotificationFor('sms', $notification);
+    }
+
+    /**
+     * Get the data for the notification.
+     *
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
+     *
+     * @return mixed
+     *
+     * @throws \RuntimeException
+     */
+    protected function getData($notifiable, Notification $notification)
+    {
+        if (method_exists($notification, 'toSms')) {
+            return $notification->toSms($notifiable);
+        }
+
+        throw new \RuntimeException('Notification is missing toSms method.');
     }
 }

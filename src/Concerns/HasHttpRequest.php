@@ -14,7 +14,7 @@ trait HasHttpRequest
      * @param array  $query
      * @param array  $headers
      *
-     * @return array
+     * @return array|string
      */
     protected function get($endpoint, $query = [], $headers = [])
     {
@@ -48,7 +48,7 @@ trait HasHttpRequest
      * @param array $params
      * @param array $headers
      *
-     * @return array
+     * @return array|string
      */
     protected function postJson($endpoint, $params = [], $headers = [])
     {
@@ -108,7 +108,7 @@ trait HasHttpRequest
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @return ResponseInterface|array|string
+     * @return array|string
      */
     protected function unwrapResponse(ResponseInterface $response)
     {
