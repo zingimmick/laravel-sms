@@ -78,6 +78,15 @@ class SmsManagerTest extends TestCase
         $phone->notify($notification);
     }
 
+    public function test_notify_alias()
+    {
+        $phone = new Phone('18888888888');
+        $notification = Mockery::mock(VerifyCode::class . '[via]');
+        $notification->shouldReceive('via')->andReturn(['sms']);
+        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)}.");
+        $phone->notify($notification);
+    }
+
     public function test_route_notify()
     {
         $phone = new Phone('18888888888');
