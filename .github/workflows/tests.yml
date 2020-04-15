@@ -38,5 +38,20 @@ jobs:
       - name: Install dependencies
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
+      - name: Execute code standard tests
+        run: composer run-script ecs:test
+
       - name: Execute tests
-        run: composer run-script test
+        run: composer run-script phpunit:test -- --coverage-clover coverage.xml
+
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel: true
+
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
