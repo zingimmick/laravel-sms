@@ -25,7 +25,7 @@ class YunpianDriverTest extends TestCase
                 'form_params' => [
                     'apikey' => 'mock-api-key',
                     'mobile' => '18188888888',
-                    'text' => '【overtrue】This is a test message.',
+                    'text' => '【test】This is a test message.',
                 ],
             ])->andReturn([
                 'code' => 0,
@@ -40,7 +40,7 @@ class YunpianDriverTest extends TestCase
                 'msg' => '发送失败',
             ])->times(2);
 
-        $message = Message::text('【overtrue】This is a test message.');
+        $message = Message::text('【test】This is a test message.');
         $config = new Config($config);
         $this->assertSame([
             'code' => 0,
@@ -66,7 +66,7 @@ class YunpianDriverTest extends TestCase
     {
         $config = [
             'api_key' => 'mock-api-key',
-            'signature' => '【测试】',
+            'signature' => '【default】',
         ];
         $response = [
             'code' => 0,
@@ -94,8 +94,8 @@ class YunpianDriverTest extends TestCase
     public function provideNumberAndMessage()
     {
         return [
-            [18188888888, 'This is a 【test】 message.', '【测试】This is a 【test】 message.'],
-            [18188888888, '【已经存在】This is a 【test】 message.', '【已经存在】This is a 【test】 message.'],
+            [18188888888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'],
+            [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'],
         ];
     }
 }

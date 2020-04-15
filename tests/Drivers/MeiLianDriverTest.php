@@ -29,11 +29,11 @@ class MeiLianDriverTest extends TestCase
                     'password' => 'mock-password',
                     'apikey' => 'mock-api-key',
                     'mobile' => '18188888888',
-                    'content' => '【overtrue】This is a test message.',
+                    'content' => '【test】This is a test message.',
                 ],
             ])->andReturn('success:Missing recipient', 'error:Missing recipient')->times(2);
 
-        $message = Message::text('【overtrue】This is a test message.');
+        $message = Message::text('【test】This is a test message.');
         $config = new Config($config);
         $this->assertSame('success:Missing recipient', $driver->send(new PhoneNumber(18188888888), $message, $config));
 
@@ -53,7 +53,7 @@ class MeiLianDriverTest extends TestCase
             'username' => 'mock-username',
             'password' => 'mock-password',
             'api_key' => 'mock-api-key',
-            'signature' => '【测试】',
+            'signature' => '【test】',
         ];
         $response = 'success:Missing recipient';
 
@@ -76,8 +76,8 @@ class MeiLianDriverTest extends TestCase
     public function provideNumberAndMessage()
     {
         return [
-            [18188888888, 'This is a 【test】 message.', '【测试】This is a 【test】 message.'],
-            [18188888888, '【已经存在】This is a 【test】 message.', '【已经存在】This is a 【test】 message.'],
+            [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'],
+            [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'],
         ];
     }
 }

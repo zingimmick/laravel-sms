@@ -4,11 +4,6 @@ namespace Zing\LaravelSms\Tests;
 
 use Zing\LaravelSms\PhoneNumber;
 
-/**
- * Class PhoneNumberTest.
- *
- * @author overtrue <i@overtrue.me>
- */
 class PhoneNumberTest extends TestCase
 {
     public function test_only_number()
