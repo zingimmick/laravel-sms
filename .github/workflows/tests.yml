@@ -49,14 +49,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Coveralls Parallel
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.COVERALLS_TOKEN }}
-          parallel: true
-          path-to-lcov: coverage.xml
-
-      - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.COVERALLS_TOKEN }}
-          parallel-finished: true
+        run: vendor/bin/php-coveralls -x coverage.xml
+          env:
+            COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
