@@ -48,7 +48,8 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Coveralls Parallel
         run: vendor/bin/php-coveralls -x coverage.xml
-          env:
-            COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
