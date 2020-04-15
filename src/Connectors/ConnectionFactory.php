@@ -2,6 +2,7 @@
 
 namespace Zing\LaravelSms\Connectors;
 
+use Zing\LaravelSms\Contracts\Driver;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
 
 class ConnectionFactory
@@ -19,7 +20,7 @@ class ConnectionFactory
             throw new InvalidArgumentException('A driver must be specified.');
         }
         $driver = $config['driver'];
-        if (class_exists($driver)) {
+        if (class_exists($driver) && in_array(Driver::class, class_implements($driver), true)) {
             return new $driver($config);
         }
 

@@ -9,6 +9,7 @@ use Zing\LaravelSms\Channels\SmsChannel;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
 use Zing\LaravelSms\Drivers\YunpianDriver;
+use Zing\LaravelSms\Exceptions\InvalidArgumentException;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\PhoneNumber;
@@ -160,5 +161,22 @@ class SmsManagerTest extends TestCase
     {
         $this->prepareLoggerExpectation()->with("number: {$number}, content: {$message}.");
         Sms::connection('log')->send($number, $message);
+    }
+
+    public function test_connection_without_driver()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('A driver must be specified.');
+        config()->set('sms.connections.test', []);
+        Sms::connection('test');
+    }
+
+    public function test_connection_with_wrong_driver()
+    {
+        $driver = 'driver';
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Unsupported driver [${driver}].");
+        config()->set('sms.connections.test', ['driver' => $driver]);
+        Sms::connection('test');
     }
 }

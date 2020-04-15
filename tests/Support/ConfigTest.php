@@ -42,6 +42,7 @@ class ConfigTest extends TestCase
         $this->assertSame('harry', $config->get('string'));
         $this->assertNull($config->get('nothing'));
         $this->assertSame('default', $config->get('nothing', 'default'));
+        $this->assertSame('default', $config->get('nothing.name', 'default'));
         $this->assertSame('robin', $config->get('user.name'));
         $this->assertSame('harry', $config->get('users.0.name'));
     }
