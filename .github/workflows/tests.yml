@@ -51,3 +51,7 @@ jobs:
 
       - name: Coveralls Parallel
         run: mkdir -p build/logs && vendor/bin/php-coveralls -x coverage.xml -v
+        env:
+          COVERALLS_RUN_LOCALLY: 1
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+
