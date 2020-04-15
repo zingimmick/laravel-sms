@@ -50,4 +50,4 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Coveralls Parallel
-        run: mkdir -p build/logs && vendor/bin/php-coveralls -v
+        run: mkdir -p build/logs && vendor/bin/php-coveralls -x coverage.xml -v
