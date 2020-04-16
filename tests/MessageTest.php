@@ -14,6 +14,8 @@ class MessageTest extends TestCase
         self::assertSame(\Zing\LaravelSms\Contracts\Message::TEXT, $message->getType());
         $message = Message::voice('');
         self::assertSame(\Zing\LaravelSms\Contracts\Message::VOICE, $message->getType());
+        $message = Message::fromTemplate('', []);
+        self::assertSame(\Zing\LaravelSms\Contracts\Message::TEXT, $message->getType());
     }
 
     public function test_content()
