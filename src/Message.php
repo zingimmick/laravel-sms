@@ -67,6 +67,11 @@ class Message implements MessageContract
         return static::text('')->withTemplate($template)->withData($data);
     }
 
+    public function getType()
+    {
+        return $this->type;
+    }
+
     /**
      * @param string|callable $content
      *
@@ -80,13 +85,13 @@ class Message implements MessageContract
     }
 
     /**
-     * @param \Zing\LaravelSms\Contracts\Driver $gateway
+     * @param \Zing\LaravelSms\Contracts\Driver $driver
      *
      * @return string|null
      */
-    public function getContent($gateway = null): ?string
+    public function getContent($driver = null): ?string
     {
-        return $this->retrieveValue($this->content, $gateway);
+        return $this->retrieveValue($this->content, $driver);
     }
 
     /**
@@ -102,13 +107,13 @@ class Message implements MessageContract
     }
 
     /**
-     * @param \Zing\LaravelSms\Contracts\Driver $gateway
+     * @param \Zing\LaravelSms\Contracts\Driver $driver
      *
      * @return string|null
      */
-    public function getTemplate($gateway = null): ?string
+    public function getTemplate($driver = null): ?string
     {
-        return $this->retrieveValue($this->template, $gateway);
+        return $this->retrieveValue($this->template, $driver);
     }
 
     /**
@@ -124,25 +129,25 @@ class Message implements MessageContract
     }
 
     /**
-     * @param \Zing\LaravelSms\Contracts\Driver $gateway
+     * @param \Zing\LaravelSms\Contracts\Driver $driver
      *
      * @return array|null
      */
-    public function getData($gateway = null): ?array
+    public function getData($driver = null): ?array
     {
-        return $this->retrieveValue($this->data, $gateway);
+        return $this->retrieveValue($this->data, $driver);
     }
 
     /**
      * @param callable|mixed $property
-     * @param \Zing\LaravelSms\Contracts\Driver $gateway
+     * @param \Zing\LaravelSms\Contracts\Driver $driver
      *
      * @return mixed
      */
-    protected function retrieveValue($property, $gateway)
+    protected function retrieveValue($property, $driver)
     {
         if ($this->useAsCallable($property)) {
-            return $property($gateway);
+            return $property($driver);
         }
 
         return $property;

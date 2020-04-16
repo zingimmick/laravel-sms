@@ -10,11 +10,11 @@ interface Message extends JsonSerializable
 
     public const TEXT = 'text';
 
-    public function getContent($gateway = null): ?string;
+    public function getContent($driver = null): ?string;
 
-    public function getTemplate($gateway = null): ?string;
+    public function getTemplate($driver = null): ?string;
 
-    public function getData($gateway = null): ?array;
+    public function getData($driver = null): ?array;
 
     public function __toString();
 }
