@@ -31,7 +31,9 @@ class MeiLianDriverTest extends TestCase
                     'mobile' => '18188888888',
                     'content' => '【test】This is a test message.',
                 ],
-            ])->andReturn('success:Missing recipient', 'error:Missing recipient')->times(2);
+            ])
+            ->andReturn('success:Missing recipient', 'error:Missing recipient')
+            ->times(2);
 
         $message = Message::text('【test】This is a test message.');
         $config = new Config($config);
@@ -40,6 +42,38 @@ class MeiLianDriverTest extends TestCase
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionCode(1);
         $this->expectExceptionMessage('error:Missing recipient');
+
+        $driver->send(new PhoneNumber(18188888888), $message, $config);
+    }
+
+    public function test_send2()
+    {
+        $config = [
+            'username' => 'mock-username',
+            'password' => 'mock-password',
+            'api_key' => 'mock-api-key',
+        ];
+        $driver = Mockery::mock(MeilianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+
+        $driver->shouldReceive('request')
+            ->with('post', 'http://m.5c.com.cn/api/send/index.php', [
+                'headers' => [],
+                'form_params' => [
+                    'username' => 'mock-username',
+                    'password' => 'mock-password',
+                    'apikey' => 'mock-api-key',
+                    'mobile' => '18188888888',
+                    'content' => '【test】This is a test message.',
+                ],
+            ])
+            ->andReturn(['test'])
+            ->times(1);
+
+        $message = Message::text('【test】This is a test message.');
+        $config = new Config($config);
+
+        $this->expectException(CouldNotSendNotification::class);
+        $this->expectExceptionMessage('meilian response does only seem to accept string.');
 
         $driver->send(new PhoneNumber(18188888888), $message, $config);
     }

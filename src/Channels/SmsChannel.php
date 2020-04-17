@@ -4,6 +4,7 @@ namespace Zing\LaravelSms\Channels;
 
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
+use RuntimeException;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\SmsManager;
 
@@ -79,6 +80,6 @@ class SmsChannel
             return $notification->toSms($notifiable);
         }
 
-        throw new \RuntimeException('Notification is missing toSms method.');
+        throw new RuntimeException('Notification is missing toSms method.');
     }
 }

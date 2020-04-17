@@ -25,7 +25,7 @@ class Phone
         return $this->phone;
     }
 
-    public function routeNotificationForSms()
+    public function routeNotificationForSms($notification)
     {
         return $this->phone;
     }

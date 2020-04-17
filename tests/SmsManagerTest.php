@@ -5,6 +5,7 @@ namespace Zing\LaravelSms\Tests;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Mockery;
+use RuntimeException;
 use Zing\LaravelSms\Channels\SmsChannel;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
@@ -75,7 +76,7 @@ class SmsManagerTest extends TestCase
     {
         $phone = new Phone('18888888888');
         $notification = new VerifyCode();
-        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)}.");
+        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms($notification)}, content: {$notification->toSms($phone)}.");
         $phone->notify($notification);
     }
 
@@ -84,7 +85,7 @@ class SmsManagerTest extends TestCase
         $phone = new Phone('18888888888');
         $notification = Mockery::mock(VerifyCode::class . '[via]');
         $notification->shouldReceive('via')->andReturn(['sms']);
-        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)}.");
+        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms($notification)}, content: {$notification->toSms($phone)}.");
         $phone->notify($notification);
     }
 
@@ -92,7 +93,7 @@ class SmsManagerTest extends TestCase
     {
         $phone = new Phone('18888888888');
         $notification = new VerifyCode();
-        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)}.");
+        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms($notification)}, content: {$notification->toSms($phone)}.");
         Notification::route(SmsChannel::class, '18888888888')->notify($notification);
     }
 
@@ -100,8 +101,46 @@ class SmsManagerTest extends TestCase
     {
         $phone = new Phone('18888888888');
         $notification = new VerifyCode();
-        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms()}, content: {$notification->toSms($phone)}.");
+        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms($notification)}, content: {$notification->toSms($phone)}.");
         Notification::route('sms', '18888888888')->notify($notification);
+    }
+
+    public function test_notify_string()
+    {
+        $phone = new Phone('18888888888');
+        $notification = Mockery::mock(VerifyCode::class . '[toSms]');
+        $notification->shouldReceive('toSms')->with($phone)->andReturn('test');
+        $this->prepareLoggerExpectation()->with("number: {$phone->routeNotificationForSms($notification)}, content: {$notification->toSms($phone)}.");
+        $phone->notify($notification);
+    }
+
+    public function test_notify_invalid_receiver()
+    {
+        /** @var \Zing\LaravelSms\Tests\Phone $phone */
+        $phone = Mockery::mock(Phone::class . '[routeNotificationForSms]', ['18888888888']);
+        $notification = new VerifyCode();
+        $phone->shouldReceive('routeNotificationForSms')->once()->andReturn('');
+        Log::shouldReceive()->never();
+        $phone->notify($notification);
+    }
+
+    public function test_notify_invalid_message()
+    {
+        $phone = new Phone('18888888888');
+        $notification = Mockery::mock(VerifyCode::class . '[toSms]');
+        $notification->shouldReceive('toSms')->with($phone)->andReturn([]);
+        Log::shouldReceive()->never();
+        $phone->notify($notification);
+    }
+
+    public function test_notify_notification_missing_to_sms_method()
+    {
+        $phone = new Phone('18888888888');
+        $notification = Mockery::mock(\Illuminate\Notifications\Notification::class);
+        $notification->shouldReceive('via')->andReturn(['sms']);
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Notification is missing toSms method.');
+        $phone->notify($notification);
     }
 
     public function test_template()

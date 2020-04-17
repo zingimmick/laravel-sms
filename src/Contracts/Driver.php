@@ -13,6 +13,7 @@ interface Driver
      * @return mixed
      *
      * @throws CouldNotSendNotification
+     * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
      */
     public function sendFormatted(PhoneNumber $number, Message $message);
 }
