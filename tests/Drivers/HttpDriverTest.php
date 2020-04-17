@@ -4,7 +4,6 @@ namespace Zing\LaravelSms\Tests\Drivers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use Illuminate\Foundation\Testing\WithFaker;
 use Mockery;
 use Mockery\Matcher\AnyArgs;
 use Psr\Http\Message\ResponseInterface;
@@ -13,8 +12,6 @@ use Zing\LaravelSms\Tests\TestCase;
 
 class HttpDriverTest extends TestCase
 {
-    use WithFaker;
-
     public function test_request()
     {
         $object = Mockery::mock(DummyHasHttpRequest::class)
@@ -40,9 +37,9 @@ class HttpDriverTest extends TestCase
     public function test_get()
     {
         $driver = Mockery::mock(DummyHasHttpRequest::class)->shouldAllowMockingProtectedMethods();
-        $endpoint = $this->faker->url;
-        $headers = $this->faker->randomElements();
-        $query = $this->faker->randomElements();
+        $endpoint = 'mock-endpoint';
+        $headers = ['content-type' => 'application/json'];
+        $query = ['foo' => 'bar'];
         $driver->expects()
             ->request('get', $endpoint, [
                 'headers' => $headers,
@@ -55,9 +52,9 @@ class HttpDriverTest extends TestCase
     public function test_post()
     {
         $driver = Mockery::mock(DummyHasHttpRequest::class)->shouldAllowMockingProtectedMethods();
-        $endpoint = $this->faker->url;
-        $headers = $this->faker->randomElements();
-        $params = $this->faker->randomElements();
+        $endpoint = 'mock-endpoint';
+        $headers = ['content-type' => 'application/json'];
+        $params = ['foo' => 'bar'];
         $driver->expects()
             ->request('post', $endpoint, [
                 'headers' => $headers,
@@ -70,9 +67,9 @@ class HttpDriverTest extends TestCase
     public function test_post_json()
     {
         $driver = Mockery::mock(DummyHasHttpRequest::class)->shouldAllowMockingProtectedMethods();
-        $endpoint = $this->faker->url;
-        $headers = $this->faker->randomElements();
-        $json = $this->faker->randomElements();
+        $endpoint = 'mock-endpoint';
+        $headers = ['content-type' => 'application/json'];
+        $json = ['foo' => 'bar'];
         $driver->expects()
             ->request('post', $endpoint, [
                 'headers' => $headers,
