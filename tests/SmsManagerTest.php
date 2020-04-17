@@ -5,6 +5,7 @@ namespace Zing\LaravelSms\Tests;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Mockery;
+use RuntimeException;
 use Zing\LaravelSms\Channels\SmsChannel;
 use Zing\LaravelSms\Contracts\Message as MessageContract;
 use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
@@ -137,7 +138,7 @@ class SmsManagerTest extends TestCase
         $phone = new Phone('18888888888');
         $notification = Mockery::mock(\Illuminate\Notifications\Notification::class);
         $notification->shouldReceive('via')->andReturn(['sms']);
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Notification is missing toSms method.');
         $phone->notify($notification);
     }
