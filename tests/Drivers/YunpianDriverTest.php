@@ -98,7 +98,7 @@ class YunpianDriverTest extends TestCase
         $driver->allows('getBaseUri')->passthru();
         $driver->allows('getTimeout')->passthru();
         self::assertSame(['base_uri' => 'http://yunpian.com',
-            'timeout' => 5.0, ], $driver->getBaseOptions());
+            'timeout' => $driver->getTimeout(), ], $driver->getBaseOptions());
     }
 
     public function provideNumberAndMessage()
