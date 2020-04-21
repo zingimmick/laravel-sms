@@ -2,6 +2,7 @@
 
 namespace Zing\LaravelSms\Tests\Drivers;
 
+use Illuminate\Support\Are;
 use Mockery;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
@@ -97,8 +98,7 @@ class YunpianDriverTest extends TestCase
         $driver->shouldReceive('getBaseOptions')->once()->passthru();
         $driver->allows('getBaseUri')->passthru();
         $driver->allows('getTimeout')->passthru();
-        self::assertSame(['base_uri' => 'http://yunpian.com',
-            'timeout' => $driver->getTimeout(), ], $driver->getBaseOptions());
+        self::assertSame('http://yunpian.com', Arr::get($driver->getBaseOptions(), 'base_uri'));
     }
 
     public function provideNumberAndMessage()
