@@ -41,7 +41,10 @@ class SmsChannel
             return;
         }
         if (is_string($message)) {
-            $message = Message::text($message);
+            $message = new Message([
+                'content' => $message,
+                'template' => $message,
+            ]);
         }
         if (! $message instanceof Message) {
             return;

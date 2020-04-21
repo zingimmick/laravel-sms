@@ -2,18 +2,19 @@
 
 namespace Zing\LaravelSms\Contracts;
 
-use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
+use Overtrue\EasySms\Contracts\MessageInterface;
+use Overtrue\EasySms\Contracts\PhoneNumberInterface;
 
 interface Driver
 {
     /**
-     * @param \Zing\LaravelSms\Contracts\PhoneNumber $number
-     * @param \Zing\LaravelSms\Contracts\Message $message
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $number
+     * @param \Overtrue\EasySms\Contracts\MessageInterface $message
      *
      * @return mixed
      *
-     * @throws CouldNotSendNotification
+     * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
      */
-    public function sendFormatted(PhoneNumber $number, Message $message);
+    public function send(PhoneNumberInterface $number, MessageInterface $message);
 }

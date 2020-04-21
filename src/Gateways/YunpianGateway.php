@@ -1,19 +1,24 @@
 <?php
 
-namespace Zing\LaravelSms\Drivers;
+namespace Zing\LaravelSms\Gateways;
 
-use Zing\LaravelSms\Contracts\Message;
-use Zing\LaravelSms\Contracts\PhoneNumber;
+use Overtrue\EasySms\Contracts\MessageInterface;
+use Overtrue\EasySms\Contracts\PhoneNumberInterface;
+use Overtrue\EasySms\Gateways\Gateway;
+use Overtrue\EasySms\Support\Config;
+use Overtrue\EasySms\Traits\HasHttpRequest;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 
-class YunpianDriver extends HttpDriver
+class YunpianGateway extends Gateway
 {
-    protected function getBaseUri()
+    use HasHttpRequest;
+
+    public function getBaseUri()
     {
         return 'http://yunpian.com';
     }
 
-    public function sendFormatted(PhoneNumber $number, Message $message)
+    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
     {
         $signature = $this->config->get('signature');
         $content = $message->getContent($this);

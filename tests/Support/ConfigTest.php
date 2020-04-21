@@ -31,6 +31,12 @@ class ConfigTest extends TestCase
         ];
     }
 
+    public function test_create()
+    {
+        self::assertInstanceOf(Config::class, new Config());
+        self::assertInstanceOf(Config::class, new Config([]));
+    }
+
     /**
      * @dataProvider provideConfig
      *

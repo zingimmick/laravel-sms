@@ -3,10 +3,10 @@
 namespace Zing\LaravelSms\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use Zing\LaravelSms\Drivers\LogDriver;
-use Zing\LaravelSms\Drivers\NullDriver;
-use Zing\LaravelSms\Drivers\YunpianDriver;
 use Zing\LaravelSms\Facades\Sms;
+use Zing\LaravelSms\Gateways\LogGateway;
+use Zing\LaravelSms\Gateways\NullGateway;
+use Zing\LaravelSms\Gateways\YunpianGateway;
 use Zing\LaravelSms\SmsServiceProvider;
 
 class TestCase extends BaseTestCase
@@ -20,7 +20,7 @@ class TestCase extends BaseTestCase
 
     protected function getPackageAliases($app)
     {
-        return ['sms' => Sms::class];
+        return ['Sms' => Sms::class];
     }
 
     protected function getEnvironmentSetUp($app)
@@ -29,13 +29,13 @@ class TestCase extends BaseTestCase
             'default' => env('SMS_CONNECTION', 'log'),
             'connections' => [
                 'log' => [
-                    'driver' => LogDriver::class,
+                    'driver' => LogGateway::class,
                 ],
                 'null' => [
-                    'driver' => NullDriver::class,
+                    'driver' => NullGateway::class,
                 ],
                 'yunpian' => [
-                    'driver' => YunpianDriver::class,
+                    'driver' => YunpianGateway::class,
                     'api_key' => env('YUNPIAN_KEY'),
                 ],
             ],

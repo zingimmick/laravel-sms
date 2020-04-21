@@ -2,52 +2,8 @@
 
 namespace Zing\LaravelSms;
 
-use Zing\LaravelSms\Contracts\PhoneNumber as PhoneNumberContract;
-
-class PhoneNumber implements PhoneNumberContract
+class PhoneNumber extends \Overtrue\EasySms\PhoneNumber
 {
-    /**
-     * @var int
-     */
-    protected $number;
-
-    /**
-     * @var int
-     */
-    protected $IDDCode;
-
-    /**
-     * PhoneNumberInterface constructor.
-     *
-     * @param int $numberWithoutIDDCode
-     * @param string $IDDCode
-     */
-    public function __construct($numberWithoutIDDCode, $IDDCode = null)
-    {
-        $this->number = $numberWithoutIDDCode;
-        $this->IDDCode = $IDDCode ? (int) ltrim($IDDCode, '+0') : null;
-    }
-
-    /**
-     * 86.
-     *
-     * @return int
-     */
-    public function getIDDCode()
-    {
-        return $this->IDDCode;
-    }
-
-    /**
-     * 18888888888.
-     *
-     * @return int
-     */
-    public function getNumber()
-    {
-        return $this->number;
-    }
-
     /**
      * +8618888888888.
      *
@@ -81,18 +37,5 @@ class PhoneNumber implements PhoneNumberContract
     public function getPrefixedIDDCode($prefix)
     {
         return $this->IDDCode ? $prefix . $this->IDDCode : null;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getUniversalNumber();
-    }
-
-    public function jsonSerialize()
-    {
-        return $this->getUniversalNumber();
     }
 }

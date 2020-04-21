@@ -7,7 +7,6 @@ use GuzzleHttp\Psr7\Response;
 use Mockery;
 use Mockery\Matcher\AnyArgs;
 use Psr\Http\Message\ResponseInterface;
-use Zing\LaravelSms\Concerns\HasHttpRequest;
 use Zing\LaravelSms\Tests\TestCase;
 
 class HttpDriverTest extends TestCase
@@ -124,5 +123,5 @@ class HttpDriverTest extends TestCase
 
 class DummyHasHttpRequest
 {
-    use HasHttpRequest;
+    use \Overtrue\EasySms\Traits\HasHttpRequest;
 }
