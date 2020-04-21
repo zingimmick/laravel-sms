@@ -2,7 +2,7 @@
 
 namespace Zing\LaravelSms\Tests\Drivers;
 
-use Illuminate\Support\Are;
+use Illuminate\Support\Arr;
 use Mockery;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
