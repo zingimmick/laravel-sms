@@ -3,11 +3,11 @@
 namespace Zing\LaravelSms\Tests\Drivers;
 
 use Mockery;
+use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Gateways\MeilianGateway;
 use Zing\LaravelSms\Message;
-use Zing\LaravelSms\PhoneNumber;
 use Zing\LaravelSms\Tests\TestCase;
 
 class MeiLianDriverTest extends TestCase

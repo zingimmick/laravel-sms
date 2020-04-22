@@ -3,7 +3,7 @@
 namespace Zing\LaravelSms;
 
 use Illuminate\Bus\Queueable;
-use Zing\LaravelSms\Contracts\Message as MessageContract;
+use Overtrue\EasySms\Contracts\MessageInterface;
 
 /**
  * Class Message.
@@ -12,18 +12,6 @@ class Message extends \Overtrue\EasySms\Message
 {
     use Queueable;
 
-    /** @var string */
-    protected $type;
-
-    /** @var string|callable */
-    protected $content;
-
-    /** @var string|callable */
-    protected $template;
-
-    /** @var array|callable */
-    protected $data = [];
-
     /**
      * @param string|callable $content
      *
@@ -31,7 +19,7 @@ class Message extends \Overtrue\EasySms\Message
      */
     public static function text($content)
     {
-        return (new static([],MessageContract::TEXT))->setContent($content);
+        return (new static([],MessageInterface::TEXT_MESSAGE))->setContent($content);
     }
 
     /**
@@ -41,7 +29,7 @@ class Message extends \Overtrue\EasySms\Message
      */
     public static function voice($content)
     {
-        return (new static([],MessageContract::VOICE))->setContent($content);
+        return (new static([],MessageInterface::VOICE_MESSAGE))->setContent($content);
     }
 
     /**
