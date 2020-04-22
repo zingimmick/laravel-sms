@@ -1,25 +1,31 @@
 <?php
 
-namespace Zing\LaravelSms\Drivers;
+namespace Zing\LaravelSms\Gateways;
 
 use Illuminate\Support\Arr;
-use Zing\LaravelSms\Contracts\Message;
-use Zing\LaravelSms\Contracts\PhoneNumber;
+use Overtrue\EasySms\Contracts\MessageInterface;
+use Overtrue\EasySms\Contracts\PhoneNumberInterface;
+use Overtrue\EasySms\Gateways\Gateway;
+use Overtrue\EasySms\Support\Config;
+use Overtrue\EasySms\Traits\HasHttpRequest;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 
-class MeilianDriver extends HttpDriver
+class MeilianGateway extends Gateway
 {
+    use HasHttpRequest;
+
     public const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
 
     /**
-     * @param PhoneNumber $to
-     * @param Message $message
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $number
+     * @param \Overtrue\EasySms\Contracts\MessageInterface $message
+     * @param \Overtrue\EasySms\Support\Config $config
      *
      * @return string
      *
      * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      */
-    public function sendFormatted(PhoneNumber $to, Message $message)
+    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
     {
         $endpoint = self::ENDPOINT_URL;
 
@@ -32,7 +38,7 @@ class MeilianDriver extends HttpDriver
                 'username' => $this->config->get('username'),
                 'password' => $this->config->get('password'),
                 'apikey' => $this->config->get('api_key'),
-                'mobile' => $to->getUniversalNumber(),
+                'mobile' => $number->getUniversalNumber(),
                 'content' => strpos($content, '【') === 0 ? $content : $signature . $content,
             ]
         );

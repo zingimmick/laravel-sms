@@ -3,8 +3,9 @@
 namespace Zing\LaravelSms\Contracts;
 
 use JsonSerializable;
+use Overtrue\EasySms\Contracts\PhoneNumberInterface;
 
-interface PhoneNumber extends JsonSerializable
+interface PhoneNumber extends JsonSerializable, PhoneNumberInterface
 {
     /**
      * 86.

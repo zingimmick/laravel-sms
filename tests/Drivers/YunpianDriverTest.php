@@ -2,12 +2,13 @@
 
 namespace Zing\LaravelSms\Tests\Drivers;
 
+use Illuminate\Support\Arr;
 use Mockery;
-use Zing\LaravelSms\Drivers\YunpianDriver;
+use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
+use Zing\LaravelSms\Gateways\YunpianGateway;
 use Zing\LaravelSms\Message;
 use Zing\LaravelSms\PhoneNumber;
-use Zing\LaravelSms\Support\Config;
 use Zing\LaravelSms\Tests\TestCase;
 
 class YunpianDriverTest extends TestCase
@@ -17,7 +18,7 @@ class YunpianDriverTest extends TestCase
         $config = [
             'api_key' => 'mock-api-key',
         ];
-        $driver = Mockery::mock(YunpianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
 
         $driver->shouldReceive('request')
             ->with('post', '/v1/sms/send.json', [
@@ -78,10 +79,10 @@ class YunpianDriverTest extends TestCase
             'sid' => 3310228982,   // 短信ID
         ];
 
-        $driver = Mockery::mock(YunpianDriver::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
         $config = new Config($config);
         $driver->shouldReceive('request')->with('post', '/v1/sms/send.json', [
-            'headers' => [],  'form_params' => [
+            'headers' => [], 'form_params' => [
                 'apikey' => 'mock-api-key',
                 'mobile' => $number,
                 'text' => $expected,
@@ -89,6 +90,15 @@ class YunpianDriverTest extends TestCase
         ])->andReturn($response);
 
         $this->assertSame($response, $driver->send(new PhoneNumber($number), Message::text($message), $config));
+    }
+
+    public function test_get_options()
+    {
+        $driver = Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
+        $driver->shouldReceive('getBaseOptions')->once()->passthru();
+        $driver->allows('getBaseUri')->passthru();
+        $driver->allows('getTimeout')->passthru();
+        self::assertSame('http://yunpian.com', Arr::get($driver->getBaseOptions(), 'base_uri'));
     }
 
     public function provideNumberAndMessage()
