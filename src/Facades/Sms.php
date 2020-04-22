@@ -9,12 +9,11 @@
 namespace Zing\LaravelSms\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Zing\LaravelSms\Contracts\Driver;
 
 /**
  * Class Sms.
  *
- * @method static Driver connection(string $name = null)
+ * @method static \Zing\LaravelSms\Connectors\Connector connection(string $name = null)
  *
  * @mixin \Zing\LaravelSms\SmsManager
  */

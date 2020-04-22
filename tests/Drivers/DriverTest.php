@@ -7,10 +7,10 @@ use Mockery;
 use Overtrue\EasySms\Contracts\MessageInterface;
 use Overtrue\EasySms\Contracts\PhoneNumberInterface;
 use Overtrue\EasySms\Gateways\Gateway;
+use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
-use Zing\LaravelSms\PhoneNumber;
 use Zing\LaravelSms\Tests\TestCase;
 
 class DriverTest extends TestCase

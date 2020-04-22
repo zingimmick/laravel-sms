@@ -4,11 +4,11 @@ namespace Zing\LaravelSms\Tests\Drivers;
 
 use Illuminate\Support\Arr;
 use Mockery;
+use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Gateways\YunpianGateway;
 use Zing\LaravelSms\Message;
-use Zing\LaravelSms\PhoneNumber;
 use Zing\LaravelSms\Tests\TestCase;
 
 class YunpianDriverTest extends TestCase

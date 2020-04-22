@@ -2,6 +2,7 @@
 
 namespace Zing\LaravelSms\Tests;
 
+use Overtrue\EasySms\Contracts\MessageInterface;
 use Zing\LaravelSms\Message;
 
 class MessageTest extends TestCase
@@ -9,10 +10,10 @@ class MessageTest extends TestCase
     public function test_static_create()
     {
         $message = Message::text('');
-        self::assertSame(\Zing\LaravelSms\Contracts\Message::TEXT, $message->getMessageType());
+        self::assertSame(MessageInterface::TEXT_MESSAGE, $message->getMessageType());
         $message = Message::voice('');
-        self::assertSame(\Zing\LaravelSms\Contracts\Message::VOICE, $message->getMessageType());
+        self::assertSame(MessageInterface::VOICE_MESSAGE, $message->getMessageType());
         $message = Message::fromTemplate('', []);
-        self::assertSame(\Zing\LaravelSms\Contracts\Message::TEXT, $message->getMessageType());
+        self::assertSame(MessageInterface::TEXT_MESSAGE, $message->getMessageType());
     }
 }
