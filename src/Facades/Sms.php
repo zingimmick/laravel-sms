@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: liuning
- * Date: 2018/12/17
- * Time: 11:17 AM.
- */
 
 namespace Zing\LaravelSms\Facades;
 
