@@ -19,7 +19,7 @@ class Message extends \Overtrue\EasySms\Message
      */
     public static function text($content)
     {
-        return (new static([],MessageInterface::TEXT_MESSAGE))->setContent($content);
+        return (new static([], MessageInterface::TEXT_MESSAGE))->setContent($content);
     }
 
     /**
@@ -29,7 +29,7 @@ class Message extends \Overtrue\EasySms\Message
      */
     public static function voice($content)
     {
-        return (new static([],MessageInterface::VOICE_MESSAGE))->setContent($content);
+        return (new static([], MessageInterface::VOICE_MESSAGE))->setContent($content);
     }
 
     /**
