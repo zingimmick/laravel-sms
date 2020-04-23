@@ -13,7 +13,6 @@
         "ext-json": "*",
         "ext-simplexml": "*",
         "graham-campbell/manager": "^4.5",
-        "guzzlehttp/guzzle": "^6.5",
         "illuminate/notifications": "^6.0|^7.0|^8.0",
         "overtrue/easy-sms": "^1.1"
     },
