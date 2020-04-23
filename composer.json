@@ -13,7 +13,7 @@
         "ext-json": "*",
         "graham-campbell/manager": "^4.5",
         "illuminate/notifications": "^6.0|^7.0|^8.0",
-        "overtrue/easy-sms": "^1.1",
+        "overtrue/easy-sms": "^1.1"
     },
     "require-dev": {
         "mockery/mockery": "^1.2.3",
