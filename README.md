@@ -31,6 +31,10 @@ Publish Configuration
 php artisan vendor:publish --provider "Zing\LaravelSms\SmsServiceProvider"
 ```
 
+### Add Connections
+
+this package based on [overtrue/easy-sms](https://github.com/overtrue/easy-sms), driver is the gateway.
+
 ## Usage
 
 ### Channel
