@@ -123,8 +123,7 @@ Sms::send(18188888888, 'test message.');
 // use specific connection
 Sms::connection('null')->send(18188888888, 'test message.');
 ```
-
-============================
+===============
 
 ### Use specific connection for notification
 
