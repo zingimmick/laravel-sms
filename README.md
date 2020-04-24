@@ -124,6 +124,8 @@ Sms::send(18188888888, 'test message.');
 Sms::connection('null')->send(18188888888, 'test message.');
 ```
 
+============================
+
 ### Use specific connection for notification
 
 **NOTE:** only support for `Zing\LaravelSms\Message`
