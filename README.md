@@ -33,7 +33,7 @@ php artisan vendor:publish --provider "Zing\LaravelSms\SmsServiceProvider"
 
 ### Add Connections
 
-this package based on [overtrue/easy-sms](https://github.com/overtrue/easy-sms), driver is the gateway.
+This package based on [overtrue/easy-sms](https://github.com/overtrue/easy-sms), driver is the gateway.
 
 ## Usage
 
@@ -132,7 +132,7 @@ Sms::connection('null')->send(18188888888, 'test message.');
 
 ### Use specific connection for notification
 
-**NOTE:** only support for `Zing\LaravelSms\Message`
+**NOTE:** Only support for `Zing\LaravelSms\Message`
 
 ```php
  use Zing\LaravelSms\Message;
@@ -145,7 +145,7 @@ public function toSms($notifiable)
 
 ### Make PhoneNumber notifiable
 
-**NOTE:** only support for `Zing\LaravelSms\PhoneNumber`
+**NOTE:** Only support for `Zing\LaravelSms\PhoneNumber`
 
 ```php
 use Zing\LaravelSms\PhoneNumber;
