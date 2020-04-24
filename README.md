@@ -1,6 +1,6 @@
 # laravel-sms
 
-Laravel Sms is used to 
+Laravel Sms is used to notify via sms and send a message.
 
 <p align="center">
 <a href="https://github.com/zingimmick/laravel-sms/actions"><img src="https://github.com/zingimmick/laravel-sms/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -65,7 +65,7 @@ class Verification extends Notification implements ShouldQueue
 
     public function toSms($notifiable)
     {
-        return "验证码 {$this->code}，您正在进行如糖身份验证，打死也不要告诉别人哦!";
+        return "验证码 {$this->code}，您正在进行身份验证，打死也不要告诉别人哦!";
     }
 }
 ```
@@ -106,8 +106,46 @@ use Zing\LaravelSms\PhoneNumber;
 use Zing\LaravelSms\Channels\SmsChannel;
 
 // use channel class name
-Notification::route(SmsChannel::class, new PhoneNumber(13333333333, 86))->notify(new Verification('1111'));
+Notification::route(SmsChannel::class, new PhoneNumber(18188888888, 86))->notify(new Verification('1111'));
 // use channel alias
-Notification::route('sms', new PhoneNumber(13333333333, 86))->notify(new Verification('1111'));
+Notification::route('sms', new PhoneNumber(18188888888, 86))->notify(new Verification('1111'));
 ```
+
+### Facade
+
+#### Send Message
+
+```php
+use Zing\LaravelSms\Facades\Sms;
+
+// use default connection
+Sms::send(18188888888, 'test message.');
+// use specific connection
+Sms::connection('null')->send(18188888888, 'test message.');
+```
+
+### Use specific connection for notification
+
+**NOTE:** only support for `Zing\LaravelSms\Message`
+
+```php
+ use Zing\LaravelSms\Message;
+
+public function toSms($notifiable)
+{
+    return (new Message())->onConnection('log');
+}
+```
+
+### Make PhoneNumber notifiable
+
+**NOTE:** only support for `Zing\LaravelSms\PhoneNumber`
+
+```php
+use Zing\LaravelSms\PhoneNumber;
+
+(new PhoneNumber(18188888888))->notify(new Verification('1111'));
+```
+
+
 

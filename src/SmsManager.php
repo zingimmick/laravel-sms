@@ -7,7 +7,7 @@ use Illuminate\Contracts\Config\Repository;
 use Zing\LaravelSms\Connectors\ConnectionFactory;
 
 /**
- * @method bool send($number, $message) 发送消息
+ * @method static bool send($number, $message) 发送消息
  */
 class SmsManager extends AbstractManager
 {
