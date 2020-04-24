@@ -1,7 +1,5 @@
 # laravel-sms
 
-Laravel Sms is used to notify via sms and send a message.
-
 <p align="center">
 <a href="https://github.com/zingimmick/laravel-sms/actions"><img src="https://github.com/zingimmick/laravel-sms/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://codecov.io/gh/zingimmick/laravel-sms"><img src="https://codecov.io/gh/zingimmick/laravel-sms/branch/master/graph/badge.svg" /></a>
@@ -12,6 +10,8 @@ Laravel Sms is used to notify via sms and send a message.
 <a href="https://scrutinizer-ci.com/g/zingimmick/laravel-sms"><img src="https://img.shields.io/scrutinizer/quality/g/zingimmick/laravel-sms.svg" alt="Build Status"></a>
 <a href="https://github.styleci.io/repos/254559831"><img src="https://github.styleci.io/repos/254559831/shield?branch=master" alt="StyleCI Shield"></a>
 </p>
+
+Laravel Sms is used to notify via sms and send a message.
 
 ## Installation
 
@@ -125,7 +125,6 @@ Sms::connection('null')->send(18188888888, 'test message.');
 ```
 
 ## Specific usage
----------
 
 ### Use specific connection for notification
 
