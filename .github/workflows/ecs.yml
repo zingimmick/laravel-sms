@@ -1,22 +1,20 @@
-name: tests
+name: Coding Standards
 
 on:
-  push:
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'
+  push:
+    branches:
+      - master
 
 jobs:
-  tests:
-
+  ecs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
       matrix:
         php: [7.2, 7.3, 7.4]
-        stability: [prefer-lowest, prefer-stable]
 
-    name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
+    name: PHP ${{ matrix.php }}
 
     steps:
       - name: Checkout code
@@ -36,12 +34,7 @@ jobs:
           coverage: true
 
       - name: Install dependencies
-        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+        run: composer update --prefer-stable --prefer-dist --no-interaction
 
-      - name: Execute tests
-        run: composer run-script phpunit:test -- --coverage-clover coverage.xml
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Execute code standard tests
+        run: composer run-script ecs:test
