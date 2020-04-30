@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Gateways;
 
 use Overtrue\EasySms\Contracts\MessageInterface;
@@ -22,11 +24,14 @@ class YunpianGateway extends Gateway
     {
         $signature = $this->config->get('signature');
         $content = $message->getContent($this);
-        $result = $this->post('/v1/sms/send.json', [
-            'apikey' => $this->config['api_key'],
-            'mobile' => $number->getUniversalNumber(),
-            'text' => strpos($content, '【') === 0 ? $content : $signature . $content,
-        ]);
+        $result = $this->post(
+            '/v1/sms/send.json',
+            [
+                'apikey' => $this->config['api_key'],
+                'mobile' => $number->getUniversalNumber(),
+                'text' => strpos($content, '【') === 0 ? $content : $signature . $content,
+            ]
+        );
         if (data_get($result, 'code') === 0) {
             return $result;
         }

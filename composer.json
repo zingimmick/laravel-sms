@@ -21,7 +21,8 @@
         "php-coveralls/php-coveralls": "^2.2",
         "phpunit/phpunit": "^7.0|^8.0|^9.0",
         "roave/security-advisories": "dev-master",
-        "symplify/easy-coding-standard": "^7.2"
+        "symplify/easy-coding-standard": "^7.2",
+        "zing/coding-standard": "^0.0.4"
     },
     "autoload": {
         "psr-4": {

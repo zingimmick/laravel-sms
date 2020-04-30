@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Channels;
 
 use Illuminate\Notifications\AnonymousNotifiable;
@@ -40,12 +42,16 @@ class SmsChannel
         if (! $receiver) {
             return;
         }
+
         if (is_string($message)) {
-            $message = new Message([
-                'content' => $message,
-                'template' => $message,
-            ]);
+            $message = new Message(
+                [
+                    'content' => $message,
+                    'template' => $message,
+                ]
+            );
         }
+
         if (! $message instanceof Message) {
             return;
         }
@@ -70,12 +76,12 @@ class SmsChannel
     /**
      * Get the data for the notification.
      *
-     * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
-     *
-     * @return mixed
+     * @param mixed $notifiable
+     * @param \Illuminate\Notifications\Notification $notification
      *
      * @throws \RuntimeException
+     *
+     * @return mixed
      */
     protected function getData($notifiable, Notification $notification)
     {

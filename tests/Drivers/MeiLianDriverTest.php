@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Tests\Drivers;
 
 use Mockery;
@@ -12,7 +14,7 @@ use Zing\LaravelSms\Tests\TestCase;
 
 class MeiLianDriverTest extends TestCase
 {
-    public function test_send()
+    public function testSend(): void
     {
         $config = [
             'username' => 'mock-username',
@@ -22,16 +24,20 @@ class MeiLianDriverTest extends TestCase
         $driver = Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
 
         $driver->shouldReceive('request')
-            ->with('post', 'http://m.5c.com.cn/api/send/index.php', [
-                'headers' => [],
-                'form_params' => [
-                    'username' => 'mock-username',
-                    'password' => 'mock-password',
-                    'apikey' => 'mock-api-key',
-                    'mobile' => '18188888888',
-                    'content' => '【test】This is a test message.',
-                ],
-            ])
+            ->with(
+                'post',
+                'http://m.5c.com.cn/api/send/index.php',
+                [
+                    'headers' => [],
+                    'form_params' => [
+                        'username' => 'mock-username',
+                        'password' => 'mock-password',
+                        'apikey' => 'mock-api-key',
+                        'mobile' => '18188888888',
+                        'content' => '【test】This is a test message.',
+                    ],
+                ]
+            )
             ->andReturn('success:Missing recipient', 'error:Missing recipient')
             ->times(2);
 
@@ -46,7 +52,7 @@ class MeiLianDriverTest extends TestCase
         $driver->send(new PhoneNumber(18188888888), $message, $config);
     }
 
-    public function test_send2()
+    public function testSend2(): void
     {
         $config = [
             'username' => 'mock-username',
@@ -56,16 +62,20 @@ class MeiLianDriverTest extends TestCase
         $driver = Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
 
         $driver->shouldReceive('request')
-            ->with('post', 'http://m.5c.com.cn/api/send/index.php', [
-                'headers' => [],
-                'form_params' => [
-                    'username' => 'mock-username',
-                    'password' => 'mock-password',
-                    'apikey' => 'mock-api-key',
-                    'mobile' => '18188888888',
-                    'content' => '【test】This is a test message.',
-                ],
-            ])
+            ->with(
+                'post',
+                'http://m.5c.com.cn/api/send/index.php',
+                [
+                    'headers' => [],
+                    'form_params' => [
+                        'username' => 'mock-username',
+                        'password' => 'mock-password',
+                        'apikey' => 'mock-api-key',
+                        'mobile' => '18188888888',
+                        'content' => '【test】This is a test message.',
+                    ],
+                ]
+            )
             ->andReturn(['test'])
             ->times(1);
 
@@ -80,8 +90,12 @@ class MeiLianDriverTest extends TestCase
 
     /**
      * @dataProvider provideNumberAndMessage
+     *
+     * @param mixed $number
+     * @param mixed $message
+     * @param mixed $expected
      */
-    public function test_default_signature($number, $message, $expected)
+    public function testDefaultSignature($number, $message, $expected): void
     {
         $config = [
             'username' => 'mock-username',
@@ -93,16 +107,20 @@ class MeiLianDriverTest extends TestCase
 
         $driver = Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
         $config = new Config($config);
-        $driver->shouldReceive('request')->with('post', 'http://m.5c.com.cn/api/send/index.php', [
-            'headers' => [],
-            'form_params' => [
-                'username' => 'mock-username',
-                'password' => 'mock-password',
-                'apikey' => 'mock-api-key',
-                'mobile' => $number,
-                'content' => $expected,
-            ],
-        ])->andReturn($response);
+        $driver->shouldReceive('request')->with(
+            'post',
+            'http://m.5c.com.cn/api/send/index.php',
+            [
+                'headers' => [],
+                'form_params' => [
+                    'username' => 'mock-username',
+                    'password' => 'mock-password',
+                    'apikey' => 'mock-api-key',
+                    'mobile' => $number,
+                    'content' => $expected,
+                ],
+            ]
+        )->andReturn($response);
 
         $this->assertSame($response, $driver->send(new PhoneNumber($number), Message::text($message), $config));
     }

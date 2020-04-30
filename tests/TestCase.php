@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
@@ -23,22 +25,25 @@ class TestCase extends BaseTestCase
         return ['Sms' => Sms::class];
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
-        $app['config']->set('sms', [
-            'default' => env('SMS_CONNECTION', 'log'),
-            'connections' => [
-                'log' => [
-                    'driver' => LogGateway::class,
+        $app['config']->set(
+            'sms',
+            [
+                'default' => env('SMS_CONNECTION', 'log'),
+                'connections' => [
+                    'log' => [
+                        'driver' => LogGateway::class,
+                    ],
+                    'null' => [
+                        'driver' => NullGateway::class,
+                    ],
+                    'yunpian' => [
+                        'driver' => YunpianGateway::class,
+                        'api_key' => env('YUNPIAN_KEY'),
+                    ],
                 ],
-                'null' => [
-                    'driver' => NullGateway::class,
-                ],
-                'yunpian' => [
-                    'driver' => YunpianGateway::class,
-                    'api_key' => env('YUNPIAN_KEY'),
-                ],
-            ],
-        ]);
+            ]
+        );
     }
 }

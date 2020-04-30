@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Connectors;
 
-use Exception;
 use GrahamCampbell\Manager\ConnectorInterface;
 use Illuminate\Support\Facades\Log;
 use function is_array;
@@ -16,7 +17,7 @@ use Zing\LaravelSms\Exceptions\InvalidArgumentException;
 
 class Connector implements ConnectorInterface
 {
-    /** @var GatewayInterface */
+    /** @var \Overtrue\EasySms\Contracts\GatewayInterface */
     protected $driver;
 
     /** @var \Overtrue\EasySms\Support\Config */
@@ -37,6 +38,7 @@ class Connector implements ConnectorInterface
         if (! isset($config['driver'])) {
             throw new InvalidArgumentException('A driver must be specified.');
         }
+
         $driver = $config['driver'];
         if (! class_exists($driver) || ! in_array(GatewayInterface::class, class_implements($driver), true)) {
             throw new InvalidArgumentException("Unsupported driver [{$config['driver']}].");
@@ -86,10 +88,10 @@ class Connector implements ConnectorInterface
      * @param mixed $number
      * @param mixed $message
      *
-     * @return bool|mixed
-     *
      * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      * @throws \Throwable
+     *
+     * @return bool|mixed
      */
     public function send($number, $message)
     {
@@ -104,16 +106,16 @@ class Connector implements ConnectorInterface
             $this->sent($number, $message, $result);
 
             return $result;
-        } catch (Exception $exception) {
+        } catch (\Throwable $exception) {
             throw CouldNotSendNotification::captureExceptionInDriver($exception);
         }
     }
 
-    public function sending($number, $message)
+    public function sending($number, $message): void
     {
     }
 
-    public function sent($number, $message, $result)
+    public function sent($number, $message, $result): void
     {
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Gateways;
 
 use Illuminate\Support\Arr;
@@ -21,9 +23,9 @@ class MeilianGateway extends Gateway
      * @param \Overtrue\EasySms\Contracts\MessageInterface $message
      * @param \Overtrue\EasySms\Support\Config $config
      *
-     * @return string
-     *
      * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
+     *
+     * @return string
      */
     public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
     {
@@ -45,6 +47,7 @@ class MeilianGateway extends Gateway
         if (! is_string($result)) {
             throw new CouldNotSendNotification('meilian response does only seem to accept string.');
         }
+
         if (strpos($result, 'error') !== false) {
             throw new CouldNotSendNotification($result, 1, Arr::wrap($result));
         }

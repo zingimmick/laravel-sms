@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Connectors;
 
 class ConnectionFactory
@@ -7,9 +9,9 @@ class ConnectionFactory
     /**
      * @param array $config
      *
-     * @return \Zing\LaravelSms\Connectors\Connector
-     *
      * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
+     *
+     * @return \Zing\LaravelSms\Connectors\Connector
      */
     public function make(array $config)
     {

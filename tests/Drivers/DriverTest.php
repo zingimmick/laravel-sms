@@ -1,21 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Tests\Drivers;
 
 use Exception;
 use Mockery;
-use Overtrue\EasySms\Contracts\MessageInterface;
-use Overtrue\EasySms\Contracts\PhoneNumberInterface;
-use Overtrue\EasySms\Gateways\Gateway;
 use Overtrue\EasySms\PhoneNumber;
-use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Tests\TestCase;
 
 class DriverTest extends TestCase
 {
-    public function test_exception()
+    public function testException(): void
     {
         $number = new PhoneNumber(18188888888);
         $message = new \Overtrue\EasySms\Message([]);
@@ -26,7 +24,7 @@ class DriverTest extends TestCase
         $driver->send($number, $message);
     }
 
-    public function test_static_exception()
+    public function testStaticException(): void
     {
         $number = new PhoneNumber(18188888888);
         $message = new \Overtrue\EasySms\Message([]);
@@ -35,12 +33,5 @@ class DriverTest extends TestCase
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionMessage('test');
         $driver->send($number, $message);
-    }
-}
-
-class DummyDriver extends Gateway
-{
-    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
-    {
     }
 }
