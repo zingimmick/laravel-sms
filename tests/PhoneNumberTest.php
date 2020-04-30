@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Tests;
 
 use Illuminate\Support\Facades\Log;
@@ -11,11 +13,14 @@ class PhoneNumberTest extends TestCase
     protected function sendString($number, $message)
     {
         if (is_string($message)) {
-            $message = new Message([
-                'content' => $message,
-                'template' => $message,
-            ]);
+            $message = new Message(
+                [
+                    'content' => $message,
+                    'template' => $message,
+                ]
+            );
         }
+
         if (is_array($message)) {
             $message = new Message($message);
         }
@@ -23,7 +28,7 @@ class PhoneNumberTest extends TestCase
         return sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent(), $message->getTemplate(), json_encode($message->getData()), $message->getMessageType());
     }
 
-    public function test_notify()
+    public function testNotify(): void
     {
         $phone = new PhoneNumber('18188888888');
         $notification = new VerifyCode();

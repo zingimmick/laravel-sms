@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Gateways;
 
 use Illuminate\Support\Facades\Log;
@@ -10,7 +12,7 @@ use Overtrue\EasySms\Support\Config;
 
 class LogGateway extends Gateway
 {
-    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
+    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config): void
     {
         $channel = $this->config->get('channel');
         $level = $this->config->get('level', 'info');

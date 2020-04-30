@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Tests\Drivers;
 
 use Illuminate\Support\Arr;
@@ -13,7 +15,7 @@ use Zing\LaravelSms\Tests\TestCase;
 
 class YunpianDriverTest extends TestCase
 {
-    public function test_send()
+    public function testSend(): void
     {
         $config = [
             'api_key' => 'mock-api-key',
@@ -21,37 +23,57 @@ class YunpianDriverTest extends TestCase
         $driver = Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
 
         $driver->shouldReceive('request')
-            ->with('post', '/v1/sms/send.json', [
-                'headers' => [],
-                'form_params' => [
-                    'apikey' => 'mock-api-key',
+            ->with(
+                'post',
+                '/v1/sms/send.json',
+                [
+                    'headers' => [],
+                    'form_params' => [
+                        'apikey' => 'mock-api-key',
+                        'mobile' => '18188888888',
+                        'text' => '【test】This is a test message.',
+                    ],
+                ]
+            )->andReturn(
+                [
+                    'code' => 0,
+                    'msg' => '发送成功',
+                    'count' => 1,
+                    //成功发送的短信计费条数
+                    'fee' => 0.05,
+                    //扣费条数，70个字一条，超出70个字时按每67字一条计
+                    'unit' => 'RMB',
+                    // 计费单位
                     'mobile' => '18188888888',
-                    'text' => '【test】This is a test message.',
+                    // 发送手机号
+                    'sid' => 3310228982,
+                    // 短信ID
                 ],
-            ])->andReturn([
-                'code' => 0,
-                'msg' => '发送成功',
-                'count' => 1, //成功发送的短信计费条数
-                'fee' => 0.05,    //扣费条数，70个字一条，超出70个字时按每67字一条计
-                'unit' => 'RMB',  // 计费单位
-                'mobile' => '18188888888', // 发送手机号
-                'sid' => 3310228982,   // 短信ID
-            ], [
-                'code' => 100,
-                'msg' => '发送失败',
-            ])->times(2);
+                [
+                    'code' => 100,
+                    'msg' => '发送失败',
+                ]
+            )->times(2);
 
         $message = Message::text('【test】This is a test message.');
         $config = new Config($config);
-        $this->assertSame([
-            'code' => 0,
-            'msg' => '发送成功',
-            'count' => 1, //成功发送的短信计费条数
-            'fee' => 0.05,    //扣费条数，70个字一条，超出70个字时按每67字一条计
-            'unit' => 'RMB',  // 计费单位
-            'mobile' => '18188888888', // 发送手机号
-            'sid' => 3310228982,   // 短信ID
-        ], $driver->send(new PhoneNumber(18188888888), $message, $config));
+        $this->assertSame(
+            [
+                'code' => 0,
+                'msg' => '发送成功',
+                'count' => 1,
+                //成功发送的短信计费条数
+                'fee' => 0.05,
+                //扣费条数，70个字一条，超出70个字时按每67字一条计
+                'unit' => 'RMB',
+                // 计费单位
+                'mobile' => '18188888888',
+                // 发送手机号
+                'sid' => 3310228982,
+                // 短信ID
+            ],
+            $driver->send(new PhoneNumber(18188888888), $message, $config)
+        );
 
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionCode(100);
@@ -62,8 +84,12 @@ class YunpianDriverTest extends TestCase
 
     /**
      * @dataProvider provideNumberAndMessage
+     *
+     * @param mixed $number
+     * @param mixed $message
+     * @param mixed $expected
      */
-    public function test_default_signature($number, $message, $expected)
+    public function testDefaultSignature($number, $message, $expected): void
     {
         $config = [
             'api_key' => 'mock-api-key',
@@ -72,27 +98,37 @@ class YunpianDriverTest extends TestCase
         $response = [
             'code' => 0,
             'msg' => '发送成功',
-            'count' => 1, //成功发送的短信计费条数
-            'fee' => 0.05,    //扣费条数，70个字一条，超出70个字时按每67字一条计
-            'unit' => 'RMB',  // 计费单位
-            'mobile' => $number, // 发送手机号
-            'sid' => 3310228982,   // 短信ID
+            'count' => 1,
+            //成功发送的短信计费条数
+            'fee' => 0.05,
+            //扣费条数，70个字一条，超出70个字时按每67字一条计
+            'unit' => 'RMB',
+            // 计费单位
+            'mobile' => $number,
+            // 发送手机号
+            'sid' => 3310228982,
+            // 短信ID
         ];
 
         $driver = Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
         $config = new Config($config);
-        $driver->shouldReceive('request')->with('post', '/v1/sms/send.json', [
-            'headers' => [], 'form_params' => [
-                'apikey' => 'mock-api-key',
-                'mobile' => $number,
-                'text' => $expected,
-            ],
-        ])->andReturn($response);
+        $driver->shouldReceive('request')->with(
+            'post',
+            '/v1/sms/send.json',
+            [
+                'headers' => [],
+                'form_params' => [
+                    'apikey' => 'mock-api-key',
+                    'mobile' => $number,
+                    'text' => $expected,
+                ],
+            ]
+        )->andReturn($response);
 
         $this->assertSame($response, $driver->send(new PhoneNumber($number), Message::text($message), $config));
     }
 
-    public function test_get_options()
+    public function testGetOptions(): void
     {
         $driver = Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
         $driver->shouldReceive('getBaseOptions')->once()->passthru();

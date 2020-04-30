@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Tests\Drivers;
 
 use Illuminate\Support\Facades\Log;
@@ -11,7 +13,7 @@ use Zing\LaravelSms\Tests\TestCase;
 
 class NullDriverTest extends TestCase
 {
-    public function test_send()
+    public function testSend(): void
     {
         $number = new PhoneNumber(18188888888);
         $message = Message::text('【test】This is a test message.');
@@ -19,7 +21,7 @@ class NullDriverTest extends TestCase
         Sms::connection('null')->send($number, $message, new Config());
     }
 
-    public function test_send1()
+    public function testSend1(): void
     {
         $number = new PhoneNumber(18188888888);
         $message = Message::text('【test】This is a test message.');

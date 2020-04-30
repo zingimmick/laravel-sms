@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms;
 
 use Illuminate\Contracts\Foundation\Application;
@@ -11,27 +13,38 @@ use Zing\LaravelSms\Facades\Sms;
 
 class SmsServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole() && function_exists('config_path')) {
-            $this->publishes([
-                __DIR__ . '/../config/sms.php' => config_path('sms.php'),
-            ], 'config');
+            $this->publishes(
+                [
+                    __DIR__ . '/../config/sms.php' => config_path('sms.php'),
+                ],
+                'config'
+            );
         }
 
         $this->mergeConfigFrom(__DIR__ . '/../config/sms.php', 'sms');
     }
 
-    public function register()
+    public function register(): void
     {
-        Notification::resolved(function (ChannelManager $service) {
-            $service->extend('sms', function (Application $app) {
-                return $app->make(SmsChannel::class);
-            });
-        });
-        $this->app->singleton('sms', function (Application $app) {
-            return $app->make(SmsManager::class);
-        });
+        Notification::resolved(
+            function (ChannelManager $service): void {
+                $service->extend(
+                    'sms',
+                    function (Application $app) {
+                        return $app->make(SmsChannel::class);
+                    }
+                );
+            }
+        );
+        $this->app->singleton(
+            'sms',
+            function (Application $app) {
+                return $app->make(SmsManager::class);
+            }
+        );
         $this->app->alias('sms', Sms::class);
     }
 }

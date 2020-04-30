@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms;
 
 use GrahamCampbell\Manager\AbstractManager;
