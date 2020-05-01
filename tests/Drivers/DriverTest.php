@@ -6,6 +6,7 @@ namespace Zing\LaravelSms\Tests\Drivers;
 
 use Exception;
 use Mockery;
+use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
@@ -16,7 +17,7 @@ class DriverTest extends TestCase
     public function testException(): void
     {
         $number = new PhoneNumber(18188888888);
-        $message = new \Overtrue\EasySms\Message([]);
+        $message = new Message([]);
         $driver = Mockery::mock(Connector::class . '[sending]', [[]]);
         $driver->shouldReceive('sending')->andThrow(new Exception('test'));
         $this->expectException(CouldNotSendNotification::class);
@@ -27,7 +28,7 @@ class DriverTest extends TestCase
     public function testStaticException(): void
     {
         $number = new PhoneNumber(18188888888);
-        $message = new \Overtrue\EasySms\Message([]);
+        $message = new Message([]);
         $driver = Mockery::mock(Connector::class . '[sending]', [[]]);
         $driver->shouldReceive('sending')->andThrow(new CouldNotSendNotification('test'));
         $this->expectException(CouldNotSendNotification::class);
