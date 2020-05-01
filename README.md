@@ -135,11 +135,11 @@ Sms::connection('null')->send(18188888888, 'test message.');
 **NOTE:** Only support for `Zing\LaravelSms\Message`
 
 ```php
- use Zing\LaravelSms\Message;
+ use Zing\LaravelSms\SmsMessage;
 
 public function toSms($notifiable)
 {
-    return (new Message())->onConnection('log');
+    return (new SmsMessage())->onConnection('log');
 }
 ```
 

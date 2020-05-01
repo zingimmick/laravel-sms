@@ -6,7 +6,7 @@ namespace Zing\LaravelSms\Tests;
 
 use Illuminate\Notifications\Notification;
 use Zing\LaravelSms\Channels\SmsChannel;
-use Zing\LaravelSms\Message;
+use Zing\LaravelSms\SmsMessage;
 
 class VerifyCode extends Notification
 {
@@ -17,6 +17,6 @@ class VerifyCode extends Notification
 
     public function toSms($notifiable)
     {
-        return Message::text('')->onConnection('log');
+        return SmsMessage::text('')->onConnection('log');
     }
 }

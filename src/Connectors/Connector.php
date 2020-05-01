@@ -17,10 +17,14 @@ use Zing\LaravelSms\Exceptions\InvalidArgumentException;
 
 class Connector implements ConnectorInterface
 {
-    /** @var \Overtrue\EasySms\Contracts\GatewayInterface */
+    /**
+     * @var \Overtrue\EasySms\Contracts\GatewayInterface
+     */
     protected $driver;
 
-    /** @var \Overtrue\EasySms\Support\Config */
+    /**
+     * @var \Overtrue\EasySms\Support\Config
+     */
     protected $config;
 
     /**

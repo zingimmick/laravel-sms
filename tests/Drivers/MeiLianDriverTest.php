@@ -9,7 +9,7 @@ use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Gateways\MeilianGateway;
-use Zing\LaravelSms\Message;
+use Zing\LaravelSms\SmsMessage;
 use Zing\LaravelSms\Tests\TestCase;
 
 class MeiLianDriverTest extends TestCase
@@ -41,7 +41,7 @@ class MeiLianDriverTest extends TestCase
             ->andReturn('success:Missing recipient', 'error:Missing recipient')
             ->times(2);
 
-        $message = Message::text('【test】This is a test message.');
+        $message = SmsMessage::text('【test】This is a test message.');
         $config = new Config($config);
         $this->assertSame('success:Missing recipient', $driver->send(new PhoneNumber(18188888888), $message, $config));
 
@@ -79,7 +79,7 @@ class MeiLianDriverTest extends TestCase
             ->andReturn(['test'])
             ->times(1);
 
-        $message = Message::text('【test】This is a test message.');
+        $message = SmsMessage::text('【test】This is a test message.');
         $config = new Config($config);
 
         $this->expectException(CouldNotSendNotification::class);
@@ -122,7 +122,7 @@ class MeiLianDriverTest extends TestCase
             ]
         )->andReturn($response);
 
-        $this->assertSame($response, $driver->send(new PhoneNumber($number), Message::text($message), $config));
+        $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
 
     public function provideNumberAndMessage()

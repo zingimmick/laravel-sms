@@ -21,7 +21,7 @@ class SmsManagerTest extends TestCase
     {
         return [
             ['18888888888', 'test'],
-            [new PhoneNumber('18888888888', '+86'), \Zing\LaravelSms\Message::text('test')],
+            [new PhoneNumber('18888888888', '+86'), \Zing\LaravelSms\SmsMessage::text('test')],
         ];
     }
 
