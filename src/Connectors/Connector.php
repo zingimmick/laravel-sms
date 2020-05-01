@@ -10,7 +10,10 @@ use function is_array;
 use Overtrue\EasySms\Contracts\GatewayInterface;
 use Overtrue\EasySms\Contracts\MessageInterface;
 use Overtrue\EasySms\Contracts\PhoneNumberInterface;
+use Overtrue\EasySms\Message;
+use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
+use Throwable;
 use function trim;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
@@ -37,6 +40,13 @@ class Connector implements ConnectorInterface
         $this->config = new Config($config);
     }
 
+    /**
+     * @param array $config
+     *
+     * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
+     *
+     * @return $this|object
+     */
     public function connect(array $config)
     {
         if (! isset($config['driver'])) {
@@ -56,7 +66,7 @@ class Connector implements ConnectorInterface
     /**
      * @param string|\Overtrue\EasySms\Contracts\PhoneNumberInterface $number
      *
-     * @return \Overtrue\EasySms\PhoneNumber
+     * @return \Overtrue\EasySms\Contracts\PhoneNumberInterface
      */
     protected function formatPhoneNumber($number)
     {
@@ -64,7 +74,7 @@ class Connector implements ConnectorInterface
             return $number;
         }
 
-        return new \Overtrue\EasySms\PhoneNumber(trim($number));
+        return new PhoneNumber(trim($number));
     }
 
     /**
@@ -82,7 +92,7 @@ class Connector implements ConnectorInterface
                 ];
             }
 
-            $message = new \Overtrue\EasySms\Message($message);
+            $message = new Message($message);
         }
 
         return $message;
@@ -110,7 +120,7 @@ class Connector implements ConnectorInterface
             $this->sent($number, $message, $result);
 
             return $result;
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             throw CouldNotSendNotification::captureExceptionInDriver($exception);
         }
     }

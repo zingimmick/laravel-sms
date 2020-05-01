@@ -14,6 +14,7 @@ use Zing\LaravelSms\Channels\SmsChannel;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsManager;
+use Zing\LaravelSms\SmsMessage;
 
 class SmsManagerTest extends TestCase
 {
@@ -21,7 +22,7 @@ class SmsManagerTest extends TestCase
     {
         return [
             ['18888888888', 'test'],
-            [new PhoneNumber('18888888888', '+86'), \Zing\LaravelSms\SmsMessage::text('test')],
+            [new PhoneNumber('18888888888', '+86'), SmsMessage::text('test')],
         ];
     }
 

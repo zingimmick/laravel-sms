@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Zing\LaravelSms\Tests;
 
 use Illuminate\Support\Facades\Log;
+use Mockery;
 use Overtrue\EasySms\Message;
 use Zing\LaravelSms\PhoneNumber;
 
@@ -38,7 +39,7 @@ class PhoneNumberTest extends TestCase
 
     protected function prepareLoggerExpectation($channel = null, $level = 'info')
     {
-        Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = \Mockery::mock());
+        Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();
 
         return $logChannel->shouldReceive($level)->once();
