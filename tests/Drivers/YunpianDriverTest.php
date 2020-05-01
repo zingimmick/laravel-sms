@@ -132,6 +132,7 @@ class YunpianDriverTest extends TestCase
     {
         $driver = Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
         $driver->shouldReceive('getBaseOptions')->once()->passthru();
+        $driver->allows('getGuzzleOptions')->passthru();
         $driver->allows('getBaseUri')->passthru();
         $driver->allows('getTimeout')->passthru();
         self::assertSame('http://yunpian.com', Arr::get($driver->getBaseOptions(), 'base_uri'));
