@@ -10,7 +10,7 @@ use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Gateways\YunpianGateway;
-use Zing\LaravelSms\Message;
+use Zing\LaravelSms\SmsMessage;
 use Zing\LaravelSms\Tests\TestCase;
 
 class YunpianDriverTest extends TestCase
@@ -55,7 +55,7 @@ class YunpianDriverTest extends TestCase
                 ]
             )->times(2);
 
-        $message = Message::text('【test】This is a test message.');
+        $message = SmsMessage::text('【test】This is a test message.');
         $config = new Config($config);
         $this->assertSame(
             [
@@ -125,7 +125,7 @@ class YunpianDriverTest extends TestCase
             ]
         )->andReturn($response);
 
-        $this->assertSame($response, $driver->send(new PhoneNumber($number), Message::text($message), $config));
+        $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
 
     public function testGetOptions(): void

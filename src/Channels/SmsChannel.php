@@ -7,8 +7,8 @@ namespace Zing\LaravelSms\Channels;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
 use RuntimeException;
-use Zing\LaravelSms\Message;
 use Zing\LaravelSms\SmsManager;
+use Zing\LaravelSms\SmsMessage;
 
 /**
  * Class SmsChannel.
@@ -44,7 +44,7 @@ class SmsChannel
         }
 
         if (is_string($message)) {
-            $message = new Message(
+            $message = new SmsMessage(
                 [
                     'content' => $message,
                     'template' => $message,
@@ -52,7 +52,7 @@ class SmsChannel
             );
         }
 
-        if (! $message instanceof Message) {
+        if (! $message instanceof SmsMessage) {
             return;
         }
 
