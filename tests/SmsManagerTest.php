@@ -58,7 +58,7 @@ class SmsManagerTest extends TestCase
             $message = new Message($message);
         }
 
-        return sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent(), $message->getTemplate(), json_encode($message->getData(), JSON_THROW_ON_ERROR), $message->getMessageType());
+        return sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent(), $message->getTemplate(), json_encode($message->getData()), $message->getMessageType());
     }
 
     /**
@@ -191,7 +191,7 @@ class SmsManagerTest extends TestCase
             );
         }
 
-        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData(), JSON_THROW_ON_ERROR), $expectedMessage->getMessageType()));
+        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData()), $expectedMessage->getMessageType()));
         $sms = app(SmsManager::class);
         $sms->connection('log')->send($number, $message);
     }
@@ -222,7 +222,7 @@ class SmsManagerTest extends TestCase
             );
         }
 
-        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData(), JSON_THROW_ON_ERROR), $expectedMessage->getMessageType()));
+        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData()), $expectedMessage->getMessageType()));
         Sms::connection('log')->send($number, $message);
     }
 
@@ -244,7 +244,7 @@ class SmsManagerTest extends TestCase
             );
         }
 
-        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData(), JSON_THROW_ON_ERROR), $expectedMessage->getMessageType()));
+        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData()), $expectedMessage->getMessageType()));
         \Sms::connection('log')->send($number, $message);
     }
 

@@ -12,8 +12,6 @@ parameters:
         - 'code-quality'
         - 'php71'
         - 'php72'
-        - 'php73'
-        - 'php74'
     exclude_rectors:
         - Rector\SOLID\Rector\Class_\FinalizeClassesWithoutChildrenRector
         - Rector\SOLID\Rector\ClassMethod\ChangeReadOnlyVariableWithDefaultValueToConstantRector
