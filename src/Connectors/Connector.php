@@ -116,38 +116,15 @@ class Connector implements ConnectorInterface
         $message = $this->formatMessage($message);
 
         try {
-            $this->sending($number, $message);
+            Event::dispatch(new SmsSending($number, $message));
             Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()));
             $result = $this->driver->send($number, $message, $this->config);
             Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()), (array) $result);
-            $this->sent($number, $message, $result);
+            Event::dispatch(new SmsSent($number, $message, $result));
 
             return $result;
         } catch (Throwable $exception) {
             throw CouldNotSendNotification::captureExceptionInDriver($exception);
         }
-    }
-
-    /**
-     * @param \Overtrue\EasySms\PhoneNumber $number
-     * @param \Overtrue\EasySms\Message $message
-     *
-     * @deprecated useless method
-     */
-    public function sending($number, $message): void
-    {
-        Event::dispatch(new SmsSending($number, $message));
-    }
-
-    /**
-     * @param \Overtrue\EasySms\PhoneNumber $number
-     * @param \Overtrue\EasySms\Message $message
-     * @param mixed $result
-     *
-     * @deprecated useless method
-     */
-    public function sent($number, $message, $result): void
-    {
-        Event::dispatch(new SmsSent($number, $message, $result));
     }
 }
