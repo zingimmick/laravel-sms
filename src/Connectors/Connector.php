@@ -117,9 +117,9 @@ class Connector implements ConnectorInterface
 
         try {
             Event::dispatch(new SmsSending($number, $message));
-            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()));
+            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver), JSON_THROW_ON_ERROR), $message->getMessageType()));
             $result = $this->driver->send($number, $message, $this->config);
-            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()), (array) $result);
+            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver), JSON_THROW_ON_ERROR), $message->getMessageType()), (array) $result);
             Event::dispatch(new SmsSent($number, $message, $result));
 
             return $result;

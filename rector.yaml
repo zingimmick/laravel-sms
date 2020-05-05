@@ -1,0 +1,24 @@
+parameters:
+    sets:
+        - 'action-injection-to-constructor-injection'
+        - 'array-str-functions-to-static-call'
+        - 'celebrity'
+        - 'doctrine'
+        - 'phpstan'
+        - 'solid'
+        - 'early-return'
+        - 'doctrine-code-quality'
+        - 'dead-code'
+        - 'code-quality'
+        - 'php71'
+        - 'php72'
+        - 'php73'
+        - 'php74'
+    exclude_rectors:
+        - Rector\SOLID\Rector\Class_\FinalizeClassesWithoutChildrenRector
+        - Rector\SOLID\Rector\ClassMethod\ChangeReadOnlyVariableWithDefaultValueToConstantRector
+        - Rector\PHPStan\Rector\Cast\RecastingRemovalRector
+    paths:
+        - 'config'
+        - 'src'
+        - 'tests'
