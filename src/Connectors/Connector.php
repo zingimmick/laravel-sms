@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Zing\LaravelSms\Connectors;
 
 use GrahamCampbell\Manager\ConnectorInterface;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use function is_array;
 use Overtrue\EasySms\Contracts\GatewayInterface;
@@ -129,11 +130,11 @@ class Connector implements ConnectorInterface
 
     public function sending($number, $message): void
     {
-        event(new SmsSending($number, $message));
+        Event::dispatch(new SmsSending($number, $message));
     }
 
     public function sent($number, $message, $result): void
     {
-        event(new SmsSent($number, $message, $result));
+        Event::dispatch(new SmsSent($number, $message, $result));
     }
 }

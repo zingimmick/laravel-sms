@@ -4,18 +4,11 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Events;
 
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
 use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 
 class SmsSending
 {
-    use Dispatchable;
-    use InteractsWithSockets;
-    use SerializesModels;
-
     /**
      * @var \Overtrue\EasySms\PhoneNumber
      */
