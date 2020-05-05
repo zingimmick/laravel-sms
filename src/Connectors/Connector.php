@@ -129,9 +129,10 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * @param PhoneNumber $number
-     * @param Message $message
-     * @deprecated useless method.
+     * @param \Overtrue\EasySms\PhoneNumber $number
+     * @param \Overtrue\EasySms\Message $message
+     *
+     * @deprecated useless method
      */
     public function sending($number, $message): void
     {
@@ -139,10 +140,11 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * @param PhoneNumber $number
-     * @param Message $message
+     * @param \Overtrue\EasySms\PhoneNumber $number
+     * @param \Overtrue\EasySms\Message $message
      * @param mixed $result
-     * @deprecated useless method.
+     *
+     * @deprecated useless method
      */
     public function sent($number, $message, $result): void
     {
