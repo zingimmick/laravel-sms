@@ -6,7 +6,6 @@ namespace Zing\LaravelSms\Tests\Drivers;
 
 use Exception;
 use Illuminate\Support\Facades\Event;
-use Mockery;
 use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use Zing\LaravelSms\Connectors\Connector;
