@@ -20,6 +20,15 @@ class YunpianGateway extends Gateway
         return 'http://yunpian.com';
     }
 
+    /**
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $number
+     * @param \Overtrue\EasySms\Contracts\MessageInterface $message
+     * @param \Overtrue\EasySms\Support\Config $config
+     *
+     * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
+     *
+     * @return array
+     */
     public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
     {
         $signature = $this->config->get('signature');
