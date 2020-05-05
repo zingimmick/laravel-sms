@@ -113,6 +113,7 @@ class Connector implements ConnectorInterface
     {
         $number = $this->formatPhoneNumber($number);
         $message = $this->formatMessage($message);
+
         try {
             $this->sending($number, $message);
             Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()));

@@ -288,7 +288,7 @@ class SmsManagerTest extends TestCase
         Event::assertDispatched(
             SmsSending::class,
             function (SmsSending $smsSending) use ($number,$expectedMessage) {
-                self::assertSame((string)$number, (string) $smsSending->number);
+                self::assertSame((string) $number, (string) $smsSending->number);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
                 return true;
@@ -319,7 +319,7 @@ class SmsManagerTest extends TestCase
         Event::assertDispatched(
             SmsSent::class,
             function (SmsSent $smsSending) use ($number,$expectedMessage) {
-                self::assertSame((string)$number, (string) $smsSending->number);
+                self::assertSame((string) $number, (string) $smsSending->number);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
                 return true;
