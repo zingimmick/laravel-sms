@@ -128,11 +128,22 @@ class Connector implements ConnectorInterface
         }
     }
 
+    /**
+     * @param PhoneNumber $number
+     * @param Message $message
+     * @deprecated useless method.
+     */
     public function sending($number, $message): void
     {
         Event::dispatch(new SmsSending($number, $message));
     }
 
+    /**
+     * @param PhoneNumber $number
+     * @param Message $message
+     * @param mixed $result
+     * @deprecated useless method.
+     */
     public function sent($number, $message, $result): void
     {
         Event::dispatch(new SmsSent($number, $message, $result));
