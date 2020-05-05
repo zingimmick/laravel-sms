@@ -26,7 +26,7 @@ class PhoneNumberTest extends TestCase
             $message = new Message($message);
         }
 
-        return sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent(), $message->getTemplate(), json_encode($message->getData()), $message->getMessageType());
+        return sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent(), $message->getTemplate(), json_encode($message->getData(), JSON_THROW_ON_ERROR), $message->getMessageType());
     }
 
     public function testNotify(): void

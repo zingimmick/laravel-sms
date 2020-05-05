@@ -10,7 +10,7 @@ class PhoneNumber extends \Overtrue\EasySms\PhoneNumber
 {
     use Notifiable;
 
-    public function routeNotificationForSms($notification)
+    public function routeNotificationForSms()
     {
         return $this;
     }
