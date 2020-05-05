@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Mockery;
@@ -11,6 +12,8 @@ use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use RuntimeException;
 use Zing\LaravelSms\Channels\SmsChannel;
+use Zing\LaravelSms\Events\SmsSending;
+use Zing\LaravelSms\Events\SmsSent;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsManager;
@@ -223,6 +226,28 @@ class SmsManagerTest extends TestCase
         Sms::connection('log')->send($number, $message);
     }
 
+    /**
+     * @dataProvider provideNumberAndMessage
+     *
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     */
+    public function testAlias($number, $message): void
+    {
+        $expectedMessage = $message;
+        if (is_string($expectedMessage)) {
+            $expectedMessage = new Message(
+                [
+                    'content' => $expectedMessage,
+                    'template' => $expectedMessage,
+                ]
+            );
+        }
+
+        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData()), $expectedMessage->getMessageType()));
+        \Sms::connection('log')->send($number, $message);
+    }
+
     public function testConnectionWithoutDriver(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -238,5 +263,67 @@ class SmsManagerTest extends TestCase
         $this->expectExceptionMessage("Unsupported driver [{$driver}].");
         config()->set('sms.connections.test', ['driver' => $driver]);
         Sms::connection('test');
+    }
+
+    /**
+     * @dataProvider provideNumberAndMessage
+     *
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     */
+    public function testSmsSending($number, $message): void
+    {
+        $expectedMessage = $message;
+        if (is_string($expectedMessage)) {
+            $expectedMessage = new Message(
+                [
+                    'content' => $expectedMessage,
+                    'template' => $expectedMessage,
+                ]
+            );
+        }
+
+        Event::fake();
+        Sms::connection('log')->send($number, $message);
+        Event::assertDispatched(
+            SmsSending::class,
+            function (SmsSending $smsSending) use ($number,$expectedMessage) {
+                self::assertSame((string) $number, (string) $smsSending->number);
+                self::assertSameMessage($expectedMessage, $smsSending->message);
+
+                return true;
+            }
+        );
+    }
+
+    /**
+     * @dataProvider provideNumberAndMessage
+     *
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     */
+    public function testSmsSent($number, $message): void
+    {
+        $expectedMessage = $message;
+        if (is_string($expectedMessage)) {
+            $expectedMessage = new Message(
+                [
+                    'content' => $expectedMessage,
+                    'template' => $expectedMessage,
+                ]
+            );
+        }
+
+        Event::fake();
+        Sms::connection('log')->send($number, $message);
+        Event::assertDispatched(
+            SmsSent::class,
+            function (SmsSent $smsSending) use ($number,$expectedMessage) {
+                self::assertSame((string) $number, (string) $smsSending->number);
+                self::assertSameMessage($expectedMessage, $smsSending->message);
+
+                return true;
+            }
+        );
     }
 }

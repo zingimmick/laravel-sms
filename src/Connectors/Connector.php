@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Zing\LaravelSms\Connectors;
 
 use GrahamCampbell\Manager\ConnectorInterface;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use function is_array;
 use Overtrue\EasySms\Contracts\GatewayInterface;
@@ -15,6 +16,8 @@ use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Throwable;
 use function trim;
+use Zing\LaravelSms\Events\SmsSending;
+use Zing\LaravelSms\Events\SmsSent;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
 
@@ -109,10 +112,10 @@ class Connector implements ConnectorInterface
      */
     public function send($number, $message)
     {
-        try {
-            $number = $this->formatPhoneNumber($number);
-            $message = $this->formatMessage($message);
+        $number = $this->formatPhoneNumber($number);
+        $message = $this->formatMessage($message);
 
+        try {
             $this->sending($number, $message);
             Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()));
             $result = $this->driver->send($number, $message, $this->config);
@@ -127,9 +130,11 @@ class Connector implements ConnectorInterface
 
     public function sending($number, $message): void
     {
+        Event::dispatch(new SmsSending($number, $message));
     }
 
     public function sent($number, $message, $result): void
     {
+        Event::dispatch(new SmsSent($number, $message, $result));
     }
 }
