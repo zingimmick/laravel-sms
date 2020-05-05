@@ -15,6 +15,8 @@ use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Throwable;
 use function trim;
+use Zing\LaravelSms\Events\SmsSending;
+use Zing\LaravelSms\Events\SmsSent;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
 
@@ -109,10 +111,9 @@ class Connector implements ConnectorInterface
      */
     public function send($number, $message)
     {
+        $number = $this->formatPhoneNumber($number);
+        $message = $this->formatMessage($message);
         try {
-            $number = $this->formatPhoneNumber($number);
-            $message = $this->formatMessage($message);
-
             $this->sending($number, $message);
             Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()));
             $result = $this->driver->send($number, $message, $this->config);
@@ -127,9 +128,11 @@ class Connector implements ConnectorInterface
 
     public function sending($number, $message): void
     {
+        event(new SmsSending($number, $message));
     }
 
     public function sent($number, $message, $result): void
     {
+        event(new SmsSent($number, $message, $result));
     }
 }
