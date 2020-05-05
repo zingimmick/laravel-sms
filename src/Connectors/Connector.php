@@ -117,9 +117,9 @@ class Connector implements ConnectorInterface
 
         try {
             $this->sending($number, $message);
-            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver), JSON_THROW_ON_ERROR), $message->getMessageType()));
+            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()));
             $result = $this->driver->send($number, $message, $this->config);
-            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver), JSON_THROW_ON_ERROR), $message->getMessageType()), (array) $result);
+            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()), (array) $result);
             $this->sent($number, $message, $result);
 
             return $result;
