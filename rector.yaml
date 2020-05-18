@@ -16,6 +16,7 @@ parameters:
         - Rector\SOLID\Rector\Class_\FinalizeClassesWithoutChildrenRector
         - Rector\SOLID\Rector\ClassMethod\ChangeReadOnlyVariableWithDefaultValueToConstantRector
         - Rector\PHPStan\Rector\Cast\RecastingRemovalRector
+        - Rector\SOLID\Rector\Class_\RepeatedLiteralToClassConstantRector
     paths:
         - 'config'
         - 'src'

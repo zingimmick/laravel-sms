@@ -51,11 +51,14 @@
     "scripts": {
         "ecs:test": "ecs check --ansi",
         "phpunit:test": "phpunit --color=always",
+        "rector:fix": "rector process --ansi",
         "test": [
             "@ecs:test",
-            "@phpunit:test"
+            "@phpunit:test",
+            "@rector:fix --dry-run"
         ],
         "fix": [
+            "@rector:fix",
             "@ecs:test --fix"
         ]
     }
