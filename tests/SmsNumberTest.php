@@ -9,7 +9,7 @@ use Mockery;
 use Overtrue\EasySms\Message;
 use Zing\LaravelSms\SmsNumber;
 
-class PhoneNumberTest extends TestCase
+class SmsNumberTest extends TestCase
 {
     protected function sendString($number, $message)
     {
