@@ -4,14 +4,9 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms;
 
-use Illuminate\Notifications\Notifiable;
-
-class PhoneNumber extends \Overtrue\EasySms\PhoneNumber
+/**
+ * @deprecated in favor of SmsNumber
+ */
+class PhoneNumber extends SmsNumber
 {
-    use Notifiable;
-
-    public function routeNotificationForSms()
-    {
-        return $this;
-    }
 }
