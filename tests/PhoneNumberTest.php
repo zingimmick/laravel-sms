@@ -7,7 +7,7 @@ namespace Zing\LaravelSms\Tests;
 use Illuminate\Support\Facades\Log;
 use Mockery;
 use Overtrue\EasySms\Message;
-use Zing\LaravelSms\PhoneNumber;
+use Zing\LaravelSms\SmsNumber;
 
 class PhoneNumberTest extends TestCase
 {
@@ -31,7 +31,7 @@ class PhoneNumberTest extends TestCase
 
     public function testNotify(): void
     {
-        $phone = new PhoneNumber('18188888888');
+        $phone = new SmsNumber('18188888888');
         $notification = new VerifyCode();
         $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($notification), $notification->toSms($phone)));
         $phone->notify($notification);
