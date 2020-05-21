@@ -106,13 +106,13 @@ Notification::send($user, new Verification('1111'));
 
 ```php
 use Illuminate\Support\Facades\Notification;
-use Zing\LaravelSms\PhoneNumber;
+use Zing\LaravelSms\SmsNumber;
 use Zing\LaravelSms\Channels\SmsChannel;
 
 // use channel class name
-Notification::route(SmsChannel::class, new PhoneNumber(18188888888, 86))->notify(new Verification('1111'));
+Notification::route(SmsChannel::class, new SmsNumber(18188888888, 86))->notify(new Verification('1111'));
 // use channel alias
-Notification::route('sms', new PhoneNumber(18188888888, 86))->notify(new Verification('1111'));
+Notification::route('sms', new SmsNumber(18188888888, 86))->notify(new Verification('1111'));
 ```
 
 ### Facade
@@ -148,9 +148,9 @@ public function toSms($notifiable)
 **NOTE:** Only support for `Zing\LaravelSms\PhoneNumber`
 
 ```php
-use Zing\LaravelSms\PhoneNumber;
+use Zing\LaravelSms\SmsNumber;
 
-(new PhoneNumber(18188888888))->notify(new Verification('1111'));
+(new SmsNumber(18188888888))->notify(new Verification('1111'));
 ```
 
 
