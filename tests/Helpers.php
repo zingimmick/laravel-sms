@@ -9,7 +9,6 @@ function prepareLoggerExpectation($channel = null, $level = 'info')
 {
     Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = \Mockery::mock());
     Log::shouldReceive('debug')->withAnyArgs()->twice();
-    assertTrue(true);
 
     return $logChannel->shouldReceive($level)->once();
 }
