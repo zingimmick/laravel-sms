@@ -9,6 +9,7 @@
 <a href="https://packagist.org/packages/zing/laravel-sms"><img src="https://poser.pugx.org/zing/laravel-sms/license" alt="License"></a>
 <a href="https://scrutinizer-ci.com/g/zingimmick/laravel-sms"><img src="https://scrutinizer-ci.com/g/zingimmick/laravel-sms/badges/quality-score.png" alt="Scrutinizer Code Quality"></a>
 <a href="https://github.styleci.io/repos/254559831"><img src="https://github.styleci.io/repos/254559831/shield?branch=master" alt="StyleCI Shield"></a>
+<a href="https://codeclimate.com/github/zingimmick/laravel-sms/maintainability"><img src="https://api.codeclimate.com/v1/badges/9c81b0c9cdebc23ba26f/maintainability" alt="Code Climate" /></a>
 </p>
 
 Laravel Sms is used to notify via sms and send a message.
