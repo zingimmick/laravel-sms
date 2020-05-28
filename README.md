@@ -132,10 +132,10 @@ Sms::connection('null')->send(18188888888, 'test message.');
 
 ### Use specific connection for notification
 
-**NOTE:** Only support for `Zing\LaravelSms\Message`
+**NOTE:** Only support for `Zing\LaravelSms\SmsMessage`
 
 ```php
- use Zing\LaravelSms\SmsMessage;
+use Zing\LaravelSms\SmsMessage;
 
 public function toSms($notifiable)
 {
@@ -145,7 +145,7 @@ public function toSms($notifiable)
 
 ### Make PhoneNumber notifiable
 
-**NOTE:** Only support for `Zing\LaravelSms\PhoneNumber`
+**NOTE:** Only support for `Zing\LaravelSms\SmsNumber`
 
 ```php
 use Zing\LaravelSms\SmsNumber;
