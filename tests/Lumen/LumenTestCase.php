@@ -9,7 +9,7 @@ use Illuminate\Notifications\NotificationServiceProvider;
 use Laravel\Lumen\Testing\TestCase;
 use Zing\LaravelSms\SmsServiceProvider;
 
-class LumenTestCase extends TestCase
+abstract class LumenTestCase extends TestCase
 {
     public function createApplication()
     {
@@ -20,6 +20,7 @@ class LumenTestCase extends TestCase
     {
         parent::setUp();
         $this->app->withFacades(true);
+        $this->app->useStoragePath(__DIR__ . '/../../vendor/laravel/lumen/storage');
         $this->app->register(LogServiceProvider::class);
         $this->app->register(NotificationServiceProvider::class);
         $this->app->register(SmsServiceProvider::class);

@@ -7,7 +7,6 @@ namespace Zing\LaravelSms\Tests\Concerns;
 use Illuminate\Support\Facades\Log;
 use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
-use function PHPUnit\Framework\assertInstanceOf;
 use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsMessage;
@@ -16,7 +15,7 @@ trait ServiceProviderTests
 {
     public function testSms(): void
     {
-        assertInstanceOf(Connector::class, Sms::connection());
+        $this->assertInstanceOf(Connector::class, Sms::connection());
     }
 
     public function testSend(): void
