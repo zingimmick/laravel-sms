@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms;
 
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Foundation\Application as Laravel;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Lumen\Application as Lumen;
 use Zing\LaravelSms\Channels\SmsChannel;
 use Zing\LaravelSms\Facades\Sms;
 
@@ -15,7 +17,7 @@ class SmsServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        if ($this->app->runningInConsole() && function_exists('config_path')) {
+        if ($this->app->runningInConsole() && $this->app instanceof Laravel) {
             $this->publishes(
                 [
                     __DIR__ . '/../config/sms.php' => config_path('sms.php'),
@@ -23,17 +25,20 @@ class SmsServiceProvider extends ServiceProvider
                 'config'
             );
         }
-
-        $this->mergeConfigFrom(__DIR__ . '/../config/sms.php', 'sms');
     }
 
     public function register(): void
     {
+        if ($this->app instanceof Lumen) {
+            $this->app->configure('sms');
+        }
+
+        $this->mergeConfigFrom(__DIR__ . '/../config/sms.php', 'sms');
         Notification::resolved(
             function (ChannelManager $service): void {
                 $service->extend(
                     'sms',
-                    function (Application $app) {
+                    function (Container $app) {
                         return $app->make(SmsChannel::class);
                     }
                 );
@@ -41,7 +46,7 @@ class SmsServiceProvider extends ServiceProvider
         );
         $this->app->singleton(
             'sms',
-            function (Application $app) {
+            function (Container $app) {
                 return $app->make(SmsManager::class);
             }
         );
