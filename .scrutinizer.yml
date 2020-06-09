@@ -1,7 +1,4 @@
 build:
-    environment:
-        php:
-            version: '7.3'
     nodes:
         analysis:
             project_setup:
@@ -13,11 +10,12 @@ build:
                     -
                         command: phpcs-run
                         use_website_config: true
-        tests:
+        tests: true
+        coverage:
             tests:
                 override:
                     -
-                        command: 'vendor/bin/pest --coverage-clover=coverage.clover'
+                        command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
                         coverage:
                             file: 'coverage.clover'
                             format: 'clover'

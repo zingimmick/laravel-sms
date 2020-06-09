@@ -10,10 +10,12 @@ use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Gateways\MeilianGateway;
 use Zing\LaravelSms\SmsMessage;
+use Zing\LaravelSms\Tests\TestCase;
 
-it(
-    'can send message',
-    function (): void {
+class MeiLianDriverTest extends TestCase
+{
+    public function testSend(): void
+    {
         $config = [
             'username' => 'mock-username',
             'password' => 'mock-password',
@@ -49,10 +51,9 @@ it(
 
         $driver->send(new PhoneNumber(18188888888), $message, $config);
     }
-);
-it(
-    'will throw exception',
-    function (): void {
+
+    public function testSend2(): void
+    {
         $config = [
             'username' => 'mock-username',
             'password' => 'mock-password',
@@ -86,11 +87,16 @@ it(
 
         $driver->send(new PhoneNumber(18188888888), $message, $config);
     }
-);
 
-it(
-    'can send with default signature',
-    function ($number, $message, $expected): void {
+    /**
+     * @dataProvider provideNumberAndMessage
+     *
+     * @param mixed $number
+     * @param mixed $message
+     * @param mixed $expected
+     */
+    public function testDefaultSignature($number, $message, $expected): void
+    {
         $config = [
             'username' => 'mock-username',
             'password' => 'mock-password',
@@ -118,9 +124,12 @@ it(
 
         $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
-)->with(
-    [
-        [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'],
-        [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'],
-    ]
-);
+
+    public function provideNumberAndMessage()
+    {
+        return [
+            [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'],
+            [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'],
+        ];
+    }
+}
