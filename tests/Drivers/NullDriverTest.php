@@ -9,24 +9,23 @@ use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsMessage;
+use Zing\LaravelSms\Tests\TestCase;
 
-it(
-    'can send message',
-    function (): void {
+class NullDriverTest extends TestCase
+{
+    public function testSend(): void
+    {
         $number = new PhoneNumber(18188888888);
         $message = SmsMessage::text('【test】This is a test message.');
         Log::shouldReceive('debug')->withAnyArgs()->twice();
-        assertTrue(true);
         Sms::connection('null')->send($number, $message, new Config());
     }
-);
-it(
-    'can send message with alias',
-    function (): void {
+
+    public function testSend1(): void
+    {
         $number = new PhoneNumber(18188888888);
         $message = SmsMessage::text('【test】This is a test message.');
         Log::shouldReceive('debug')->withAnyArgs()->twice();
-        assertTrue(true);
         \Sms::connection('null')->send($number, $message, new Config());
     }
-);
+}
