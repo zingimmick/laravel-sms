@@ -160,5 +160,7 @@ use Zing\LaravelSms\SmsNumber;
 (new SmsNumber(18188888888))->notify(new Verification('1111'));
 ```
 
+## License
 
+Laravel Sms is open-sourced software licensed under the [MIT license](https://github.com/zingimmick/laravel-sms/blob/master/LICENSE).
 
