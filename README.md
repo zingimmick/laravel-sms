@@ -16,7 +16,7 @@ Laravel Sms is used to notify via sms and send a message.
 
 ## Requirement
 
-1. PHP >= 7.2
+1. PHP >= 7.2.5
 2. [Composer](https://getcomposer.org)
 3. `json` 拓展
 
