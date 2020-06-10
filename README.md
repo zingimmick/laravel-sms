@@ -14,6 +14,12 @@
 
 Laravel Sms is used to notify via sms and send a message.
 
+## Requirement
+
+1. PHP >= 7.2.5
+2. [Composer](https://getcomposer.org)
+3. `json` 拓展
+
 ## Installation
 
 ### Composer
@@ -154,5 +160,7 @@ use Zing\LaravelSms\SmsNumber;
 (new SmsNumber(18188888888))->notify(new Verification('1111'));
 ```
 
+## License
 
+Laravel Sms is open-sourced software licensed under the [MIT license](https://github.com/zingimmick/laravel-sms/blob/master/LICENSE).
 
