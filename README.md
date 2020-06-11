@@ -10,6 +10,7 @@
 <a href="https://scrutinizer-ci.com/g/zingimmick/laravel-sms"><img src="https://scrutinizer-ci.com/g/zingimmick/laravel-sms/badges/quality-score.png" alt="Scrutinizer Code Quality"></a>
 <a href="https://github.styleci.io/repos/254559831"><img src="https://github.styleci.io/repos/254559831/shield?branch=master" alt="StyleCI Shield"></a>
 <a href="https://codeclimate.com/github/zingimmick/laravel-sms/maintainability"><img src="https://api.codeclimate.com/v1/badges/9c81b0c9cdebc23ba26f/maintainability" alt="Code Climate" /></a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms.svg?type=shield"/></a>
 </p>
 
 Laravel Sms is used to notify via sms and send a message.
@@ -164,3 +165,6 @@ use Zing\LaravelSms\SmsNumber;
 
 Laravel Sms is open-sourced software licensed under the [MIT license](https://github.com/zingimmick/laravel-sms/blob/master/LICENSE).
 
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms?ref=badge_large)
