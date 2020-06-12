@@ -68,6 +68,14 @@ return [
             'from' => env('SMS_HUAWEI_FROM'),
             'callback' => env('SMS_HUAWEI_CALLBACK'),
         ],
+        'huaxin'=>[
+            'driver'=>\Overtrue\EasySms\Gateways\HuaxinGateway::class,
+            'ip'=>env('SMS_HUAXIN_IP'),
+            'user_id'=>env('SMS_HUAXIN_USER_ID'),
+            'account'=>env('SMS_HUAXIN_ACCOUNT'),
+            'password'=>env('SMS_HUAXIN_PASSWORD'),
+            'ext_no'=>env('SMS_HUAXIN_EXT_NO'),
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
