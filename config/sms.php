@@ -46,6 +46,16 @@ return [
             'sk' => env('SMS_BAIDU_SK'),
             'invoke_id' => env('SMS_BAIDU_INVOKED_ID'),
         ],
+        'chuanglan' => [
+            'driver' => \Overtrue\EasySms\Gateways\ChuanglanGateway::class,
+            'channel' => env('SMS_CHUANGLAN_CHANNEL'),
+            'account' => env('SMS_CHUANGLAN_ACCOUNT'),
+            'password' => env('SMS_CHUANGLAN_PASSWORD'),
+            'intel_account' => env('SMS_CHUANGLAN_INTEL_ACCOUNT'),
+            'intel_password' => env('SMS_CHUANGLAN_INTEL_PASSWORD'),
+            'sign' => env('SMS_CHUANGLAN_SIGN'),
+            'unsubscribe' => env('SMS_CHUANGLAN_UNSUBSCRIBE'),
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
