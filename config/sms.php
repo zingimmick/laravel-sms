@@ -14,8 +14,9 @@ return [
             'driver' => Zing\LaravelSms\Gateways\NullGateway::class,
         ],
         'yunpian' => [
-            'driver' => Zing\LaravelSms\Gateways\YunpianGateway::class,
+            'driver' => Overtrue\EasySms\Gateways\YunpianGateway::class,
             'api_key' => env('SMS_YUNPIAN_API_KEY'),
+            'signature' => env('SMS_YUNPIAN_SIGNATURE'),
         ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
