@@ -18,8 +18,10 @@ class IntegrationTest extends TestCase
         $drivers = collect(config('sms.connections'))->pluck('driver');
         $drivers->each(
             function ($driver): void {
-                $message = "{$driver} should implements " . GatewayInterface::class;
-                self::assertTrue(is_subclass_of($driver, GatewayInterface::class), $message);
+                if (class_exists($driver)) {
+                    $message = "{$driver} should implements " . GatewayInterface::class;
+                    self::assertTrue(is_subclass_of($driver, GatewayInterface::class), $message);
+                }
             }
         );
     }
