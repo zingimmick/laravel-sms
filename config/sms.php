@@ -29,6 +29,12 @@ return [
             'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
             'sign_name' => env('SMS_ALIYUN_ACCESS_SIGN_NAME'),
         ],
+        'aliyunrest' => [
+            'driver' => \Overtrue\EasySms\Gateways\AliyunrestGateway::class,
+            'app_key' => env('SMS_ALIYUNREST_APP_KEY'),
+            'app_secret_key' => env('SMS_ALIYUNREST_APP_SECRET_KEY'),
+            'sign_name' => env('SMS_ALIYUNREST_SIGN_NAME'),
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
