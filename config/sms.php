@@ -108,6 +108,11 @@ return [
             'sdk_app_id' => env('SMS_QCOULD_SDK_APP_ID'),
             'sign_name' => env('SMS_QCOULD_SIGN_NAME'),
         ],
+        'qiniu' => [
+            'driver' => Overtrue\EasySms\Gateways\QiniuGateway::class,
+            'access_key' => env('SMS_QINIU_ACCESS_KEY'),
+            'secret_key' => env('SMS_QINIU_SECRET_KEY'),
+        ],
         'rongcloud' => [
             'driver' => Overtrue\EasySms\Gateways\RongcloudGateway::class,
             'app_key' => env('SMS_RONGCLOUD_APP_KEY'),
