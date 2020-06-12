@@ -125,5 +125,11 @@ return [
             'app_key' => env('SMS_SUBMAIL_APP_KEY'),
             'project' => env('SMS_SUBMAIL_PROJECT'),
         ],
+        'tianyiwuxian' => [
+            'driver' => \Overtrue\EasySms\Gateways\TianyiwuxianGateway::class,
+            'gwid' => env('SMS_TIANYIWUXIAN_GWID'),
+            'username' => env('SMS_TIANYIWUXIAN_USERNAME'),
+            'password' => env('SMS_TIANYIWUXIAN_PASSWORD'),
+        ],
     ],
 ];
