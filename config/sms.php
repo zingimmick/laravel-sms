@@ -86,11 +86,15 @@ return [
             'driver' => \Overtrue\EasySms\Gateways\JuheGateway::class,
             'app_key' => env('SMS_JUHE_APP_KEY'),
         ],
-        'kingtto'=>[
-            'driver'=>\Overtrue\EasySms\Gateways\KingttoGateway::class,
-            'userid'=>env('SMS_KINGTTO_USERID'),
-            'account'=>env('SMS_KINGTTO_ACCOUNT'),
-            'password'=>env('SMS_KINGTTO_PASSWORD'),
+        'kingtto' => [
+            'driver' => \Overtrue\EasySms\Gateways\KingttoGateway::class,
+            'userid' => env('SMS_KINGTTO_USERID'),
+            'account' => env('SMS_KINGTTO_ACCOUNT'),
+            'password' => env('SMS_KINGTTO_PASSWORD'),
+        ],
+        'luosimao' => [
+            'driver' => \Overtrue\EasySms\Gateways\LuosimaoGateway::class,
+            'api_key' => env('SMS_LUOSIMAO_API_KEY'),
         ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
