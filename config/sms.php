@@ -113,5 +113,11 @@ return [
             'app_key' => env('SMS_RONGCLOUD_APP_KEY'),
             'app_secret' => env('SMS_RONGCLOUD_APP_SECRET'),
         ],
+        'sendcloud' => [
+            'driver' => \Overtrue\EasySms\Gateways\SendcloudGateway::class,
+            'sms_user' => env('SMS_SENDCLOUD_SMS_USER'),
+            'sms_key' => env('SMS_SENDCLOUD_SMS_KEY'),
+            'timestamp' => env('SMS_SENDCLOUD_TIMESTAMP'),
+        ],
     ],
 ];
