@@ -144,5 +144,10 @@ return [
             'project_id' => env('SMS_UCLOUD_PROJECT_ID'),
             'private_key' => env('SMS_UCLOUD_PRIVATE_KEY'),
         ],
+        'ue35' => [
+            'driver' => \Overtrue\EasySms\Gateways\Ue35Gateway::class,
+            'username' => env('SMS_UE35_USERNAME'),
+            'userpwd' => env('SMS_UE35_USERPWD'),
+        ],
     ],
 ];
