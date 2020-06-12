@@ -18,6 +18,11 @@ return [
             'api_key' => env('SMS_YUNPIAN_API_KEY'),
             'signature' => env('SMS_YUNPIAN_SIGNATURE'),
         ],
+        'yunpian-market' => [
+            'driver' => Overtrue\EasySms\Gateways\YunpianGateway::class,
+            'api_key' => env('SMS_YUNPIAN_MARKET_API_KEY'),
+            'signature' => env('SMS_YUNPIAN_MARKET_SIGNATURE'),
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
