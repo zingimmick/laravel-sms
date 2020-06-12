@@ -157,5 +157,12 @@ return [
             'account_sid' => env('SMS_YUNTONGXUN_ACCOUNT_SID'),
             'account_token' => env('SMS_YUNTONGXUN_ACCOUNT_TOKEN'),
         ],
+        'yunxin' => [
+            'driver' => \Overtrue\EasySms\Gateways\YunxinGateway::class,
+            'app_key' => env('SMS_YUNXIN_APP_KEY'),
+            'app_secret' => env('SMS_YUNXIN_APP_SECRET'),
+            'code_length' => env('SMS_YUNXIN_CODE_LENGTH', 4),
+            'need_up' => env('SMS_YUNXIN_NEED_UP', false),
+        ],
     ],
 ];
