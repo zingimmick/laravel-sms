@@ -76,6 +76,12 @@ return [
             'password'=>env('SMS_HUAXIN_PASSWORD'),
             'ext_no'=>env('SMS_HUAXIN_EXT_NO'),
         ],
+        'huyi'=>[
+          'driver'=>\Overtrue\EasySms\Gateways\HuyiGateway::class,
+            'api_id'=>env('SMS_HUYI_API_ID'),
+            'api_key'=>env('SMS_HUYI_API_KEY'),
+            'signature'=>env('SMS_HUYI_SIGNATURE')
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
