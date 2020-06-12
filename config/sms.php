@@ -117,7 +117,7 @@ return [
             'driver' => \Overtrue\EasySms\Gateways\SendcloudGateway::class,
             'sms_user' => env('SMS_SENDCLOUD_SMS_USER'),
             'sms_key' => env('SMS_SENDCLOUD_SMS_KEY'),
-            'timestamp' => env('SMS_SENDCLOUD_TIMESTAMP'),
+            'timestamp' => env('SMS_SENDCLOUD_TIMESTAMP', false),
         ],
         'submail' => [
             'driver' => \Overtrue\EasySms\Gateways\SubmailGateway::class,
@@ -148,6 +148,14 @@ return [
             'driver' => \Overtrue\EasySms\Gateways\Ue35Gateway::class,
             'username' => env('SMS_UE35_USERNAME'),
             'userpwd' => env('SMS_UE35_USERPWD'),
+        ],
+        'yuntongxun' => [
+            'driver' => \Overtrue\EasySms\Gateways\YuntongxunGateway::class,
+            'debug' => env('SMS_YUNTONGXUN_DEBUG', false),
+            'is_sub_account' => env('SMS_YUNTONGXUN_IS_SUB_ACCOUNT', 'Accounts'),
+            'app_id' => env('SMS_YUNTONGXUN_APP_ID'),
+            'account_sid' => env('SMS_YUNTONGXUN_ACCOUNT_SID'),
+            'account_token' => env('SMS_YUNTONGXUN_ACCOUNT_TOKEN'),
         ],
     ],
 ];
