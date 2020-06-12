@@ -60,6 +60,14 @@ return [
             'driver' => \Overtrue\EasySms\Gateways\ErrorlogGateway::class,
             'file' => '/tmp/easy-sms.log',
         ],
+        'huawei' => [
+            'driver' => \Overtrue\EasySms\Gateways\HuaweiGateway::class,
+            'endpoint' => env('SMS_HUAWEI_ENDPOINT'),
+            'app_key' => env('SMS_HUAWEI_APP_KEY'),
+            'app_secret' => env('SMS_HUAWEI_APP_SECRET'),
+            'from' => env('SMS_HUAWEI_FROM'),
+            'callback' => env('SMS_HUAWEI_CALLBACK'),
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
