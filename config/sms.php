@@ -35,6 +35,10 @@ return [
             'app_secret_key' => env('SMS_ALIYUNREST_APP_SECRET_KEY'),
             'sign_name' => env('SMS_ALIYUNREST_SIGN_NAME'),
         ],
+        'avatardata' => [
+            'driver' => \Overtrue\EasySms\Gateways\AvatardataGateway::class,
+            'app_key' => env('SMS_AVATARDATA_APP_KEY'),
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
