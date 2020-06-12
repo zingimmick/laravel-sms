@@ -39,6 +39,13 @@ return [
             'driver' => \Overtrue\EasySms\Gateways\AvatardataGateway::class,
             'app_key' => env('SMS_AVATARDATA_APP_KEY'),
         ],
+        'baidu' => [
+            'driver' => \Overtrue\EasySms\Gateways\BaiduGateway::class,
+            'domain' => env('SMS_BAIDU_DOMAIN'),
+            'ak' => env('SMS_BAIDU_AK'),
+            'sk' => env('SMS_BAIDU_SK'),
+            'invoke_id' => env('SMS_BAIDU_INVOKED_ID'),
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
