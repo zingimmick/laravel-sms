@@ -131,5 +131,11 @@ return [
             'username' => env('SMS_TIANYIWUXIAN_USERNAME'),
             'password' => env('SMS_TIANYIWUXIAN_PASSWORD'),
         ],
+        'twilio' => [
+            'driver' => \Overtrue\EasySms\Gateways\TwilioGateway::class,
+            'account_sid' => env('SMS_TWILIO_ACCOUNT_SID'),
+            'from' => env('SMS_TWILIO_FROM'),
+            'token' => env('SMS_TWILIO_TOKEN'),
+        ],
     ],
 ];
