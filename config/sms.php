@@ -56,6 +56,10 @@ return [
             'sign' => env('SMS_CHUANGLAN_SIGN'),
             'unsubscribe' => env('SMS_CHUANGLAN_UNSUBSCRIBE'),
         ],
+        'errorlog' => [
+            'driver' => \Overtrue\EasySms\Gateways\ErrorlogGateway::class,
+            'file' => '/tmp/easy-sms.log',
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
