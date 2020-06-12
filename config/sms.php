@@ -23,6 +23,12 @@ return [
             'api_key' => env('SMS_YUNPIAN_MARKET_API_KEY'),
             'signature' => env('SMS_YUNPIAN_MARKET_SIGNATURE'),
         ],
+        'aliyun' => [
+            'driver' => \Overtrue\EasySms\Gateways\AliyunGateway::class,
+            'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID'),
+            'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
+            'sign_name' => env('SMS_ALIYUN_ACCESS_SIGN_NAME'),
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
