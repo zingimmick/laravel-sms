@@ -119,5 +119,11 @@ return [
             'sms_key' => env('SMS_SENDCLOUD_SMS_KEY'),
             'timestamp' => env('SMS_SENDCLOUD_TIMESTAMP'),
         ],
+        'submail' => [
+            'driver' => \Overtrue\EasySms\Gateways\SubmailGateway::class,
+            'app_id' => env('SMS_SUBMAIL_APP_ID'),
+            'app_key' => env('SMS_SUBMAIL_APP_KEY'),
+            'project' => env('SMS_SUBMAIL_PROJECT'),
+        ],
     ],
 ];
