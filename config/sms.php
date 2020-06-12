@@ -96,6 +96,12 @@ return [
             'driver' => \Overtrue\EasySms\Gateways\LuosimaoGateway::class,
             'api_key' => env('SMS_LUOSIMAO_API_KEY'),
         ],
+        'qcloud'=>[
+            'driver'=>\Overtrue\EasySms\Gateways\QcloudGateway::class,
+            'app_key'=>env('SMS_QCOULD_APP_KEY'),
+            'sdk_app_id'=>env('SMS_QCOULD_SDK_APP_ID'),
+            'sign_name'=>env('SMS_QCOULD_SIGN_NAME'),
+        ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
