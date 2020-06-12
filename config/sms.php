@@ -72,15 +72,19 @@ return [
             'driver'=>\Overtrue\EasySms\Gateways\HuaxinGateway::class,
             'ip'=>env('SMS_HUAXIN_IP'),
             'user_id'=>env('SMS_HUAXIN_USER_ID'),
-            'account'=>env('SMS_HUAXIN_ACCOUNT'),
-            'password'=>env('SMS_HUAXIN_PASSWORD'),
-            'ext_no'=>env('SMS_HUAXIN_EXT_NO'),
+            'account' => env('SMS_HUAXIN_ACCOUNT'),
+            'password' => env('SMS_HUAXIN_PASSWORD'),
+            'ext_no' => env('SMS_HUAXIN_EXT_NO'),
         ],
-        'huyi'=>[
-          'driver'=>\Overtrue\EasySms\Gateways\HuyiGateway::class,
-            'api_id'=>env('SMS_HUYI_API_ID'),
-            'api_key'=>env('SMS_HUYI_API_KEY'),
-            'signature'=>env('SMS_HUYI_SIGNATURE')
+        'huyi' => [
+            'driver' => \Overtrue\EasySms\Gateways\HuyiGateway::class,
+            'api_id' => env('SMS_HUYI_API_ID'),
+            'api_key' => env('SMS_HUYI_API_KEY'),
+            'signature' => env('SMS_HUYI_SIGNATURE'),
+        ],
+        'juhe' => [
+            'driver' => \Overtrue\EasySms\Gateways\JuheGateway::class,
+            'app_key' => env('SMS_JUHE_APP_KEY'),
         ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
