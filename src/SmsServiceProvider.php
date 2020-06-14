@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as Lumen;
 use Zing\LaravelSms\Channels\SmsChannel;
+use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
 use Zing\LaravelSms\Facades\Sms;
 
 class SmsServiceProvider extends ServiceProvider
@@ -51,5 +52,9 @@ class SmsServiceProvider extends ServiceProvider
             }
         );
         $this->app->alias('sms', Sms::class);
+        $this->app->singleton('command.sms.gateway',SmsSwitchConnectionCommand::class);
+        $this->commands([
+            'command.sms.gateway'
+        ]);
     }
 }
