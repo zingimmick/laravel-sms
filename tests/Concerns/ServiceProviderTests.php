@@ -15,6 +15,8 @@ use Zing\LaravelSms\SmsMessage;
 
 trait ServiceProviderTests
 {
+    use InteractsWithConsole;
+
     public function testSms(): void
     {
         $this->assertInstanceOf(Connector::class, Sms::connection());
@@ -36,12 +38,13 @@ trait ServiceProviderTests
         \Sms::connection('null')->send($number, $message, new Config());
     }
 
-    use InteractsWithConsole;
-
-    public function testCommand()
+    public function testCommand(): void
     {
-        $this->artisan(SmsSwitchConnectionCommand::class, [
-            'connection' => 'default',
-        ])->assertExitCode(0);
+        $this->artisan(
+            SmsSwitchConnectionCommand::class,
+            [
+                'connection' => 'default',
+            ]
+        )->assertExitCode(0);
     }
 }
