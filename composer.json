@@ -12,6 +12,7 @@
         "php": "^7.2.5",
         "ext-json": "*",
         "graham-campbell/manager": "^4.3",
+        "illuminate/console": "^6.8|^7.0|^8.0",
         "illuminate/notifications": "^6.8|^7.0|^8.0",
         "overtrue/easy-sms": "^1.1"
     },
