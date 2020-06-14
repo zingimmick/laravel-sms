@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\LaravelSms\Commands;
 
 use Illuminate\Console\Command;
@@ -70,7 +72,7 @@ class SmsSwitchConnectionCommand extends Command
 
         if (Str::contains(file_get_contents($path), 'SMS_CONNECTION') === false) {
             // create new entry
-            file_put_contents($path, PHP_EOL . "SMS_CONNECTION=$connection" . PHP_EOL, FILE_APPEND);
+            file_put_contents($path, PHP_EOL . "SMS_CONNECTION={$connection}" . PHP_EOL, FILE_APPEND);
         } else {
             if ($this->option('always-no')) {
                 $this->comment('Sms default connection already exists. Skipping...');
@@ -85,11 +87,15 @@ class SmsSwitchConnectionCommand extends Command
             }
 
             // update existing entry
-            file_put_contents($path, str_replace(
-                'SMS_CONNECTION=' . $this->laravel['config']['sms.default'],
-                'SMS_CONNECTION=' . $connection, file_get_contents($path)
-            ));
-        }
+            file_put_contents(
+                $path,
+                str_replace(
+                    'SMS_CONNECTION=' . $this->laravel['config']['sms.default'],
+                    'SMS_CONNECTION=' . $connection,
+                    file_get_contents($path)
+                )
+            );
+        }//end if
 
         $this->displayConnection($connection);
     }
@@ -101,11 +107,11 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @return void
      */
-    protected function displayConnection($key)
+    protected function displayConnection($key): void
     {
         $this->laravel['config']['sms.default'] = $key;
 
-        $this->info("sms default connection switch to [$key] successfully.");
+        $this->info("sms default connection switch to [{$key}] successfully.");
     }
 
     /**
