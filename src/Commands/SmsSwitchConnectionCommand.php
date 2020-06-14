@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Zing\LaravelSms\Commands;
-
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -17,6 +15,7 @@ class SmsSwitchConnectionCommand extends Command
      * @var string
      */
     protected $name = 'sms:connection';
+
     /**
      * Get the console command arguments.
      *
@@ -25,9 +24,10 @@ class SmsSwitchConnectionCommand extends Command
     protected function getArguments()
     {
         return [
-            new InputArgument('connection', InputArgument::REQUIRED, 'Which connection to use')
+            new InputArgument('connection', InputArgument::REQUIRED, 'Which connection to use'),
         ];
     }
+
     /**
      * Get the console command options.
      *
@@ -36,12 +36,11 @@ class SmsSwitchConnectionCommand extends Command
     protected function getOptions()
     {
         return [
-            new InputOption('show', 's', InputOption::VALUE_NONE,'Display the sms default connection instead of modifying files'),
+            new InputOption('show', 's', InputOption::VALUE_NONE, 'Display the sms default connection instead of modifying files'),
             new InputOption('always-no', null, InputOption::VALUE_NONE, 'Skip generating sms default connection if it already exists'),
             new InputOption('force', 'f', InputOption::VALUE_NONE, 'Skip confirmation when overwriting an existing sms default connection'),
         ];
     }
-
 
     /**
      * The console command description.
@@ -60,7 +59,7 @@ class SmsSwitchConnectionCommand extends Command
         $connection = $this->argument('connection');
 
         if ($this->option('show')) {
-            $this->comment('SMS_CONNECTION='.$connection);
+            $this->comment('SMS_CONNECTION=' . $connection);
 
             return;
         }

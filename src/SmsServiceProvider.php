@@ -52,9 +52,9 @@ class SmsServiceProvider extends ServiceProvider
             }
         );
         $this->app->alias('sms', Sms::class);
-        $this->app->singleton('command.sms.gateway',SmsSwitchConnectionCommand::class);
+        $this->app->singleton('command.sms.gateway', SmsSwitchConnectionCommand::class);
         $this->commands([
-            'command.sms.gateway'
+            'command.sms.gateway',
         ]);
     }
 }
