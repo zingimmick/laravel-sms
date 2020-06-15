@@ -38,7 +38,7 @@ class CommandTest extends LumenTestCase
             [
                 'connection' => 'default-2',
             ]
-        )->expectsQuestion('This maybe invalidate existing sms feature. Are you sure you want to override the sms default connection?',false)
+        )->expectsQuestion('This maybe invalidate existing sms feature. Are you sure you want to override the sms default connection?', false)
             ->assertExitCode(0);
         self::assertSame(config('sms.default'), 'default');
         $this->artisan(
