@@ -82,6 +82,7 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @param string $connection the default sms connection
      * @param string $path the .env file path.
+     *
      * @return bool
      */
     protected function putEnvToFile($connection, $path): bool
