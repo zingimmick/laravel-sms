@@ -56,7 +56,7 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $connection = (string) $this->argument('connection');
 
@@ -68,6 +68,7 @@ class SmsSwitchConnectionCommand extends Command
 
         if (file_exists($path = $this->envPath()) === false) {
             $this->displayConnection($connection);
+
             return;
         }
 
