@@ -56,9 +56,9 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-        $connection = $this->argument('connection');
+        $connection = (string) $this->argument('connection');
 
         if ($this->option('show')) {
             $this->comment('SMS_CONNECTION=' . $connection);
@@ -67,7 +67,9 @@ class SmsSwitchConnectionCommand extends Command
         }
 
         if (file_exists($path = $this->envPath()) === false) {
-            return $this->displayConnection($connection);
+            $this->displayConnection($connection);
+
+            return;
         }
 
         if (Str::contains(file_get_contents($path), 'SMS_CONNECTION') === false) {
