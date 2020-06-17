@@ -72,6 +72,20 @@ class SmsSwitchConnectionCommand extends Command
             return;
         }
 
+        if ($this->putEnvToFile($connection, $path)) {
+            $this->displayConnection($connection);
+        }
+    }
+
+    /**
+     * put default sms connection to the .env file path.
+     *
+     * @param string $connection the default sms connection
+     * @param string $path the .env file path.
+     * @return bool
+     */
+    protected function putEnvToFile($connection, $path): bool
+    {
         if (Str::contains(file_get_contents($path), 'SMS_CONNECTION') === false) {
             // create new entry
             file_put_contents($path, PHP_EOL . "SMS_CONNECTION={$connection}" . PHP_EOL, FILE_APPEND);
@@ -79,13 +93,13 @@ class SmsSwitchConnectionCommand extends Command
             if ($this->option('always-no')) {
                 $this->comment('Sms default connection already exists. Skipping...');
 
-                return;
+                return false;
             }
 
             if ($this->isConfirmed() === false) {
                 $this->comment('Phew... No changes were made to your sms default connection.');
 
-                return;
+                return false;
             }
 
             // update existing entry
@@ -99,21 +113,21 @@ class SmsSwitchConnectionCommand extends Command
             );
         }//end if
 
-        $this->displayConnection($connection);
+        return true;
     }
 
     /**
      * Display the key.
      *
-     * @param string $key
+     * @param string $connection
      *
      * @return void
      */
-    protected function displayConnection($key): void
+    protected function displayConnection($connection): void
     {
-        $this->laravel['config']['sms.default'] = $key;
+        $this->laravel['config']['sms.default'] = $connection;
 
-        $this->info("sms default connection switch to [{$key}] successfully.");
+        $this->info("sms default connection switch to [{$connection}] successfully.");
     }
 
     /**
