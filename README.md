@@ -14,6 +14,16 @@
 
 Laravel Sms is used to notify via sms and send a message.
 
+## Thanks
+
+Many thanks to:
+
+* [JetBrains](https://www.jetbrains.com/?from=LaravelSms) for the excellent
+  **PhpStorm IDE** and providing me with an open source license to speed up the
+  project development.
+ 
+  [![JetBrains](/docs/jetbrains.svg)](https://www.jetbrains.com/?from=LaravelSms)
+
 ## Installation
 
 ### Composer
