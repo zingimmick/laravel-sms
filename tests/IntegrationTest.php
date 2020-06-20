@@ -6,6 +6,7 @@ namespace Zing\LaravelSms\Tests;
 
 use Composer\Autoload\ClassMapGenerator;
 use Overtrue\EasySms\Contracts\GatewayInterface;
+use ReflectionClass;
 
 class IntegrationTest extends TestCase
 {
@@ -33,7 +34,7 @@ class IntegrationTest extends TestCase
             ->keys()
             ->filter(
                 function ($name) {
-                    $reflectionClass = new \ReflectionClass($name);
+                    $reflectionClass = new ReflectionClass($name);
                     if (! $reflectionClass->isSubclassOf(GatewayInterface::class)) {
                         return false;
                     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests\Lumen;
 
+use function config;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithConsole;
 use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
 
@@ -82,7 +83,7 @@ class CommandTest extends LumenTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->connection = \config('sms.default');
+        $this->connection = config('sms.default');
     }
 
     protected $connection;
@@ -93,7 +94,7 @@ class CommandTest extends LumenTestCase
             unlink($this->envPath());
         }
 
-        \config(['sms.default' => $this->connection]);
+        config(['sms.default' => $this->connection]);
         parent::tearDown();
     }
 }
