@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests\Laravel;
 
+use function config;
 use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
 
 class CommandTest extends LaravelTestCase
@@ -80,7 +81,7 @@ class CommandTest extends LaravelTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->connection = \config('sms.default');
+        $this->connection = config('sms.default');
     }
 
     protected $connection;
@@ -91,7 +92,7 @@ class CommandTest extends LaravelTestCase
             unlink($this->envPath());
         }
 
-        \config(['sms.default' => $this->connection]);
+        config(['sms.default' => $this->connection]);
         parent::tearDown();
     }
 }
