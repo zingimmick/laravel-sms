@@ -36,7 +36,7 @@ class Connector implements ConnectorInterface
     /**
      * Connector constructor.
      *
-     * @param $config
+     * @param array $config
      */
     public function __construct($config)
     {
