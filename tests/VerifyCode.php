@@ -15,7 +15,7 @@ class VerifyCode extends Notification
         return [SmsChannel::class];
     }
 
-    public function toSms()
+    public function toSms($notifiable)
     {
         return SmsMessage::text('')->onConnection('log');
     }
