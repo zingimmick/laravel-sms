@@ -59,6 +59,11 @@ class SmsChannel
         return $this->smsManager->connection($message->connection)->send($receiver, $message);
     }
 
+    /**
+     * @param mixed $notifiable
+     * @param \Illuminate\Notifications\Notification $notification
+     * @return mixed|null
+     */
     public function resolveReceiver($notifiable, Notification $notification)
     {
         if ($notifiable instanceof AnonymousNotifiable) {
