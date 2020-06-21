@@ -229,7 +229,7 @@ it(
         Event::assertDispatched(
             SmsSending::class,
             function (SmsSending $smsSending) use ($number, $expectedMessage) {
-                assertSame((string) $number, (string) $smsSending->number);
+                self::assertSame((string) $number, (string) $smsSending->number);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
                 return true;
@@ -265,7 +265,7 @@ it(
         Event::assertDispatched(
             SmsSent::class,
             function (SmsSent $smsSending) use ($number, $expectedMessage) {
-                assertSame((string) $number, (string) $smsSending->number);
+                self::assertSame((string) $number, (string) $smsSending->number);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
                 return true;
