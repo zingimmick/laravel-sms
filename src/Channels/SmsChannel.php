@@ -62,6 +62,7 @@ class SmsChannel
     /**
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
+     *
      * @return mixed|null
      */
     public function resolveReceiver($notifiable, Notification $notification)
