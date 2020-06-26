@@ -21,7 +21,7 @@ class SmsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole() && $this->app instanceof Laravel) {
             $this->publishes(
                 [
-                    __DIR__ . '/../config/sms.php' => config_path('sms.php'),
+                    $this->getConfigPath() => config_path('sms.php'),
                 ],
                 'config'
             );
@@ -30,11 +30,7 @@ class SmsServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        if ($this->app instanceof Lumen) {
-            $this->app->configure('sms');
-        }
-
-        $this->mergeConfigFrom(__DIR__ . '/../config/sms.php', 'sms');
+        $this->registerConfig();
         Notification::resolved(
             function (ChannelManager $service): void {
                 $service->extend(
@@ -52,6 +48,25 @@ class SmsServiceProvider extends ServiceProvider
             }
         );
         $this->app->alias('sms', Sms::class);
+        $this->registerCommands();
+    }
+
+    protected function getConfigPath(): string
+    {
+        return __DIR__ . '/../config/sms.php';
+    }
+
+    protected function registerConfig(): void
+    {
+        if ($this->app instanceof Lumen) {
+            $this->app->configure('sms');
+        }
+
+        $this->mergeConfigFrom($this->getConfigPath(), 'sms');
+    }
+
+    protected function registerCommands(): void
+    {
         $this->app->singleton('command.sms.gateway', SmsSwitchConnectionCommand::class);
         $this->commands(
             [
