@@ -90,20 +90,15 @@ class SmsSwitchConnectionCommand extends Command
         if (Str::contains(file_get_contents($path), 'SMS_CONNECTION') === false) {
             // create new entry
             file_put_contents($path, PHP_EOL . "SMS_CONNECTION={$connection}" . PHP_EOL, FILE_APPEND);
+        } elseif ($this->option('always-no')) {
+            $this->comment('Sms default connection already exists. Skipping...');
+
+            return false;
+        } elseif ($this->isConfirmed() === false) {
+            $this->comment('Phew... No changes were made to your sms default connection.');
+
+            return false;
         } else {
-            if ($this->option('always-no')) {
-                $this->comment('Sms default connection already exists. Skipping...');
-
-                return false;
-            }
-
-            if ($this->isConfirmed() === false) {
-                $this->comment('Phew... No changes were made to your sms default connection.');
-
-                return false;
-            }
-
-            // update existing entry
             file_put_contents(
                 $path,
                 str_replace(
