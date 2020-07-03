@@ -8,10 +8,12 @@ on:
 
 jobs:
   ecs:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: true
       matrix:
+        os: [ubuntu-latest]
         php: [7.2, 7.3, 7.4]
 
     name: PHP ${{ matrix.php }}
