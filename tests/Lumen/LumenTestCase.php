@@ -19,6 +19,7 @@ abstract class LumenTestCase extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->app->withFacades(true);
         $this->app->useStoragePath(__DIR__ . '/../../vendor/laravel/lumen/storage');
         $this->app->register(LogServiceProvider::class);

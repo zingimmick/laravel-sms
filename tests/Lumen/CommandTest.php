@@ -83,6 +83,7 @@ class CommandTest extends LumenTestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->connection = config('sms.default');
     }
 
@@ -95,6 +96,7 @@ class CommandTest extends LumenTestCase
         }
 
         config(['sms.default' => $this->connection]);
+
         parent::tearDown();
     }
 }

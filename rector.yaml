@@ -5,6 +5,7 @@ parameters:
         - 'celebrity'
         - 'doctrine'
         - 'phpstan'
+        - 'phpunit-code-quality'
         - 'solid'
         - 'early-return'
         - 'doctrine-code-quality'
@@ -17,6 +18,7 @@ parameters:
         - Rector\SOLID\Rector\ClassMethod\ChangeReadOnlyVariableWithDefaultValueToConstantRector
         - Rector\PHPStan\Rector\Cast\RecastingRemovalRector
         - Rector\SOLID\Rector\Class_\RepeatedLiteralToClassConstantRector
+        - Rector\PHPUnit\Rector\Class_\AddSeeTestAnnotationRector
     paths:
         - 'config'
         - 'src'

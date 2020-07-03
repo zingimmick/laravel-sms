@@ -13,6 +13,7 @@ class CouldNotSendNotification extends Exception
     public function __construct($message = '', $code = 0, $raw = [])
     {
         parent::__construct($message, $code);
+
         $this->raw = $raw;
     }
 

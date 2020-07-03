@@ -81,6 +81,7 @@ class CommandTest extends LaravelTestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->connection = config('sms.default');
     }
 
@@ -93,6 +94,7 @@ class CommandTest extends LaravelTestCase
         }
 
         config(['sms.default' => $this->connection]);
+
         parent::tearDown();
     }
 }
