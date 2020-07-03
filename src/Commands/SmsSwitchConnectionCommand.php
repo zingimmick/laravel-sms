@@ -66,7 +66,8 @@ class SmsSwitchConnectionCommand extends Command
             return;
         }
 
-        if (! file_exists($path = $this->envPath())) {
+        $path = $this->envPath();
+        if (! file_exists($path)) {
             $this->displayConnection($connection);
 
             return;
