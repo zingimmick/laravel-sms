@@ -66,7 +66,7 @@ class SmsSwitchConnectionCommand extends Command
             return;
         }
 
-        if (file_exists($path = $this->envPath()) === false) {
+        if (! file_exists($path = $this->envPath())) {
             $this->displayConnection($connection);
 
             return;
@@ -87,14 +87,14 @@ class SmsSwitchConnectionCommand extends Command
      */
     protected function putEnvToFile($connection, $path): bool
     {
-        if (Str::contains(file_get_contents($path), 'SMS_CONNECTION') === false) {
+        if (! Str::contains(file_get_contents($path), 'SMS_CONNECTION')) {
             // create new entry
             file_put_contents($path, PHP_EOL . "SMS_CONNECTION={$connection}" . PHP_EOL, FILE_APPEND);
         } elseif ($this->option('always-no')) {
             $this->comment('Sms default connection already exists. Skipping...');
 
             return false;
-        } elseif ($this->isConfirmed() === false) {
+        } elseif (! $this->isConfirmed()) {
             $this->comment('Phew... No changes were made to your sms default connection.');
 
             return false;

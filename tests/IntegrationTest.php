@@ -39,11 +39,7 @@ class IntegrationTest extends TestCase
                         return false;
                     }
 
-                    if (! $reflectionClass->isInstantiable()) {
-                        return false;
-                    }
-
-                    return true;
+                    return $reflectionClass->isInstantiable();
                 }
             )
             ->sort()
