@@ -327,7 +327,7 @@ class SmsManagerTest extends TestCase
         );
     }
 
-    public function testVia()
+    public function testVia(): void
     {
         $name = 'test';
         $manager = Mockery::mock(SmsManager::class);
