@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * Class Sms.
  *
  * @method static \Zing\LaravelSms\Connectors\Connector connection(string $name = null)
+ * @method static \Zing\LaravelSms\Connectors\Connector via(string $name = null)
  *
  * @mixin \Zing\LaravelSms\SmsManager
  */

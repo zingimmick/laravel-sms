@@ -144,6 +144,8 @@ use Zing\LaravelSms\Facades\Sms;
 Sms::send(18188888888, 'test message.');
 // use specific connection
 Sms::connection('null')->send(18188888888, 'test message.');
+// or
+Sms::via('null')->send(18188888888, 'test message.');
 ```
 
 ## Specific usage
