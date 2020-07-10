@@ -326,4 +326,13 @@ class SmsManagerTest extends TestCase
             }
         );
     }
+
+    public function testVia(): void
+    {
+        $name = 'test';
+        $manager = Mockery::mock(SmsManager::class);
+        $manager->shouldReceive('via')->passthru();
+        $manager->shouldReceive('connection')->withArgs([$name])->once();
+        $manager->via($name);
+    }
 }
