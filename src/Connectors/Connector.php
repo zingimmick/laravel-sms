@@ -56,12 +56,12 @@ class Connector implements ConnectorInterface
             throw new InvalidArgumentException('A driver must be specified.');
         }
 
-        $driver = $config['driver'];
-        if (! class_exists($driver) || ! in_array(GatewayInterface::class, class_implements($driver), true)) {
-            throw new InvalidArgumentException("Unsupported driver [{$config['driver']}].");
+        $driverClass = $config['driver'];
+        if (! class_exists($driverClass) || ! in_array(GatewayInterface::class, class_implements($driverClass), true)) {
+            throw new InvalidArgumentException("Unsupported driver [{$driverClass}].");
         }
 
-        $this->driver = new $driver($config);
+        $this->driver = new $driverClass($config);
 
         return $this;
     }
