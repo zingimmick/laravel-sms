@@ -35,7 +35,7 @@ class SmsChannel
      *
      * @return void
      */
-    public function send($notifiable, Notification $notification)
+    public function send($notifiable, Notification $notification): void
     {
         $message = $this->getData($notifiable, $notification);
         $receiver = $this->resolveReceiver($notifiable, $notification);
@@ -56,7 +56,7 @@ class SmsChannel
             return;
         }
 
-        return $this->smsManager->connection($message->connection)->send($receiver, $message);
+        $this->smsManager->connection($message->connection)->send($receiver, $message);
     }
 
     /**
