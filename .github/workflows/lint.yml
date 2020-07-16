@@ -20,26 +20,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.composer/cache/files
-          key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          tools: composer:v2
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
-
-      - name: Install dependencies
-        run: composer update --prefer-stable --prefer-dist --no-interaction
-
       - name: ecs-action
         uses: zingimmick/ecs-action@0.0.2
-        with:
-          args: --config=ecs.yaml
-
-      - name: Execute code standard tests
-        run: composer run-script lint
