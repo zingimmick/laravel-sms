@@ -36,5 +36,8 @@ jobs:
       - name: Install dependencies
         run: composer update --prefer-stable --prefer-dist --no-interaction
 
+      - name: ecs-action
+        uses: zingimmick/ecs-action@0.0.1
+
       - name: Execute code standard tests
         run: composer run-script lint
