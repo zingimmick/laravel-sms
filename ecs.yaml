@@ -1,6 +1,3 @@
-imports:
-  - { resource: 'vendor/zing/coding-standard/config/config.yaml' }
-
 parameters:
   sets:
     - 'psr12'
