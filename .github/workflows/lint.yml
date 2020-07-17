@@ -20,5 +20,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: ecs-action
-        uses: zingimmick/ecs-action@0.0.2
+      - name: Easy Coding Standard Action
+        uses: zingimmick/ecs-action@0.0.3
+
+      - name: Rector Action
+        uses: zingimmick/rector-action@0.0.1
+        with:
+          args: --dry-run
