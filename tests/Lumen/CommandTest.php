@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests\Lumen;
 
-use function config;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithConsole;
 use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
+use function config;
 
 class CommandTest extends LumenTestCase
 {
