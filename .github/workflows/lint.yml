@@ -20,10 +20,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Easy Coding Standard Action
+        uses: zingimmick/ecs-action@0.0.3
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-php-${{ matrix.php }}-composer-${{ matrix.stability }}-${{ hashFiles('composer.json') }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, xdebug
+          coverage: true
+
+      - name: Install dependencies
+        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
       - name: Rector Action
         uses: zingimmick/rector-action@0.0.1
         with:
           args: --dry-run
-
-      - name: Easy Coding Standard Action
-        uses: zingimmick/ecs-action@0.0.3

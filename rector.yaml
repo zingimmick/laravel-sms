@@ -1,6 +1,4 @@
 parameters:
-    autoload_paths:
-        - vendor/autoload.php
     sets:
         - 'action-injection-to-constructor-injection'
         - 'array-str-functions-to-static-call'
