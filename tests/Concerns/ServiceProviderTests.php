@@ -26,11 +26,8 @@ trait ServiceProviderTests
         Sms::connection('null')->send($number, $message, new Config());
     }
 
-    public function testSendWithAlias(): void
+    public function testAlias(): void
     {
-        $number = new PhoneNumber(18188888888);
-        $message = SmsMessage::text('【test】This is a test message.');
-        Log::shouldReceive('debug')->withAnyArgs()->twice();
-        \Sms::connection('null')->send($number, $message, new Config());
+        $this->assertSame(forward_static_call([\Sms::class, 'connection']), forward_static_call([Sms::class, 'connection']));
     }
 }

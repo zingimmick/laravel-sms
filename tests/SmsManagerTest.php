@@ -226,28 +226,6 @@ class SmsManagerTest extends TestCase
         Sms::connection('log')->send($number, $message);
     }
 
-    /**
-     * @dataProvider provideNumberAndMessage
-     *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
-     */
-    public function testAlias($number, $message): void
-    {
-        $expectedMessage = $message;
-        if (is_string($expectedMessage)) {
-            $expectedMessage = new Message(
-                [
-                    'content' => $expectedMessage,
-                    'template' => $expectedMessage,
-                ]
-            );
-        }
-
-        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData()), $expectedMessage->getMessageType()));
-        \Sms::connection('log')->send($number, $message);
-    }
-
     public function testConnectionWithoutDriver(): void
     {
         $this->expectException(InvalidArgumentException::class);
