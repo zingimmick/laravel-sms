@@ -28,6 +28,6 @@ trait ServiceProviderTests
 
     public function testAlias(): void
     {
-        $this->assertSame(forward_static_call([\Sms::class,'connection']),forward_static_call([Sms::class,'connection']));
+        $this->assertSame(forward_static_call([\Sms::class, 'connection']),forward_static_call([Sms::class, 'connection']));
     }
 }
