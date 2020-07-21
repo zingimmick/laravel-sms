@@ -29,6 +29,10 @@ class Phone
 
     public function routeNotificationForSms($notification)
     {
-        return $this->phone;
+        if ($notification)
+        {
+            return $this->phone;
+        }
+        return '';
     }
 }
