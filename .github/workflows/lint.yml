@@ -3,8 +3,6 @@ name: lint
 on:
   pull_request:
   push:
-    branches:
-      - master
 
 jobs:
   ecs:
@@ -21,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Easy Coding Standard Action
-        uses: zingimmick/ecs-action@0.0.4
+        uses: zingimmick/ecs-action@0.0.6
         with:
           version: v8.1.6
 
