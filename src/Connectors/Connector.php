@@ -7,6 +7,7 @@ namespace Zing\LaravelSms\Connectors;
 use GrahamCampbell\Manager\ConnectorInterface;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
+use function is_array;
 use Overtrue\EasySms\Contracts\GatewayInterface;
 use Overtrue\EasySms\Contracts\MessageInterface;
 use Overtrue\EasySms\Contracts\PhoneNumberInterface;
@@ -14,12 +15,11 @@ use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Throwable;
+use function trim;
 use Zing\LaravelSms\Events\SmsSending;
 use Zing\LaravelSms\Events\SmsSent;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
-use function is_array;
-use function trim;
 
 class Connector implements ConnectorInterface
 {
@@ -52,12 +52,12 @@ class Connector implements ConnectorInterface
      */
     public function connect(array $config)
     {
-        if (!isset($config['driver'])) {
+        if (! isset($config['driver'])) {
             throw new InvalidArgumentException('A driver must be specified.');
         }
 
         $driverClass = $config['driver'];
-        if (!class_exists($driverClass) || !in_array(GatewayInterface::class, class_implements($driverClass), true)) {
+        if (! class_exists($driverClass) || ! in_array(GatewayInterface::class, class_implements($driverClass), true)) {
             throw new InvalidArgumentException("Unsupported driver [{$driverClass}].");
         }
 
@@ -87,8 +87,8 @@ class Connector implements ConnectorInterface
      */
     protected function formatMessage($message)
     {
-        if (!($message instanceof MessageInterface)) {
-            if (!is_array($message)) {
+        if (! ($message instanceof MessageInterface)) {
+            if (! is_array($message)) {
                 $message = [
                     'content' => $message,
                     'template' => $message,

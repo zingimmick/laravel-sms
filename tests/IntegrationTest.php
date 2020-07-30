@@ -35,7 +35,7 @@ class IntegrationTest extends TestCase
             ->filter(
                 function ($name) {
                     $reflectionClass = new ReflectionClass($name);
-                    if (!$reflectionClass->isSubclassOf(GatewayInterface::class)) {
+                    if (! $reflectionClass->isSubclassOf(GatewayInterface::class)) {
                         return false;
                     }
 

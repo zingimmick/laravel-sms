@@ -39,7 +39,7 @@ class SmsChannel
     {
         $message = $this->getData($notifiable, $notification);
         $receiver = $this->resolveReceiver($notifiable, $notification);
-        if (!$receiver) {
+        if (! $receiver) {
             return;
         }
 
@@ -52,7 +52,7 @@ class SmsChannel
             );
         }
 
-        if (!$message instanceof SmsMessage) {
+        if (! $message instanceof SmsMessage) {
             return;
         }
 

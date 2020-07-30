@@ -19,8 +19,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         [
             SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
             SetList::ARRAY_STR_FUNCTIONS_TO_STATIC_CALL,
-            SetList::CELEBRITY,
-            //        'doctrine',
             SetList::PHPSTAN,
             SetList::PHPUNIT_CODE_QUALITY,
             SetList::SOLID,

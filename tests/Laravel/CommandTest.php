@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests\Laravel;
 
-use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
 use function config;
+use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
 
 class CommandTest extends LaravelTestCase
 {
