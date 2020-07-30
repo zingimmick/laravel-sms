@@ -48,7 +48,7 @@ class Connector implements ConnectorInterface
      *
      * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
      *
-     * @return $this|object
+     * @return $this
      */
     public function connect(array $config)
     {
