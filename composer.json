@@ -55,7 +55,7 @@
     "scripts": {
         "lint:rector": "@fix:rector --dry-run",
         "lint:ecs": "ecs check --ansi",
-        "fix:rector": "rector process --ansi",
+        "fix:rector": "rector process --ansi --debug",
         "fix:ecs": "@lint:ecs --fix",
         "test:phpunit": "phpunit --colors=always",
         "lint": [
