@@ -1,4 +1,4 @@
-name: lint
+name: Easy Coding Standard
 
 on:
   pull_request:
@@ -32,4 +32,4 @@ jobs:
       - name: Easy Coding Standard Action
         uses: zingimmick/ecs-action@0.0.6
         with:
-          version: v8.1.18
+          version: v8.1.19

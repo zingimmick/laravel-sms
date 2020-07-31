@@ -1,4 +1,4 @@
-name: lint
+name: Rector
 
 on:
   pull_request:
@@ -32,5 +32,5 @@ jobs:
       - name: Rector Action
         uses: zingimmick/rector-action@0.0.2
         with:
-          version: v0.7.55
+          version: v0.7.56
           args: --dry-run
