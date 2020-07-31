@@ -1,0 +1,36 @@
+name: lint
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  ecs:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [7.2, 7.3, 7.4]
+
+    name: PHP ${{ matrix.php }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, xdebug
+          coverage: true
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction
+
+      - name: Rector Action
+        uses: zingimmick/rector-action@0.0.2
+        with:
+          version: v0.7.55
+          args: --dry-run

@@ -33,9 +33,3 @@ jobs:
         uses: zingimmick/ecs-action@0.0.6
         with:
           version: v8.1.18
-
-      - name: Rector Action
-        uses: zingimmick/rector-action@0.0.2
-        with:
-          version: v0.7.55
-          args: --dry-run
