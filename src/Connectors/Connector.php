@@ -7,7 +7,6 @@ namespace Zing\LaravelSms\Connectors;
 use GrahamCampbell\Manager\ConnectorInterface;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
-use function is_array;
 use Overtrue\EasySms\Contracts\GatewayInterface;
 use Overtrue\EasySms\Contracts\MessageInterface;
 use Overtrue\EasySms\Contracts\PhoneNumberInterface;
@@ -15,11 +14,12 @@ use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Throwable;
-use function trim;
 use Zing\LaravelSms\Events\SmsSending;
 use Zing\LaravelSms\Events\SmsSent;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
+use function is_array;
+use function trim;
 
 class Connector implements ConnectorInterface
 {
