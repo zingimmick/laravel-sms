@@ -176,4 +176,8 @@ return [
             'app_id' => env('SMS_YUNZHIXUN_APP_ID'),
         ],
     ],
+    'verification' => [
+        'prefix' => 'sms_code_',
+        'length' => 5,
+    ],
 ];
