@@ -11,8 +11,8 @@ use Overtrue\EasySms\Support\Config;
 
 class NullGateway extends Gateway
 {
-    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config): void
+    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
     {
-        // do nothing.
+        return ['success' => true, 'msg' => 'ok'];
     }
 }
