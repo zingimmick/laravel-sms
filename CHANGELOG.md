@@ -6,9 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
+<!-- changelog-linker -->
+
 ## [Unreleased]
 
-<!-- changelog-linker -->
+### Added
+
+- [#81] Add verification code manager
+
+### Changed
+
+- [#82] Use double pipe for OR condition
+- [#79] Configure Kodiak
+- [#78] Ordered imports
+- [#77] Configure Renovate
 
 ## [3.1.0]
 
@@ -237,3 +248,8 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [0.1.1]: https://github.com/zingimmick/laravel-sms/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/zingimmick/laravel-sms/compare/0.0.9...0.1.0
 [0.0.9]: https://github.com/zingimmick/laravel-sms/compare/0.0.1...0.0.9
+[#82]: https://github.com/zingimmick/laravel-sms/pull/82
+[#81]: https://github.com/zingimmick/laravel-sms/pull/81
+[#79]: https://github.com/zingimmick/laravel-sms/pull/79
+[#78]: https://github.com/zingimmick/laravel-sms/pull/78
+[#77]: https://github.com/zingimmick/laravel-sms/pull/77
