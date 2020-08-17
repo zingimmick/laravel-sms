@@ -25,7 +25,7 @@ class MeilianGateway extends Gateway
      *
      * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      *
-     * @return string
+     * @return array
      */
     public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
     {
@@ -52,6 +52,6 @@ class MeilianGateway extends Gateway
             throw new CouldNotSendNotification($result, 1, Arr::wrap($result));
         }
 
-        return $result;
+        return ['success' => true, 'msg' => 'ok', 'result' => $result];
     }
 }
