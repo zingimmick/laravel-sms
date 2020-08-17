@@ -19,7 +19,7 @@ class MeilianGateway extends Gateway
     public const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
 
     /**
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $number
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $to
      * @param \Overtrue\EasySms\Contracts\MessageInterface $message
      * @param \Overtrue\EasySms\Support\Config $config
      *
@@ -27,12 +27,10 @@ class MeilianGateway extends Gateway
      *
      * @return array
      */
-    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
+    public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
     {
         $endpoint = self::ENDPOINT_URL;
-
         $signature = $this->config->get('signature', '');
-
         $content = $message->getContent($this);
         $result = $this->post(
             $endpoint,
@@ -40,7 +38,7 @@ class MeilianGateway extends Gateway
                 'username' => $this->config->get('username'),
                 'password' => $this->config->get('password'),
                 'apikey' => $this->config->get('api_key'),
-                'mobile' => $number->getUniversalNumber(),
+                'mobile' => $to->getUniversalNumber(),
                 'content' => strpos($content, '【') === 0 ? $content : $signature . $content,
             ]
         );
