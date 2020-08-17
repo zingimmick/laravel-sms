@@ -33,7 +33,7 @@ class SmsNumberTest extends TestCase
     {
         $phone = new SmsNumber('18188888888');
         $notification = new VerifyCode();
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($notification), $notification->toSms($phone)));
+        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms(), $notification->toSms($phone)));
         $phone->notify($notification);
     }
 
