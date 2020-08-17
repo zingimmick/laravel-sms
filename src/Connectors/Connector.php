@@ -57,13 +57,28 @@ class Connector implements ConnectorInterface
         }
 
         $driverClass = $config['driver'];
+        $this->driver = $this->resolveDriver($driverClass, $config);
+
+        return $this;
+    }
+
+    /**
+     * Get gateway by class name.
+     *
+     * @param string $driverClass
+     * @param array $config
+     *
+     * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
+     *
+     * @return \Overtrue\EasySms\Contracts\GatewayInterface
+     */
+    protected function resolveDriver(string $driverClass, array $config): GatewayInterface
+    {
         if (! class_exists($driverClass) || ! in_array(GatewayInterface::class, class_implements($driverClass), true)) {
             throw new InvalidArgumentException("Unsupported driver [{$driverClass}].");
         }
 
-        $this->driver = new $driverClass($config);
-
-        return $this;
+        return new $driverClass($config);
     }
 
     /**
