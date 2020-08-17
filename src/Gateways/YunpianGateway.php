@@ -21,7 +21,7 @@ class YunpianGateway extends Gateway
     }
 
     /**
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $number
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $to
      * @param \Overtrue\EasySms\Contracts\MessageInterface $message
      * @param \Overtrue\EasySms\Support\Config $config
      *
@@ -29,7 +29,7 @@ class YunpianGateway extends Gateway
      *
      * @return array
      */
-    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
+    public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
     {
         $signature = $this->config->get('signature');
         $content = $message->getContent($this);
@@ -37,7 +37,7 @@ class YunpianGateway extends Gateway
             '/v1/sms/send.json',
             [
                 'apikey' => $this->config['api_key'],
-                'mobile' => $number->getUniversalNumber(),
+                'mobile' => $to->getUniversalNumber(),
                 'text' => strpos($content, '【') === 0 ? $content : $signature . $content,
             ]
         );
