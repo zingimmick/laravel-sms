@@ -43,7 +43,7 @@ class MeiLianDriverTest extends TestCase
 
         $message = SmsMessage::text('【test】This is a test message.');
         $config = new Config($config);
-        $this->assertSame('success:Missing recipient', $driver->send(new PhoneNumber(18188888888), $message, $config));
+        $this->assertSame(['success' => true, 'msg' => 'ok', 'result' => 'success:Missing recipient'], $driver->send(new PhoneNumber(18188888888), $message, $config));
 
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionCode(1);
@@ -122,7 +122,7 @@ class MeiLianDriverTest extends TestCase
             ]
         )->andReturn($response);
 
-        $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
+        $this->assertSame(['success' => true, 'msg' => 'ok', 'result' => $response], $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
 
     public function provideNumberAndMessage()
