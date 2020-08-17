@@ -26,10 +26,8 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, xdebug
           coverage: true
 
-#      - name: Install dependencies
-#        run: composer update --prefer-dist --no-interaction
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction
 
       - name: Easy Coding Standard Action
         uses: zingimmick/ecs-action@0.0.6
-        with:
-          version: v8.1.19
