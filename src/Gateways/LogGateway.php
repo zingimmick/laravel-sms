@@ -12,11 +12,13 @@ use Overtrue\EasySms\Support\Config;
 
 class LogGateway extends Gateway
 {
-    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config): void
+    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
     {
         $channel = $this->config->get('channel');
         $level = $this->config->get('level', 'info');
 
         Log::channel($channel)->{$level}(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this), $message->getTemplate($this), json_encode($message->getData($this)), $message->getMessageType()));
+
+        return ['success' => true, 'msg' => 'ok'];
     }
 }
