@@ -11,7 +11,8 @@ use Overtrue\EasySms\Support\Config;
 
 class DummyDriver extends Gateway
 {
-    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config): void
+    public function send(PhoneNumberInterface $number, MessageInterface $message, Config $config)
     {
+        return ['success' => true, 'msg' => 'ok'];
     }
 }
