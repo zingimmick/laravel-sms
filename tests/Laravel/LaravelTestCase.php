@@ -13,6 +13,8 @@ use Zing\LaravelSms\SmsServiceProvider;
 
 abstract class LaravelTestCase extends TestCase
 {
+    private const DRIVER = 'driver';
+
     protected function getPackageProviders($app)
     {
         return [
@@ -33,13 +35,13 @@ abstract class LaravelTestCase extends TestCase
                 'default' => env('SMS_CONNECTION', 'log'),
                 'connections' => [
                     'log' => [
-                        'driver' => LogGateway::class,
+                        self::DRIVER => LogGateway::class,
                     ],
                     'null' => [
-                        'driver' => NullGateway::class,
+                        self::DRIVER => NullGateway::class,
                     ],
                     'yunpian' => [
-                        'driver' => YunpianGateway::class,
+                        self::DRIVER => YunpianGateway::class,
                         'api_key' => env('YUNPIAN_KEY'),
                     ],
                 ],

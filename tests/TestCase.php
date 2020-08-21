@@ -14,6 +14,8 @@ use Zing\LaravelSms\SmsServiceProvider;
 
 class TestCase extends BaseTestCase
 {
+    private const DRIVER = 'driver';
+
     public static function assertSameMessage($expected, $actual, string $message = ''): void
     {
         static::assertThat($actual, new IsEqual($expected), $message);
@@ -39,13 +41,13 @@ class TestCase extends BaseTestCase
                 'default' => env('SMS_CONNECTION', 'log'),
                 'connections' => [
                     'log' => [
-                        'driver' => LogGateway::class,
+                        self::DRIVER => LogGateway::class,
                     ],
                     'null' => [
-                        'driver' => NullGateway::class,
+                        self::DRIVER => NullGateway::class,
                     ],
                     'yunpian' => [
-                        'driver' => YunpianGateway::class,
+                        self::DRIVER => YunpianGateway::class,
                         'api_key' => env('YUNPIAN_KEY'),
                     ],
                 ],
