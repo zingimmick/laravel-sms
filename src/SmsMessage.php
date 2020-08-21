@@ -22,7 +22,7 @@ class SmsMessage extends Message
      */
     public static function text($content)
     {
-        return (new static([], MessageInterface::TEXT_MESSAGE))->setContent($content);
+        return (new self([], MessageInterface::TEXT_MESSAGE))->setContent($content);
     }
 
     /**
@@ -32,7 +32,7 @@ class SmsMessage extends Message
      */
     public static function voice($content)
     {
-        return (new static([], MessageInterface::VOICE_MESSAGE))->setContent($content);
+        return (new self([], MessageInterface::VOICE_MESSAGE))->setContent($content);
     }
 
     /**
