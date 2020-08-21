@@ -17,12 +17,12 @@ class CouldNotSendNotification extends Exception
         $this->raw = $raw;
     }
 
-    public static function captureExceptionInDriver(Throwable $exception)
+    public static function captureExceptionInDriver(Throwable $exception): self
     {
-        if ($exception instanceof static) {
+        if ($exception instanceof self) {
             return $exception;
         }
 
-        return new static($exception->getMessage(), $exception->getCode());
+        return new self($exception->getMessage(), $exception->getCode());
     }
 }
