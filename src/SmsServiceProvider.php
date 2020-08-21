@@ -16,6 +16,8 @@ use Zing\LaravelSms\Facades\Sms;
 
 class SmsServiceProvider extends ServiceProvider
 {
+    private const SMS = 'sms';
+
     public function boot(): void
     {
         if ($this->app->runningInConsole() && $this->app instanceof Laravel) {
@@ -34,7 +36,7 @@ class SmsServiceProvider extends ServiceProvider
         Notification::resolved(
             function (ChannelManager $service): void {
                 $service->extend(
-                    'sms',
+                    self::SMS,
                     function (Container $app) {
                         return $app->make(SmsChannel::class);
                     }
@@ -42,12 +44,12 @@ class SmsServiceProvider extends ServiceProvider
             }
         );
         $this->app->singleton(
-            'sms',
+            self::SMS,
             function (Container $app) {
                 return $app->make(SmsManager::class);
             }
         );
-        $this->app->alias('sms', Sms::class);
+        $this->app->alias(self::SMS, Sms::class);
         $this->registerCommands();
     }
 
@@ -59,10 +61,10 @@ class SmsServiceProvider extends ServiceProvider
     protected function registerConfig(): void
     {
         if ($this->app instanceof Lumen) {
-            $this->app->configure('sms');
+            $this->app->configure(self::SMS);
         }
 
-        $this->mergeConfigFrom($this->getConfigPath(), 'sms');
+        $this->mergeConfigFrom($this->getConfigPath(), self::SMS);
     }
 
     protected function registerCommands(): void
