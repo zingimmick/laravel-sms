@@ -34,6 +34,10 @@ class IntegrationTest extends TestCase
             ->keys()
             ->filter(
                 function ($name) {
+                    if (! class_exists($name)) {
+                        return false;
+                    }
+
                     $reflectionClass = new ReflectionClass($name);
                     if (! $reflectionClass->isSubclassOf(GatewayInterface::class)) {
                         return false;
