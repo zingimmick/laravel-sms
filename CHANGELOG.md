@@ -8,7 +8,27 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
-## [Unreleased]
+## Unreleased
+
+### Changed
+
+- [#96] Safely instantiate class SmsMessage
+- [#95] Safely instantiate class CouldNotSendNotification
+- [#94] Improve coding standard config
+- [#93] Improve coding standard config
+- [#91] Bump codecov/codecov-action from v1.0.12 to v1.0.13
+
+### Fixed
+
+- [#90] Fix wrong name of gateway
+- [#89] Fix return type of DummyGateway
+- [#88] Fix driver expects gateway but object provided
+- [#87] Fix return type of NullGateway
+- [#85] Fix return type of MeilianGateway
+- [#84] Fix default arguments for routeNotificationForSms
+- [#83] Fix the inherited return type is different to the implemented return type
+
+## [3.2.0] - 2020-08-05
 
 ### Added
 
@@ -253,3 +273,15 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#79]: https://github.com/zingimmick/laravel-sms/pull/79
 [#78]: https://github.com/zingimmick/laravel-sms/pull/78
 [#77]: https://github.com/zingimmick/laravel-sms/pull/77
+[#96]: https://github.com/zingimmick/laravel-sms/pull/96
+[#95]: https://github.com/zingimmick/laravel-sms/pull/95
+[#94]: https://github.com/zingimmick/laravel-sms/pull/94
+[#93]: https://github.com/zingimmick/laravel-sms/pull/93
+[#91]: https://github.com/zingimmick/laravel-sms/pull/91
+[#90]: https://github.com/zingimmick/laravel-sms/pull/90
+[#89]: https://github.com/zingimmick/laravel-sms/pull/89
+[#88]: https://github.com/zingimmick/laravel-sms/pull/88
+[#87]: https://github.com/zingimmick/laravel-sms/pull/87
+[#85]: https://github.com/zingimmick/laravel-sms/pull/85
+[#84]: https://github.com/zingimmick/laravel-sms/pull/84
+[#83]: https://github.com/zingimmick/laravel-sms/pull/83
