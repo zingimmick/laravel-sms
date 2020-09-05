@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.2 || ^8.0",
         "ext-json": "*",
         "graham-campbell/manager": "^4.3",
         "illuminate/console": "^6.8 || ^7.0 || ^8.0",
