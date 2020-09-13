@@ -12,6 +12,17 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ### Changed
 
+- [#97] Support for Laravel 8
+- [#98] YAML to PHP
+
+### Removed
+
+- [#99] Drop Lumen tests
+
+## [3.3.0] - 2020-08-23
+
+### Changed
+
 - [#96] Safely instantiate class SmsMessage
 - [#95] Safely instantiate class CouldNotSendNotification
 - [#94] Improve coding standard config
@@ -285,3 +296,8 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#85]: https://github.com/zingimmick/laravel-sms/pull/85
 [#84]: https://github.com/zingimmick/laravel-sms/pull/84
 [#83]: https://github.com/zingimmick/laravel-sms/pull/83
+[#99]: https://github.com/zingimmick/laravel-sms/pull/99
+[#98]: https://github.com/zingimmick/laravel-sms/pull/98
+[#97]: https://github.com/zingimmick/laravel-sms/pull/97
+[3.2.0]: https://github.com/zingimmick/laravel-sms/compare/3.1.0...3.2.0
+[3.3.0]: https://github.com/zingimmick/laravel-sms/compare/3.2.0...3.3.0
