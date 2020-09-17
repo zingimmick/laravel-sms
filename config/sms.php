@@ -65,7 +65,9 @@ return [
             'endpoint' => env('SMS_HUAWEI_ENDPOINT'),
             'app_key' => env('SMS_HUAWEI_APP_KEY'),
             'app_secret' => env('SMS_HUAWEI_APP_SECRET'),
-            'from' => env('SMS_HUAWEI_FROM'),
+            'from' => [
+                'default' => env('SMS_HUAWEI_FROM', 'default'),
+            ],
             'callback' => env('SMS_HUAWEI_CALLBACK'),
         ],
         'huaxin' => [

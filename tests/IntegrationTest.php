@@ -6,7 +6,12 @@ namespace Zing\LaravelSms\Tests;
 
 use Composer\Autoload\ClassMapGenerator;
 use Overtrue\EasySms\Contracts\GatewayInterface;
+use Overtrue\EasySms\Exceptions\GatewayErrorException;
+use Overtrue\EasySms\Support\Config;
+use Overtrue\EasySms\Traits\HasHttpRequest;
 use ReflectionClass;
+use Zing\LaravelSms\SmsMessage;
+use Zing\LaravelSms\SmsNumber;
 
 class IntegrationTest extends TestCase
 {
@@ -50,5 +55,44 @@ class IntegrationTest extends TestCase
             ->values();
         $diff = $gateways->diff($drivers->sort()->values());
         self::assertCount(0, $diff, $gateways->diff($drivers->sort()->values())->toJson());
+    }
+
+    public function testSend(): void
+    {
+        collect(config('sms.connections'))
+            ->filter(
+                function ($config) {
+                    $name = $config['driver'];
+                    if (! class_exists($name)) {
+                        return false;
+                    }
+
+                    $reflectionClass = new ReflectionClass($name);
+                    if (! $reflectionClass->isSubclassOf(GatewayInterface::class)) {
+                        return false;
+                    }
+
+                    return $reflectionClass->isInstantiable();
+                }
+            )
+            ->each(
+                function ($config): void {
+                    $gateway = \Mockery::mock($config['driver'], [$config]);
+                    $gateway->makePartial();
+                    $gateway->shouldAllowMockingProtectedMethods()
+                        ->shouldReceive('request')
+                        ->withAnyArgs()
+                        ->andThrow(new GatewayErrorException('just for mock request', 0));
+
+                    try {
+                        $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test'), new Config($config));
+                    } catch (GatewayErrorException $exception) {
+                        if (in_array(HasHttpRequest::class, trait_uses_recursive($gateway), true)) {
+                            self::expectException(GatewayErrorException::class);
+                            self::expectExceptionMessage('just for mock request');
+                        }
+                    }
+                }
+            );
     }
 }
