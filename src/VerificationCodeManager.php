@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms;
 
-use Illuminate\Contracts\Cache\Factory;
+use Zing\LaravelSms\Notifications\VerificationCode;
 
 class VerificationCodeManager
 {
@@ -15,7 +15,7 @@ class VerificationCodeManager
      *
      * @param $cacheManager
      */
-    public function __construct(Factory $cacheManager)
+    public function __construct(\Illuminate\Contracts\Cache\Repository $cacheManager)
     {
         $this->cacheManager = $cacheManager;
     }
@@ -27,14 +27,26 @@ class VerificationCodeManager
 
     public function verify($number, $code)
     {
+        if (config('sms.verification.debug', false)) {
+            return true;
+        }
         return $code === $this->cacheManager->get($this->getPrefixedKey($number));
     }
 
-    public function issue($number)
+    public function issue($number, $ttl = null)
     {
         $length = config('sms.verification.length');
         $code = random_int(10 ** ($length - 1), (10 ** $length) - 1);
-        $this->cacheManager->set($this->getPrefixedKey($number), $code, 600);
+        if ($ttl === null) {
+            $ttl = config('sms.verification.ttl');
+        }
+
+        $this->cacheManager->set($this->getPrefixedKey($number), $code, $ttl * 60);
+        if (! $number instanceof SmsNumber) {
+            $number = new SmsNumber($number);
+        }
+
+        $number->notify(new VerificationCode($code, $ttl));
 
         return $code;
     }

@@ -179,7 +179,10 @@ return [
         ],
     ],
     'verification' => [
-        'prefix' => 'sms_code_',
-        'length' => 5,
+        'debug' => env('SMS_VERIFICATION_DEBUG', false),
+        'prefix' => env('SMS_VERIFICATION_PREFIX', 'sms_code_'),
+        'length' => env('SMS_VERIFICATION_LENGTH', 6),
+        'ttl' => env('SMS_VERIFICATION_TTL', 10),
+        'content' => '您的验证码是：%s，请在 %s 分钟内进行验证。',
     ],
 ];
