@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Zing\LaravelSms\Notifications;
 
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Carbon;
 use Zing\LaravelSms\Channels\SmsChannel;
 
 class VerificationCode extends Notification

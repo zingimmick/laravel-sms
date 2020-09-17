@@ -30,6 +30,7 @@ class VerificationCodeManager
         if (config('sms.verification.debug', false)) {
             return true;
         }
+
         return $code === $this->cacheManager->get($this->getPrefixedKey($number));
     }
 

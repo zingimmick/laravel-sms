@@ -41,7 +41,7 @@ class VerificationCodeManagerTest extends TestCase
         self::assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
     }
 
-    public function testVerification()
+    public function testVerification(): void
     {
         $code = $this->faker->numberBetween();
         $ttl = $this->faker->numberBetween();
