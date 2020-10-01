@@ -93,7 +93,11 @@ class CommandTest extends LaravelTestCase
             unlink($this->envPath());
         }
 
-        config(['sms.default' => $this->connection]);
+        config(
+            [
+                'sms.default' => $this->connection,
+            ]
+        );
 
         parent::tearDown();
     }

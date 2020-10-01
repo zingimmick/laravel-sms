@@ -37,7 +37,11 @@ class VerificationCodeManagerTest extends TestCase
         $code = $this->manager->issue(new SmsNumber('18888888888'));
         self::assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code));
         self::assertFalse($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
-        config(['sms.verification.debug' => true]);
+        config(
+            [
+                'sms.verification.debug' => true,
+            ]
+        );
         self::assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
     }
 

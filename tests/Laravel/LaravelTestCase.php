@@ -24,7 +24,9 @@ abstract class LaravelTestCase extends TestCase
 
     protected function getPackageAliases($app)
     {
-        return ['Sms' => Sms::class];
+        return [
+            'Sms' => Sms::class,
+        ];
     }
 
     protected function getEnvironmentSetUp($app): void
