@@ -167,7 +167,10 @@ class SmsManagerTest extends TestCase
     public function testTemplate(): void
     {
         $number = '18888888888';
-        $message = ['template' => 'aaa', 'data' => [111]];
+        $message = [
+            'template' => 'aaa',
+            'data' => [111],
+        ];
         $this->prepareLoggerExpectation()->with($this->sendString($number, $message));
         $sms = app(SmsManager::class);
         $sms->connection('log')->send($number, $message);
@@ -239,7 +242,12 @@ class SmsManagerTest extends TestCase
         $driver = 'driver';
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Unsupported driver [{$driver}].");
-        config()->set('sms.connections.test', ['driver' => $driver]);
+        config()->set(
+            'sms.connections.test',
+            [
+                'driver' => $driver,
+            ]
+        );
         Sms::connection('test');
     }
 
