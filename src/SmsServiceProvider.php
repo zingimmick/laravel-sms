@@ -20,14 +20,20 @@ class SmsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        if ($this->app->runningInConsole() && $this->app instanceof Laravel) {
-            $this->publishes(
-                [
-                    $this->getConfigPath() => config_path('sms.php'),
-                ],
-                'config'
-            );
+        if (! $this->app->runningInConsole()) {
+            return;
         }
+
+        if (! $this->app instanceof Laravel) {
+            return;
+        }
+
+        $this->publishes(
+            [
+                $this->getConfigPath() => config_path('sms.php'),
+            ],
+            'config'
+        );
     }
 
     public function register(): void
