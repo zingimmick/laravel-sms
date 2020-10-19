@@ -30,7 +30,9 @@ class TestCase extends BaseTestCase
 
     protected function getPackageAliases($app)
     {
-        return ['Sms' => Sms::class];
+        return [
+            'Sms' => Sms::class,
+        ];
     }
 
     protected function getEnvironmentSetUp($app): void

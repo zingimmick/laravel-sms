@@ -50,6 +50,10 @@ class MeilianGateway extends Gateway
             throw new CouldNotSendNotification($result, 1, Arr::wrap($result));
         }
 
-        return ['success' => true, 'msg' => 'ok', 'result' => $result];
+        return [
+            'success' => true,
+            'msg' => 'ok',
+            'result' => $result,
+        ];
     }
 }

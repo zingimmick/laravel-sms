@@ -13,6 +13,9 @@ class NullGateway extends Gateway
 {
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
     {
-        return ['success' => true, 'msg' => 'ok'];
+        return [
+            'success' => true,
+            'msg' => 'ok',
+        ];
     }
 }

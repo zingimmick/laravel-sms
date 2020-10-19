@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelSms\Tests\Concerns;
+namespace Zing\LaravelSms\Tests;
 
 use Illuminate\Support\Facades\Log;
 use Overtrue\EasySms\PhoneNumber;
@@ -11,7 +11,7 @@ use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsMessage;
 
-trait ServiceProviderTests
+class ServiceProviderTest extends TestCase
 {
     public function testSms(): void
     {
