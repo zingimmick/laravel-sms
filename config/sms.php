@@ -126,6 +126,11 @@ return [
             'sms_key' => env('SMS_SENDCLOUD_SMS_KEY'),
             'timestamp' => env('SMS_SENDCLOUD_TIMESTAMP', false),
         ],
+        'smsbao' => [
+            'driver' => Overtrue\EasySms\Gateways\SmsbaoGateway::class,
+            'user' => env('SMS_SMSBAO_USER'),
+            'password' => env('SMS_SMSBAO_PASSWORD'),
+        ],
         'submail' => [
             'driver' => Overtrue\EasySms\Gateways\SubmailGateway::class,
             'app_id' => env('SMS_SUBMAIL_APP_ID'),
@@ -137,6 +142,12 @@ return [
             'gwid' => env('SMS_TIANYIWUXIAN_GWID'),
             'username' => env('SMS_TIANYIWUXIAN_USERNAME'),
             'password' => env('SMS_TIANYIWUXIAN_PASSWORD'),
+        ],
+        'tiniyo' => [
+            'driver' => Overtrue\EasySms\Gateways\TiniyoGateway::class,
+            'account_sid' => env('SMS_TINIYO_ACCOUNT_SID'),
+            'token' => env('SMS_TINIYO_TOKEN'),
+            'from' => env('SMS_TINIYO_FROM'),
         ],
         'twilio' => [
             'driver' => Overtrue\EasySms\Gateways\TwilioGateway::class,
