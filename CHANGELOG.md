@@ -8,7 +8,29 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
-## Unreleased
+## [3.4.0] - 2020-11-25
+
+### Changed
+
+- [#113] Support for Smsbao and Tiniyo
+- [#112] Bump codecov/codecov-action from v1.0.14 to v1.0.15
+- [#111] Update codecov/codecov-action action to v1.0.15
+- [#110] Provisional support for PHP 8.0
+- [#109] Setup problem matchers for PHPUnit
+- [#108] Update actions/checkout action to v2
+- [#107] Change and if to early return
+- [#106] Bump codecov/codecov-action from v1.0.13 to v1.0.14
+- [#105] Bump paambaati/codeclimate-action from v2.7.3 to v2.7.4
+- [#104] Bump paambaati/codeclimate-action from v2.7.2 to v2.7.3
+- [#103] Bump paambaati/codeclimate-action from v2.7.1 to v2.7.2
+- [#102] Bump paambaati/codeclimate-action from v2.6.0 to v2.7.1
+- [#101] Gateways config schema test
+
+### Removed
+
+- [#100] Remove Composer 2 in test
+
+## [3.3.1] - 2020-09-13
 
 ### Changed
 
@@ -301,3 +323,17 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#97]: https://github.com/zingimmick/laravel-sms/pull/97
 [3.2.0]: https://github.com/zingimmick/laravel-sms/compare/3.1.0...3.2.0
 [3.3.0]: https://github.com/zingimmick/laravel-sms/compare/3.2.0...3.3.0
+[#113]: https://github.com/zingimmick/laravel-sms/pull/113
+[#112]: https://github.com/zingimmick/laravel-sms/pull/112
+[#111]: https://github.com/zingimmick/laravel-sms/pull/111
+[#110]: https://github.com/zingimmick/laravel-sms/pull/110
+[#109]: https://github.com/zingimmick/laravel-sms/pull/109
+[#108]: https://github.com/zingimmick/laravel-sms/pull/108
+[#107]: https://github.com/zingimmick/laravel-sms/pull/107
+[#106]: https://github.com/zingimmick/laravel-sms/pull/106
+[#105]: https://github.com/zingimmick/laravel-sms/pull/105
+[#104]: https://github.com/zingimmick/laravel-sms/pull/104
+[#103]: https://github.com/zingimmick/laravel-sms/pull/103
+[#102]: https://github.com/zingimmick/laravel-sms/pull/102
+[#101]: https://github.com/zingimmick/laravel-sms/pull/101
+[#100]: https://github.com/zingimmick/laravel-sms/pull/100
