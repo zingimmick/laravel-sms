@@ -17,6 +17,4 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'renovate[bot]',
         ]
     );
-
-    $parameters->set(Option::REPOSITORY_URL, 'https://github.com/zingimmick/laravel-sms');
 };
