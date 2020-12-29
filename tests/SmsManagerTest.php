@@ -139,9 +139,9 @@ class SmsManagerTest extends TestCase
     {
         /** @var \Zing\LaravelSms\Tests\Phone $phone */
         $phone = Mockery::mock(Phone::class . '[routeNotificationForSms]', ['18888888888']);
-        $verifyCode = new VerifyCode();
         $phone->shouldReceive('routeNotificationForSms')->once()->andReturn('');
         Log::shouldReceive()->never();
+        $verifyCode = new VerifyCode();
         $phone->notify($verifyCode);
     }
 
