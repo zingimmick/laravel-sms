@@ -111,7 +111,6 @@ class YunpianDriverTest extends TestCase
         ];
 
         $driver = Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
-        $config = new Config($config);
         $driver->shouldReceive('request')->with(
             'post',
             '/v1/sms/send.json',
@@ -124,6 +123,7 @@ class YunpianDriverTest extends TestCase
                 ],
             ]
         )->andReturn($response);
+        $config = new Config($config);
 
         $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }

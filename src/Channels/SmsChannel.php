@@ -10,9 +10,6 @@ use RuntimeException;
 use Zing\LaravelSms\SmsManager;
 use Zing\LaravelSms\SmsMessage;
 
-/**
- * Class SmsChannel.
- */
 class SmsChannel
 {
     protected $smsManager;

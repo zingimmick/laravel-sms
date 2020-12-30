@@ -49,7 +49,7 @@ class VerificationCodeManagerTest extends TestCase
     {
         $code = $this->faker->numberBetween();
         $ttl = $this->faker->numberBetween();
-        $verification = new VerificationCode($code, $ttl);
-        self::assertSame(sprintf(config('sms.verification.content'), $code, $ttl), $verification->toSms());
+        $verificationCode = new VerificationCode($code, $ttl);
+        self::assertSame(sprintf(config('sms.verification.content'), $code, $ttl), $verificationCode->toSms());
     }
 }

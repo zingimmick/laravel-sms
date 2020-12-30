@@ -86,7 +86,7 @@ class IntegrationTest extends TestCase
 
                     try {
                         $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test'), new Config($config));
-                    } catch (GatewayErrorException $exception) {
+                    } catch (GatewayErrorException $gatewayErrorException) {
                         if (in_array(HasHttpRequest::class, trait_uses_recursive($gateway), true)) {
                             self::expectException(GatewayErrorException::class);
                             self::expectExceptionMessage('just for mock request');

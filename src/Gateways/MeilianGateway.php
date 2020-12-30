@@ -16,7 +16,7 @@ class MeilianGateway extends Gateway
 {
     use HasHttpRequest;
 
-    public const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
+    private const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
 
     /**
      * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $to

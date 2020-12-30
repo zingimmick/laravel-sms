@@ -8,9 +8,6 @@ use Illuminate\Bus\Queueable;
 use Overtrue\EasySms\Contracts\MessageInterface;
 use Overtrue\EasySms\Message;
 
-/**
- * Class Message.
- */
 class SmsMessage extends Message
 {
     use Queueable;

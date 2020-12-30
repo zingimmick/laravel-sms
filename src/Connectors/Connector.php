@@ -138,8 +138,8 @@ class Connector implements ConnectorInterface
             Event::dispatch(new SmsSent($number, $message, $result));
 
             return $result;
-        } catch (Throwable $exception) {
-            throw CouldNotSendNotification::captureExceptionInDriver($exception);
+        } catch (Throwable $throwable) {
+            throw CouldNotSendNotification::captureExceptionInDriver($throwable);
         }
     }
 }
