@@ -87,10 +87,10 @@ class MeiLianDriverTest extends TestCase
             ->times(1);
 
         $message = SmsMessage::text('【test】This is a test message.');
-        $config = new Config($config);
 
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionMessage('meilian response does only seem to accept string.');
+        $config = new Config($config);
 
         $driver->send(new PhoneNumber(18188888888), $message, $config);
     }
@@ -113,7 +113,6 @@ class MeiLianDriverTest extends TestCase
         $response = 'success:Missing recipient';
 
         $driver = Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
-        $config = new Config($config);
         $driver->shouldReceive('request')->with(
             'post',
             'http://m.5c.com.cn/api/send/index.php',
@@ -128,6 +127,7 @@ class MeiLianDriverTest extends TestCase
                 ],
             ]
         )->andReturn($response);
+        $config = new Config($config);
 
         $this->assertSame(
             [

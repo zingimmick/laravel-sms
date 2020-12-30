@@ -31,10 +31,10 @@ class SmsNumberTest extends TestCase
 
     public function testNotify(): void
     {
-        $phone = new SmsNumber('18188888888');
-        $notification = new VerifyCode();
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms(), $notification->toSms($phone)));
-        $phone->notify($notification);
+        $smsNumber = new SmsNumber('18188888888');
+        $verifyCode = new VerifyCode();
+        $this->prepareLoggerExpectation()->with($this->sendString($smsNumber->routeNotificationForSms(), $verifyCode->toSms($smsNumber)));
+        $smsNumber->notify($verifyCode);
     }
 
     protected function prepareLoggerExpectation($channel = null, $level = 'info')

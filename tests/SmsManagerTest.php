@@ -37,9 +37,9 @@ class SmsManagerTest extends TestCase
      */
     public function testDefaultDriver($number, $message): void
     {
+        $this->prepareLoggerExpectation()->with($this->sendString($number, $message));
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
-        $this->prepareLoggerExpectation()->with($this->sendString($number, $message));
         $sms->send($number, $message);
     }
 
@@ -71,9 +71,9 @@ class SmsManagerTest extends TestCase
     {
         $channel = 'test';
         config()->set('sms.connections.log.channel', $channel);
+        $this->prepareLoggerExpectation($channel)->with($this->sendString($number, $message));
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
-        $this->prepareLoggerExpectation($channel)->with($this->sendString($number, $message));
         $sms->send($number, $message);
     }
 
@@ -87,18 +87,18 @@ class SmsManagerTest extends TestCase
     {
         $level = 'info';
         config()->set('sms.connections.log.level', $level);
+        $this->prepareLoggerExpectation(null, $level)->with($this->sendString($number, $message));
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
-        $this->prepareLoggerExpectation(null, $level)->with($this->sendString($number, $message));
         $sms->send($number, $message);
     }
 
     public function testNotify(): void
     {
         $phone = new Phone('18888888888');
-        $notification = new VerifyCode();
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($notification), $notification->toSms($phone)));
-        $phone->notify($notification);
+        $verifyCode = new VerifyCode();
+        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($verifyCode), $verifyCode->toSms($phone)));
+        $phone->notify($verifyCode);
     }
 
     public function testNotifyAlias(): void
@@ -112,18 +112,18 @@ class SmsManagerTest extends TestCase
 
     public function testRouteNotify(): void
     {
+        $verifyCode = new VerifyCode();
         $phone = new Phone('18888888888');
-        $notification = new VerifyCode();
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($notification), $notification->toSms($phone)));
-        Notification::route(SmsChannel::class, '18888888888')->notify($notification);
+        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($verifyCode), $verifyCode->toSms($phone)));
+        Notification::route(SmsChannel::class, '18888888888')->notify($verifyCode);
     }
 
     public function testRouteNotifyAlias(): void
     {
+        $verifyCode = new VerifyCode();
         $phone = new Phone('18888888888');
-        $notification = new VerifyCode();
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($notification), $notification->toSms($phone)));
-        Notification::route('sms', '18888888888')->notify($notification);
+        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($verifyCode), $verifyCode->toSms($phone)));
+        Notification::route('sms', '18888888888')->notify($verifyCode);
     }
 
     public function testNotifyString(): void
@@ -139,10 +139,10 @@ class SmsManagerTest extends TestCase
     {
         /** @var \Zing\LaravelSms\Tests\Phone $phone */
         $phone = Mockery::mock(Phone::class . '[routeNotificationForSms]', ['18888888888']);
-        $notification = new VerifyCode();
+        $verifyCode = new VerifyCode();
         $phone->shouldReceive('routeNotificationForSms')->once()->andReturn('');
         Log::shouldReceive()->never();
-        $phone->notify($notification);
+        $phone->notify($verifyCode);
     }
 
     public function testNotifyInvalidMessage(): void
