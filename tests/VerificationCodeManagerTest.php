@@ -8,48 +8,36 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Zing\LaravelSms\Notifications\VerificationCode;
 use Zing\LaravelSms\SmsNumber;
 use Zing\LaravelSms\VerificationCodeManager;
+use function Pest\Faker\faker;
+use function PHPUnit\Framework\assertFalse;
+use function PHPUnit\Framework\assertSame;
+use function PHPUnit\Framework\assertTrue;
 
-class VerificationCodeManagerTest extends TestCase
-{
-    use WithFaker;
+uses(DefaultConfigTestCase::class);
+beforeEach(function (){
+    $this->manager = app(VerificationCodeManager::class);
+});
+it("issue",function (){
+    $code = $this->manager->issue('18888888888');
+    assertSame(config('sms.verification.length'), strlen((string) $code));
 
-    protected $manager;
+});
+it("verification",function (){
+    $code = faker()->numberBetween();
+    $ttl = faker()->numberBetween();
+    $verificationCode = new VerificationCode($code, $ttl);
+    assertSame(sprintf(config('sms.verification.content'), $code, $ttl), $verificationCode->toSms());
 
-    protected function getEnvironmentSetUp($app): void
-    {
-    }
+});
+it("verify",function (){
+    $code = $this->manager->issue(new SmsNumber('18888888888'));
+    assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code));
+    assertFalse($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
+    config(
+        [
+            'sms.verification.debug' => true,
+        ]
+    );
+    assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->manager = app(VerificationCodeManager::class);
-    }
-
-    public function testIssue(): void
-    {
-        $code = $this->manager->issue('18888888888');
-        self::assertSame(config('sms.verification.length'), strlen((string) $code));
-    }
-
-    public function testVerify(): void
-    {
-        $code = $this->manager->issue(new SmsNumber('18888888888'));
-        self::assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code));
-        self::assertFalse($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
-        config(
-            [
-                'sms.verification.debug' => true,
-            ]
-        );
-        self::assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
-    }
-
-    public function testVerification(): void
-    {
-        $code = $this->faker->numberBetween();
-        $ttl = $this->faker->numberBetween();
-        $verificationCode = new VerificationCode($code, $ttl);
-        self::assertSame(sprintf(config('sms.verification.content'), $code, $ttl), $verificationCode->toSms());
-    }
-}
+});
