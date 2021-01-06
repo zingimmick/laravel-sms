@@ -16,11 +16,6 @@ class TestCase extends BaseTestCase
 {
     private const DRIVER = 'driver';
 
-    public static function assertSameMessage($expected, $actual, string $message = ''): void
-    {
-        static::assertThat($actual, new IsEqual($expected), $message);
-    }
-
     protected function getPackageProviders($app)
     {
         return [

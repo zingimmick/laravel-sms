@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Log;
 use Overtrue\EasySms\Message;
+use PHPUnit\Framework\Constraint\IsEqual;
+use function PHPUnit\Framework\assertThat;
 
 function prepareLoggerExpectation($channel = null, $level = 'info')
 {
@@ -29,4 +31,9 @@ function sendString($number, $message)
     }
 
     return sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent(), $message->getTemplate(), json_encode($message->getData()), $message->getMessageType());
+}
+
+function assertSameMessage($expected, $actual, string $message = ''): void
+{
+    assertThat($actual, new IsEqual($expected), $message);
 }

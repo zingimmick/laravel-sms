@@ -79,7 +79,7 @@ it("send",function (){
                     ->andThrow(new GatewayErrorException('just for mock request', 0));
 
                 try {
-                    $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test'), new Config($config));
+                    $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('This is a test message.'), new Config($config));
                 } catch (GatewayErrorException $gatewayErrorException) {
                     if (in_array(HasHttpRequest::class, trait_uses_recursive($gateway), true)) {
                         $this->expectException(GatewayErrorException::class);
