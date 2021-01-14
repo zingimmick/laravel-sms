@@ -34,8 +34,6 @@
             "Zing\\LaravelSms\\Tests\\": "tests"
         }
     },
-    "prefer-stable": true,
-    "minimum-stability": "dev",
     "config": {
         "sort-packages": true,
         "preferred-install": "dist"
@@ -67,5 +65,7 @@
         "test": [
             "@test:phpunit"
         ]
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
