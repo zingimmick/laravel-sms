@@ -9,10 +9,12 @@ use Overtrue\EasySms\PhoneNumber;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsMessage;
 
-it("send", function () {
-    $phoneNumber = new PhoneNumber(18188888888);
-    $message = SmsMessage::text('【test】This is a test message.');
-    Log::shouldReceive('debug')->withAnyArgs()->twice();
-    Sms::connection('null')->send($phoneNumber, $message);
-});
-
+it(
+    'send',
+    function (): void {
+        $phoneNumber = new PhoneNumber(18188888888);
+        $message = SmsMessage::text('【test】This is a test message.');
+        Log::shouldReceive('debug')->withAnyArgs()->twice();
+        Sms::connection('null')->send($phoneNumber, $message);
+    }
+);

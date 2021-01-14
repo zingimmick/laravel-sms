@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Zing\LaravelSms\Tests;
+
 use Illuminate\Support\Facades\Log;
 use Overtrue\EasySms\Message;
 use PHPUnit\Framework\Constraint\IsEqual;

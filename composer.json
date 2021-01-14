@@ -35,7 +35,10 @@
     "autoload-dev": {
         "psr-4": {
             "Zing\\LaravelSms\\Tests\\": "tests"
-        }
+        },
+        "files": [
+            "tests/Helpers.php"
+        ]
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
