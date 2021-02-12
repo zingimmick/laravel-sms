@@ -99,7 +99,7 @@ return [
             'api_key' => env('SMS_LUOSIMAO_API_KEY'),
         ],
         'moduyun' => [
-            'driver' => Overtrue\EasySms\Gateways\MoDuYunGateway::class,
+            'driver' => Overtrue\EasySms\Gateways\ModuyunGateway::class,
             'accesskey' => env('SMS_MODUYUN_ACCESS_KEY'),
             'signId' => env('SMS_MODUYUN_SIGN_ID'),
             'type' => env('SMS_MODUYUN_TYPE'),
