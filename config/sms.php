@@ -7,7 +7,7 @@ return [
     'connections' => [
         'log' => [
             'driver' => Zing\LaravelSms\Gateways\LogGateway::class,
-            'channel' => env('SMS_LOG_CHANNEL', null),
+            'channel' => env('SMS_LOG_CHANNEL'),
             'level' => env('SMS_LOG_LEVEL', 'info'),
         ],
         'null' => [
