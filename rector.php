@@ -57,6 +57,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             PrivatizeLocalGetterToPropertyRector::class,
             ChangeAndIfToEarlyReturnRector::class,
             VarConstantCommentRector::class,
+            \Rector\CodingStyle\Rector\Function_\CamelCaseFunctionNamingToUnderscoreRector::class,
         ]
     );
     $parameters->set(

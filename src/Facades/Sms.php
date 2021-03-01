@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @method static \Zing\LaravelSms\Connectors\Connector connection(string $name = null)
  * @method static \Zing\LaravelSms\Connectors\Connector via(string $name = null)
+ * @method static bool send($number, $message) 发送消息
  *
  * @mixin \Zing\LaravelSms\SmsManager
  */

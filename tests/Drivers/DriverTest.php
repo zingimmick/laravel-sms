@@ -10,12 +10,10 @@ use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
-use Zing\LaravelSms\Tests\TestCase;
 
-class DriverTest extends TestCase
-{
-    public function testException(): void
-    {
+it(
+    'exception',
+    function (): void {
         $phoneNumber = new PhoneNumber(18188888888);
         $message = new Message([]);
         Event::fake();
@@ -24,9 +22,11 @@ class DriverTest extends TestCase
         $this->expectExceptionMessage('test');
         (new Connector([]))->send($phoneNumber, $message);
     }
+);
 
-    public function testStaticException(): void
-    {
+it(
+    'static exception',
+    function (): void {
         $phoneNumber = new PhoneNumber(18188888888);
         $message = new Message([]);
         Event::fake();
@@ -35,4 +35,4 @@ class DriverTest extends TestCase
         $this->expectExceptionMessage('test');
         (new Connector([]))->send($phoneNumber, $message);
     }
-}
+);

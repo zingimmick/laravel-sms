@@ -11,12 +11,10 @@ use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Gateways\YunpianGateway;
 use Zing\LaravelSms\SmsMessage;
-use Zing\LaravelSms\Tests\TestCase;
 
-class YunpianDriverTest extends TestCase
-{
-    public function testSend(): void
-    {
+it(
+    'can send message',
+    function (): void {
         $config = [
             'api_key' => 'mock-api-key',
         ];
@@ -81,16 +79,11 @@ class YunpianDriverTest extends TestCase
 
         $driver->send(new PhoneNumber(18188888888), $message, $config);
     }
+);
 
-    /**
-     * @dataProvider provideNumberAndMessage
-     *
-     * @param mixed $number
-     * @param mixed $message
-     * @param mixed $expected
-     */
-    public function testDefaultSignature($number, $message, $expected): void
-    {
+it(
+    'can send with default signature',
+    function ($number, $message, $expected): void {
         $config = [
             'api_key' => 'mock-api-key',
             'signature' => '【default】',
@@ -127,9 +120,16 @@ class YunpianDriverTest extends TestCase
 
         $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
+)->with(
+    [
+        [18188888888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'],
+        [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'],
+    ]
+);
 
-    public function testGetOptions(): void
-    {
+it(
+    'can get options',
+    function (): void {
         $driver = Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
         $driver->shouldReceive('getBaseOptions')->once()->passthru();
         $driver->allows('getGuzzleOptions')->passthru();
@@ -137,12 +137,4 @@ class YunpianDriverTest extends TestCase
         $driver->allows('getTimeout')->passthru();
         self::assertSame('http://yunpian.com', Arr::get($driver->getBaseOptions(), 'base_uri'));
     }
-
-    public function provideNumberAndMessage()
-    {
-        return [
-            [18188888888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'],
-            [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'],
-        ];
-    }
-}
+);

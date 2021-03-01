@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Zing\LaravelSms\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use PHPUnit\Framework\Constraint\IsEqual;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\Gateways\LogGateway;
 use Zing\LaravelSms\Gateways\NullGateway;
@@ -15,11 +14,6 @@ use Zing\LaravelSms\SmsServiceProvider;
 class TestCase extends BaseTestCase
 {
     private const DRIVER = 'driver';
-
-    public static function assertSameMessage($expected, $actual, string $message = ''): void
-    {
-        static::assertThat($actual, new IsEqual($expected), $message);
-    }
 
     protected function getPackageProviders($app)
     {
