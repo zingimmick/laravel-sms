@@ -34,6 +34,7 @@ class VerificationCodeManagerTest extends TestCase
 
     public function testVerify(): void
     {
+        self::assertFalse($this->manager->verify(new SmsNumber('18888888888'), ''));
         $code = $this->manager->issue(new SmsNumber('18888888888'));
         self::assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code));
         self::assertFalse($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
