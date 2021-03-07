@@ -1,10 +1,10 @@
 name: Generate Changelog
 
 on:
-  pull_request:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
+
 jobs:
   generate_changelog:
     runs-on: ubuntu-latest
