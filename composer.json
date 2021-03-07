@@ -22,6 +22,7 @@
         "orchestra/testbench": "^4.0 || ^5.0 || ^6.0",
         "phpunit/phpunit": "^8.0,<8.5.12 || ^9.3.3",
         "roave/security-advisories": "dev-master",
+        "symplify/changelog-linker": "^8.3 || ^9.2",
         "zing/coding-standard": "^2.6 || ^3.2"
     },
     "autoload": {
@@ -64,6 +65,11 @@
         ],
         "test": [
             "@test:phpunit"
+        ],
+        "changelog": [
+            "changelog-linker dump-merges --ansi",
+            "changelog-linker link --ansi",
+            "changelog-linker cleanup --ansi"
         ]
     },
     "minimum-stability": "dev",
