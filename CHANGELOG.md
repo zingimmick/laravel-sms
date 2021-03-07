@@ -10,6 +10,16 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ## Unreleased
 
+## [3.5.2] - 2021-03-07
+
+### Changed
+
+- [#136] Automated generate changelog
+
+### Removed
+
+- [#135] Remove kodiak and enable github auto-merge
+
 ### Fixed
 
 - [#133] Fix verify when code is not number and not issued
@@ -453,3 +463,6 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [0.0.9]: https://github.com/zingimmick/laravel-sms/compare/0.0.1...0.0.9
 [#134]: https://github.com/zingimmick/laravel-sms/pull/134
 [#133]: https://github.com/zingimmick/laravel-sms/pull/133
+[#136]: https://github.com/zingimmick/laravel-sms/pull/136
+[#135]: https://github.com/zingimmick/laravel-sms/pull/135
+[3.5.2]: https://github.com/zingimmick/laravel-sms/compare/3.4.0...3.5.2
