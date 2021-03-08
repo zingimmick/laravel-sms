@@ -27,7 +27,7 @@ jobs:
 
       - run: vendor/bin/rector process --ansi
 
-      - run: vendor/bin/ecs check --match-git-diff --fix --ansi
+      - run: vendor/bin/ecs check --fix --ansi
 
       - if: github.event.pull_request.head.repo.full_name == github.repository
         uses: EndBug/add-and-commit@v5.1.0
