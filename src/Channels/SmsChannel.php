@@ -49,7 +49,7 @@ class SmsChannel
             );
         }
 
-if (! $message instanceof SmsMessage) {
+        if (! $message instanceof SmsMessage) {
             return;
         }
 
@@ -69,8 +69,10 @@ if (! $message instanceof SmsMessage) {
             if ($receiver) {
                 return $receiver;
             }
+
             return $notifiable->routeNotificationFor('sms');
         }
+
         return $notifiable->routeNotificationFor('sms', $notification);
     }
 
