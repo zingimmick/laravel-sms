@@ -49,7 +49,7 @@ class SmsChannel
             );
         }
 
-        if (! $message instanceof SmsMessage) {
+if (! $message instanceof SmsMessage) {
             return;
         }
 
