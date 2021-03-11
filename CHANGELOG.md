@@ -8,7 +8,7 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
-## Unreleased
+## [3.5.3] - 2021-03-11
 
 ### Changed
 
@@ -467,3 +467,4 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [0.1.1]: https://github.com/zingimmick/laravel-sms/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/zingimmick/laravel-sms/compare/0.0.9...0.1.0
 [0.0.9]: https://github.com/zingimmick/laravel-sms/compare/0.0.1...0.0.9
+[3.5.3]: https://github.com/zingimmick/laravel-sms/compare/3.5.2...3.5.3
