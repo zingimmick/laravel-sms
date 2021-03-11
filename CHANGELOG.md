@@ -8,6 +8,14 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
+## [3.5.3] - 2021-03-11
+
+### Changed
+
+- [#140] Bump codecov/codecov-action from v1.2.1 to v1.2.2
+- [#139] Use ramsey/composer-install
+- [#137] Generate Changelog, Thanks to [@github-actions][bot]
+
 ## [3.5.2] - 2021-03-07
 
 ### Changed
@@ -331,12 +339,9 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#118]: https://github.com/zingimmick/laravel-sms/pull/118
 [#116]: https://github.com/zingimmick/laravel-sms/pull/116
 [#113]: https://github.com/zingimmick/laravel-sms/pull/113
-[#112]: https://github.com/zingimmick/laravel-sms/pull/112
-[#111]: https://github.com/zingimmick/laravel-sms/pull/111
 [#110]: https://github.com/zingimmick/laravel-sms/pull/110
 [#109]: https://github.com/zingimmick/laravel-sms/pull/109
 [#108]: https://github.com/zingimmick/laravel-sms/pull/108
-[#107]: https://github.com/zingimmick/laravel-sms/pull/107
 [#106]: https://github.com/zingimmick/laravel-sms/pull/106
 [#105]: https://github.com/zingimmick/laravel-sms/pull/105
 [#104]: https://github.com/zingimmick/laravel-sms/pull/104
@@ -418,7 +423,6 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#20]: https://github.com/zingimmick/laravel-sms/pull/20
 [#17]: https://github.com/zingimmick/laravel-sms/pull/17
 [#16]: https://github.com/zingimmick/laravel-sms/pull/16
-[#15]: https://github.com/zingimmick/laravel-sms/pull/15
 [#14]: https://github.com/zingimmick/laravel-sms/pull/14
 [#13]: https://github.com/zingimmick/laravel-sms/pull/13
 [#10]: https://github.com/zingimmick/laravel-sms/pull/10
@@ -463,3 +467,4 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [0.1.1]: https://github.com/zingimmick/laravel-sms/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/zingimmick/laravel-sms/compare/0.0.9...0.1.0
 [0.0.9]: https://github.com/zingimmick/laravel-sms/compare/0.0.1...0.0.9
+[3.5.3]: https://github.com/zingimmick/laravel-sms/compare/3.5.2...3.5.3
