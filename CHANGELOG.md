@@ -8,8 +8,6 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
-## Unreleased
-
 ## [3.5.2] - 2021-03-07
 
 ### Changed
@@ -20,6 +18,8 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 - [#135] Remove kodiak and enable github auto-merge
 
+## [3.5.1] - 2021-03-04
+
 ### Fixed
 
 - [#133] Fix verify when code is not number and not issued
@@ -28,7 +28,7 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 - [#134] Remove redundant argument
 
-##  [3.5.0] - 2021-03-01
+## [3.5.0] - 2021-03-01
 
 ### Added
 
@@ -37,36 +37,27 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ### Changed
 
-- [#92] Support for PHP 8.0
-- [#107] Change and if to early return
-- [#111] Update codecov/codecov-action action to v1.0.15
-- [#112] Bump codecov/codecov-action from v1.0.14 to v1.0.15
-- [#116] Bump paambaati/codeclimate-action from v2.7.4 to v2.7.5
-- [#118] Bump codecov/codecov-action from v1.0.15 to v1.1.0
-- [#120] Bump codecov/codecov-action from v1.1.0 to v1.1.1
-- [#124] Update codecov/codecov-action action to v1.2.0
 - [#125] Bump codecov/codecov-action from v1.2.0 to v1.2.1
-- [#126] Update codecov/codecov-action action to v1.2.1
+- [#92] Support for PHP 8.0
 - [#131] Bump actions/cache from v2 to v2.1.4
-
-### Deprecated
-
-- [#15] Remove deprecated class Message.
+- [#126] Update codecov/codecov-action action to v1.2.1
+- [#124] Update codecov/codecov-action action to v1.2.0
+- [#120] Bump codecov/codecov-action from v1.1.0 to v1.1.1
+- [#118] Bump codecov/codecov-action from v1.0.15 to v1.1.0
+- [#116] Bump paambaati/codeclimate-action from v2.7.4 to v2.7.5
 
 ## [3.4.0] - 2020-11-25
 
-### Changed
-
+- [#102] Bump paambaati/codeclimate-action from v2.6.0 to v2.7.1
+- [#104] Bump paambaati/codeclimate-action from v2.7.2 to v2.7.3
+- [#103] Bump paambaati/codeclimate-action from v2.7.1 to v2.7.2
+- [#101] Gateways config schema test
+- [#108] Update actions/checkout action to v2
+- [#106] Bump codecov/codecov-action from v1.0.13 to v1.0.14
 - [#105] Bump paambaati/codeclimate-action from v2.7.3 to v2.7.4
 - [#109] Setup problem matchers for PHPUnit
-- [#101] Gateways config schema test
-- [#102] Bump paambaati/codeclimate-action from v2.6.0 to v2.7.1
-- [#103] Bump paambaati/codeclimate-action from v2.7.1 to v2.7.2
-- [#104] Bump paambaati/codeclimate-action from v2.7.2 to v2.7.3
-- [#113] Support for Smsbao and Tiniyo
-- [#106] Bump codecov/codecov-action from v1.0.13 to v1.0.14
-- [#108] Update actions/checkout action to v2
 - [#110] Provisional support for PHP 8.0
+- [#113] Support for Smsbao and Tiniyo
 
 ### Removed
 
@@ -87,21 +78,21 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ### Changed
 
-- [#96] Safely instantiate class SmsMessage
 - [#91] Bump codecov/codecov-action from v1.0.12 to v1.0.13
 - [#93] Improve coding standard config
 - [#94] Improve coding standard config
+- [#96] Safely instantiate class SmsMessage
 - [#95] Safely instantiate class CouldNotSendNotification
 
 ### Fixed
 
-- [#84] Fix default arguments for routeNotificationForSms
 - [#90] Fix wrong name of gateway
-- [#87] Fix return type of NullGateway
 - [#89] Fix return type of DummyGateway
-- [#85] Fix return type of MeilianGateway
-- [#83] Fix the inherited return type is different to the implemented return type
 - [#88] Fix driver expects gateway but object provided
+- [#87] Fix return type of NullGateway
+- [#85] Fix return type of MeilianGateway
+- [#84] Fix default arguments for routeNotificationForSms
+- [#83] Fix the inherited return type is different to the implemented return type
 
 ## [3.2.0] - 2020-08-05
 
@@ -111,10 +102,10 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ### Changed
 
+- [#77] Configure Renovate
 - [#78] Ordered imports
 - [#79] Configure Kodiak
 - [#82] Use double pipe for OR condition
-- [#77] Configure Renovate
 
 ## [3.1.0] - 2020-07-23
 
@@ -127,9 +118,9 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 - [#76] Bump codecov/codecov-action from v1.0.11 to v1.0.12
 - [#74] switch config from YAML to PHP
-- [#72] Bump codecov/codecov-action from v1.0.10 to v1.0.11
-- [#67] Revert "Psalm integration"
 - [#66] Psalm integration
+- [#67] Revert "Psalm integration"
+- [#72] Bump codecov/codecov-action from v1.0.10 to v1.0.11
 
 ### Fixed
 
@@ -141,17 +132,17 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ### Changed
 
-- [#63] Bump zing/coding-standard from ^1.0 to ^1.2.3
-- [#62] Bump codecov/codecov-action from v1.0.7 to v1.0.10
-- [#61] Bump actions/cache from v1 to v2
-- [#60] Bump codecov/codecov-action from v1 to v1.0.7
 - [#51] Imporve Docs
 - [#65] Update .gitattributes
+- [#60] Bump codecov/codecov-action from v1 to v1.0.7
+- [#61] Bump actions/cache from v1 to v2
+- [#62] Bump codecov/codecov-action from v1.0.7 to v1.0.10
+- [#63] Bump zing/coding-standard from ^1.0 to ^1.2.3
 
 ### Fixed
 
-- [#57] Fix [#54]
 - [#58] Fix [#55]
+- [#57] Fix [#54]
 - [#52] Fix style
 
 ### Removed
@@ -170,8 +161,8 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ## [3.0.0-alpha.5]
 
-- [#33] Revert pest integration
 - [#34] Improve github action cache
+- [#33] Revert pest integration
 
 ## [3.0.0-alpha.2]
 
@@ -189,9 +180,9 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ### Changed
 
-- [#45] Upgrade Lumen framework minimum version
-- [#46] Environment tests improvement
 - [#48] Complexity decrease
+- [#46] Environment tests improvement
+- [#45] Upgrade Lumen framework minimum version
 
 ### Fixed
 
@@ -301,8 +292,8 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ### Removed
 
-- [#5] remove duplicate code.
 - [#6] Remove useless dependencies.
+- [#5] remove duplicate code.
 
 ## [0.1.0] - 2020-04-22
 
@@ -323,6 +314,13 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 - [#1] coding based on overtrue/easy-sms.
 
+[#140]: https://github.com/zingimmick/laravel-sms/pull/140
+[#139]: https://github.com/zingimmick/laravel-sms/pull/139
+[#137]: https://github.com/zingimmick/laravel-sms/pull/137
+[#136]: https://github.com/zingimmick/laravel-sms/pull/136
+[#135]: https://github.com/zingimmick/laravel-sms/pull/135
+[#134]: https://github.com/zingimmick/laravel-sms/pull/134
+[#133]: https://github.com/zingimmick/laravel-sms/pull/133
 [#131]: https://github.com/zingimmick/laravel-sms/pull/131
 [#128]: https://github.com/zingimmick/laravel-sms/pull/128
 [#126]: https://github.com/zingimmick/laravel-sms/pull/126
@@ -430,12 +428,18 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#6]: https://github.com/zingimmick/laravel-sms/pull/6
 [#5]: https://github.com/zingimmick/laravel-sms/pull/5
 [#4]: https://github.com/zingimmick/laravel-sms/pull/4
+[#3]: https://github.com/zingimmick/laravel-sms/pull/3
+[#2]: https://github.com/zingimmick/laravel-sms/pull/2
+[#1]: https://github.com/zingimmick/laravel-sms/pull/1
+[@github-actions]: https://github.com/github-actions
+[3.5.2]: https://github.com/zingimmick/laravel-sms/compare/3.5.1...3.5.2
+[3.5.1]: https://github.com/zingimmick/laravel-sms/compare/3.5.0...3.5.1
+[3.5.0]: https://github.com/zingimmick/laravel-sms/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/zingimmick/laravel-sms/compare/3.3.1...3.4.0
 [3.3.1]: https://github.com/zingimmick/laravel-sms/compare/3.3.0...3.3.1
 [3.3.0]: https://github.com/zingimmick/laravel-sms/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/zingimmick/laravel-sms/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/zingimmick/laravel-sms/compare/3.0.1...3.1.0
-[#3]: https://github.com/zingimmick/laravel-sms/pull/3
 [3.0.1]: https://github.com/zingimmick/laravel-sms/compare/3.0.0...3.0.1
 [3.0.0-alpha.5]: https://github.com/zingimmick/laravel-sms/compare/3.0.0-alpha.2...3.0.0-alpha.5
 [3.0.0-alpha.2]: https://github.com/zingimmick/laravel-sms/compare/2.3.0...3.0.0-alpha.2
@@ -444,7 +448,6 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [2.2.0]: https://github.com/zingimmick/laravel-sms/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/zingimmick/laravel-sms/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/zingimmick/laravel-sms/compare/2.0.1...2.1.0
-[#2]: https://github.com/zingimmick/laravel-sms/pull/2
 [2.0.1]: https://github.com/zingimmick/laravel-sms/compare/2.0.0-alpha.1...2.0.1
 [2.0.0-alpha.1]: https://github.com/zingimmick/laravel-sms/compare/1.1.6...2.0.0-alpha.1
 [1.1.6]: https://github.com/zingimmick/laravel-sms/compare/1.1.5...1.1.6
@@ -456,13 +459,7 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [1.0.2]: https://github.com/zingimmick/laravel-sms/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/zingimmick/laravel-sms/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/zingimmick/laravel-sms/compare/0.1.2...1.0.0
-[#1]: https://github.com/zingimmick/laravel-sms/pull/1
 [0.1.2]: https://github.com/zingimmick/laravel-sms/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/zingimmick/laravel-sms/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/zingimmick/laravel-sms/compare/0.0.9...0.1.0
 [0.0.9]: https://github.com/zingimmick/laravel-sms/compare/0.0.1...0.0.9
-[#134]: https://github.com/zingimmick/laravel-sms/pull/134
-[#133]: https://github.com/zingimmick/laravel-sms/pull/133
-[#136]: https://github.com/zingimmick/laravel-sms/pull/136
-[#135]: https://github.com/zingimmick/laravel-sms/pull/135
-[3.5.2]: https://github.com/zingimmick/laravel-sms/compare/3.4.0...3.5.2
