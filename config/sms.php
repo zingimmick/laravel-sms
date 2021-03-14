@@ -10,9 +10,6 @@ return [
             'channel' => env('SMS_LOG_CHANNEL'),
             'level' => env('SMS_LOG_LEVEL', 'info'),
         ],
-        'null' => [
-            'driver' => Zing\LaravelSms\Gateways\NullGateway::class,
-        ],
         'yunpian' => [
             'driver' => Overtrue\EasySms\Gateways\YunpianGateway::class,
             'api_key' => env('SMS_YUNPIAN_API_KEY'),
