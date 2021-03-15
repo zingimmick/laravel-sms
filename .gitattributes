@@ -5,11 +5,9 @@
 /tests export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
-.kodiak.toml export-ignore
 .scrutinizer.yml export-ignore
 CHANGELOG.md export-ignore
 changelog-linker.php export-ignore
 ecs.php export-ignore
 phpunit.xml.dist export-ignore
 rector.php export-ignore
-renovate.json export-ignore
