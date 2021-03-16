@@ -8,13 +8,21 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
+## Unreleased
+
+## [3.5.5] - 2021-03-15
+
+### Changed
+
+- [#147] Clean up redundant configuration
+
+- [#146] Generate Changelog
+
 ## [3.5.4] - 2021-03-14
 
 ### Fixed
 
 - [#145] Fix trigger for changelog
-
-## Unreleased
 
 ### Changed
 
@@ -488,3 +496,6 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#144]: https://github.com/zingimmick/laravel-sms/pull/144
 [#141]: https://github.com/zingimmick/laravel-sms/pull/141
 [3.5.4]: https://github.com/zingimmick/laravel-sms/compare/3.5.3...3.5.4
+[#147]: https://github.com/zingimmick/laravel-sms/pull/147
+[#146]: https://github.com/zingimmick/laravel-sms/pull/146
+[3.5.5]: https://github.com/zingimmick/laravel-sms/compare/3.5.4...3.5.5
