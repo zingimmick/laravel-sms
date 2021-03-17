@@ -53,8 +53,6 @@ class SmsSwitchConnectionCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function handle(): void
     {
@@ -117,8 +115,6 @@ class SmsSwitchConnectionCommand extends Command
      * Display the key.
      *
      * @param string $connection
-     *
-     * @return void
      */
     protected function displayConnection($connection): void
     {
