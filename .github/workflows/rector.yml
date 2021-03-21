@@ -22,8 +22,6 @@ jobs:
 
       - name: Install dependencies
         uses: ramsey/composer-install@v1
-        with:
-          dependency-versions: "highest"
 
       - run: vendor/bin/rector process --ansi
 
@@ -33,8 +31,6 @@ jobs:
         uses: EndBug/add-and-commit@v5.1.0
         with:
           add: .
-          message: "[ci-review] Rector Rectify"
-          author_name: kaizen-ci
-          author_email: info@kaizen-ci.org
+          message: "Rector Rectify"
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
