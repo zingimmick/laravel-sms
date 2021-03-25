@@ -7,11 +7,14 @@ use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\Core\Configuration\Option;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
+use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfReturnToEarlyReturnRector;
+use Rector\Laravel\Set\LaravelSetList;
 use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\PHPUnit\Rector\Class_\AddSeeTestAnnotationRector;
+use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Privatization\Rector\Class_\ChangeReadOnlyVariableWithDefaultValueToConstantRector;
 use Rector\Privatization\Rector\Class_\FinalizeClassesWithoutChildrenRector;
 use Rector\Privatization\Rector\Class_\RepeatedLiteralToClassConstantRector;
@@ -26,15 +29,15 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         Option::SETS,
         [
             SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
-            SetList::ARRAY_STR_FUNCTIONS_TO_STATIC_CALL,
-            SetList::DOCTRINE_CODE_QUALITY,
+            LaravelSetList::ARRAY_STR_FUNCTIONS_TO_STATIC_CALL,
+            DoctrineSetList::DOCTRINE_CODE_QUALITY,
             SetList::CODING_STYLE,
             SetList::CODE_QUALITY,
             SetList::CODE_QUALITY_STRICT,
             SetList::DEAD_CODE,
             SetList::PRIVATIZATION,
             SetList::NAMING,
-            SetList::PHPUNIT_CODE_QUALITY,
+            PHPUnitSetList::PHPUNIT_CODE_QUALITY,
             SetList::PHP_70,
             SetList::PHP_71,
             SetList::PHP_72,
