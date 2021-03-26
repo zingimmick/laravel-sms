@@ -26,14 +26,22 @@ class SmsNumberTest extends TestCase
             $message = new Message($message);
         }
 
-        return sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent(), $message->getTemplate(), json_encode($message->getData()), $message->getMessageType());
+        return sprintf(
+            'number: %s, message: "%s", template: "%s", data: %s, type: %s',
+            $number,
+            $message->getContent(),
+            $message->getTemplate(),
+            json_encode($message->getData()),
+            $message->getMessageType()
+        );
     }
 
     public function testNotify(): void
     {
         $smsNumber = new SmsNumber('18188888888');
         $verifyCode = new VerifyCode();
-        $this->prepareLoggerExpectation()->with($this->sendString($smsNumber->routeNotificationForSms(), $verifyCode->toSms($smsNumber)));
+        $this->prepareLoggerExpectation()
+            ->with($this->sendString($smsNumber->routeNotificationForSms(), $verifyCode->toSms($smsNumber)));
         $smsNumber->notify($verifyCode);
     }
 
@@ -42,6 +50,7 @@ class SmsNumberTest extends TestCase
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();
 
-        return $logChannel->shouldReceive($level)->once();
+        return $logChannel->shouldReceive($level)
+            ->once();
     }
 }

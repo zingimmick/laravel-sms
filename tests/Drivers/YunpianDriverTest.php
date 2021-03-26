@@ -111,18 +111,19 @@ class YunpianDriverTest extends TestCase
         ];
 
         $driver = Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
-        $driver->shouldReceive('request')->with(
-            'post',
-            '/v1/sms/send.json',
-            [
-                'headers' => [],
-                'form_params' => [
-                    'apikey' => 'mock-api-key',
-                    'mobile' => $number,
-                    'text' => $expected,
-                ],
-            ]
-        )->andReturn($response);
+        $driver->shouldReceive('request')
+            ->with(
+                'post',
+                '/v1/sms/send.json',
+                [
+                    'headers' => [],
+                    'form_params' => [
+                        'apikey' => 'mock-api-key',
+                        'mobile' => $number,
+                        'text' => $expected,
+                    ],
+                ]
+            )->andReturn($response);
         $config = new Config($config);
 
         $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
@@ -131,10 +132,15 @@ class YunpianDriverTest extends TestCase
     public function testGetOptions(): void
     {
         $driver = Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
-        $driver->shouldReceive('getBaseOptions')->once()->passthru();
-        $driver->allows('getGuzzleOptions')->passthru();
-        $driver->allows('getBaseUri')->passthru();
-        $driver->allows('getTimeout')->passthru();
+        $driver->shouldReceive('getBaseOptions')
+            ->once()
+            ->passthru();
+        $driver->allows('getGuzzleOptions')
+            ->passthru();
+        $driver->allows('getBaseUri')
+            ->passthru();
+        $driver->allows('getTimeout')
+            ->passthru();
         self::assertSame('http://yunpian.com', Arr::get($driver->getBaseOptions(), 'base_uri'));
     }
 

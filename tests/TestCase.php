@@ -23,9 +23,7 @@ class TestCase extends BaseTestCase
 
     protected function getPackageProviders($app)
     {
-        return [
-            SmsServiceProvider::class,
-        ];
+        return [SmsServiceProvider::class];
     }
 
     protected function getPackageAliases($app)

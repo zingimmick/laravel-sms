@@ -51,7 +51,8 @@ class SmsChannel
             return;
         }
 
-        $this->smsManager->connection($message->connection)->send($receiver, $message);
+        $this->smsManager->connection($message->connection)
+            ->send($receiver, $message);
     }
 
     /**

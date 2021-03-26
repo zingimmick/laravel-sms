@@ -11,12 +11,9 @@ class CommandTest extends TestCase
 {
     public function testCommand(): void
     {
-        $this->artisan(
-            SmsSwitchConnectionCommand::class,
-            [
-                'connection' => 'default',
-            ]
-        )->assertExitCode(0);
+        $this->artisan(SmsSwitchConnectionCommand::class, [
+            'connection' => 'default',
+        ])->assertExitCode(0);
         $this->artisan(
             SmsSwitchConnectionCommand::class,
             [
@@ -25,27 +22,24 @@ class CommandTest extends TestCase
             ]
         )->assertExitCode(0);
         file_put_contents($this->envPath(), '');
-        $this->artisan(
-            SmsSwitchConnectionCommand::class,
-            [
-                'connection' => 'default',
-            ]
-        )->assertExitCode(0);
-        $this->artisan(
-            SmsSwitchConnectionCommand::class,
-            [
-                'connection' => 'default-2',
-            ]
-        )
-            ->expectsQuestion('This maybe invalidate existing sms feature. Are you sure you want to override the sms default connection?', false)
+        $this->artisan(SmsSwitchConnectionCommand::class, [
+            'connection' => 'default',
+        ])->assertExitCode(0);
+        $this->artisan(SmsSwitchConnectionCommand::class, [
+            'connection' => 'default-2',
+        ])
+            ->expectsQuestion(
+                'This maybe invalidate existing sms feature. Are you sure you want to override the sms default connection?',
+                false
+            )
             ->assertExitCode(0);
         self::assertSame(config('sms.default'), 'default');
-        $this->artisan(
-            SmsSwitchConnectionCommand::class,
-            [
-                'connection' => 'default-2',
-            ]
-        )->expectsQuestion('This maybe invalidate existing sms feature. Are you sure you want to override the sms default connection?', true)
+        $this->artisan(SmsSwitchConnectionCommand::class, [
+            'connection' => 'default-2',
+        ])->expectsQuestion(
+            'This maybe invalidate existing sms feature. Are you sure you want to override the sms default connection?',
+            true
+        )
             ->assertExitCode(0);
         self::assertSame(config('sms.default'), 'default-2');
     }
@@ -53,12 +47,9 @@ class CommandTest extends TestCase
     public function testAlwaysNo(): void
     {
         file_put_contents($this->envPath(), '');
-        $this->artisan(
-            SmsSwitchConnectionCommand::class,
-            [
-                'connection' => 'default',
-            ]
-        )->assertExitCode(0);
+        $this->artisan(SmsSwitchConnectionCommand::class, [
+            'connection' => 'default',
+        ])->assertExitCode(0);
         $this->artisan(
             SmsSwitchConnectionCommand::class,
             [
@@ -93,11 +84,9 @@ class CommandTest extends TestCase
             unlink($this->envPath());
         }
 
-        config(
-            [
-                'sms.default' => $this->connection,
-            ]
-        );
+        config([
+            'sms.default' => $this->connection,
+        ]);
 
         parent::tearDown();
     }

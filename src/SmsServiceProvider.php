@@ -28,12 +28,9 @@ class SmsServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->publishes(
-            [
-                $this->getConfigPath() => config_path('sms.php'),
-            ],
-            'config'
-        );
+        $this->publishes([
+            $this->getConfigPath() => config_path('sms.php'),
+        ], 'config');
     }
 
     public function register(): void
@@ -41,20 +38,14 @@ class SmsServiceProvider extends ServiceProvider
         $this->registerConfig();
         Notification::resolved(
             function (ChannelManager $service): void {
-                $service->extend(
-                    self::SMS,
-                    function (Container $app) {
-                        return $app->make(SmsChannel::class);
-                    }
-                );
+                $service->extend(self::SMS, function (Container $app) {
+                    return $app->make(SmsChannel::class);
+                });
             }
         );
-        $this->app->singleton(
-            self::SMS,
-            function (Container $app) {
-                return $app->make(SmsManager::class);
-            }
-        );
+        $this->app->singleton(self::SMS, function (Container $app) {
+            return $app->make(SmsManager::class);
+        });
         $this->app->alias(self::SMS, Sms::class);
         $this->registerCommands();
     }
@@ -76,10 +67,6 @@ class SmsServiceProvider extends ServiceProvider
     protected function registerCommands(): void
     {
         $this->app->singleton('command.sms.gateway', SmsSwitchConnectionCommand::class);
-        $this->commands(
-            [
-                'command.sms.gateway',
-            ]
-        );
+        $this->commands(['command.sms.gateway']);
     }
 }
