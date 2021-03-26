@@ -113,20 +113,21 @@ class MeiLianDriverTest extends TestCase
         $response = 'success:Missing recipient';
 
         $driver = Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
-        $driver->shouldReceive('request')->with(
-            'post',
-            'http://m.5c.com.cn/api/send/index.php',
-            [
-                'headers' => [],
-                'form_params' => [
-                    'username' => 'mock-username',
-                    'password' => 'mock-password',
-                    'apikey' => 'mock-api-key',
-                    'mobile' => $number,
-                    'content' => $expected,
-                ],
-            ]
-        )->andReturn($response);
+        $driver->shouldReceive('request')
+            ->with(
+                'post',
+                'http://m.5c.com.cn/api/send/index.php',
+                [
+                    'headers' => [],
+                    'form_params' => [
+                        'username' => 'mock-username',
+                        'password' => 'mock-password',
+                        'apikey' => 'mock-api-key',
+                        'mobile' => $number,
+                        'content' => $expected,
+                    ],
+                ]
+            )->andReturn($response);
         $config = new Config($config);
 
         $this->assertSame(

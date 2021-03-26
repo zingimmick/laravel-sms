@@ -23,10 +23,7 @@ class SmsManagerTest extends TestCase
 {
     public function provideNumberAndMessage()
     {
-        return [
-            ['18888888888', 'test'],
-            [new PhoneNumber('18888888888', '+86'), SmsMessage::text('test')],
-        ];
+        return [['18888888888', 'test'], [new PhoneNumber('18888888888', '+86'), SmsMessage::text('test')]];
     }
 
     /**
@@ -37,7 +34,8 @@ class SmsManagerTest extends TestCase
      */
     public function testDefaultDriver($number, $message): void
     {
-        $this->prepareLoggerExpectation()->with($this->sendString($number, $message));
+        $this->prepareLoggerExpectation()
+            ->with($this->sendString($number, $message));
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
         $sms->send($number, $message);
@@ -58,7 +56,14 @@ class SmsManagerTest extends TestCase
             $message = new Message($message);
         }
 
-        return sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent(), $message->getTemplate(), json_encode($message->getData()), $message->getMessageType());
+        return sprintf(
+            'number: %s, message: "%s", template: "%s", data: %s, type: %s',
+            $number,
+            $message->getContent(),
+            $message->getTemplate(),
+            json_encode($message->getData()),
+            $message->getMessageType()
+        );
     }
 
     /**
@@ -70,8 +75,10 @@ class SmsManagerTest extends TestCase
     public function testLogChannel($number, $message): void
     {
         $channel = 'test';
-        config()->set('sms.connections.log.channel', $channel);
-        $this->prepareLoggerExpectation($channel)->with($this->sendString($number, $message));
+        config()
+            ->set('sms.connections.log.channel', $channel);
+        $this->prepareLoggerExpectation($channel)
+            ->with($this->sendString($number, $message));
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
         $sms->send($number, $message);
@@ -86,8 +93,10 @@ class SmsManagerTest extends TestCase
     public function testLogLevel($number, $message): void
     {
         $level = 'info';
-        config()->set('sms.connections.log.level', $level);
-        $this->prepareLoggerExpectation(null, $level)->with($this->sendString($number, $message));
+        config()
+            ->set('sms.connections.log.level', $level);
+        $this->prepareLoggerExpectation(null, $level)
+            ->with($this->sendString($number, $message));
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
         $sms->send($number, $message);
@@ -97,7 +106,8 @@ class SmsManagerTest extends TestCase
     {
         $phone = new Phone('18888888888');
         $verifyCode = new VerifyCode();
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($verifyCode), $verifyCode->toSms($phone)));
+        $this->prepareLoggerExpectation()
+            ->with($this->sendString($phone->routeNotificationForSms($verifyCode), $verifyCode->toSms($phone)));
         $phone->notify($verifyCode);
     }
 
@@ -105,8 +115,10 @@ class SmsManagerTest extends TestCase
     {
         $phone = new Phone('18888888888');
         $notification = Mockery::mock(VerifyCode::class . '[via]');
-        $notification->shouldReceive('via')->andReturn(['sms']);
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($notification), $notification->toSms($phone)));
+        $notification->shouldReceive('via')
+            ->andReturn(['sms']);
+        $this->prepareLoggerExpectation()
+            ->with($this->sendString($phone->routeNotificationForSms($notification), $notification->toSms($phone)));
         $phone->notify($notification);
     }
 
@@ -114,7 +126,8 @@ class SmsManagerTest extends TestCase
     {
         $verifyCode = new VerifyCode();
         $phone = new Phone('18888888888');
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($verifyCode), $verifyCode->toSms($phone)));
+        $this->prepareLoggerExpectation()
+            ->with($this->sendString($phone->routeNotificationForSms($verifyCode), $verifyCode->toSms($phone)));
         Notification::route(SmsChannel::class, '18888888888')->notify($verifyCode);
     }
 
@@ -122,7 +135,8 @@ class SmsManagerTest extends TestCase
     {
         $verifyCode = new VerifyCode();
         $phone = new Phone('18888888888');
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($verifyCode), $verifyCode->toSms($phone)));
+        $this->prepareLoggerExpectation()
+            ->with($this->sendString($phone->routeNotificationForSms($verifyCode), $verifyCode->toSms($phone)));
         Notification::route('sms', '18888888888')->notify($verifyCode);
     }
 
@@ -130,8 +144,11 @@ class SmsManagerTest extends TestCase
     {
         $phone = new Phone('18888888888');
         $notification = Mockery::mock(VerifyCode::class . '[toSms]');
-        $notification->shouldReceive('toSms')->with($phone)->andReturn('test');
-        $this->prepareLoggerExpectation()->with($this->sendString($phone->routeNotificationForSms($notification), $notification->toSms($phone)));
+        $notification->shouldReceive('toSms')
+            ->with($phone)
+            ->andReturn('test');
+        $this->prepareLoggerExpectation()
+            ->with($this->sendString($phone->routeNotificationForSms($notification), $notification->toSms($phone)));
         $phone->notify($notification);
     }
 
@@ -139,7 +156,9 @@ class SmsManagerTest extends TestCase
     {
         /** @var \Zing\LaravelSms\Tests\Phone $phone */
         $phone = Mockery::mock(Phone::class . '[routeNotificationForSms]', ['18888888888']);
-        $phone->shouldReceive('routeNotificationForSms')->once()->andReturn('');
+        $phone->shouldReceive('routeNotificationForSms')
+            ->once()
+            ->andReturn('');
         Log::shouldReceive()->never();
         $verifyCode = new VerifyCode();
         $phone->notify($verifyCode);
@@ -149,7 +168,9 @@ class SmsManagerTest extends TestCase
     {
         $phone = new Phone('18888888888');
         $notification = Mockery::mock(VerifyCode::class . '[toSms]');
-        $notification->shouldReceive('toSms')->with($phone)->andReturn([]);
+        $notification->shouldReceive('toSms')
+            ->with($phone)
+            ->andReturn([]);
         Log::shouldReceive()->never();
         $phone->notify($notification);
     }
@@ -158,7 +179,8 @@ class SmsManagerTest extends TestCase
     {
         $phone = new Phone('18888888888');
         $notification = Mockery::mock(\Illuminate\Notifications\Notification::class);
-        $notification->shouldReceive('via')->andReturn(['sms']);
+        $notification->shouldReceive('via')
+            ->andReturn(['sms']);
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Notification is missing toSms method.');
         $phone->notify($notification);
@@ -171,9 +193,11 @@ class SmsManagerTest extends TestCase
             'template' => 'aaa',
             'data' => [111],
         ];
-        $this->prepareLoggerExpectation()->with($this->sendString($number, $message));
+        $this->prepareLoggerExpectation()
+            ->with($this->sendString($number, $message));
         $sms = app(SmsManager::class);
-        $sms->connection('log')->send($number, $message);
+        $sms->connection('log')
+            ->send($number, $message);
     }
 
     /**
@@ -194,9 +218,20 @@ class SmsManagerTest extends TestCase
             );
         }
 
-        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData()), $expectedMessage->getMessageType()));
+        $this->prepareLoggerExpectation()
+            ->with(
+                sprintf(
+                    'number: %s, message: "%s", template: "%s", data: %s, type: %s',
+                    $number,
+                    $expectedMessage->getContent(),
+                    $expectedMessage->getTemplate(),
+                    json_encode($expectedMessage->getData()),
+                    $expectedMessage->getMessageType()
+                )
+            );
         $sms = app(SmsManager::class);
-        $sms->connection('log')->send($number, $message);
+        $sms->connection('log')
+            ->send($number, $message);
     }
 
     protected function prepareLoggerExpectation($channel = null, $level = 'info')
@@ -204,7 +239,8 @@ class SmsManagerTest extends TestCase
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();
 
-        return $logChannel->shouldReceive($level)->once();
+        return $logChannel->shouldReceive($level)
+            ->once();
     }
 
     /**
@@ -225,7 +261,17 @@ class SmsManagerTest extends TestCase
             );
         }
 
-        $this->prepareLoggerExpectation()->with(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $expectedMessage->getContent(), $expectedMessage->getTemplate(), json_encode($expectedMessage->getData()), $expectedMessage->getMessageType()));
+        $this->prepareLoggerExpectation()
+            ->with(
+                sprintf(
+                    'number: %s, message: "%s", template: "%s", data: %s, type: %s',
+                    $number,
+                    $expectedMessage->getContent(),
+                    $expectedMessage->getTemplate(),
+                    json_encode($expectedMessage->getData()),
+                    $expectedMessage->getMessageType()
+                )
+            );
         Sms::connection('log')->send($number, $message);
     }
 
@@ -233,7 +279,8 @@ class SmsManagerTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('A driver must be specified.');
-        config()->set('sms.connections.test', []);
+        config()
+            ->set('sms.connections.test', []);
         Sms::connection('test');
     }
 
@@ -242,12 +289,10 @@ class SmsManagerTest extends TestCase
         $driver = 'driver';
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Unsupported driver [{$driver}].");
-        config()->set(
-            'sms.connections.test',
-            [
+        config()
+            ->set('sms.connections.test', [
                 'driver' => $driver,
-            ]
-        );
+            ]);
         Sms::connection('test');
     }
 
@@ -317,8 +362,10 @@ class SmsManagerTest extends TestCase
     {
         $name = 'test';
         $manager = Mockery::mock(SmsManager::class);
-        $manager->shouldReceive('via')->passthru();
-        $manager->shouldReceive('connection')->withArgs([$name])->once();
+        $manager->shouldReceive('via')
+            ->passthru();
+        $manager->shouldReceive('connection')
+            ->withArgs([$name])->once();
         $manager->via($name);
     }
 }

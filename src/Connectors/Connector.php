@@ -132,9 +132,17 @@ class Connector implements ConnectorInterface
 
         try {
             Event::dispatch(new SmsSending($number, $message));
-            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()));
+            $content = sprintf(
+                'number: %s, message: "%s", template: "%s", data: %s, type: %s',
+                $number,
+                $message->getContent($this->driver),
+                $message->getTemplate($this->driver),
+                json_encode($message->getData($this->driver)),
+                $message->getMessageType()
+            );
+            Log::debug($content);
             $result = $this->driver->send($number, $message, $this->config);
-            Log::debug(sprintf('number: %s, message: "%s", template: "%s", data: %s, type: %s', $number, $message->getContent($this->driver), $message->getTemplate($this->driver), json_encode($message->getData($this->driver)), $message->getMessageType()), $result);
+            Log::debug($content, $result);
             Event::dispatch(new SmsSent($number, $message, $result));
 
             return $result;

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Zing\LaravelSms\Events;
 
 use Overtrue\EasySms\Contracts\MessageInterface;
+use Overtrue\EasySms\Contracts\PhoneNumberInterface;
 
 class SmsSent
 {
@@ -30,7 +31,7 @@ class SmsSent
      * @param \Overtrue\EasySms\Contracts\MessageInterface $message
      * @param mixed $result
      */
-    public function __construct(\Overtrue\EasySms\Contracts\PhoneNumberInterface $number, MessageInterface $message, $result)
+    public function __construct(PhoneNumberInterface $number, MessageInterface $message, $result)
     {
         $this->number = $number;
         $this->message = $message;
