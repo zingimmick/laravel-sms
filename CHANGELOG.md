@@ -10,6 +10,23 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ## Unreleased
 
+## [3.5.6] - 2021-03-26
+
+### Changed
+
+- [#154] Apply SetList::SYMPLIFY
+
+### Added
+
+- [#152] Bump EndBug/add-and-commit from v5.1.0 to v7.1.0
+
+### Changed
+
+- [#153] Bump rector/rector from 0.9 to 0.10
+- [#149] Bump codecov/codecov-action from v1.2.2 to v1.3.1
+- [#148] Generate Changelog
+- [#138] Auto rector
+
 ## [3.5.5] - 2021-03-15
 
 ### Changed
@@ -499,3 +516,10 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#147]: https://github.com/zingimmick/laravel-sms/pull/147
 [#146]: https://github.com/zingimmick/laravel-sms/pull/146
 [3.5.5]: https://github.com/zingimmick/laravel-sms/compare/3.5.4...3.5.5
+[#154]: https://github.com/zingimmick/laravel-sms/pull/154
+[#153]: https://github.com/zingimmick/laravel-sms/pull/153
+[#152]: https://github.com/zingimmick/laravel-sms/pull/152
+[#149]: https://github.com/zingimmick/laravel-sms/pull/149
+[#148]: https://github.com/zingimmick/laravel-sms/pull/148
+[#138]: https://github.com/zingimmick/laravel-sms/pull/138
+[3.5.6]: https://github.com/zingimmick/laravel-sms/compare/3.5.5...3.5.6
