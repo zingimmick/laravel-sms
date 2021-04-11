@@ -10,11 +10,15 @@ use Zing\LaravelSms\SmsMessage;
 
 class VerifyCode extends Notification
 {
-    public function via()
+    public function via(): array
     {
         return [SmsChannel::class];
     }
 
+    /**
+     * @param mixed $notifiable
+     * @return string|\Zing\LaravelSms\SmsMessage
+     */
     public function toSms($notifiable)
     {
         if ($notifiable) {

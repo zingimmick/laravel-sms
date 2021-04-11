@@ -12,7 +12,7 @@ use Zing\LaravelSms\VerificationCodeManager;
 class VerificationCodeManagerTest extends TestCase
 {
     use WithFaker;
-
+/** @var VerificationCodeManager  */
     protected $manager;
 
     protected function getEnvironmentSetUp($app): void

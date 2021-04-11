@@ -21,7 +21,7 @@ use Zing\LaravelSms\SmsMessage;
 
 class SmsManagerTest extends TestCase
 {
-    public function provideNumberAndMessage()
+    public function provideNumberAndMessage(): array
     {
         return [['18888888888', 'test'], [new PhoneNumber('18888888888', '+86'), SmsMessage::text('test')]];
     }
@@ -248,6 +248,8 @@ class SmsManagerTest extends TestCase
      *
      * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
      * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @throws \Throwable
+     * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      */
     public function testFacade($number, $message): void
     {
@@ -288,7 +290,7 @@ class SmsManagerTest extends TestCase
     {
         $driver = 'driver';
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Unsupported driver [{$driver}].");
+        $this->expectExceptionMessage("Unsupported driver [$driver].");
         config()
             ->set('sms.connections.test', [
                 'driver' => $driver,
@@ -301,6 +303,8 @@ class SmsManagerTest extends TestCase
      *
      * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
      * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @throws \Throwable
+     * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      */
     public function testSmsSending($number, $message): void
     {
@@ -332,6 +336,8 @@ class SmsManagerTest extends TestCase
      *
      * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
      * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @throws \Throwable
+     * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      */
     public function testSmsSent($number, $message): void
     {

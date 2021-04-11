@@ -16,6 +16,11 @@ class TestCase extends BaseTestCase
 {
     private const DRIVER = 'driver';
 
+    /**
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $expected
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $actual
+     * @param string $message
+     */
     public static function assertSameMessage($expected, $actual, string $message = ''): void
     {
         static::assertThat($actual, new IsEqual($expected), $message);

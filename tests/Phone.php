@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Phone
 {
     use Notifiable;
-
+/** @var string */
     protected $phone;
 
     /**
@@ -17,17 +17,17 @@ class Phone
      *
      * @param string $phone
      */
-    public function __construct($phone)
+    public function __construct(string $phone)
     {
         $this->phone = $phone;
     }
 
-    public function getKey()
+    public function getKey(): string
     {
         return $this->phone;
     }
 
-    public function routeNotificationForSms($notification)
+    public function routeNotificationForSms($notification): string
     {
         if ($notification) {
             return $this->phone;

@@ -29,7 +29,7 @@ class YunpianGateway extends Gateway
      *
      * @return array
      */
-    public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
+    public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config): array
     {
         $signature = $this->config->get('signature');
         $content = $message->getContent($this);

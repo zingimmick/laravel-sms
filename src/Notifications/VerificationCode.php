@@ -10,7 +10,7 @@ use Zing\LaravelSms\Channels\SmsChannel;
 class VerificationCode extends Notification
 {
     /**
-     * @var string
+     * @var string|int
      */
     protected $code;
 
@@ -22,7 +22,7 @@ class VerificationCode extends Notification
     /**
      * VerificationCode constructor.
      *
-     * @param string $code
+     * @param string|int $code
      * @param int $ttl
      */
     public function __construct($code, $ttl)
@@ -31,12 +31,12 @@ class VerificationCode extends Notification
         $this->ttl = $ttl;
     }
 
-    public function via()
+    public function via(): array
     {
         return [SmsChannel::class];
     }
 
-    public function toSms()
+    public function toSms(): string
     {
         return sprintf(config('sms.verification.content'), $this->code, $this->ttl);
     }

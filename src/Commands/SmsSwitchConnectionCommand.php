@@ -6,6 +6,7 @@ namespace Zing\LaravelSms\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -97,9 +98,13 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @return bool
      */
-    protected function putEnvToFile($connection, $path): bool
+    protected function putEnvToFile(string $connection, string $path): bool
     {
-        if (! Str::contains(file_get_contents($path), 'SMS_CONNECTION')) {
+        $content=file_get_contents($path);
+        if ($content===false){
+            throw new RuntimeException("Can not get contents from $path");
+        }
+        if (! Str::contains($content, 'SMS_CONNECTION')) {
             // create new entry
             file_put_contents($path, PHP_EOL . "SMS_CONNECTION={$connection}" . PHP_EOL, FILE_APPEND);
         } elseif ($this->option('always-no')) {
@@ -116,7 +121,7 @@ class SmsSwitchConnectionCommand extends Command
                 str_replace(
                     'SMS_CONNECTION=' . $this->laravel['config']['sms.default'],
                     'SMS_CONNECTION=' . $connection,
-                    file_get_contents($path)
+                    $content
                 )
             );
         }//end if

@@ -140,7 +140,7 @@ class MeiLianDriverTest extends TestCase
         );
     }
 
-    public function provideNumberAndMessage()
+    public function provideNumberAndMessage(): array
     {
         return [
             [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'],

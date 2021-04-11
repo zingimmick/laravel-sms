@@ -12,8 +12,6 @@ class SmsNumber extends PhoneNumber
     use Notifiable;
 
     /**
-     * @param \Illuminate\Notifications\Notification $notification
-     *
      * @return $this
      */
     public function routeNotificationForSms()

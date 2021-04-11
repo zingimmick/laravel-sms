@@ -126,7 +126,7 @@ class YunpianDriverTest extends TestCase
             )->andReturn($response);
         $config = new Config($config);
 
-        $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
+        self::assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
 
     public function testGetOptions(): void
@@ -144,7 +144,7 @@ class YunpianDriverTest extends TestCase
         self::assertSame('http://yunpian.com', Arr::get($driver->getBaseOptions(), 'base_uri'));
     }
 
-    public function provideNumberAndMessage()
+    public function provideNumberAndMessage(): array
     {
         return [
             [18188888888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'],
