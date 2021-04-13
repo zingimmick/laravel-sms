@@ -102,6 +102,7 @@ class SmsSwitchConnectionCommand extends Command
         if (! Str::contains(file_get_contents($path), 'SMS_CONNECTION')) {
             // create new entry
             file_put_contents($path, PHP_EOL . "SMS_CONNECTION={$connection}" . PHP_EOL, FILE_APPEND);
+
             return true;
         }
 
