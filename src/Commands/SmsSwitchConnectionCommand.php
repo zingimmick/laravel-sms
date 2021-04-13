@@ -102,24 +102,30 @@ class SmsSwitchConnectionCommand extends Command
         if (! Str::contains(file_get_contents($path), 'SMS_CONNECTION')) {
             // create new entry
             file_put_contents($path, PHP_EOL . "SMS_CONNECTION={$connection}" . PHP_EOL, FILE_APPEND);
-        } elseif ($this->option('always-no')) {
+
+            return true;
+        }
+
+        if ($this->option('always-no')) {
             $this->comment('Sms default connection already exists. Skipping...');
 
             return false;
-        } elseif (! $this->isConfirmed()) {
+        }
+
+        if (! $this->isConfirmed()) {
             $this->comment('Phew... No changes were made to your sms default connection.');
 
             return false;
-        } else {
-            file_put_contents(
-                $path,
-                str_replace(
-                    'SMS_CONNECTION=' . $this->laravel['config']['sms.default'],
-                    'SMS_CONNECTION=' . $connection,
-                    file_get_contents($path)
-                )
-            );
-        }//end if
+        }
+
+        file_put_contents(
+            $path,
+            str_replace(
+                'SMS_CONNECTION=' . $this->laravel['config']['sms.default'],
+                'SMS_CONNECTION=' . $connection,
+                file_get_contents($path)
+            )
+        );
 
         return true;
     }
