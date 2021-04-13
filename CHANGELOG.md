@@ -10,6 +10,20 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 ## Unreleased
 
+## [3.5.7] - 2021-04-13
+
+### Added
+
+- [#160] Add return type hint
+
+- [#156] Bump EndBug/add-and-commit from v7.1.0 to v7.1.1
+
+### Changed
+
+- [#159] Simplify else expression
+- [#157] Bump codecov/codecov-action from v1.3.1 to v1.3.2
+- [#155] Generate Changelog
+
 ## [3.5.6] - 2021-03-26
 
 ### Changed
@@ -523,3 +537,9 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#148]: https://github.com/zingimmick/laravel-sms/pull/148
 [#138]: https://github.com/zingimmick/laravel-sms/pull/138
 [3.5.6]: https://github.com/zingimmick/laravel-sms/compare/3.5.5...3.5.6
+[#160]: https://github.com/zingimmick/laravel-sms/pull/160
+[#159]: https://github.com/zingimmick/laravel-sms/pull/159
+[#157]: https://github.com/zingimmick/laravel-sms/pull/157
+[#156]: https://github.com/zingimmick/laravel-sms/pull/156
+[#155]: https://github.com/zingimmick/laravel-sms/pull/155
+[3.5.7]: https://github.com/zingimmick/laravel-sms/compare/3.5.6...3.5.7
