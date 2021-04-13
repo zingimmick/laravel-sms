@@ -23,7 +23,7 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @return array
      */
-    protected function getArguments()
+    protected function getArguments(): array
     {
         return [new InputArgument('connection', InputArgument::REQUIRED, 'Which connection to use')];
     }
@@ -33,7 +33,7 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @return array
      */
-    protected function getOptions()
+    protected function getOptions(): array
     {
         return [
             new InputOption(
@@ -97,7 +97,7 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @return bool
      */
-    protected function putEnvToFile($connection, $path): bool
+    protected function putEnvToFile(string $connection, string $path): bool
     {
         if (! Str::contains(file_get_contents($path), 'SMS_CONNECTION')) {
             // create new entry
@@ -135,7 +135,7 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @param string $connection
      */
-    protected function displayConnection($connection): void
+    protected function displayConnection(string $connection): void
     {
         $this->laravel['config']['sms.default'] = $connection;
 
@@ -147,9 +147,13 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @return bool
      */
-    protected function isConfirmed()
+    protected function isConfirmed(): bool
     {
-        return $this->option('force') ? true : $this->confirm(
+        if ($this->option('force')) {
+            return true;
+        }
+
+        return $this->confirm(
             'This maybe invalidate existing sms feature. Are you sure you want to override the sms default connection?'
         );
     }
@@ -159,7 +163,7 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @return string
      */
-    protected function envPath()
+    protected function envPath(): string
     {
         if (method_exists($this->laravel, 'environmentFilePath')) {
             return $this->laravel->environmentFilePath();
