@@ -29,7 +29,7 @@ Many thanks to:
 
 1. PHP >= 7.2.5
 2. [Composer](https://getcomposer.org)
-3. `json` 拓展
+3. `ext-json`
 
 ## Installation
 
