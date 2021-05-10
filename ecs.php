@@ -9,13 +9,11 @@ use PhpCsFixer\Fixer\PhpUnit\PhpUnitTestClassRequiresCoversFixer;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
-
+use Zing\CodingStandard\Set\ECSSetList;
 return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(SetList::PSR_12);
-    $containerConfigurator->import(SetList::SYMPLIFY);
-    $containerConfigurator->import(SetList::COMMON);
-    $containerConfigurator->import(SetList::CLEAN_CODE);
-    $containerConfigurator->import(__DIR__ . '/vendor/zing/coding-standard/config/config.php');
+    $containerConfigurator->import(ECSSetList::CUSTOM);
+    $containerConfigurator->import(ECSSetList::PHP71_MIGRATION);
+    $containerConfigurator->import(ECSSetList::PHP71_MIGRATION_RISKY);
 
     $parameters = $containerConfigurator->parameters();
     $parameters->set(Option::SKIP, [
