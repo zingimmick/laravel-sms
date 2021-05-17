@@ -8,8 +8,8 @@ use PhpCsFixer\Fixer\PhpUnit\PhpUnitInternalClassFixer;
 use PhpCsFixer\Fixer\PhpUnit\PhpUnitTestClassRequiresCoversFixer;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\ValueObject\Option;
-use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 use Zing\CodingStandard\Set\ECSSetList;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(ECSSetList::CUSTOM);
     $containerConfigurator->import(ECSSetList::PHP71_MIGRATION);
