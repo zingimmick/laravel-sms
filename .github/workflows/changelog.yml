@@ -27,7 +27,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3.10.0
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
-          commit-message: "generate changelog"
+          commit-message: "Generate Changelog"
           branch: ci-generate-changelog
           base: 'master'
           title: "Generate Changelog"
