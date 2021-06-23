@@ -101,7 +101,7 @@ class SmsSwitchConnectionCommand extends Command
     {
         if (! Str::contains(file_get_contents($path), 'SMS_CONNECTION')) {
             // create new entry
-            file_put_contents($path, PHP_EOL . "SMS_CONNECTION={$connection}" . PHP_EOL, FILE_APPEND);
+            file_put_contents($path, PHP_EOL . sprintf('SMS_CONNECTION=%s', $connection) . PHP_EOL, FILE_APPEND);
 
             return true;
         }
@@ -139,7 +139,7 @@ class SmsSwitchConnectionCommand extends Command
     {
         $this->laravel['config']['sms.default'] = $connection;
 
-        $this->info("sms default connection switch to [{$connection}] successfully.");
+        $this->info(sprintf('sms default connection switch to [%s] successfully.', $connection));
     }
 
     /**

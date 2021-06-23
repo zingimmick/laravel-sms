@@ -75,7 +75,7 @@ class Connector implements ConnectorInterface
     protected function resolveDriver(string $driverClass, array $config): GatewayInterface
     {
         if (! class_exists($driverClass) || ! in_array(GatewayInterface::class, class_implements($driverClass), true)) {
-            throw new InvalidArgumentException("Unsupported driver [{$driverClass}].");
+            throw new InvalidArgumentException(sprintf('Unsupported driver [%s].', $driverClass));
         }
 
         return new $driverClass($config);

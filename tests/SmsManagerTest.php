@@ -288,7 +288,7 @@ class SmsManagerTest extends TestCase
     {
         $driver = 'driver';
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Unsupported driver [{$driver}].");
+        $this->expectExceptionMessage(sprintf('Unsupported driver [%s].', $driver));
         config()
             ->set('sms.connections.test', [
                 'driver' => $driver,
