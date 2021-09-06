@@ -17,7 +17,7 @@ class SmsManager extends AbstractManager
 
     public function __construct(Repository $config, ConnectionFactory $factory)
     {
-        $this->config = $config;
+        parent::__construct($config);
         $this->factory = $factory;
     }
 
