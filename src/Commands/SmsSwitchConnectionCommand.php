@@ -20,8 +20,6 @@ class SmsSwitchConnectionCommand extends Command
 
     /**
      * Get the console command arguments.
-     *
-     * @return array
      */
     protected function getArguments(): array
     {
@@ -30,8 +28,6 @@ class SmsSwitchConnectionCommand extends Command
 
     /**
      * Get the console command options.
-     *
-     * @return array
      */
     protected function getOptions(): array
     {
@@ -94,8 +90,6 @@ class SmsSwitchConnectionCommand extends Command
      *
      * @param string $connection the default sms connection
      * @param string $path the .env file path.
-     *
-     * @return bool
      */
     protected function putEnvToFile(string $connection, string $path): bool
     {
@@ -132,8 +126,6 @@ class SmsSwitchConnectionCommand extends Command
 
     /**
      * Display the key.
-     *
-     * @param string $connection
      */
     protected function displayConnection(string $connection): void
     {
@@ -144,8 +136,6 @@ class SmsSwitchConnectionCommand extends Command
 
     /**
      * Check if the modification is confirmed.
-     *
-     * @return bool
      */
     protected function isConfirmed(): bool
     {
@@ -160,8 +150,6 @@ class SmsSwitchConnectionCommand extends Command
 
     /**
      * Get the .env file path.
-     *
-     * @return string
      */
     protected function envPath(): string
     {

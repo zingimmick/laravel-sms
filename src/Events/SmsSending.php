@@ -19,12 +19,7 @@ class SmsSending
      */
     public $message;
 
-    /**
-     * SmsSending constructor.
-     *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface $message
-     */
+    
     public function __construct(PhoneNumberInterface $number, MessageInterface $message)
     {
         $this->number = $number;

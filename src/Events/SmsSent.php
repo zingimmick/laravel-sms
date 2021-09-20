@@ -27,8 +27,6 @@ class SmsSent
     /**
      * SmsSending constructor.
      *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface $message
      * @param mixed $result
      */
     public function __construct(PhoneNumberInterface $number, MessageInterface $message, $result)

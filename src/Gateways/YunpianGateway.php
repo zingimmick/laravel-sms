@@ -21,10 +21,6 @@ class YunpianGateway extends Gateway
     }
 
     /**
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $to
-     * @param \Overtrue\EasySms\Contracts\MessageInterface $message
-     * @param \Overtrue\EasySms\Support\Config $config
-     *
      * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      *
      * @return array

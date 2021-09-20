@@ -7,8 +7,6 @@ namespace Zing\LaravelSms\Connectors;
 class ConnectionFactory
 {
     /**
-     * @param array $config
-     *
      * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
      *
      * @return \Zing\LaravelSms\Connectors\Connector

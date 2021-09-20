@@ -16,8 +16,6 @@ class SmsChannel
 
     /**
      * Create a new database channel.
-     *
-     * @param \Zing\LaravelSms\SmsManager $smsManager
      */
     public function __construct(SmsManager $smsManager)
     {
@@ -28,7 +26,6 @@ class SmsChannel
      * Send the given notification.
      *
      * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
      */
     public function send($notifiable, Notification $notification): void
     {
@@ -57,7 +54,6 @@ class SmsChannel
 
     /**
      * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
      *
      * @return mixed|null
      */
@@ -79,7 +75,6 @@ class SmsChannel
      * Get the data for the notification.
      *
      * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
      *
      * @throws \RuntimeException
      *

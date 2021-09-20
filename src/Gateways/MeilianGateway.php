@@ -19,10 +19,6 @@ class MeilianGateway extends Gateway
     private const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
 
     /**
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface $to
-     * @param \Overtrue\EasySms\Contracts\MessageInterface $message
-     * @param \Overtrue\EasySms\Support\Config $config
-     *
      * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
      *
      * @return array

@@ -44,8 +44,6 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * @param array $config
-     *
      * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
      *
      * @return $this
@@ -65,12 +63,7 @@ class Connector implements ConnectorInterface
     /**
      * Get gateway by class name.
      *
-     * @param string $driverClass
-     * @param array $config
-     *
      * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
-     *
-     * @return \Overtrue\EasySms\Contracts\GatewayInterface
      */
     protected function resolveDriver(string $driverClass, array $config): GatewayInterface
     {
