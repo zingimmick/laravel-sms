@@ -16,6 +16,9 @@ class MeilianGateway extends Gateway
 {
     use HasHttpRequest;
 
+    /**
+     * @var string
+     */
     private const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
 
     /**

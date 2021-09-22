@@ -19,7 +19,6 @@ class SmsSending
      */
     public $message;
 
-    
     public function __construct(PhoneNumberInterface $number, MessageInterface $message)
     {
         $this->number = $number;

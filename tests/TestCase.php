@@ -14,6 +14,9 @@ use Zing\LaravelSms\SmsServiceProvider;
 
 class TestCase extends BaseTestCase
 {
+    /**
+     * @var string
+     */
     private const DRIVER = 'driver';
 
     public static function assertSameMessage($expected, $actual, string $message = ''): void
