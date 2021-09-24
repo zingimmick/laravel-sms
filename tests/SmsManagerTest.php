@@ -21,6 +21,39 @@ use Zing\LaravelSms\SmsMessage;
 
 class SmsManagerTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    private const CHANNEL = 'test';
+
+    /**
+     * @var string
+     */
+    private const LEVEL = 'info';
+
+    /**
+     * @var string
+     */
+    private const DRIVER = 'driver';
+
+    /**
+     * @var string
+     */
+    private const NAME = 'test';
+
+    /**
+     * @var string
+     */
+    private const NUMBER = '18888888888';
+
+    /**
+     * @var array<string, string|int[]>
+     */
+    private const MESSAGE = [
+        'template' => 'aaa',
+        'data' => [111],
+    ];
+
     public function provideNumberAndMessage()
     {
         return [['18888888888', 'test'], [new PhoneNumber('18888888888', '+86'), SmsMessage::text('test')]];
@@ -74,10 +107,9 @@ class SmsManagerTest extends TestCase
      */
     public function testLogChannel($number, $message): void
     {
-        $channel = 'test';
         config()
-            ->set('sms.connections.log.channel', $channel);
-        $this->prepareLoggerExpectation($channel)
+            ->set('sms.connections.log.channel', self::CHANNEL);
+        $this->prepareLoggerExpectation(self::CHANNEL)
             ->with($this->sendString($number, $message));
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
@@ -92,10 +124,9 @@ class SmsManagerTest extends TestCase
      */
     public function testLogLevel($number, $message): void
     {
-        $level = 'info';
         config()
-            ->set('sms.connections.log.level', $level);
-        $this->prepareLoggerExpectation(null, $level)
+            ->set('sms.connections.log.level', self::LEVEL);
+        $this->prepareLoggerExpectation(null, self::LEVEL)
             ->with($this->sendString($number, $message));
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
@@ -188,16 +219,11 @@ class SmsManagerTest extends TestCase
 
     public function testTemplate(): void
     {
-        $number = '18888888888';
-        $message = [
-            'template' => 'aaa',
-            'data' => [111],
-        ];
         $this->prepareLoggerExpectation()
-            ->with($this->sendString($number, $message));
+            ->with($this->sendString(self::NUMBER, self::MESSAGE));
         $sms = app(SmsManager::class);
         $sms->connection('log')
-            ->send($number, $message);
+            ->send(self::NUMBER, self::MESSAGE);
     }
 
     /**
@@ -286,12 +312,11 @@ class SmsManagerTest extends TestCase
 
     public function testConnectionWithWrongDriver(): void
     {
-        $driver = 'driver';
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('Unsupported driver [%s].', $driver));
+        $this->expectExceptionMessage(sprintf('Unsupported driver [%s].', self::DRIVER));
         config()
             ->set('sms.connections.test', [
-                'driver' => $driver,
+                'driver' => self::DRIVER,
             ]);
         Sms::connection('test');
     }
@@ -360,12 +385,11 @@ class SmsManagerTest extends TestCase
 
     public function testVia(): void
     {
-        $name = 'test';
         $manager = Mockery::mock(SmsManager::class);
         $manager->shouldReceive('via')
             ->passthru();
         $manager->shouldReceive('connection')
-            ->withArgs([$name])->once();
-        $manager->via($name);
+            ->withArgs([self::NAME])->once();
+        $manager->via(self::NAME);
     }
 }

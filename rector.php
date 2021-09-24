@@ -9,9 +9,7 @@ use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\PHPUnit\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
-use Rector\Privatization\Rector\Class_\ChangeReadOnlyVariableWithDefaultValueToConstantRector;
 use Rector\Privatization\Rector\Class_\FinalizeClassesWithoutChildrenRector;
-use Rector\Privatization\Rector\Class_\RepeatedLiteralToClassConstantRector;
 use Rector\Privatization\Rector\MethodCall\PrivatizeLocalGetterToPropertyRector;
 use Rector\Set\ValueObject\SetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -33,9 +31,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             RenameVariableToMatchMethodCallReturnTypeRector::class,
             RenameParamToMatchTypeRector::class,
             AddSeeTestAnnotationRector::class,
-            ChangeReadOnlyVariableWithDefaultValueToConstantRector::class,
             FinalizeClassesWithoutChildrenRector::class,
-            RepeatedLiteralToClassConstantRector::class,
             PrivatizeLocalGetterToPropertyRector::class,
         ]
     );
