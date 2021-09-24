@@ -14,6 +14,11 @@ use Zing\LaravelSms\Tests\TestCase;
 
 class MeiLianDriverTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    private const RESPONSE = 'success:Missing recipient';
+
     public function testSend(): void
     {
         $config = [
@@ -110,7 +115,6 @@ class MeiLianDriverTest extends TestCase
             'api_key' => 'mock-api-key',
             'signature' => '【test】',
         ];
-        $response = 'success:Missing recipient';
 
         $driver = Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
         $driver->shouldReceive('request')
@@ -127,14 +131,14 @@ class MeiLianDriverTest extends TestCase
                         'content' => $expected,
                     ],
                 ]
-            )->andReturn($response);
+            )->andReturn(self::RESPONSE);
         $config = new Config($config);
 
         $this->assertSame(
             [
                 'success' => true,
                 'msg' => 'ok',
-                'result' => $response,
+                'result' => self::RESPONSE,
             ],
             $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config)
         );
