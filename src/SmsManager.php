@@ -23,8 +23,6 @@ class SmsManager extends AbstractManager
     }
 
     /**
-     * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
-     *
      * @return object|\Zing\LaravelSms\Connectors\Connector
      */
     protected function createConnection(array $config)

@@ -22,8 +22,6 @@ class MeilianGateway extends Gateway
     private const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
 
     /**
-     * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
-     *
      * @return array
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)

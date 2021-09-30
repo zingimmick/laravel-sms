@@ -21,8 +21,6 @@ class YunpianGateway extends Gateway
     }
 
     /**
-     * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
-     *
      * @return array
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
