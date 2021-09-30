@@ -44,8 +44,6 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
-     *
      * @return $this
      */
     public function connect(array $config)
@@ -62,8 +60,6 @@ class Connector implements ConnectorInterface
 
     /**
      * Get gateway by class name.
-     *
-     * @throws \Zing\LaravelSms\Exceptions\InvalidArgumentException
      */
     protected function resolveDriver(string $driverClass, array $config): GatewayInterface
     {
@@ -112,9 +108,6 @@ class Connector implements ConnectorInterface
     /**
      * @param mixed $number
      * @param mixed $message
-     *
-     * @throws \Zing\LaravelSms\Exceptions\CouldNotSendNotification
-     * @throws \Throwable
      *
      * @return bool|mixed
      */

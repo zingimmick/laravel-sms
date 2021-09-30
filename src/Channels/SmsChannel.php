@@ -76,8 +76,6 @@ class SmsChannel
      *
      * @param mixed $notifiable
      *
-     * @throws \RuntimeException
-     *
      * @return mixed
      */
     protected function getData($notifiable, Notification $notification)
