@@ -107,7 +107,7 @@ class MeiLianDriverTest extends TestCase
      * @param mixed $message
      * @param mixed $expected
      */
-    public function testDefaultSignature($number, $message, $expected): void
+    public function testDefaultSignature(int $number, string $message, string $expected): void
     {
         $config = [
             'username' => 'mock-username',
@@ -144,7 +144,10 @@ class MeiLianDriverTest extends TestCase
         );
     }
 
-    public function provideNumberAndMessage()
+    /**
+     * @return array<int, array<int|string>>
+     */
+    public function provideNumberAndMessage(): array
     {
         return [
             [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'],

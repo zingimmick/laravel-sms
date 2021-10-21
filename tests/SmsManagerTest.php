@@ -12,6 +12,7 @@ use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use RuntimeException;
 use Zing\LaravelSms\Channels\SmsChannel;
+use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Events\SmsSending;
 use Zing\LaravelSms\Events\SmsSent;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
@@ -54,7 +55,10 @@ class SmsManagerTest extends TestCase
         'data' => [111],
     ];
 
-    public function provideNumberAndMessage()
+    /**
+     * @return array<int, array<string|\Overtrue\EasySms\PhoneNumber|\Zing\LaravelSms\SmsMessage>>
+     */
+    public function provideNumberAndMessage(): array
     {
         return [['18888888888', 'test'], [new PhoneNumber('18888888888', '+86'), SmsMessage::text('test')]];
     }
@@ -74,7 +78,7 @@ class SmsManagerTest extends TestCase
         $sms->send($number, $message);
     }
 
-    protected function sendString($number, $message)
+    protected function sendString($number, $message): string
     {
         if (is_string($message)) {
             $message = new Message(
@@ -343,7 +347,7 @@ class SmsManagerTest extends TestCase
         Sms::connection('log')->send($number, $message);
         Event::assertDispatched(
             SmsSending::class,
-            function (SmsSending $smsSending) use ($number, $expectedMessage) {
+            function (SmsSending $smsSending) use ($number, $expectedMessage): bool {
                 self::assertSame((string) $number, (string) $smsSending->number);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
@@ -374,7 +378,7 @@ class SmsManagerTest extends TestCase
         Sms::connection('log')->send($number, $message);
         Event::assertDispatched(
             SmsSent::class,
-            function (SmsSent $smsSending) use ($number, $expectedMessage) {
+            function (SmsSent $smsSending) use ($number, $expectedMessage): bool {
                 self::assertSame((string) $number, (string) $smsSending->number);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
@@ -389,7 +393,9 @@ class SmsManagerTest extends TestCase
         $manager->shouldReceive('via')
             ->passthru();
         $manager->shouldReceive('connection')
-            ->withArgs([self::NAME])->once();
+            ->withArgs([self::NAME])
+            ->once()
+            ->andReturn(Mockery::mock(Connector::class));
         $manager->via(self::NAME);
     }
 }

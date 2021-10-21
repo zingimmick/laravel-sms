@@ -15,7 +15,7 @@ class YunpianGateway extends Gateway
 {
     use HasHttpRequest;
 
-    public function getBaseUri()
+    public function getBaseUri(): string
     {
         return 'http://yunpian.com';
     }

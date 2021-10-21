@@ -20,6 +20,8 @@ class SmsSwitchConnectionCommand extends Command
 
     /**
      * Get the console command arguments.
+     *
+     * @return \Symfony\Component\Console\Input\InputArgument[]
      */
     protected function getArguments(): array
     {
@@ -28,6 +30,8 @@ class SmsSwitchConnectionCommand extends Command
 
     /**
      * Get the console command options.
+     *
+     * @return \Symfony\Component\Console\Input\InputOption[]
      */
     protected function getOptions(): array
     {

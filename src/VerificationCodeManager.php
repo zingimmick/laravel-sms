@@ -9,6 +9,9 @@ use Zing\LaravelSms\Notifications\VerificationCode;
 
 class VerificationCodeManager
 {
+    /**
+     * @var \Illuminate\Contracts\Cache\Repository
+     */
     protected $cacheManager;
 
     /**

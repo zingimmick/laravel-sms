@@ -12,7 +12,10 @@ use Overtrue\EasySms\Support\Config;
 
 class LogGateway extends Gateway
 {
-    public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
+    /**
+     * @return array<string, string>|array<string, bool>
+     */
+    public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config): array
     {
         $channel = $this->config->get('channel');
         $level = $this->config->get('level', 'info');

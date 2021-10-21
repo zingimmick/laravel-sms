@@ -22,9 +22,9 @@ class MeilianGateway extends Gateway
     private const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
 
     /**
-     * @return array
+     * @return array<string, string>|array<string, bool>
      */
-    public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
+    public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config): array
     {
         $endpoint = self::ENDPOINT_URL;
         $signature = $this->config->get('signature', '');

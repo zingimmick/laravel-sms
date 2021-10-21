@@ -40,7 +40,7 @@ class IntegrationTest extends TestCase
         $gateways = collect(ClassMapGenerator::createMap('vendor/overtrue/easy-sms'))
             ->keys()
             ->filter(
-                function ($name) {
+                function ($name): bool {
                     if (! class_exists($name)) {
                         return false;
                     }
@@ -63,7 +63,7 @@ class IntegrationTest extends TestCase
     {
         collect(config('sms.connections'))
             ->filter(
-                function ($config) {
+                function ($config): bool {
                     $name = $config['driver'];
                     if (! class_exists($name)) {
                         return false;

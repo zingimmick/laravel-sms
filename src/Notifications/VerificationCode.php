@@ -31,12 +31,15 @@ class VerificationCode extends Notification
         $this->ttl = $ttl;
     }
 
-    public function via()
+    /**
+     * @return array<class-string<\Zing\LaravelSms\Channels\SmsChannel>>
+     */
+    public function via(): array
     {
         return [SmsChannel::class];
     }
 
-    public function toSms()
+    public function toSms(): string
     {
         return sprintf(config('sms.verification.content'), $this->code, $this->ttl);
     }

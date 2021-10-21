@@ -11,7 +11,7 @@ use Zing\LaravelSms\SmsNumber;
 
 class SmsNumberTest extends TestCase
 {
-    protected function sendString($number, $message)
+    protected function sendString($number, $message): string
     {
         if (is_string($message)) {
             $message = new Message(

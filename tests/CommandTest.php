@@ -60,7 +60,7 @@ class CommandTest extends TestCase
         self::assertSame(config('sms.default'), 'default');
     }
 
-    protected function envPath()
+    protected function envPath(): string
     {
         if (method_exists($this->app, 'environmentFilePath')) {
             return $this->app->environmentFilePath();
