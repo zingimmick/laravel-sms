@@ -43,9 +43,6 @@ class Connector implements ConnectorInterface
         $this->config = new Config($config);
     }
 
-    /**
-     * @return $this
-     */
     public function connect(array $config): self
     {
         if (! isset($config['driver'])) {

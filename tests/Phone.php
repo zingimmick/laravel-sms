@@ -10,6 +10,9 @@ class Phone
 {
     use Notifiable;
 
+    /**
+     * @var string
+     */
     protected $phone;
 
     /**
@@ -22,11 +25,16 @@ class Phone
         $this->phone = $phone;
     }
 
-    public function getKey()
+    public function getKey(): string
     {
         return $this->phone;
     }
 
+    /**
+     * @param mixed $notification
+     *
+     * @return mixed|string
+     */
     public function routeNotificationForSms($notification)
     {
         if ($notification) {

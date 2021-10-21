@@ -31,8 +31,6 @@ class SmsMessage extends Message
     /**
      * @param string|callable $template
      * @param array|callable $data
-     *
-     * @return static
      */
     public static function fromTemplate($template, $data): self
     {
