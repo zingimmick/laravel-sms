@@ -35,7 +35,7 @@ class Phone
      *
      * @return mixed|string
      */
-    public function routeNotificationForSms($notification)
+    public function routeNotificationForSms($notification): string
     {
         if ($notification) {
             return $this->phone;
