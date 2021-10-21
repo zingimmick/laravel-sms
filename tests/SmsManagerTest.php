@@ -12,6 +12,7 @@ use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use RuntimeException;
 use Zing\LaravelSms\Channels\SmsChannel;
+use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Events\SmsSending;
 use Zing\LaravelSms\Events\SmsSent;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
@@ -389,7 +390,9 @@ class SmsManagerTest extends TestCase
         $manager->shouldReceive('via')
             ->passthru();
         $manager->shouldReceive('connection')
-            ->withArgs([self::NAME])->once();
+            ->withArgs([self::NAME])
+            ->once()
+            ->andReturn(Mockery::mock(Connector::class));
         $manager->via(self::NAME);
     }
 }

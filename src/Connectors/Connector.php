@@ -46,7 +46,7 @@ class Connector implements ConnectorInterface
     /**
      * @return $this
      */
-    public function connect(array $config)
+    public function connect(array $config): self
     {
         if (! isset($config['driver'])) {
             throw new InvalidArgumentException('A driver must be specified.');
@@ -72,10 +72,8 @@ class Connector implements ConnectorInterface
 
     /**
      * @param string|\Overtrue\EasySms\Contracts\PhoneNumberInterface $number
-     *
-     * @return \Overtrue\EasySms\Contracts\PhoneNumberInterface
      */
-    protected function formatPhoneNumber($number)
+    protected function formatPhoneNumber($number): PhoneNumberInterface
     {
         if ($number instanceof PhoneNumberInterface) {
             return $number;
@@ -86,10 +84,8 @@ class Connector implements ConnectorInterface
 
     /**
      * @param array|string|\Overtrue\EasySms\Contracts\MessageInterface $message
-     *
-     * @return \Overtrue\EasySms\Contracts\MessageInterface
      */
-    protected function formatMessage($message)
+    protected function formatMessage($message): MessageInterface
     {
         if (! ($message instanceof MessageInterface)) {
             if (! is_array($message)) {

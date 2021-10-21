@@ -12,6 +12,9 @@ use Zing\LaravelSms\SmsMessage;
 
 class SmsChannel
 {
+    /**
+     * @var \Zing\LaravelSms\SmsManager
+     */
     protected $smsManager;
 
     /**

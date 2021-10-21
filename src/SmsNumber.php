@@ -16,7 +16,7 @@ class SmsNumber extends PhoneNumber
      *
      * @return $this
      */
-    public function routeNotificationForSms()
+    public function routeNotificationForSms(): self
     {
         return $this;
     }

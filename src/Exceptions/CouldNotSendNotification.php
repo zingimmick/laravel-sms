@@ -8,6 +8,9 @@ use Throwable;
 
 class CouldNotSendNotification extends Exception
 {
+    /**
+     * @var mixed[]
+     */
     public $raw = [];
 
     public function __construct($message = '', $code = 0, $raw = [])

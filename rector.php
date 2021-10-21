@@ -11,18 +11,15 @@ use Rector\PHPUnit\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Privatization\Rector\Class_\FinalizeClassesWithoutChildrenRector;
 use Rector\Privatization\Rector\MethodCall\PrivatizeLocalGetterToPropertyRector;
+use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Zing\CodingStandard\Set\RectorSetList;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(RectorSetList::CUSTOM);
-    $containerConfigurator->import(LaravelSetList::ARRAY_STR_FUNCTIONS_TO_STATIC_CALL);
-    $containerConfigurator->import(DoctrineSetList::DOCTRINE_CODE_QUALITY);
     $containerConfigurator->import(PHPUnitSetList::PHPUNIT_CODE_QUALITY);
-    $containerConfigurator->import(SetList::PHP_70);
-    $containerConfigurator->import(SetList::PHP_71);
-    $containerConfigurator->import(SetList::PHP_72);
+    $containerConfigurator->import(LevelSetList::UP_TO_PHP_72);
 
     $parameters = $containerConfigurator->parameters();
     $parameters->set(

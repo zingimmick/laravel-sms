@@ -13,6 +13,9 @@ use Zing\LaravelSms\Connectors\ConnectionFactory;
  */
 class SmsManager extends AbstractManager
 {
+    /**
+     * @var \Zing\LaravelSms\Connectors\ConnectionFactory
+     */
     protected $factory;
 
     public function __construct(Repository $config, ConnectionFactory $factory)
@@ -30,12 +33,12 @@ class SmsManager extends AbstractManager
         return $this->factory->make($config);
     }
 
-    protected function getConfigName()
+    protected function getConfigName(): string
     {
         return 'sms';
     }
 
-    public function via(?string $name = null)
+    public function via(?string $name = null): object
     {
         return $this->connection($name);
     }

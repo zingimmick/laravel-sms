@@ -6,10 +6,7 @@ namespace Zing\LaravelSms\Connectors;
 
 class ConnectionFactory
 {
-    /**
-     * @return \Zing\LaravelSms\Connectors\Connector
-     */
-    public function make(array $config)
+    public function make(array $config): Connector
     {
         return (new Connector($config))->connect($config);
     }

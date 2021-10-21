@@ -14,20 +14,16 @@ class SmsMessage extends Message
 
     /**
      * @param string|callable $content
-     *
-     * @return static
      */
-    public static function text($content)
+    public static function text($content): self
     {
         return (new self([], MessageInterface::TEXT_MESSAGE))->setContent($content);
     }
 
     /**
      * @param string|callable $content
-     *
-     * @return static
      */
-    public static function voice($content)
+    public static function voice($content): self
     {
         return (new self([], MessageInterface::VOICE_MESSAGE))->setContent($content);
     }
@@ -38,7 +34,7 @@ class SmsMessage extends Message
      *
      * @return static
      */
-    public static function fromTemplate($template, $data)
+    public static function fromTemplate($template, $data): self
     {
         return static::text('')->setTemplate($template)->setData($data);
     }
