@@ -51,12 +51,13 @@ class VerificationCodeManager
             $ttl = config('sms.verification.ttl');
         }
 
-        $this->cacheManager->set($this->getPrefixedKey($number), $code, $ttl * 60);
+        $key = $this->getPrefixedKey($number);
         if (! $number instanceof SmsNumber) {
             $number = new SmsNumber($number);
         }
 
         $number->notify(new VerificationCode($code, $ttl));
+        $this->cacheManager->set($key, $code, $ttl * 60);
 
         return $code;
     }
