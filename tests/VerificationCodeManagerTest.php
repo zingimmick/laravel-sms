@@ -30,6 +30,8 @@ class VerificationCodeManagerTest extends TestCase
     {
         $code = $this->manager->issue('18888888888');
         self::assertSame(config('sms.verification.length'), strlen((string) $code));
+        $code = $this->manager->issue(new SmsNumber('18888888888'));
+        self::assertSame(config('sms.verification.length'), strlen((string) $code));
     }
 
     public function testVerify(): void
