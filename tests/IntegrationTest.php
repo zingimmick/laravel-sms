@@ -7,6 +7,8 @@ namespace Zing\LaravelSms\Tests;
 use Composer\Autoload\ClassMapGenerator;
 use Overtrue\EasySms\Contracts\GatewayInterface;
 use Overtrue\EasySms\Exceptions\GatewayErrorException;
+use Overtrue\EasySms\Gateways\ErrorlogGateway;
+use Overtrue\EasySms\Gateways\HuaweiGateway;
 use Overtrue\EasySms\Support\Config;
 use Overtrue\EasySms\Traits\HasHttpRequest;
 use ReflectionClass;
@@ -78,16 +80,36 @@ class IntegrationTest extends TestCase
                 }
             )
             ->each(
-                function ($config): void {
-                    $gateway = \Mockery::mock($config['driver'], [$config]);
+                function ($options): void {
+                    /** @var \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway */
+                    $gateway = \Mockery::mock($options['driver'], [$options]);
+                    $config = \Mockery::mock(Config::class, [$options]);
                     $gateway->makePartial();
                     $gateway->shouldAllowMockingProtectedMethods()
                         ->shouldReceive('request')
                         ->withAnyArgs()
                         ->andThrow(new GatewayErrorException('just for mock request', 0));
+                    $gateway->shouldReceive('setConfig')
+                        ->passthru();
+                    foreach ($options as $name => $value) {
+                        $args = $value === null ? [$name] : [$name, $value];
+                        if ($gateway instanceof ErrorlogGateway && $name === 'file') {
+                            $args = [$name, ''];
+                        }
+
+                        if ($gateway instanceof HuaweiGateway && $name === 'from' && is_array($value)) {
+                            $args = [$name];
+                        }
+
+                        $config->shouldReceive('get')
+                            ->withArgs($args)
+                            ->andReturn($value);
+                    }
+
+                    $gateway->setConfig($config);
 
                     try {
-                        $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test'), new Config($config));
+                        $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test'), $config);
                     } catch (GatewayErrorException $gatewayErrorException) {
                         if (in_array(HasHttpRequest::class, trait_uses_recursive($gateway), true)) {
                             self::expectException(GatewayErrorException::class);

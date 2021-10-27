@@ -13,12 +13,12 @@ return [
         'yunpian' => [
             'driver' => Overtrue\EasySms\Gateways\YunpianGateway::class,
             'api_key' => env('SMS_YUNPIAN_API_KEY'),
-            'signature' => env('SMS_YUNPIAN_SIGNATURE'),
+            'signature' => env('SMS_YUNPIAN_SIGNATURE', ''),
         ],
         'yunpian-market' => [
             'driver' => Overtrue\EasySms\Gateways\YunpianGateway::class,
             'api_key' => env('SMS_YUNPIAN_MARKET_API_KEY'),
-            'signature' => env('SMS_YUNPIAN_MARKET_SIGNATURE'),
+            'signature' => env('SMS_YUNPIAN_MARKET_SIGNATURE', ''),
         ],
         'aliyun' => [
             'driver' => Overtrue\EasySms\Gateways\AliyunGateway::class,
@@ -38,14 +38,14 @@ return [
         ],
         'baidu' => [
             'driver' => Overtrue\EasySms\Gateways\BaiduGateway::class,
-            'domain' => env('SMS_BAIDU_DOMAIN'),
+            'domain' => env('SMS_BAIDU_DOMAIN', 'smsv3.bj.baidubce.com'),
             'ak' => env('SMS_BAIDU_AK'),
             'sk' => env('SMS_BAIDU_SK'),
             'invoke_id' => env('SMS_BAIDU_INVOKED_ID'),
         ],
         'chuanglan' => [
             'driver' => Overtrue\EasySms\Gateways\ChuanglanGateway::class,
-            'channel' => env('SMS_CHUANGLAN_CHANNEL'),
+            'channel' => env('SMS_CHUANGLAN_CHANNEL', 'smsbj1'),
             'account' => env('SMS_CHUANGLAN_ACCOUNT'),
             'password' => env('SMS_CHUANGLAN_PASSWORD'),
             'intel_account' => env('SMS_CHUANGLAN_INTEL_ACCOUNT'),
@@ -55,17 +55,17 @@ return [
         ],
         'errorlog' => [
             'driver' => Overtrue\EasySms\Gateways\ErrorlogGateway::class,
-            'file' => '/tmp/easy-sms.log',
+            'file' => env('SMS_ERRORLOG_FILE', '/tmp/easy-sms.log'),
         ],
         'huawei' => [
             'driver' => Overtrue\EasySms\Gateways\HuaweiGateway::class,
-            'endpoint' => env('SMS_HUAWEI_ENDPOINT'),
+            'endpoint' => env('SMS_HUAWEI_ENDPOINT', 'https://api.rtc.huaweicloud.com:10443'),
             'app_key' => env('SMS_HUAWEI_APP_KEY'),
             'app_secret' => env('SMS_HUAWEI_APP_SECRET'),
             'from' => [
                 'default' => env('SMS_HUAWEI_FROM', 'default'),
             ],
-            'callback' => env('SMS_HUAWEI_CALLBACK'),
+            'callback' => env('SMS_HUAWEI_CALLBACK', ''),
         ],
         'huaxin' => [
             'driver' => Overtrue\EasySms\Gateways\HuaxinGateway::class,
@@ -98,20 +98,23 @@ return [
         'moduyun' => [
             'driver' => Overtrue\EasySms\Gateways\ModuyunGateway::class,
             'accesskey' => env('SMS_MODUYUN_ACCESS_KEY'),
-            'signId' => env('SMS_MODUYUN_SIGN_ID'),
-            'type' => env('SMS_MODUYUN_TYPE'),
+            'secretkey' => env('SMS_MODUYUN_SECRETKEY'),
+            'signId' => env('SMS_MODUYUN_SIGN_ID', ''),
+            'type' => env('SMS_MODUYUN_TYPE', 0),
         ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
             'username' => env('SMS_MEILIAN_USERNAME'),
             'password' => env('SMS_MEILIAN_PASSWORD'),
             'api_key' => env('SMS_MEILIAN_API_KEY'),
+            'signature' => env('SMS_MEILIAN_SIGNATURE', ''),
         ],
         'qcloud' => [
             'driver' => Overtrue\EasySms\Gateways\QcloudGateway::class,
-            'app_key' => env('SMS_QCOULD_APP_KEY'),
+            'secret_id' => env('SMS_QCOULD_SECRET_ID'),
+            'secret_key' => env('SMS_QCOULD_SECRET_KEY'),
             'sdk_app_id' => env('SMS_QCOULD_SDK_APP_ID'),
-            'sign_name' => env('SMS_QCOULD_SIGN_NAME'),
+            'sign_name' => env('SMS_QCOULD_SIGN_NAME', ''),
         ],
         'qiniu' => [
             'driver' => Overtrue\EasySms\Gateways\QiniuGateway::class,
@@ -122,6 +125,12 @@ return [
             'driver' => Overtrue\EasySms\Gateways\RongcloudGateway::class,
             'app_key' => env('SMS_RONGCLOUD_APP_KEY'),
             'app_secret' => env('SMS_RONGCLOUD_APP_SECRET'),
+        ],
+        'rongheyun' => [
+            'driver' => Overtrue\EasySms\Gateways\RongheyunGateway::class,
+            'username' => env('SMS_RONGHEYUN_USERNAME', ''),
+            'password' => env('SMS_RONGHEYUN_PASSWORD'),
+            'signature' => env('SMS_RONGHEYUN_SIGNATURE', ''),
         ],
         'sendcloud' => [
             'driver' => Overtrue\EasySms\Gateways\SendcloudGateway::class,
@@ -172,8 +181,8 @@ return [
         ],
         'yuntongxun' => [
             'driver' => Overtrue\EasySms\Gateways\YuntongxunGateway::class,
-            'debug' => env('SMS_YUNTONGXUN_DEBUG', false),
-            'is_sub_account' => env('SMS_YUNTONGXUN_IS_SUB_ACCOUNT', 'Accounts'),
+            'debug' => env('SMS_YUNTONGXUN_DEBUG'),
+            'is_sub_account' => env('SMS_YUNTONGXUN_IS_SUB_ACCOUNT'),
             'app_id' => env('SMS_YUNTONGXUN_APP_ID'),
             'account_sid' => env('SMS_YUNTONGXUN_ACCOUNT_SID'),
             'account_token' => env('SMS_YUNTONGXUN_ACCOUNT_TOKEN'),
@@ -190,6 +199,12 @@ return [
             'sid' => env('SMS_YUNZHIXUN_SID'),
             'token' => env('SMS_YUNZHIXUN_TOKEN'),
             'app_id' => env('SMS_YUNZHIXUN_APP_ID'),
+        ],
+        'zzyun' => [
+            'driver' => Overtrue\EasySms\Gateways\ZzyunGateway::class,
+            'user_id' => env('SMS_ZZYUN_USER_ID'),
+            'secret' => env('SMS_ZZYUN_SECRET'),
+            'sign_name' => env('SMS_ZZYUN_SIGN_NAME'),
         ],
     ],
     'verification' => [
