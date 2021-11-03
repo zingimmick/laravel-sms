@@ -78,6 +78,10 @@ class SmsManagerTest extends TestCase
         $sms->send($number, $message);
     }
 
+    /**
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|array<string, mixed>|string $message
+     */
     protected function sendString($number, $message): string
     {
         if (is_string($message)) {
@@ -189,7 +193,7 @@ class SmsManagerTest extends TestCase
 
     public function testNotifyInvalidReceiver(): void
     {
-        /** @var \Zing\LaravelSms\Tests\Phone $phone */
+        /** @var \Zing\LaravelSms\Tests\Phone|\Mockery\MockInterface $phone */
         $phone = Mockery::mock(Phone::class . '[routeNotificationForSms]', ['18888888888']);
         $phone->shouldReceive('routeNotificationForSms')
             ->once()
@@ -264,7 +268,11 @@ class SmsManagerTest extends TestCase
             ->send($number, $message);
     }
 
-    protected function prepareLoggerExpectation($channel = null, $level = 'info')
+    /**
+     * @param string|null $channel
+     * @phpstan-return \Mockery\Expectation
+     */
+    protected function prepareLoggerExpectation($channel = null, string $level = 'info')
     {
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();

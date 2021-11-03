@@ -69,7 +69,14 @@ class SmsSwitchConnectionCommand extends Command
      */
     public function handle(): void
     {
-        $connection = (string) $this->argument('connection');
+        $connection = $this->argument('connection');
+        if (is_array($connection)) {
+            return;
+        }
+
+        if ($connection === null) {
+            return;
+        }
 
         if ($this->option('show')) {
             $this->comment('SMS_CONNECTION=' . $connection);
@@ -97,7 +104,10 @@ class SmsSwitchConnectionCommand extends Command
      */
     protected function putEnvToFile(string $connection, string $path): bool
     {
-        if (! Str::contains(file_get_contents($path), 'SMS_CONNECTION')) {
+        /** @var string $contents */
+        $contents = file_get_contents($path);
+
+        if (! Str::contains($contents, 'SMS_CONNECTION')) {
             // create new entry
             file_put_contents($path, PHP_EOL . sprintf('SMS_CONNECTION=%s', $connection) . PHP_EOL, FILE_APPEND);
 
@@ -121,7 +131,7 @@ class SmsSwitchConnectionCommand extends Command
             str_replace(
                 'SMS_CONNECTION=' . $this->laravel['config']['sms.default'],
                 'SMS_CONNECTION=' . $connection,
-                file_get_contents($path)
+                $contents
             )
         );
 

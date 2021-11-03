@@ -25,19 +25,12 @@ class Phone
         $this->phone = $phone;
     }
 
-    public function getKey(): string
-    {
-        return $this->phone;
-    }
-
     /**
-     * @param mixed $notification
-     *
-     * @return mixed|string
+     * @param \Illuminate\Notifications\Notification|null $notification
      */
-    public function routeNotificationForSms($notification): string
+    public function routeNotificationForSms($notification = null): string
     {
-        if ($notification) {
+        if ($notification !== null) {
             return $this->phone;
         }
 

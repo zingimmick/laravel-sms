@@ -30,7 +30,7 @@ class SmsMessage extends Message
 
     /**
      * @param string|callable $template
-     * @param array|callable $data
+     * @param mixed[]|callable $data
      */
     public static function fromTemplate($template, $data): self
     {

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests\Drivers;
 
-use Illuminate\Support\Arr;
 use Mockery;
 use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
@@ -84,10 +83,6 @@ class YunpianDriverTest extends TestCase
 
     /**
      * @dataProvider provideNumberAndMessage
-     *
-     * @param mixed $number
-     * @param mixed $message
-     * @param mixed $expected
      */
     public function testDefaultSignature(int $number, string $message, string $expected): void
     {
@@ -132,16 +127,9 @@ class YunpianDriverTest extends TestCase
     public function testGetOptions(): void
     {
         $driver = Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
-        $driver->shouldReceive('getBaseOptions')
-            ->once()
-            ->passthru();
-        $driver->allows('getGuzzleOptions')
-            ->passthru();
         $driver->allows('getBaseUri')
             ->passthru();
-        $driver->allows('getTimeout')
-            ->passthru();
-        self::assertSame('http://yunpian.com', Arr::get($driver->getBaseOptions(), 'base_uri'));
+        self::assertSame('http://yunpian.com', $driver->getBaseUri());
     }
 
     /**

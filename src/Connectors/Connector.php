@@ -36,13 +36,16 @@ class Connector implements ConnectorInterface
     /**
      * Connector constructor.
      *
-     * @param array $config
+     * @param array<string, mixed> $config
      */
     public function __construct($config)
     {
         $this->config = new Config($config);
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     public function connect(array $config): self
     {
         if (! isset($config['driver'])) {
@@ -57,10 +60,18 @@ class Connector implements ConnectorInterface
 
     /**
      * Get gateway by class name.
+     *
+     * @param array<string, mixed> $config
      */
     protected function resolveDriver(string $driverClass, array $config): GatewayInterface
     {
-        if (! class_exists($driverClass) || ! in_array(GatewayInterface::class, class_implements($driverClass), true)) {
+        if (
+            ! class_exists($driverClass) || ! in_array(
+                GatewayInterface::class,
+                (array) class_implements($driverClass),
+                true
+            )
+        ) {
             throw new InvalidArgumentException(sprintf('Unsupported driver [%s].', $driverClass));
         }
 
@@ -80,7 +91,7 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * @param array|string|\Overtrue\EasySms\Contracts\MessageInterface $message
+     * @param array<string, mixed>|string|\Overtrue\EasySms\Contracts\MessageInterface $message
      */
     protected function formatMessage($message): MessageInterface
     {
@@ -99,8 +110,8 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * @param mixed $number
-     * @param mixed $message
+     * @param string|\Overtrue\EasySms\Contracts\PhoneNumberInterface $number
+     * @param array<string, mixed>|string|\Overtrue\EasySms\Contracts\MessageInterface $message
      *
      * @return bool|mixed
      */
