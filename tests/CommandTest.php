@@ -75,9 +75,9 @@ class CommandTest extends TestCase
             'connection' => 'default',
         ])->assertExitCode(0);
         $this->artisan(SmsSwitchConnectionCommand::class, [
-                'connection' => 'default-2',
-                '--force' => true,
-            ])
+            'connection' => 'default-2',
+            '--force' => true,
+        ])
             ->assertExitCode(0);
         self::assertSame(config('sms.default'), 'default-2');
     }
