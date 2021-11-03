@@ -14,7 +14,6 @@ class VerificationCodeManager
      */
     protected $cacheManager;
 
-    
     public function __construct(Repository $cacheManager)
     {
         $this->cacheManager = $cacheManager;

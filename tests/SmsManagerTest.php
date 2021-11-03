@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Mockery;
-use Mockery\ExpectationInterface;
 use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use RuntimeException;
@@ -271,8 +270,9 @@ class SmsManagerTest extends TestCase
 
     /**
      * @param string|null $channel
+     * @phpstan-return \Mockery\Expectation
      */
-    protected function prepareLoggerExpectation($channel = null, string $level = 'info'): Mockery\ExpectationInterface
+    protected function prepareLoggerExpectation($channel = null, string $level = 'info')
     {
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();
