@@ -11,6 +11,11 @@ use Zing\LaravelSms\SmsNumber;
 
 class SmsNumberTest extends TestCase
 {
+    /**
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|array<string, string>|string $message
+     * @return string
+     */
     protected function sendString($number, $message): string
     {
         if (is_string($message)) {
@@ -41,10 +46,15 @@ class SmsNumberTest extends TestCase
         $smsNumber = new SmsNumber('18188888888');
         $verifyCode = new VerifyCode();
         $this->prepareLoggerExpectation()
-            ->with($this->sendString($smsNumber->routeNotificationForSms(), $verifyCode->toSms($smsNumber)));
+            ->with($this->sendString($smsNumber->routeNotificationForSms($verifyCode), $verifyCode->toSms($smsNumber)));
         $smsNumber->notify($verifyCode);
     }
 
+    /**
+     * @param string|null $channel
+     * @param string $level
+     * @return \Mockery\Expectation
+     */
     protected function prepareLoggerExpectation($channel = null, $level = 'info')
     {
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());

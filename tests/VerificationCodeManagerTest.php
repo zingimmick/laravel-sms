@@ -13,6 +13,9 @@ class VerificationCodeManagerTest extends TestCase
 {
     use WithFaker;
 
+    /**
+     * @var VerificationCodeManager
+     */
     protected $manager;
 
     protected function getEnvironmentSetUp($app): void
@@ -50,7 +53,7 @@ class VerificationCodeManagerTest extends TestCase
     {
         $code = $this->faker->numberBetween();
         $ttl = $this->faker->numberBetween();
-        $verificationCode = new VerificationCode($code, $ttl);
+        $verificationCode = new VerificationCode((string)$code, $ttl);
         self::assertSame(sprintf(config('sms.verification.content'), $code, $ttl), $verificationCode->toSms());
     }
 }

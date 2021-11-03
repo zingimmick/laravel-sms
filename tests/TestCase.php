@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests;
 
+use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use PHPUnit\Framework\Constraint\IsEqual;
 use Zing\LaravelSms\Facades\Sms;
@@ -19,16 +20,29 @@ class TestCase extends BaseTestCase
      */
     private const DRIVER = 'driver';
 
+    /**
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $expected
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $actual
+     * @param string $message
+     */
     public static function assertSameMessage($expected, $actual, string $message = ''): void
     {
         static::assertThat($actual, new IsEqual($expected), $message);
     }
 
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     * @return array<class-string<\Illuminate\Support\ServiceProvider>>
+     */
     protected function getPackageProviders($app)
     {
         return [SmsServiceProvider::class];
     }
 
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     * @return string[]
+     */
     protected function getPackageAliases($app)
     {
         return [
@@ -38,7 +52,7 @@ class TestCase extends BaseTestCase
 
     protected function getEnvironmentSetUp($app): void
     {
-        $app['config']->set(
+        Config::set(
             'sms',
             [
                 'default' => env('SMS_CONNECTION', 'log'),

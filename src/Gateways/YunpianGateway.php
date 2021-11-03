@@ -21,12 +21,13 @@ class YunpianGateway extends Gateway
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
     {
         $signature = $this->config->get('signature');
         $content = $message->getContent($this);
+        /** @var mixed[] $result */
         $result = $this->post(
             '/v1/sms/send.json',
             [

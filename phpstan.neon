@@ -1,0 +1,17 @@
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+    - vendor/phpstan/phpstan-mockery/extension.neon
+
+parameters:
+    level: max
+    paths:
+        - config
+        - src
+        - tests
+    ignoreErrors:
+        - '#Class Sms not found.#'
+        - '#Parameter \#1 \$numberWithoutIDDCode of class Zing\\LaravelSms\\SmsNumber constructor expects int, string given.#'
+        - '#Parameter \#1 \$numberWithoutIDDCode of class Overtrue\\EasySms\\PhoneNumber constructor expects int, string given.#'
+        - '#Parameter \#1 \$callback of function forward_static_call expects callable\(\): mixed, (.*?) given.#'
+        - '#Cannot call method (.*?)\(\) on Illuminate\\Testing\\PendingCommand\|int.#'
+        - '#(.*?)Laravel\\Lumen\\Application(.*?)#'
