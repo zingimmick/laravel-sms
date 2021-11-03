@@ -74,15 +74,12 @@ class CommandTest extends TestCase
         $this->artisan(SmsSwitchConnectionCommand::class, [
             'connection' => 'default',
         ])->assertExitCode(0);
-        $this->artisan(
-            SmsSwitchConnectionCommand::class,
-            [
+        $this->artisan(SmsSwitchConnectionCommand::class, [
                 'connection' => 'default-2',
                 '--force' => true,
-            ]
-        )
+            ])
             ->assertExitCode(0);
-        self::assertSame(config('sms.default'), 'default-2');;
+        self::assertSame(config('sms.default'), 'default-2');
     }
 
     protected function envPath(): string
