@@ -6,6 +6,7 @@ namespace Zing\LaravelSms\Tests;
 
 use Illuminate\Support\Facades\Log;
 use Mockery;
+use Mockery\ExpectationInterface;
 use Overtrue\EasySms\Message;
 use Zing\LaravelSms\SmsNumber;
 
@@ -14,7 +15,6 @@ class SmsNumberTest extends TestCase
     /**
      * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
      * @param \Overtrue\EasySms\Contracts\MessageInterface|array<string, string>|string $message
-     * @return string
      */
     protected function sendString($number, $message): string
     {
@@ -52,10 +52,8 @@ class SmsNumberTest extends TestCase
 
     /**
      * @param string|null $channel
-     * @param string $level
-     * @return \Mockery\Expectation
      */
-    protected function prepareLoggerExpectation($channel = null, $level = 'info')
+    protected function prepareLoggerExpectation($channel = null, string $level = 'info'): Mockery\ExpectationInterface
     {
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();

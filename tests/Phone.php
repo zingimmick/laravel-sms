@@ -27,12 +27,10 @@ class Phone
 
     /**
      * @param \Illuminate\Notifications\Notification|null $notification
-     *
-     * @return string
      */
-    public function routeNotificationForSms($notification =null): string
+    public function routeNotificationForSms($notification = null): string
     {
-        if ($notification) {
+        if ($notification !== null) {
             return $this->phone;
         }
 

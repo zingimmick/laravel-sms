@@ -102,10 +102,6 @@ class MeiLianDriverTest extends TestCase
 
     /**
      * @dataProvider provideNumberAndMessage
-     *
-     * @param int $number
-     * @param string $message
-     * @param string $expected
      */
     public function testDefaultSignature(int $number, string $message, string $expected): void
     {

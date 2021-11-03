@@ -14,7 +14,7 @@ class VerificationCodeManagerTest extends TestCase
     use WithFaker;
 
     /**
-     * @var VerificationCodeManager
+     * @var \Zing\LaravelSms\VerificationCodeManager
      */
     protected $manager;
 
@@ -53,7 +53,7 @@ class VerificationCodeManagerTest extends TestCase
     {
         $code = $this->faker->numberBetween();
         $ttl = $this->faker->numberBetween();
-        $verificationCode = new VerificationCode((string)$code, $ttl);
+        $verificationCode = new VerificationCode((string) $code, $ttl);
         self::assertSame(sprintf(config('sms.verification.content'), $code, $ttl), $verificationCode->toSms());
     }
 }

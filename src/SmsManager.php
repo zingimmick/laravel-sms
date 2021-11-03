@@ -27,7 +27,6 @@ class SmsManager extends AbstractManager
 
     /**
      * @param array<string, mixed> $config
-     * @return \Zing\LaravelSms\Connectors\Connector
      */
     protected function createConnection(array $config): Connectors\Connector
     {

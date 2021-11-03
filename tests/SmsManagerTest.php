@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Mockery;
+use Mockery\ExpectationInterface;
 use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
 use RuntimeException;
@@ -77,10 +78,10 @@ class SmsManagerTest extends TestCase
         $sms = app(SmsManager::class);
         $sms->send($number, $message);
     }
+
     /**
      * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
      * @param \Overtrue\EasySms\Contracts\MessageInterface|array<string, mixed>|string $message
-     * @return string
      */
     protected function sendString($number, $message): string
     {
@@ -267,12 +268,11 @@ class SmsManagerTest extends TestCase
         $sms->connection('log')
             ->send($number, $message);
     }
+
     /**
      * @param string|null $channel
-     * @param string $level
-     * @return \Mockery\Expectation
      */
-    protected function prepareLoggerExpectation($channel = null, $level = 'info')
+    protected function prepareLoggerExpectation($channel = null, string $level = 'info'): Mockery\ExpectationInterface
     {
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();

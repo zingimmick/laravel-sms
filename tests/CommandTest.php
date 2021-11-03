@@ -75,7 +75,10 @@ class CommandTest extends TestCase
 
         $this->connection = config('sms.default');
     }
-/** @var string */
+
+    /**
+     * @var string
+     */
     protected $connection;
 
     protected function tearDown(): void

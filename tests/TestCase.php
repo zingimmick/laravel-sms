@@ -23,7 +23,6 @@ class TestCase extends BaseTestCase
     /**
      * @param \Overtrue\EasySms\Contracts\MessageInterface|string $expected
      * @param \Overtrue\EasySms\Contracts\MessageInterface|string $actual
-     * @param string $message
      */
     public static function assertSameMessage($expected, $actual, string $message = ''): void
     {
@@ -32,6 +31,7 @@ class TestCase extends BaseTestCase
 
     /**
      * @param \Illuminate\Foundation\Application $app
+     *
      * @return array<class-string<\Illuminate\Support\ServiceProvider>>
      */
     protected function getPackageProviders($app)
@@ -41,6 +41,7 @@ class TestCase extends BaseTestCase
 
     /**
      * @param \Illuminate\Foundation\Application $app
+     *
      * @return string[]
      */
     protected function getPackageAliases($app)
