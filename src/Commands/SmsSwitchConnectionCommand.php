@@ -73,9 +73,11 @@ class SmsSwitchConnectionCommand extends Command
         if (is_array($connection)) {
             return;
         }
+
         if ($connection === null) {
             return;
         }
+
         if ($this->option('show')) {
             $this->comment('SMS_CONNECTION=' . $connection);
 

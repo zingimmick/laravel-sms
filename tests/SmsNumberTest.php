@@ -6,7 +6,6 @@ namespace Zing\LaravelSms\Tests;
 
 use Illuminate\Support\Facades\Log;
 use Mockery;
-use Mockery\ExpectationInterface;
 use Overtrue\EasySms\Message;
 use Zing\LaravelSms\SmsNumber;
 
