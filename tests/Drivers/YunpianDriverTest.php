@@ -132,14 +132,9 @@ class YunpianDriverTest extends TestCase
         self::assertSame('http://yunpian.com', $driver->getBaseUri());
     }
 
-    /**
-     * @return array<int, array<int|string>>
-     */
-    public function provideNumberAndMessage(): array
+    public function provideNumberAndMessage(): \Iterator
     {
-        return [
-            [18188888888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'],
-            [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'],
-        ];
+        yield [18188888888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'];
+        yield [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'];
     }
 }
