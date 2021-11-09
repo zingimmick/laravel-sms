@@ -39,7 +39,7 @@ class SmsManager extends AbstractManager
         return 'sms';
     }
 
-    public function via(?string $name = null): object
+    public function via(?string $name = null): Connectors\Connector
     {
         return $this->connection($name);
     }

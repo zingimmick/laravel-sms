@@ -6,7 +6,6 @@ namespace Zing\LaravelSms\Tests;
 
 use Illuminate\Support\Facades\Log;
 use Overtrue\EasySms\PhoneNumber;
-use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsMessage;
