@@ -133,7 +133,7 @@ class YunpianDriverTest extends TestCase
     }
 
     /**
-     * @return \Iterator{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}
+     * @return \Iterator<array{string|int|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
      */
     public function provideNumberAndMessage(): \Iterator
     {

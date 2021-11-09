@@ -56,7 +56,7 @@ class SmsManagerTest extends TestCase
     ];
 
     /**
-     * @return \Iterator{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}
+     * @return \Iterator<array{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
      */
     public function provideNumberAndMessage(): \Iterator
     {
