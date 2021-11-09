@@ -132,6 +132,9 @@ class YunpianDriverTest extends TestCase
         self::assertSame('http://yunpian.com', $driver->getBaseUri());
     }
 
+    /**
+     * @return \Iterator{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}
+     */
     public function provideNumberAndMessage(): \Iterator
     {
         yield [18188888888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'];

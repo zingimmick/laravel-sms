@@ -140,6 +140,9 @@ class MeiLianDriverTest extends TestCase
         );
     }
 
+    /**
+     * @return \Iterator{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}
+     */
     public function provideNumberAndMessage(): \Iterator
     {
         yield [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'];

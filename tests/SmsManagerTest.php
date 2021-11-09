@@ -55,6 +55,9 @@ class SmsManagerTest extends TestCase
         'data' => [111],
     ];
 
+    /**
+     * @return \Iterator{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}
+     */
     public function provideNumberAndMessage(): \Iterator
     {
         yield ['18888888888', 'test'];
