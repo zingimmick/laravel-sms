@@ -140,14 +140,9 @@ class MeiLianDriverTest extends TestCase
         );
     }
 
-    /**
-     * @return array<int, array<int|string>>
-     */
-    public function provideNumberAndMessage(): array
+    public function provideNumberAndMessage(): \Iterator
     {
-        return [
-            [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'],
-            [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'],
-        ];
+        yield [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'];
+        yield [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'];
     }
 }
