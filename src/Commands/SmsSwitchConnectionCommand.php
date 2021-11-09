@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Zing\LaravelSms\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -128,11 +129,7 @@ class SmsSwitchConnectionCommand extends Command
 
         file_put_contents(
             $path,
-            str_replace(
-                'SMS_CONNECTION=' . $this->laravel['config']['sms.default'],
-                'SMS_CONNECTION=' . $connection,
-                $contents
-            )
+            str_replace('SMS_CONNECTION=' . Config::get('sms.default'), 'SMS_CONNECTION=' . $connection, $contents)
         );
 
         return true;
@@ -143,7 +140,7 @@ class SmsSwitchConnectionCommand extends Command
      */
     protected function displayConnection(string $connection): void
     {
-        $this->laravel['config']['sms.default'] = $connection;
+        Config::set('sms.default', $connection);
 
         $this->info(sprintf('sms default connection switch to [%s] successfully.', $connection));
     }

@@ -6,7 +6,6 @@ namespace Zing\LaravelSms\Tests;
 
 use Illuminate\Support\Facades\Log;
 use Overtrue\EasySms\PhoneNumber;
-use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsMessage;
@@ -23,7 +22,7 @@ class ServiceProviderTest extends TestCase
         $phoneNumber = new PhoneNumber(18188888888);
         $message = SmsMessage::text('【test】This is a test message.');
         Log::shouldReceive('debug')->withAnyArgs()->twice();
-        Sms::connection('null')->send($phoneNumber, $message, new Config());
+        Sms::connection('null')->send($phoneNumber, $message);
     }
 
     public function testAlias(): void

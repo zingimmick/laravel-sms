@@ -56,11 +56,12 @@ class SmsManagerTest extends TestCase
     ];
 
     /**
-     * @return array<int, array<string|\Overtrue\EasySms\PhoneNumber|\Zing\LaravelSms\SmsMessage>>
+     * @return \Iterator<array{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
      */
-    public function provideNumberAndMessage(): array
+    public function provideNumberAndMessage(): \Iterator
     {
-        return [['18888888888', 'test'], [new PhoneNumber('18888888888', '+86'), SmsMessage::text('test')]];
+        yield ['18888888888', 'test'];
+        yield [new PhoneNumber('18888888888', '+86'), SmsMessage::text('test')];
     }
 
     /**

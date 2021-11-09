@@ -9,7 +9,8 @@ use Illuminate\Contracts\Config\Repository;
 use Zing\LaravelSms\Connectors\ConnectionFactory;
 
 /**
- * @method static bool send($number, $message) 发送消息
+ * @method bool send($number, $message) 发送消息
+ * @method \Zing\LaravelSms\Connectors\Connector connection(string $name = null)
  */
 class SmsManager extends AbstractManager
 {
@@ -38,7 +39,7 @@ class SmsManager extends AbstractManager
         return 'sms';
     }
 
-    public function via(?string $name = null): object
+    public function via(?string $name = null): Connectors\Connector
     {
         return $this->connection($name);
     }
