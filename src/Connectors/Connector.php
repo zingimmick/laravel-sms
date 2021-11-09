@@ -61,6 +61,7 @@ class Connector implements ConnectorInterface
     /**
      * Get gateway by class name.
      *
+     * @param class-string<GatewayInterface> $driverClass
      * @param array<string, mixed> $config
      */
     protected function resolveDriver(string $driverClass, array $config): GatewayInterface

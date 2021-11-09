@@ -23,7 +23,7 @@ class ServiceProviderTest extends TestCase
         $phoneNumber = new PhoneNumber(18188888888);
         $message = SmsMessage::text('【test】This is a test message.');
         Log::shouldReceive('debug')->withAnyArgs()->twice();
-        Sms::connection('null')->send($phoneNumber, $message, new Config());
+        Sms::connection('null')->send($phoneNumber, $message);
     }
 
     public function testAlias(): void
