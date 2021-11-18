@@ -10,7 +10,6 @@
          convertWarningsToExceptions="true"
          failOnRisky="true"
          failOnWarning="true"
-         processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
          verbose="true"
