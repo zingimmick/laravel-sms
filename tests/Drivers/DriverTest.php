@@ -19,9 +19,9 @@ class DriverTest extends TestCase
         $phoneNumber = new PhoneNumber(18188888888);
         $message = new Message([]);
         Event::fake();
-        Event::shouldReceive('dispatch')->andThrow(new Exception('test message'));
+        Event::shouldReceive('dispatch')->andThrow(new Exception('test'));
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage('test message');
+        $this->expectExceptionMessage('test');
         (new Connector([]))->send($phoneNumber, $message);
     }
 
@@ -30,9 +30,9 @@ class DriverTest extends TestCase
         $phoneNumber = new PhoneNumber(18188888888);
         $message = new Message([]);
         Event::fake();
-        Event::shouldReceive('dispatch')->andThrow(new CouldNotSendNotification('test message'));
+        Event::shouldReceive('dispatch')->andThrow(new CouldNotSendNotification('test'));
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage('test message');
+        $this->expectExceptionMessage('test');
         (new Connector([]))->send($phoneNumber, $message);
     }
 }
