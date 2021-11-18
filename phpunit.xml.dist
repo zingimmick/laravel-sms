@@ -6,7 +6,6 @@
          bootstrap="vendor/autoload.php"
          colors="true"
          convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          failOnRisky="true"
          failOnWarning="true"
