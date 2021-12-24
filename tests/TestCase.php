@@ -34,7 +34,7 @@ class TestCase extends BaseTestCase
      *
      * @return array<class-string<\Illuminate\Support\ServiceProvider>>
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [SmsServiceProvider::class];
     }
@@ -44,7 +44,7 @@ class TestCase extends BaseTestCase
      *
      * @return string[]
      */
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return [
             'Sms' => Sms::class,

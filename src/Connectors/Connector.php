@@ -34,7 +34,6 @@ class Connector implements ConnectorInterface
     protected $config;
 
     /**
-     *
      * @param array<string, mixed> $config
      */
     public function __construct(array $config)

@@ -15,9 +15,7 @@ class Phone
      */
     protected $phone;
 
-    /**
-     * Phone constructor.
-     */
+    
     public function __construct(string $phone)
     {
         $this->phone = $phone;
