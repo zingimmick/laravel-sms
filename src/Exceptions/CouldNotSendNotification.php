@@ -14,11 +14,9 @@ class CouldNotSendNotification extends Exception
     public $raw = [];
 
     /**
-     * @param string $message
-     * @param int $code
      * @param mixed[] $raw
      */
-    public function __construct($message = '', $code = 0, $raw = [])
+    public function __construct(string $message = '', int $code = 0, array $raw = [])
     {
         parent::__construct($message, $code);
 

@@ -47,7 +47,7 @@ class VerificationCodeManager
 
     /**
      * @param \Zing\LaravelSms\SmsNumber|string $number
-     * @param int|null $ttl
+     * @param mixed $ttl
      */
     public function issue($number, $ttl = null): int
     {

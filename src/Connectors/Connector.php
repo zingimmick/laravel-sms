@@ -34,11 +34,10 @@ class Connector implements ConnectorInterface
     protected $config;
 
     /**
-     * Connector constructor.
      *
      * @param array<string, mixed> $config
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
         $this->config = new Config($config);
     }

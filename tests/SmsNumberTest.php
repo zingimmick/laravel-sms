@@ -50,10 +50,9 @@ class SmsNumberTest extends TestCase
     }
 
     /**
-     * @param string|null $channel
      * @phpstan-return \Mockery\Expectation
      */
-    protected function prepareLoggerExpectation($channel = null, string $level = 'info')
+    protected function prepareLoggerExpectation(?string $channel = null, string $level = 'info')
     {
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();

@@ -19,13 +19,7 @@ class VerificationCode extends Notification
      */
     protected $ttl;
 
-    /**
-     * VerificationCode constructor.
-     *
-     * @param string $code
-     * @param int $ttl
-     */
-    public function __construct($code, $ttl)
+    public function __construct(string $code, int $ttl)
     {
         $this->code = $code;
         $this->ttl = $ttl;
