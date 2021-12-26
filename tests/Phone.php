@@ -15,20 +15,12 @@ class Phone
      */
     protected $phone;
 
-    /**
-     * Phone constructor.
-     *
-     * @param string $phone
-     */
-    public function __construct($phone)
+    public function __construct(string $phone)
     {
         $this->phone = $phone;
     }
 
-    /**
-     * @param \Illuminate\Notifications\Notification|null $notification
-     */
-    public function routeNotificationForSms($notification = null): string
+    public function routeNotificationForSms(?\Illuminate\Notifications\Notification $notification = null): string
     {
         if ($notification !== null) {
             return $this->phone;
