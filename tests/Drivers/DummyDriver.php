@@ -12,7 +12,7 @@ use Overtrue\EasySms\Support\Config;
 class DummyDriver extends Gateway
 {
     /**
-     * @return array<string, string>|array<string, bool>
+     * @return array<string, string|bool>
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config): array
     {

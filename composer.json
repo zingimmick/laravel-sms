@@ -42,7 +42,10 @@
     },
     "config": {
         "sort-packages": true,
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "extra": {
         "laravel": {
