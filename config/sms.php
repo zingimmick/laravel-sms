@@ -26,6 +26,12 @@ return [
             'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
             'sign_name' => env('SMS_ALIYUN_ACCESS_SIGN_NAME'),
         ],
+        'aliyunintl' => [
+            'driver' => Overtrue\EasySms\Gateways\AliyunIntlGateway::class,
+            'access_key_id' => env('SMS_ALIYUNINTL_APP_SECRET_KEY'),
+            'access_key_secret' => env('SMS_ALIYUNINTL_SIGN_NAME'),
+            'sign_name' => env('SMS_ALIYUNINTL_APP_KEY'),
+        ],
         'aliyunrest' => [
             'driver' => Overtrue\EasySms\Gateways\AliyunrestGateway::class,
             'app_key' => env('SMS_ALIYUNREST_APP_KEY'),
