@@ -12,7 +12,10 @@ use Zing\LaravelSms\Gateways\MeilianGateway;
 use Zing\LaravelSms\SmsMessage;
 use Zing\LaravelSms\Tests\TestCase;
 
-class MeiLianDriverTest extends TestCase
+/**
+ * @internal
+ */
+final class MeiLianDriverTest extends TestCase
 {
     /**
      * @var string

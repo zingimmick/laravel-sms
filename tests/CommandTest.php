@@ -7,7 +7,10 @@ namespace Zing\LaravelSms\Tests;
 use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
 use function config;
 
-class CommandTest extends TestCase
+/**
+ * @internal
+ */
+final class CommandTest extends TestCase
 {
     public function testCommand(): void
     {

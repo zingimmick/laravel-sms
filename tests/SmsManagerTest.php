@@ -20,7 +20,10 @@ use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsManager;
 use Zing\LaravelSms\SmsMessage;
 
-class SmsManagerTest extends TestCase
+/**
+ * @internal
+ */
+final class SmsManagerTest extends TestCase
 {
     /**
      * @var string

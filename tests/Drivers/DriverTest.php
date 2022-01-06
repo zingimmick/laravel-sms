@@ -12,7 +12,10 @@ use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Tests\TestCase;
 
-class DriverTest extends TestCase
+/**
+ * @internal
+ */
+final class DriverTest extends TestCase
 {
     public function testException(): void
     {

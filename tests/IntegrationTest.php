@@ -15,7 +15,10 @@ use ReflectionClass;
 use Zing\LaravelSms\SmsMessage;
 use Zing\LaravelSms\SmsNumber;
 
-class IntegrationTest extends TestCase
+/**
+ * @internal
+ */
+final class IntegrationTest extends TestCase
 {
     protected function getEnvironmentSetUp($app): void
     {

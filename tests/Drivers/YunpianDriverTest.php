@@ -12,7 +12,10 @@ use Zing\LaravelSms\Gateways\YunpianGateway;
 use Zing\LaravelSms\SmsMessage;
 use Zing\LaravelSms\Tests\TestCase;
 
-class YunpianDriverTest extends TestCase
+/**
+ * @internal
+ */
+final class YunpianDriverTest extends TestCase
 {
     public function testSend(): void
     {

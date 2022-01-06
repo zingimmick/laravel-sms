@@ -7,7 +7,10 @@ namespace Zing\LaravelSms\Tests;
 use Overtrue\EasySms\Contracts\MessageInterface;
 use Zing\LaravelSms\SmsMessage;
 
-class MessageTest extends TestCase
+/**
+ * @internal
+ */
+final class MessageTest extends TestCase
 {
     public function testStaticCreate(): void
     {

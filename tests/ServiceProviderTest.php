@@ -10,7 +10,10 @@ use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsMessage;
 
-class ServiceProviderTest extends TestCase
+/**
+ * @internal
+ */
+final class ServiceProviderTest extends TestCase
 {
     public function testSms(): void
     {

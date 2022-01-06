@@ -10,7 +10,10 @@ use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsMessage;
 use Zing\LaravelSms\Tests\TestCase;
 
-class NullDriverTest extends TestCase
+/**
+ * @internal
+ */
+final class NullDriverTest extends TestCase
 {
     public function testSend(): void
     {

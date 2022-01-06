@@ -9,7 +9,10 @@ use Zing\LaravelSms\Notifications\VerificationCode;
 use Zing\LaravelSms\SmsNumber;
 use Zing\LaravelSms\VerificationCodeManager;
 
-class VerificationCodeManagerTest extends TestCase
+/**
+ * @internal
+ */
+final class VerificationCodeManagerTest extends TestCase
 {
     use WithFaker;
 

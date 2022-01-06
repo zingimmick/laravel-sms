@@ -9,7 +9,10 @@ use Mockery;
 use Overtrue\EasySms\Message;
 use Zing\LaravelSms\SmsNumber;
 
-class SmsNumberTest extends TestCase
+/**
+ * @internal
+ */
+final class SmsNumberTest extends TestCase
 {
     /**
      * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
