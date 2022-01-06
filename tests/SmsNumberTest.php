@@ -15,7 +15,6 @@ use Zing\LaravelSms\SmsNumber;
 final class SmsNumberTest extends TestCase
 {
     /**
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
      * @param \Overtrue\EasySms\Contracts\MessageInterface|array<string, string>|string $message
      */
     private function sendString(SmsNumber $number, $message): string
