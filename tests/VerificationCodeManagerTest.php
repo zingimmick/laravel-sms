@@ -19,7 +19,7 @@ final class VerificationCodeManagerTest extends TestCase
     /**
      * @var \Zing\LaravelSms\VerificationCodeManager
      */
-    protected $manager;
+    private $verificationCodeManager;
 
     protected function getEnvironmentSetUp($app): void
     {
@@ -29,27 +29,27 @@ final class VerificationCodeManagerTest extends TestCase
     {
         parent::setUp();
 
-        $this->manager = app(VerificationCodeManager::class);
+        $this->verificationCodeManager = app(VerificationCodeManager::class);
     }
 
     public function testIssue(): void
     {
-        $code = $this->manager->issue('18888888888');
+        $code = $this->verificationCodeManager->issue('18888888888');
         self::assertSame(config('sms.verification.length'), strlen((string) $code));
-        $code = $this->manager->issue(new SmsNumber('18888888888'));
+        $code = $this->verificationCodeManager->issue(new SmsNumber('18888888888'));
         self::assertSame(config('sms.verification.length'), strlen((string) $code));
     }
 
     public function testVerify(): void
     {
-        self::assertFalse($this->manager->verify(new SmsNumber('18888888888'), ''));
-        $code = $this->manager->issue(new SmsNumber('18888888888'));
-        self::assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code));
-        self::assertFalse($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
+        self::assertFalse($this->verificationCodeManager->verify(new SmsNumber('18888888888'), ''));
+        $code = $this->verificationCodeManager->issue(new SmsNumber('18888888888'));
+        self::assertTrue($this->verificationCodeManager->verify(new SmsNumber('18888888888'), $code));
+        self::assertFalse($this->verificationCodeManager->verify(new SmsNumber('18888888888'), $code + 1));
         config([
             'sms.verification.debug' => true,
         ]);
-        self::assertTrue($this->manager->verify(new SmsNumber('18888888888'), $code + 1));
+        self::assertTrue($this->verificationCodeManager->verify(new SmsNumber('18888888888'), $code + 1));
     }
 
     public function testVerification(): void
