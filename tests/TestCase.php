@@ -13,7 +13,7 @@ use Zing\LaravelSms\Gateways\NullGateway;
 use Zing\LaravelSms\Gateways\YunpianGateway;
 use Zing\LaravelSms\SmsServiceProvider;
 
-class TestCase extends BaseTestCase
+abstract class TestCase extends BaseTestCase
 {
     /**
      * @var string
@@ -26,7 +26,7 @@ class TestCase extends BaseTestCase
      */
     public static function assertSameMessage($expected, $actual, string $message = ''): void
     {
-        static::assertThat($actual, new IsEqual($expected), $message);
+        self::assertThat($actual, new IsEqual($expected), $message);
     }
 
     /**

@@ -7,7 +7,10 @@ namespace Zing\LaravelSms\Tests;
 use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
 use function config;
 
-class CommandTest extends TestCase
+/**
+ * @internal
+ */
+final class CommandTest extends TestCase
 {
     public function testCommand(): void
     {
@@ -82,7 +85,7 @@ class CommandTest extends TestCase
         self::assertSame(config('sms.default'), 'default-2');
     }
 
-    protected function envPath(): string
+    private function envPath(): string
     {
         if (method_exists($this->app, 'environmentFilePath')) {
             return $this->app->environmentFilePath();
@@ -101,7 +104,7 @@ class CommandTest extends TestCase
     /**
      * @var string
      */
-    protected $connection;
+    private $connection;
 
     protected function tearDown(): void
     {

@@ -9,13 +9,15 @@ use Mockery;
 use Overtrue\EasySms\Message;
 use Zing\LaravelSms\SmsNumber;
 
-class SmsNumberTest extends TestCase
+/**
+ * @internal
+ */
+final class SmsNumberTest extends TestCase
 {
     /**
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
      * @param \Overtrue\EasySms\Contracts\MessageInterface|array<string, string>|string $message
      */
-    protected function sendString($number, $message): string
+    private function sendString(SmsNumber $number, $message): string
     {
         if (is_string($message)) {
             $message = new Message(
@@ -52,7 +54,7 @@ class SmsNumberTest extends TestCase
     /**
      * @phpstan-return \Mockery\Expectation
      */
-    protected function prepareLoggerExpectation(?string $channel = null, string $level = 'info')
+    private function prepareLoggerExpectation(?string $channel = null, string $level = 'info')
     {
         Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();
