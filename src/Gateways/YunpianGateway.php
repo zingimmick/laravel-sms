@@ -27,6 +27,7 @@ class YunpianGateway extends Gateway
     {
         $signature = $this->config->get('signature');
         $content = $message->getContent($this);
+
         /** @var mixed[] $result */
         $result = $this->post(
             '/v1/sms/send.json',
