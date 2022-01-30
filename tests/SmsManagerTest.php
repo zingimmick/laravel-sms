@@ -77,6 +77,7 @@ final class SmsManagerTest extends TestCase
     {
         $this->prepareLoggerExpectation()
             ->with($this->sendString($number, $message));
+
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
         $sms->send($number, $message);
@@ -123,6 +124,7 @@ final class SmsManagerTest extends TestCase
             ->set('sms.connections.log.channel', self::CHANNEL);
         $this->prepareLoggerExpectation(self::CHANNEL)
             ->with($this->sendString($number, $message));
+
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
         $sms->send($number, $message);
@@ -140,6 +142,7 @@ final class SmsManagerTest extends TestCase
             ->set('sms.connections.log.level', self::LEVEL);
         $this->prepareLoggerExpectation(null, self::LEVEL)
             ->with($this->sendString($number, $message));
+
         /** @var \Zing\LaravelSms\SmsManager $sms */
         $sms = app(SmsManager::class);
         $sms->send($number, $message);
