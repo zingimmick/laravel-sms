@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 4.2.1 - 2022-02-07
+
+## What's Changed
+
+- Bump EndBug/add-and-commit from 7.5.0 to 8 by @dependabot in https://github.com/zingimmick/laravel-sms/pull/215
+- Use PHP version set instead of migration sets by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/216
+- Update zing/coding-standard requirement from ^5.3 to ^5.3 || ^6.0 by @dependabot in https://github.com/zingimmick/laravel-sms/pull/217
+- Fix rector ci by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/218
+- Ignore phpstan.neon when adding to archive files by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/219
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/4.2.0...4.2.1
+
 ## 4.2.0 - 2022-01-13
 
 ## What's Changed
