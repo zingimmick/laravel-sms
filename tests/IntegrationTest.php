@@ -26,7 +26,7 @@ final class IntegrationTest extends TestCase
 
     public function testAllDriversImplementsGatewayInterface(): void
     {
-        $drivers = collect(config('sms.connections'))
+        $drivers = collect((array) config('sms.connections'))
             ->pluck('driver');
         $drivers->each(
             function ($driver): void {
@@ -40,7 +40,7 @@ final class IntegrationTest extends TestCase
 
     public function testAllDriversHasDefaultConfig(): void
     {
-        $drivers = collect(config('sms.connections'))
+        $drivers = collect((array) config('sms.connections'))
             ->pluck('driver');
         $gateways = collect(ClassMapGenerator::createMap('vendor/overtrue/easy-sms'))
             ->keys()
@@ -66,7 +66,7 @@ final class IntegrationTest extends TestCase
 
     public function testSend(): void
     {
-        collect(config('sms.connections'))
+        collect((array) config('sms.connections'))
             ->filter(
                 function ($config): bool {
                     $name = $config['driver'];
