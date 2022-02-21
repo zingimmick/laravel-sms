@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 4.3.1 - 2022-02-21
+
+## What's Changed
+
+- Fix branch name by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/221
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/4.3.0...4.3.1
+
 ## 4.2.1 - 2022-02-07
 
 ## What's Changed
