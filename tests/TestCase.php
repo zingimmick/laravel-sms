@@ -26,7 +26,7 @@ abstract class TestCase extends BaseTestCase
      */
     public static function assertSameMessage($expected, $actual, string $message = ''): void
     {
-        self::assertThat($actual, new IsEqual($expected), $message);
+        static::assertThat($actual, new IsEqual($expected), $message);
     }
 
     /**

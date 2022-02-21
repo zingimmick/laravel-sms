@@ -19,7 +19,7 @@ final class SmsNumberTest extends TestCase
      */
     private function sendString(SmsNumber $number, $message): string
     {
-        if (is_string($message)) {
+        if (\is_string($message)) {
             $message = new Message(
                 [
                     'content' => $message,
@@ -28,7 +28,7 @@ final class SmsNumberTest extends TestCase
             );
         }
 
-        if (is_array($message)) {
+        if (\is_array($message)) {
             $message = new Message($message);
         }
 

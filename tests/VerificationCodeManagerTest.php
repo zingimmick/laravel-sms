@@ -35,9 +35,9 @@ final class VerificationCodeManagerTest extends TestCase
     public function testIssue(): void
     {
         $code = $this->verificationCodeManager->issue('18888888888');
-        self::assertSame(config('sms.verification.length'), strlen((string) $code));
+        self::assertSame(config('sms.verification.length'), \strlen((string) $code));
         $code = $this->verificationCodeManager->issue(new SmsNumber('18888888888'));
-        self::assertSame(config('sms.verification.length'), strlen((string) $code));
+        self::assertSame(config('sms.verification.length'), \strlen((string) $code));
     }
 
     public function testVerify(): void

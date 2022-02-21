@@ -59,7 +59,7 @@ final class YunpianDriverTest extends TestCase
 
         $message = SmsMessage::text('【test】This is a test message.');
         $config = new Config($config);
-        $this->assertSame(
+        self::assertSame(
             [
                 'code' => 0,
                 'msg' => '发送成功',
@@ -124,7 +124,7 @@ final class YunpianDriverTest extends TestCase
             )->andReturn($response);
         $config = new Config($config);
 
-        $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
+        self::assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
 
     public function testGetOptions(): void

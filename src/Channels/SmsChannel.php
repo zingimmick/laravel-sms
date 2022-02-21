@@ -38,7 +38,7 @@ class SmsChannel
             return;
         }
 
-        if (is_string($message)) {
+        if (\is_string($message)) {
             $message = new SmsMessage(
                 [
                     'content' => $message,

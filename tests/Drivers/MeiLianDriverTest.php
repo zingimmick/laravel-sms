@@ -51,7 +51,7 @@ final class MeiLianDriverTest extends TestCase
 
         $message = SmsMessage::text('【test】This is a test message.');
         $config = new Config($config);
-        $this->assertSame(
+        self::assertSame(
             [
                 'success' => true,
                 'msg' => 'ok',
@@ -133,7 +133,7 @@ final class MeiLianDriverTest extends TestCase
             )->andReturn(self::RESPONSE);
         $config = new Config($config);
 
-        $this->assertSame(
+        self::assertSame(
             [
                 'success' => true,
                 'msg' => 'ok',
