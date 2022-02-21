@@ -100,7 +100,7 @@ final class IntegrationTest extends TestCase
                             $args = [$name, ''];
                         }
 
-                        if ($gateway instanceof HuaweiGateway && $name === 'from' && is_array($value)) {
+                        if ($gateway instanceof HuaweiGateway && $name === 'from' && \is_array($value)) {
                             $args = [$name];
                         }
 
@@ -114,7 +114,7 @@ final class IntegrationTest extends TestCase
                     try {
                         $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test'), $config);
                     } catch (GatewayErrorException $gatewayErrorException) {
-                        if (in_array(HasHttpRequest::class, trait_uses_recursive(get_class($gateway)), true)) {
+                        if (\in_array(HasHttpRequest::class, trait_uses_recursive(\get_class($gateway)), true)) {
                             self::expectException(GatewayErrorException::class);
                             self::expectExceptionMessage('just for mock request');
                         }

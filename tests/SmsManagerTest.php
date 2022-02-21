@@ -89,7 +89,7 @@ final class SmsManagerTest extends TestCase
      */
     private function sendString($number, $message): string
     {
-        if (is_string($message)) {
+        if (\is_string($message)) {
             $message = new Message(
                 [
                     'content' => $message,
@@ -98,7 +98,7 @@ final class SmsManagerTest extends TestCase
             );
         }
 
-        if (is_array($message)) {
+        if (\is_array($message)) {
             $message = new Message($message);
         }
 
@@ -250,7 +250,7 @@ final class SmsManagerTest extends TestCase
     public function testLog($number, $message): void
     {
         $expectedMessage = $message;
-        if (is_string($expectedMessage)) {
+        if (\is_string($expectedMessage)) {
             $expectedMessage = new Message(
                 [
                     'content' => $expectedMessage,
@@ -296,7 +296,7 @@ final class SmsManagerTest extends TestCase
     public function testFacade($number, $message): void
     {
         $expectedMessage = $message;
-        if (is_string($expectedMessage)) {
+        if (\is_string($expectedMessage)) {
             $expectedMessage = new Message(
                 [
                     'content' => $expectedMessage,
@@ -348,7 +348,7 @@ final class SmsManagerTest extends TestCase
     public function testSmsSending($number, $message): void
     {
         $expectedMessage = $message;
-        if (is_string($expectedMessage)) {
+        if (\is_string($expectedMessage)) {
             $expectedMessage = new Message(
                 [
                     'content' => $expectedMessage,
@@ -379,7 +379,7 @@ final class SmsManagerTest extends TestCase
     public function testSmsSent($number, $message): void
     {
         $expectedMessage = $message;
-        if (is_string($expectedMessage)) {
+        if (\is_string($expectedMessage)) {
             $expectedMessage = new Message(
                 [
                     'content' => $expectedMessage,

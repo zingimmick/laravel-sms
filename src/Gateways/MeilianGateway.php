@@ -39,7 +39,7 @@ class MeilianGateway extends Gateway
                 'content' => strpos($content, '【') === 0 ? $content : $signature . $content,
             ]
         );
-        if (! is_string($result)) {
+        if (! \is_string($result)) {
             throw new CouldNotSendNotification('meilian response does only seem to accept string.');
         }
 
