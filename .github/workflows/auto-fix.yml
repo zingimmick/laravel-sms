@@ -7,4 +7,4 @@ jobs:
     name: Auto-Fix
     uses: zingimmick/.github/.github/workflows/auto-fix.yml@rector
     secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      token: ${{ secrets.ACCESS_TOKEN }}
