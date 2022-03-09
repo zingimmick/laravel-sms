@@ -37,7 +37,7 @@ final class SmsNumberTest extends TestCase
             $number,
             $message->getContent(),
             $message->getTemplate(),
-            json_encode($message->getData()),
+            json_encode($message->getData(), JSON_THROW_ON_ERROR),
             $message->getMessageType()
         );
     }

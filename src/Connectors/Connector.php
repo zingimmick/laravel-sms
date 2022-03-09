@@ -125,7 +125,7 @@ class Connector implements ConnectorInterface
                 $number,
                 $message->getContent($this->driver),
                 $message->getTemplate($this->driver),
-                json_encode($message->getData($this->driver)),
+                json_encode($message->getData($this->driver), JSON_THROW_ON_ERROR),
                 $message->getMessageType()
             );
             Log::debug($content);
