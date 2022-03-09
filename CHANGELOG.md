@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 5.0.0 - 2022-03-09
+
+## What's Changed
+
+- Enable parallel run for rector by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/222
+- Add Auto-Fix workflow by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/223
+- Bump actions/checkout from 2.4.0 to 3 by @dependabot in https://github.com/zingimmick/laravel-sms/pull/224
+- Bump minimum version of PHP to 7.3 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/225
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/4.3.1...5.0.0
+
 ## 4.3.1 - 2022-02-21
 
 ## What's Changed
