@@ -27,7 +27,7 @@ Many thanks to:
 
 ## Requirement
 
-1. PHP >= 7.2.5
+1. PHP >= 7.3
 2. [Composer](https://getcomposer.org)
 3. `ext-json`
 
