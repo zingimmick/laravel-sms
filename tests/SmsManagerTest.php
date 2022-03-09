@@ -107,7 +107,7 @@ final class SmsManagerTest extends TestCase
             $number,
             $message->getContent(),
             $message->getTemplate(),
-            json_encode($message->getData()),
+            json_encode($message->getData(), JSON_THROW_ON_ERROR),
             $message->getMessageType()
         );
     }
@@ -266,7 +266,7 @@ final class SmsManagerTest extends TestCase
                     $number,
                     $expectedMessage->getContent(),
                     $expectedMessage->getTemplate(),
-                    json_encode($expectedMessage->getData()),
+                    json_encode($expectedMessage->getData(), JSON_THROW_ON_ERROR),
                     $expectedMessage->getMessageType()
                 )
             );
@@ -312,7 +312,7 @@ final class SmsManagerTest extends TestCase
                     $number,
                     $expectedMessage->getContent(),
                     $expectedMessage->getTemplate(),
-                    json_encode($expectedMessage->getData()),
+                    json_encode($expectedMessage->getData(), JSON_THROW_ON_ERROR),
                     $expectedMessage->getMessageType()
                 )
             );
