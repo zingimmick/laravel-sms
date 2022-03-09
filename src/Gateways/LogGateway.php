@@ -24,7 +24,7 @@ class LogGateway extends Gateway
             $to,
             $message->getContent($this),
             $message->getTemplate($this),
-            json_encode($message->getData($this)),
+            json_encode($message->getData($this), JSON_THROW_ON_ERROR),
             $message->getMessageType()
         ));
 
