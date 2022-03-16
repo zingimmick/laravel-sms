@@ -149,6 +149,7 @@ final class MeiLianDriverTest extends TestCase
     public function provideNumberAndMessage(): \Iterator
     {
         yield [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'];
+
         yield [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'];
     }
 }

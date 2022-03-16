@@ -64,6 +64,7 @@ final class SmsManagerTest extends TestCase
     public function provideNumberAndMessage(): \Iterator
     {
         yield ['18888888888', 'test'];
+
         yield [new PhoneNumber('18888888888', '+86'), SmsMessage::text('test')];
     }
 
