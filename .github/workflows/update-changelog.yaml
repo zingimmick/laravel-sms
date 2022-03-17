@@ -6,4 +6,6 @@ on:
 
 jobs:
   update:
-    uses: zingimmick/.github/.github/workflows/update-changelog.yml@main
+    uses: zingimmick/.github/.github/workflows/auto-merge.yml@main
+    secrets:
+      token: ${{ secrets.ACCESS_TOKEN }}
