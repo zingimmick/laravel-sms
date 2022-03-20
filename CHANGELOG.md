@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 5.0.3 - 2022-03-17
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/5.0.2...5.0.3
+
 ## 5.0.0 - 2022-03-09
 
 ## What's Changed

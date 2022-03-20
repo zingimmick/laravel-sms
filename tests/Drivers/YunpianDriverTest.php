@@ -41,9 +41,9 @@ final class YunpianDriverTest extends TestCase
                     'code' => 0,
                     'msg' => '发送成功',
                     'count' => 1,
-                    //成功发送的短信计费条数
+                    // 成功发送的短信计费条数
                     'fee' => 0.05,
-                    //扣费条数，70个字一条，超出70个字时按每67字一条计
+                    // 扣费条数，70个字一条，超出70个字时按每67字一条计
                     'unit' => 'RMB',
                     // 计费单位
                     'mobile' => '18188888888',
@@ -64,9 +64,9 @@ final class YunpianDriverTest extends TestCase
                 'code' => 0,
                 'msg' => '发送成功',
                 'count' => 1,
-                //成功发送的短信计费条数
+                // 成功发送的短信计费条数
                 'fee' => 0.05,
-                //扣费条数，70个字一条，超出70个字时按每67字一条计
+                // 扣费条数，70个字一条，超出70个字时按每67字一条计
                 'unit' => 'RMB',
                 // 计费单位
                 'mobile' => '18188888888',
@@ -97,9 +97,9 @@ final class YunpianDriverTest extends TestCase
             'code' => 0,
             'msg' => '发送成功',
             'count' => 1,
-            //成功发送的短信计费条数
+            // 成功发送的短信计费条数
             'fee' => 0.05,
-            //扣费条数，70个字一条，超出70个字时按每67字一条计
+            // 扣费条数，70个字一条，超出70个字时按每67字一条计
             'unit' => 'RMB',
             // 计费单位
             'mobile' => $number,
@@ -141,6 +141,7 @@ final class YunpianDriverTest extends TestCase
     public function provideNumberAndMessage(): \Iterator
     {
         yield [18188888888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'];
+
         yield [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'];
     }
 }
