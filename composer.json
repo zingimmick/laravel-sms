@@ -1,6 +1,7 @@
 {
     "name": "zing/laravel-sms",
     "description": "Provides sms notification channel for Laravel.",
+    "keywords": ["sms", "laravel", "notification", "channel"],
     "license": "MIT",
     "homepage": "https://github.com/zingimmick/laravel-sms",
     "support": {
