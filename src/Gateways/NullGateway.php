@@ -12,7 +12,7 @@ use Overtrue\EasySms\Support\Config;
 class NullGateway extends Gateway
 {
     /**
-     * @return array<string, string|bool>
+     * @return array{success: true, msg: string}
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config): array
     {

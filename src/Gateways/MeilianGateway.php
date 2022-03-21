@@ -22,7 +22,7 @@ class MeilianGateway extends Gateway
     private const ENDPOINT_URL = 'http://m.5c.com.cn/api/send/index.php';
 
     /**
-     * @return array<string, string|bool>
+     * @return array{success: true, msg: string, result: string}
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config): array
     {

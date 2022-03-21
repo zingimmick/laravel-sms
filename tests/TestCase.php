@@ -42,7 +42,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * @param \Illuminate\Foundation\Application $app
      *
-     * @return string[]
+     * @return array{Sms: class-string<\Zing\LaravelSms\Facades\Sms>}
      */
     protected function getPackageAliases($app): array
     {

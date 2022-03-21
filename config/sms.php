@@ -101,12 +101,11 @@ return [
             'driver' => Overtrue\EasySms\Gateways\LuosimaoGateway::class,
             'api_key' => env('SMS_LUOSIMAO_API_KEY'),
         ],
-        'moduyun' => [
-            'driver' => Overtrue\EasySms\Gateways\ModuyunGateway::class,
-            'accesskey' => env('SMS_MODUYUN_ACCESS_KEY'),
-            'secretkey' => env('SMS_MODUYUN_SECRETKEY'),
-            'signId' => env('SMS_MODUYUN_SIGN_ID', ''),
-            'type' => env('SMS_MODUYUN_TYPE', 0),
+        'maap' => [
+            'driver' => Overtrue\EasySms\Gateways\MaapGateway::class,
+            'cpcode' => env('SMS_MAAP_CPCODE'),
+            'key' => env('SMS_MAAP_KEY'),
+            'excode' => env('SMS_MAAP_EXCODE', ''),
         ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
@@ -114,6 +113,13 @@ return [
             'password' => env('SMS_MEILIAN_PASSWORD'),
             'api_key' => env('SMS_MEILIAN_API_KEY'),
             'signature' => env('SMS_MEILIAN_SIGNATURE', ''),
+        ],
+        'moduyun' => [
+            'driver' => Overtrue\EasySms\Gateways\ModuyunGateway::class,
+            'accesskey' => env('SMS_MODUYUN_ACCESS_KEY'),
+            'secretkey' => env('SMS_MODUYUN_SECRETKEY'),
+            'signId' => env('SMS_MODUYUN_SIGN_ID', ''),
+            'type' => env('SMS_MODUYUN_TYPE', 0),
         ],
         'qcloud' => [
             'driver' => Overtrue\EasySms\Gateways\QcloudGateway::class,
