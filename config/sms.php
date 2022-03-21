@@ -101,11 +101,11 @@ return [
             'driver' => Overtrue\EasySms\Gateways\LuosimaoGateway::class,
             'api_key' => env('SMS_LUOSIMAO_API_KEY'),
         ],
-        'maap'=>[
+        'maap' => [
             'driver' => Overtrue\EasySms\Gateways\MaapGateway::class,
             'cpcode' => env('SMS_MAAP_CPCODE'),
             'key' => env('SMS_MAAP_KEY'),
-            'excode' => env('SMS_MAAP_EXCODE',''),
+            'excode' => env('SMS_MAAP_EXCODE', ''),
         ],
         'meilian' => [
             'driver' => Zing\LaravelSms\Gateways\MeilianGateway::class,
