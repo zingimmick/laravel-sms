@@ -11,7 +11,8 @@
     "authors": [
         {
             "name": "zingimmick",
-            "email": "zingimmick@outlook.com"
+            "email": "zingimmick@outlook.com",
+            "homepage": "https://github.com/zingimmick"
         }
     ],
     "require": {
