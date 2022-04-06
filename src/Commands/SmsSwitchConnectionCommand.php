@@ -71,7 +71,7 @@ class SmsSwitchConnectionCommand extends Command
     public function handle(): void
     {
         $connection = $this->argument('connection');
-        if (! is_string($connection)) {
+        if (! \is_string($connection)) {
             return;
         }
 
