@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 5.1.1 - 2022-04-15
+
+## What's Changed
+
+- Bump shivammathur/setup-php from 2.17.1 to 2.18.0 by @dependabot in https://github.com/zingimmick/laravel-sms/pull/229
+- Add homepage for authors  by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/230
+- Bump codecov/codecov-action from 2.1.0 to 3 by @dependabot in https://github.com/zingimmick/laravel-sms/pull/231
+- Bump shivammathur/setup-php from 2.18.0 to 2.18.1 by @dependabot in https://github.com/zingimmick/laravel-sms/pull/232
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/5.1.0...5.1.1
+
 ## 5.1.0 - 2022-03-21
 
 ## What's Changed
