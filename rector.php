@@ -13,7 +13,7 @@ use Rector\Set\ValueObject\LevelSetList;
 use Zing\CodingStandard\Set\RectorSetList;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->sets([RectorSetList::CUSTOM, PHPUnitSetList::PHPUNIT_CODE_QUALITY, LevelSetList::UP_TO_PHP_73]);
+    $rectorConfig->sets([LevelSetList::UP_TO_PHP_73, PHPUnitSetList::PHPUNIT_CODE_QUALITY, RectorSetList::CUSTOM]);
     $rectorConfig->parallel();
     $rectorConfig->skip([
         RenameVariableToMatchMethodCallReturnTypeRector::class,
