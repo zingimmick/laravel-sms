@@ -8,7 +8,6 @@ parameters:
         - config
         - src
         - tests
-    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         - '#Class Sms not found.#'
         - '#Parameter \#1 \$numberWithoutIDDCode of class Zing\\LaravelSms\\SmsNumber constructor expects int, string given.#'
