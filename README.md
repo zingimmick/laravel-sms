@@ -1,17 +1,15 @@
 # Laravel Sms
 
-<p align="center">
-<a href="https://github.com/zingimmick/laravel-sms/actions/workflows/tests.yml"><img src="https://github.com/zingimmick/laravel-sms/actions/workflows/tests.yml/badge.svg?branch=5.x" alt="Build Status"></a>
-<a href="https://codecov.io/gh/zingimmick/laravel-sms"><img src="https://codecov.io/gh/zingimmick/laravel-sms/branch/5.x/graph/badge.svg" alt="Code Coverage" /></a>
-<a href="https://packagist.org/packages/zing/laravel-sms"><img src="https://poser.pugx.org/zing/laravel-sms/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/zing/laravel-sms"><img src="https://poser.pugx.org/zing/laravel-sms/downloads" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/zing/laravel-sms"><img src="https://poser.pugx.org/zing/laravel-sms/v/unstable.svg" alt="Latest Unstable Version"></a>
-<a href="https://packagist.org/packages/zing/laravel-sms"><img src="https://poser.pugx.org/zing/laravel-sms/license" alt="License"></a>
-<a href="https://scrutinizer-ci.com/g/zingimmick/laravel-sms"><img src="https://scrutinizer-ci.com/g/zingimmick/laravel-sms/badges/quality-score.png?b=5.x" alt="Scrutinizer Code Quality"></a>
-<a href="https://github.styleci.io/repos/254559831"><img src="https://github.styleci.io/repos/254559831/shield?branch=5.x" alt="StyleCI Shield"></a>
-<a href="https://codeclimate.com/github/zingimmick/laravel-sms/maintainability"><img src="https://api.codeclimate.com/v1/badges/9c81b0c9cdebc23ba26f/maintainability" alt="Code Climate" /></a>
-<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms.svg?type=shield"/></a>
-</p>
+[![Build Status](https://github.com/zingimmick/laravel-sms/actions/workflows/tests.yml/badge.svg?branch=5.x)](https://github.com/zingimmick/laravel-sms/actions/workflows/tests.yml)
+[![Code Coverage](https://codecov.io/gh/zingimmick/laravel-sms/branch/5.x/graph/badge.svg)](https://codecov.io/gh/zingimmick/laravel-sms)
+[![Latest Stable Version](https://poser.pugx.org/zing/laravel-sms/v/stable.svg)](https://packagist.org/packages/zing/laravel-sms)
+[![Total Downloads](https://poser.pugx.org/zing/laravel-sms/downloads)](https://packagist.org/packages/zing/laravel-sms)
+[![Latest Unstable Version](https://poser.pugx.org/zing/laravel-sms/v/unstable.svg)](https://packagist.org/packages/zing/laravel-sms)
+[![License](https://poser.pugx.org/zing/laravel-sms/license)](https://packagist.org/packages/zing/laravel-sms)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zingimmick/laravel-sms/badges/quality-score.png?b=5.x)](https://scrutinizer-ci.com/g/zingimmick/laravel-sms)
+[![StyleCI Shield](https://github.styleci.io/repos/254559831/shield?branch=5.x)](https://github.styleci.io/repos/254559831)
+[![Code Climate](https://api.codeclimate.com/v1/badges/9c81b0c9cdebc23ba26f/maintainability)](https://codeclimate.com/github/zingimmick/laravel-sms/maintainability)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms?ref=badge_shield)
 
 Laravel Sms is used to notify via sms and send a message.
 
