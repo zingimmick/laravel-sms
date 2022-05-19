@@ -21,7 +21,7 @@ Many thanks to:
   **PhpStorm IDE** and providing me with an open source license to speed up the
   project development.
  
-  [![JetBrains](/docs/jetbrains.svg)](https://www.jetbrains.com/?from=LaravelSms)
+  [![JetBrains](./jetbrains.svg)](https://www.jetbrains.com/?from=LaravelSms)
 
 ## Requirement
 
