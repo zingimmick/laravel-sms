@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests;
 
-use Composer\Autoload\ClassMapGenerator;
+use Composer\ClassMapGenerator\ClassMapGenerator;
 use Overtrue\EasySms\Contracts\GatewayInterface;
 use Overtrue\EasySms\Exceptions\GatewayErrorException;
 use Overtrue\EasySms\Gateways\ErrorlogGateway;
