@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 5.1.2 - 2022-06-20
+
+<!-- Release notes generated using configuration in .github/release.yml at 5.x -->
+### What's Changed
+
+#### Other Changes
+
+- Configuring automatically generated release notes by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/233
+- Add support for new ECSConfig and RectorConfig class by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/234
+- Report unmatched ignored errors for PHPStan by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/236
+- Copy Readme to docs by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/237
+- Use Standalone Classmap Generator instead of require composer/composer by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/243
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/5.1.1...5.1.2
+
 ## 5.1.1 - 2022-04-15
 
 ## What's Changed
