@@ -29,7 +29,7 @@ final class IntegrationTest extends TestCase
         $drivers = collect((array) config('sms.connections'))
             ->pluck('driver');
         $drivers->each(
-            function ($driver): void {
+            static function ($driver): void {
                 if (class_exists($driver)) {
                     $message = sprintf('%s should implements ', $driver) . GatewayInterface::class;
                     self::assertTrue(is_subclass_of($driver, GatewayInterface::class), $message);
@@ -45,7 +45,7 @@ final class IntegrationTest extends TestCase
         $gateways = collect(ClassMapGenerator::createMap('vendor/overtrue/easy-sms'))
             ->keys()
             ->filter(
-                function ($name): bool {
+                static function ($name): bool {
                     if (! class_exists($name)) {
                         return false;
                     }
@@ -68,7 +68,7 @@ final class IntegrationTest extends TestCase
     {
         collect((array) config('sms.connections'))
             ->filter(
-                function ($config): bool {
+                static function ($config): bool {
                     $name = $config['driver'];
                     if (! class_exists($name)) {
                         return false;
@@ -83,7 +83,7 @@ final class IntegrationTest extends TestCase
                 }
             )
             ->each(
-                function ($options): void {
+                static function ($options): void {
                     /** @var \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway */
                     $gateway = \Mockery::mock($options['driver'], [$options]);
                     $config = \Mockery::mock(Config::class, [$options]);

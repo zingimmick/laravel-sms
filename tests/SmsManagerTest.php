@@ -362,7 +362,7 @@ final class SmsManagerTest extends TestCase
         Sms::connection('log')->send($number, $message);
         Event::assertDispatched(
             SmsSending::class,
-            function (SmsSending $smsSending) use ($number, $expectedMessage): bool {
+            static function (SmsSending $smsSending) use ($number, $expectedMessage): bool {
                 self::assertSame((string) $number, (string) $smsSending->number);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
@@ -393,7 +393,7 @@ final class SmsManagerTest extends TestCase
         Sms::connection('log')->send($number, $message);
         Event::assertDispatched(
             SmsSent::class,
-            function (SmsSent $smsSending) use ($number, $expectedMessage): bool {
+            static function (SmsSent $smsSending) use ($number, $expectedMessage): bool {
                 self::assertSame((string) $number, (string) $smsSending->number);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
