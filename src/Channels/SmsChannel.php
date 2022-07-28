@@ -15,7 +15,7 @@ class SmsChannel
     /**
      * @var \Zing\LaravelSms\SmsManager
      */
-    protected $smsManager;
+    protected $smsManager ;
 
     /**
      * Create a new database channel.
