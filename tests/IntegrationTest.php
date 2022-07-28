@@ -49,6 +49,7 @@ final class IntegrationTest extends TestCase
                     if (! class_exists($name)) {
                         return false;
                     }
+
                     $reflectionClass = new ReflectionClass($name);
                     if (! $reflectionClass->isSubclassOf(GatewayInterface::class)) {
                         return false;
@@ -72,6 +73,7 @@ final class IntegrationTest extends TestCase
                     if (! class_exists($name)) {
                         return false;
                     }
+
                     $reflectionClass = new ReflectionClass($name);
                     if (! $reflectionClass->isSubclassOf(GatewayInterface::class)) {
                         return false;
@@ -106,6 +108,7 @@ final class IntegrationTest extends TestCase
                             ->withArgs($args)
                             ->andReturn($value);
                     }
+
                     $gateway->setConfig($config);
 
                     try {
