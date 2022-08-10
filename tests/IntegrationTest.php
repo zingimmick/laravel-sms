@@ -64,9 +64,9 @@ final class IntegrationTest extends TestCase
         self::assertCount(0, $diff, $gateways->diff($drivers->sort()->values())->toJson());
     }
 
-    public function testSend(): void
+    private function getConnections(): \Illuminate\Support\Collection
     {
-        collect((array) config('sms.connections'))
+        return collect((array) config('sms.connections'))
             ->filter(
                 static function ($config): bool {
                     $name = $config['driver'];
@@ -81,45 +81,84 @@ final class IntegrationTest extends TestCase
 
                     return $reflectionClass->isInstantiable();
                 }
-            )
-            ->each(
-                static function ($options): void {
-                    /** @var \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway */
-                    $gateway = \Mockery::mock($options['driver'], [$options]);
-                    $config = \Mockery::mock(Config::class, [$options]);
-                    $gateway->makePartial();
-                    $gateway->shouldAllowMockingProtectedMethods()
-                        ->shouldReceive('request')
-                        ->withAnyArgs()
-                        ->andThrow(new GatewayErrorException('just for mock request', 0));
-                    $gateway->shouldReceive('setConfig')
-                        ->passthru();
-                    foreach ($options as $name => $value) {
-                        $args = $value === null ? [$name] : [$name, $value];
-                        if ($gateway instanceof ErrorlogGateway && $name === 'file') {
-                            $args = [$name, ''];
-                        }
-
-                        if ($gateway instanceof HuaweiGateway && $name === 'from' && \is_array($value)) {
-                            $args = [$name];
-                        }
-
-                        $config->shouldReceive('get')
-                            ->withArgs($args)
-                            ->andReturn($value);
-                    }
-
-                    $gateway->setConfig($config);
-
-                    try {
-                        $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test'), $config);
-                    } catch (GatewayErrorException $gatewayErrorException) {
-                        if (\in_array(HasHttpRequest::class, trait_uses_recursive(\get_class($gateway)), true)) {
-                            self::expectException(GatewayErrorException::class);
-                            self::expectExceptionMessage('just for mock request');
-                        }
-                    }
-                }
             );
+    }
+
+    public function testSend(): void
+    {
+        $this->getConnections()
+            ->each(function ($options): void {
+                $this->expectOptions($options);
+            });
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     */
+    private function expectOptions(array $options): void
+    {
+        /** @var \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway */
+        $gateway = \Mockery::mock($options['driver'], [$options]);
+        $gateway->makePartial();
+        $gateway->shouldAllowMockingProtectedMethods()
+            ->shouldReceive('request')
+            ->withAnyArgs()
+            ->andThrow(new GatewayErrorException('just for mock request', 0));
+        $gateway->shouldReceive('setConfig')
+            ->passthru();
+        $config = $this->mockConfig($gateway, $options);
+        $gateway->setConfig($config);
+
+        try {
+            $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test'), $config);
+        } catch (GatewayErrorException $gatewayErrorException) {
+            if (\in_array(HasHttpRequest::class, trait_uses_recursive(\get_class($gateway)), true)) {
+                self::expectException(GatewayErrorException::class);
+                self::expectExceptionMessage('just for mock request');
+            }
+        }
+    }
+
+    /**
+     * @param \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway
+     * @param array<string, mixed> $options
+     *
+     * @return \Overtrue\EasySms\Support\Config|\Mockery\MockInterface
+     */
+    private function mockConfig($gateway, array $options): \Mockery\LegacyMockInterface
+    {
+        $config = \Mockery::mock(Config::class, [$options]);
+        foreach ($options as $name => $value) {
+            $args = $this->formatArgs($gateway, $name, $value);
+
+            $config->shouldReceive('get')
+                ->withArgs($args)
+                ->andReturn($value);
+        }
+
+        return $config;
+    }
+
+    /**
+     * @param \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway
+     * @param mixed $value
+     * @return array|string[]
+     */
+    private function formatArgs($gateway, string $name, $value): array
+    {
+        $args = $value === null ? [$name] : [$name, $value];
+        if ($gateway instanceof ErrorlogGateway && $name === 'file') {
+            $args = [$name, ''];
+        }
+        if (!$gateway instanceof HuaweiGateway) {
+            return $args;
+        }
+        if ($name !== 'from') {
+            return $args;
+        }
+        if (!\is_array($value)) {
+            return $args;
+        }
+        return [$name];
     }
 }

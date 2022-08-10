@@ -18,6 +18,7 @@ use Zing\LaravelSms\Events\SmsSending;
 use Zing\LaravelSms\Events\SmsSent;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Exceptions\InvalidArgumentException;
+
 use function trim;
 
 class Connector implements ConnectorInterface
@@ -93,7 +94,7 @@ class Connector implements ConnectorInterface
      */
     protected function formatMessage($message): MessageInterface
     {
-        if (! ($message instanceof MessageInterface)) {
+        if (! $message instanceof MessageInterface) {
             if (! \is_array($message)) {
                 $message = [
                     'content' => $message,

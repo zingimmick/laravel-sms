@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Zing\LaravelSms\Tests;
 
 use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
+
 use function config;
 
 /**
