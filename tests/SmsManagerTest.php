@@ -90,27 +90,13 @@ final class SmsManagerTest extends TestCase
      */
     private function sendString($number, $message): string
     {
-        if (\is_string($message)) {
-            $message = new Message(
-                [
-                    'content' => $message,
-                    'template' => $message,
-                ]
-            );
-        }
+        $message = $this->formatMessage($message);
 
         if (\is_array($message)) {
             $message = new Message($message);
         }
 
-        return sprintf(
-            'number: %s, message: "%s", template: "%s", data: %s, type: %s',
-            $number,
-            $message->getContent(),
-            $message->getTemplate(),
-            json_encode($message->getData(), JSON_THROW_ON_ERROR),
-            $message->getMessageType()
-        );
+        return $this->formatLog($number, $message);
     }
 
     /**
@@ -250,27 +236,8 @@ final class SmsManagerTest extends TestCase
      */
     public function testLog($number, $message): void
     {
-        $expectedMessage = $message;
-        if (\is_string($expectedMessage)) {
-            $expectedMessage = new Message(
-                [
-                    'content' => $expectedMessage,
-                    'template' => $expectedMessage,
-                ]
-            );
-        }
-
         $this->prepareLoggerExpectation()
-            ->with(
-                sprintf(
-                    'number: %s, message: "%s", template: "%s", data: %s, type: %s',
-                    $number,
-                    $expectedMessage->getContent(),
-                    $expectedMessage->getTemplate(),
-                    json_encode($expectedMessage->getData(), JSON_THROW_ON_ERROR),
-                    $expectedMessage->getMessageType()
-                )
-            );
+            ->with($this->formatLog($number, $this->formatMessage($message)));
         $sms = app(SmsManager::class);
         $sms->connection('log')
             ->send($number, $message);
@@ -292,31 +259,29 @@ final class SmsManagerTest extends TestCase
      * @dataProvider provideNumberAndMessage
      *
      * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
+     */
+    private function formatLog($number, \Overtrue\EasySms\Contracts\MessageInterface $message): string
+    {
+        return sprintf(
+            'number: %s, message: "%s", template: "%s", data: %s, type: %s',
+            $number,
+            $message->getContent(),
+            $message->getTemplate(),
+            json_encode($message->getData(), JSON_THROW_ON_ERROR),
+            $message->getMessageType()
+        );
+    }
+
+    /**
+     * @dataProvider provideNumberAndMessage
+     *
+     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
      * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
      */
     public function testFacade($number, $message): void
     {
-        $expectedMessage = $message;
-        if (\is_string($expectedMessage)) {
-            $expectedMessage = new Message(
-                [
-                    'content' => $expectedMessage,
-                    'template' => $expectedMessage,
-                ]
-            );
-        }
-
         $this->prepareLoggerExpectation()
-            ->with(
-                sprintf(
-                    'number: %s, message: "%s", template: "%s", data: %s, type: %s',
-                    $number,
-                    $expectedMessage->getContent(),
-                    $expectedMessage->getTemplate(),
-                    json_encode($expectedMessage->getData(), JSON_THROW_ON_ERROR),
-                    $expectedMessage->getMessageType()
-                )
-            );
+            ->with($this->formatLog($number, $this->formatMessage($message)));
         Sms::connection('log')->send($number, $message);
     }
 
@@ -348,15 +313,7 @@ final class SmsManagerTest extends TestCase
      */
     public function testSmsSending($number, $message): void
     {
-        $expectedMessage = $message;
-        if (\is_string($expectedMessage)) {
-            $expectedMessage = new Message(
-                [
-                    'content' => $expectedMessage,
-                    'template' => $expectedMessage,
-                ]
-            );
-        }
+        $expectedMessage = $this->formatMessage($message);
 
         Event::fake();
         Sms::connection('log')->send($number, $message);
@@ -372,6 +329,25 @@ final class SmsManagerTest extends TestCase
     }
 
     /**
+     * @param \Overtrue\EasySms\Contracts\MessageInterface|string|array<string, mixed> $message
+     *
+     * @phpstan-return ($message is array ? array<string, mixed> : \Overtrue\EasySms\Contracts\MessageInterface)
+     *
+     * @return \Overtrue\EasySms\Contracts\MessageInterface|array<string, mixed>
+     */
+    private function formatMessage($message)
+    {
+        if (! \is_string($message)) {
+            return $message;
+        }
+
+        return new Message([
+            'content' => $message,
+            'template' => $message,
+        ]);
+    }
+
+    /**
      * @dataProvider provideNumberAndMessage
      *
      * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
@@ -379,15 +355,7 @@ final class SmsManagerTest extends TestCase
      */
     public function testSmsSent($number, $message): void
     {
-        $expectedMessage = $message;
-        if (\is_string($expectedMessage)) {
-            $expectedMessage = new Message(
-                [
-                    'content' => $expectedMessage,
-                    'template' => $expectedMessage,
-                ]
-            );
-        }
+        $expectedMessage = $this->formatMessage($message);
 
         Event::fake();
         Sms::connection('log')->send($number, $message);
