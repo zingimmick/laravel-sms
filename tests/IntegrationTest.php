@@ -146,19 +146,13 @@ final class IntegrationTest extends TestCase
      */
     private function formatArgs($gateway, string $name, $value): array
     {
-        $args = $value === null ? [$name] : [$name, $value];
         if ($gateway instanceof ErrorlogGateway && $name === 'file') {
-            $args = [$name, ''];
+            return [$name, ''];
         }
-        if (!$gateway instanceof HuaweiGateway) {
-            return $args;
+
+        if ($gateway instanceof HuaweiGateway && $name === 'from' && \is_array($value)) {
+           return [$name];
         }
-        if ($name !== 'from') {
-            return $args;
-        }
-        if (!\is_array($value)) {
-            return $args;
-        }
-        return [$name];
+        return $value === null ? [$name] : [$name, $value];
     }
 }
