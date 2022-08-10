@@ -331,6 +331,7 @@ final class SmsManagerTest extends TestCase
     /**
      * @param \Overtrue\EasySms\Contracts\MessageInterface|string|array<string, mixed> $message
      *
+     * @phpstan-return ($message is array ? array<string, mixed> : \Overtrue\EasySms\Contracts\MessageInterface)
      * @return \Overtrue\EasySms\Contracts\MessageInterface|array<string, mixed>
      */
     private function formatMessage($message)

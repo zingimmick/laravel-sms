@@ -64,6 +64,9 @@ final class IntegrationTest extends TestCase
         self::assertCount(0, $diff, $gateways->diff($drivers->sort()->values())->toJson());
     }
 
+    /**
+     * @return \Illuminate\Support\Collection<int, array<string, mixed>>
+     */
     private function getConnections(): \Illuminate\Support\Collection
     {
         return collect((array) config('sms.connections'))
