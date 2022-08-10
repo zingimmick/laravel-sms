@@ -142,6 +142,7 @@ final class IntegrationTest extends TestCase
     /**
      * @param \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway
      * @param mixed $value
+     *
      * @return array|string[]
      */
     private function formatArgs($gateway, string $name, $value): array
@@ -151,8 +152,9 @@ final class IntegrationTest extends TestCase
         }
 
         if ($gateway instanceof HuaweiGateway && $name === 'from' && \is_array($value)) {
-           return [$name];
+            return [$name];
         }
+
         return $value === null ? [$name] : [$name, $value];
     }
 }
