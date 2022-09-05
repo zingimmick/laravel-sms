@@ -23,11 +23,11 @@ Many thanks to:
  
   [![JetBrains](/docs/jetbrains.svg)](https://www.jetbrains.com/?from=LaravelSms)
 
-## Requirement
+## Requirements
 
-1. PHP >= 7.3
-2. [Composer](https://getcomposer.org)
-3. `ext-json`
+- [PHP 7.3+](https://php.net/releases/)
+- [Composer](https://getcomposer.org)
+- [Laravel 8.0+](https://laravel.com/docs/releases)
 
 ## Installation
 
