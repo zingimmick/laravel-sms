@@ -202,6 +202,7 @@ final class SmsManagerTest extends TestCase
         $phone = new Phone('18888888888');
         $notification = Mockery::mock(VerifyCode::class . '[toSms]');
         $notification->shouldReceive('toSms')
+            ->once()
             ->with($phone)
             ->andReturn([]);
         Log::shouldReceive()->never();

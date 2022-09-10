@@ -135,6 +135,8 @@ final class IntegrationTest extends TestCase
             $args = $this->formatArgs($gateway, $name, $value);
 
             $config->shouldReceive('get')
+                ->atLeast()
+                ->never()
                 ->withArgs($args)
                 ->andReturn($value);
         }
