@@ -9,18 +9,14 @@ use Throwable;
 class CouldNotSendNotification extends Exception
 {
     /**
-     * @var mixed[]
-     */
-    public $raw = [];
-
-    /**
      * @param mixed[] $raw
      */
-    public function __construct(string $message = '', int $code = 0, array $raw = [])
-    {
+    public function __construct(
+        string $message = '',
+        int $code = 0,
+        public array $raw = []
+    ) {
         parent::__construct($message, $code);
-
-        $this->raw = $raw;
     }
 
     public static function captureExceptionInDriver(Throwable $exception): self

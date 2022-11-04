@@ -36,14 +36,14 @@ class MeilianGateway extends Gateway
                 'password' => $this->config->get('password'),
                 'apikey' => $this->config->get('api_key'),
                 'mobile' => $to->getUniversalNumber(),
-                'content' => strpos($content, '【') === 0 ? $content : $signature . $content,
+                'content' => str_starts_with($content, '【') ? $content : $signature . $content,
             ]
         );
         if (! \is_string($result)) {
             throw new CouldNotSendNotification('meilian response does only seem to accept string.');
         }
 
-        if (strpos($result, 'error') !== false) {
+        if (str_contains($result, 'error')) {
             throw new CouldNotSendNotification($result, 1, Arr::wrap($result));
         }
 

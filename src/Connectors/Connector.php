@@ -28,10 +28,7 @@ class Connector implements ConnectorInterface
      */
     protected $driver;
 
-    /**
-     * @var \Overtrue\EasySms\Support\Config
-     */
-    protected $config;
+    protected \Overtrue\EasySms\Support\Config $config;
 
     /**
      * @param array<string, mixed> $config
@@ -77,10 +74,7 @@ class Connector implements ConnectorInterface
         return new $driverClass($config);
     }
 
-    /**
-     * @param string|\Overtrue\EasySms\Contracts\PhoneNumberInterface $number
-     */
-    protected function formatPhoneNumber($number): PhoneNumberInterface
+    protected function formatPhoneNumber(string|PhoneNumberInterface $number): PhoneNumberInterface
     {
         if ($number instanceof PhoneNumberInterface) {
             return $number;
@@ -92,10 +86,10 @@ class Connector implements ConnectorInterface
     /**
      * @param array<string, mixed>|string|\Overtrue\EasySms\Contracts\MessageInterface $message
      */
-    protected function formatMessage($message): MessageInterface
+    protected function formatMessage(array|string|MessageInterface $message): MessageInterface
     {
         if (! $message instanceof MessageInterface) {
-            if (! \is_array($message)) {
+            if (\is_string($message)) {
                 $message = [
                     'content' => $message,
                     'template' => $message,
@@ -109,12 +103,9 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * @param string|\Overtrue\EasySms\Contracts\PhoneNumberInterface $number
      * @param array<string, mixed>|string|\Overtrue\EasySms\Contracts\MessageInterface $message
-     *
-     * @return bool|mixed
      */
-    public function send($number, $message)
+    public function send(string|PhoneNumberInterface $number, array|string|MessageInterface $message): mixed
     {
         $number = $this->formatPhoneNumber($number);
         $message = $this->formatMessage($message);

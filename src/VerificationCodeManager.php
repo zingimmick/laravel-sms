@@ -9,35 +9,22 @@ use Zing\LaravelSms\Notifications\VerificationCode;
 
 class VerificationCodeManager
 {
-    /**
-     * @var \Illuminate\Contracts\Cache\Repository
-     */
-    protected $cacheManager;
-
-    public function __construct(Repository $cacheManager)
+    public function __construct(protected Repository $cacheRepository)
     {
-        $this->cacheManager = $cacheManager;
     }
 
-    /**
-     * @param \Zing\LaravelSms\SmsNumber|string $number
-     */
-    protected function getPrefixedKey($number): string
+    protected function getPrefixedKey(SmsNumber|string $number): string
     {
         return config('sms.verification.prefix') . $number;
     }
 
-    /**
-     * @param \Zing\LaravelSms\SmsNumber|string $number
-     * @param string|int $code
-     */
-    public function verify($number, $code): bool
+    public function verify(SmsNumber|string $number, string|int $code): bool
     {
         if (config('sms.verification.debug', false)) {
             return true;
         }
 
-        $issuedCode = $this->cacheManager->get($this->getPrefixedKey($number));
+        $issuedCode = $this->cacheRepository->get($this->getPrefixedKey($number));
         if (! $issuedCode) {
             return false;
         }
@@ -45,11 +32,7 @@ class VerificationCodeManager
         return (int) $code === (int) $issuedCode;
     }
 
-    /**
-     * @param \Zing\LaravelSms\SmsNumber|string $number
-     * @param mixed $ttl
-     */
-    public function issue($number, $ttl = null): int
+    public function issue(SmsNumber|string $number, mixed $ttl = null): int
     {
         $length = config('sms.verification.length');
         $code = random_int((int) (10 ** ($length - 1)), (int) (10 ** $length) - 1);
@@ -63,7 +46,7 @@ class VerificationCodeManager
         }
 
         $number->notify(new VerificationCode((string) $code, $ttl));
-        $this->cacheManager->set($key, $code, (int) $ttl * 60);
+        $this->cacheRepository->set($key, $code, (int) $ttl * 60);
 
         return $code;
     }

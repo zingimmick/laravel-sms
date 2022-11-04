@@ -10,14 +10,8 @@ class Phone
 {
     use Notifiable;
 
-    /**
-     * @var string
-     */
-    protected $phone;
-
-    public function __construct(string $phone)
+    public function __construct(protected string $phone)
     {
-        $this->phone = $phone;
     }
 
     public function routeNotificationForSms(?\Illuminate\Notifications\Notification $notification = null): string

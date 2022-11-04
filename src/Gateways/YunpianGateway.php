@@ -34,7 +34,7 @@ class YunpianGateway extends Gateway
             [
                 'apikey' => $this->config['api_key'],
                 'mobile' => $to->getUniversalNumber(),
-                'text' => strpos($content, '【') === 0 ? $content : $signature . $content,
+                'text' => str_starts_with($content, '【') ? $content : $signature . $content,
             ]
         );
         if (data_get($result, 'code') === 0) {

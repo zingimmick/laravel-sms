@@ -48,7 +48,7 @@ final class YunpianDriverTest extends TestCase
                     // 计费单位
                     'mobile' => '18188888888',
                     // 发送手机号
-                    'sid' => 3310228982,
+                    'sid' => 3_310_228_982,
                     // 短信ID
                 ],
                 [
@@ -71,17 +71,17 @@ final class YunpianDriverTest extends TestCase
                 // 计费单位
                 'mobile' => '18188888888',
                 // 发送手机号
-                'sid' => 3310228982,
+                'sid' => 3_310_228_982,
                 // 短信ID
             ],
-            $driver->send(new PhoneNumber(18188888888), $message, $config)
+            $driver->send(new PhoneNumber(18_188_888_888), $message, $config)
         );
 
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionCode(100);
         $this->expectExceptionMessage('发送失败');
 
-        $driver->send(new PhoneNumber(18188888888), $message, $config);
+        $driver->send(new PhoneNumber(18_188_888_888), $message, $config);
     }
 
     /**
@@ -104,7 +104,7 @@ final class YunpianDriverTest extends TestCase
             // 计费单位
             'mobile' => $number,
             // 发送手机号
-            'sid' => 3310228982,
+            'sid' => 3_310_228_982,
             // 短信ID
         ];
 
@@ -140,8 +140,12 @@ final class YunpianDriverTest extends TestCase
      */
     public function provideNumberAndMessage(): \Iterator
     {
-        yield [18188888888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'];
+        yield [18_188_888_888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'];
 
-        yield [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'];
+        yield [
+            18_188_888_888,
+            '【custom】This is a 【test】 message.',
+            '【custom】This is a 【test】 message.',
+        ];
     }
 }

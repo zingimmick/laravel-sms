@@ -41,14 +41,10 @@ class SmsServiceProvider extends ServiceProvider
         $this->registerConfig();
         Notification::resolved(
             static function (ChannelManager $service): void {
-                $service->extend(self::SMS, static function (Container $app) {
-                    return $app->make(SmsChannel::class);
-                });
+                $service->extend(self::SMS, static fn (Container $app) => $app->make(SmsChannel::class));
             }
         );
-        $this->app->singleton(self::SMS, static function (Container $app) {
-            return $app->make(SmsManager::class);
-        });
+        $this->app->singleton(self::SMS, static fn (Container $app) => $app->make(SmsManager::class));
         $this->app->alias(self::SMS, Sms::class);
         $this->registerCommands();
     }

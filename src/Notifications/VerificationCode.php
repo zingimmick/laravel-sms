@@ -9,20 +9,10 @@ use Zing\LaravelSms\Channels\SmsChannel;
 
 class VerificationCode extends Notification
 {
-    /**
-     * @var string
-     */
-    protected $code;
-
-    /**
-     * @var int
-     */
-    protected $ttl;
-
-    public function __construct(string $code, int $ttl)
-    {
-        $this->code = $code;
-        $this->ttl = $ttl;
+    public function __construct(
+        protected string $code,
+        protected int $ttl
+    ) {
     }
 
     /**

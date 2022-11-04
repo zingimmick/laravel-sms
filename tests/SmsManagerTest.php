@@ -71,11 +71,13 @@ final class SmsManagerTest extends TestCase
     /**
      * @dataProvider provideNumberAndMessage
      *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @param string|\Overtrue\EasySms\PhoneNumber $number
+     * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testDefaultDriver($number, $message): void
-    {
+    public function testDefaultDriver(
+        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
+        \Overtrue\EasySms\Contracts\MessageInterface|string $message
+    ): void {
         $this->prepareLoggerExpectation()
             ->with($this->sendString($number, $message));
 
@@ -85,11 +87,12 @@ final class SmsManagerTest extends TestCase
     }
 
     /**
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
      * @param \Overtrue\EasySms\Contracts\MessageInterface|array<string, mixed>|string $message
      */
-    private function sendString($number, $message): string
-    {
+    private function sendString(
+        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
+        \Overtrue\EasySms\Contracts\MessageInterface|array|string $message
+    ): string {
         $message = $this->formatMessage($message);
 
         if (\is_array($message)) {
@@ -102,11 +105,13 @@ final class SmsManagerTest extends TestCase
     /**
      * @dataProvider provideNumberAndMessage
      *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @param string|\Overtrue\EasySms\PhoneNumber $number
+     * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testLogChannel($number, $message): void
-    {
+    public function testLogChannel(
+        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
+        \Overtrue\EasySms\Contracts\MessageInterface|string $message
+    ): void {
         config()
             ->set('sms.connections.log.channel', self::CHANNEL);
         $this->prepareLoggerExpectation(self::CHANNEL)
@@ -120,11 +125,13 @@ final class SmsManagerTest extends TestCase
     /**
      * @dataProvider provideNumberAndMessage
      *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @param string|\Overtrue\EasySms\PhoneNumber $number
+     * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testLogLevel($number, $message): void
-    {
+    public function testLogLevel(
+        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
+        \Overtrue\EasySms\Contracts\MessageInterface|string $message
+    ): void {
         config()
             ->set('sms.connections.log.level', self::LEVEL);
         $this->prepareLoggerExpectation(null, self::LEVEL)
@@ -232,11 +239,13 @@ final class SmsManagerTest extends TestCase
     /**
      * @dataProvider provideNumberAndMessage
      *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @param string|\Overtrue\EasySms\PhoneNumber $number
+     * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testLog($number, $message): void
-    {
+    public function testLog(
+        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
+        \Overtrue\EasySms\Contracts\MessageInterface|string $message
+    ): void {
         $this->prepareLoggerExpectation()
             ->with($this->formatLog($number, $this->formatMessage($message)));
         $sms = app(SmsManager::class);
@@ -256,13 +265,14 @@ final class SmsManagerTest extends TestCase
             ->once();
     }
 
-    /**
-     * @dataProvider provideNumberAndMessage
-     *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
-     */
-    private function formatLog($number, \Overtrue\EasySms\Contracts\MessageInterface $message): string
-    {
+    private function formatLog(
+        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
+        \Overtrue\EasySms\Contracts\MessageInterface|string $message
+    ): string {
+        if (\is_string($message)) {
+            return sprintf('number: %s, message: "%s"', $number, $message);
+        }
+
         return sprintf(
             'number: %s, message: "%s", template: "%s", data: %s, type: %s',
             $number,
@@ -276,11 +286,13 @@ final class SmsManagerTest extends TestCase
     /**
      * @dataProvider provideNumberAndMessage
      *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @param string|\Overtrue\EasySms\PhoneNumber $number
+     * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testFacade($number, $message): void
-    {
+    public function testFacade(
+        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
+        \Overtrue\EasySms\Contracts\MessageInterface|string $message
+    ): void {
         $this->prepareLoggerExpectation()
             ->with($this->formatLog($number, $this->formatMessage($message)));
         Sms::connection('log')->send($number, $message);
@@ -309,11 +321,13 @@ final class SmsManagerTest extends TestCase
     /**
      * @dataProvider provideNumberAndMessage
      *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @param string|\Overtrue\EasySms\PhoneNumber $number
+     * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testSmsSending($number, $message): void
-    {
+    public function testSmsSending(
+        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
+        \Overtrue\EasySms\Contracts\MessageInterface|string $message
+    ): void {
         $expectedMessage = $this->formatMessage($message);
 
         Event::fake();
@@ -321,7 +335,7 @@ final class SmsManagerTest extends TestCase
         Event::assertDispatched(
             SmsSending::class,
             static function (SmsSending $smsSending) use ($number, $expectedMessage): bool {
-                self::assertSame((string) $number, (string) $smsSending->number);
+                self::assertSame((string) $number, (string) $smsSending->phoneNumber);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
                 return true;
@@ -336,26 +350,33 @@ final class SmsManagerTest extends TestCase
      *
      * @return \Overtrue\EasySms\Contracts\MessageInterface|array<string, mixed>
      */
-    private function formatMessage($message)
-    {
-        if (! \is_string($message)) {
-            return $message;
+    private function formatMessage(
+        \Overtrue\EasySms\Contracts\MessageInterface|string|array $message
+    ): array|\Overtrue\EasySms\Contracts\MessageInterface {
+        if (\is_string($message)) {
+            return new Message([
+                'content' => $message,
+                'template' => $message,
+            ]);
         }
 
-        return new Message([
-            'content' => $message,
-            'template' => $message,
-        ]);
+        if (\is_array($message)) {
+            return new Message($message);
+        }
+
+        return $message;
     }
 
     /**
      * @dataProvider provideNumberAndMessage
      *
-     * @param \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number
-     * @param \Overtrue\EasySms\Contracts\MessageInterface|string $message
+     * @param string|\Overtrue\EasySms\PhoneNumber $number
+     * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testSmsSent($number, $message): void
-    {
+    public function testSmsSent(
+        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
+        \Overtrue\EasySms\Contracts\MessageInterface|string $message
+    ): void {
         $expectedMessage = $this->formatMessage($message);
 
         Event::fake();
@@ -363,7 +384,7 @@ final class SmsManagerTest extends TestCase
         Event::assertDispatched(
             SmsSent::class,
             static function (SmsSent $smsSending) use ($number, $expectedMessage): bool {
-                self::assertSame((string) $number, (string) $smsSending->number);
+                self::assertSame((string) $number, (string) $smsSending->phoneNumber);
                 self::assertSameMessage($expectedMessage, $smsSending->message);
 
                 return true;

@@ -19,7 +19,7 @@ final class VerificationCodeManagerTest extends TestCase
     /**
      * @var \Zing\LaravelSms\VerificationCodeManager
      */
-    private $verificationCodeManager;
+    private mixed $verificationCodeManager;
 
     protected function getEnvironmentSetUp($app): void
     {

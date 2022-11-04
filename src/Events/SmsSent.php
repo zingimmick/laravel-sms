@@ -9,30 +9,10 @@ use Overtrue\EasySms\Contracts\PhoneNumberInterface;
 
 class SmsSent
 {
-    /**
-     * @var \Overtrue\EasySms\Contracts\PhoneNumberInterface
-     */
-    public $number;
-
-    /**
-     * @var \Overtrue\EasySms\Contracts\MessageInterface
-     */
-    public $message;
-
-    /**
-     * @var mixed
-     */
-    public $result;
-
-    /**
-     * SmsSending constructor.
-     *
-     * @param mixed $result
-     */
-    public function __construct(PhoneNumberInterface $number, MessageInterface $message, $result)
-    {
-        $this->number = $number;
-        $this->message = $message;
-        $this->result = $result;
+    public function __construct(
+        public PhoneNumberInterface $phoneNumber,
+        public MessageInterface $message,
+        public mixed $result
+    ) {
     }
 }

@@ -19,7 +19,7 @@ final class DriverTest extends TestCase
 {
     public function testException(): void
     {
-        $phoneNumber = new PhoneNumber(18188888888);
+        $phoneNumber = new PhoneNumber(18_188_888_888);
         $message = new Message([]);
         Event::fake();
         Event::shouldReceive('dispatch')->andThrow(new Exception('test'));
@@ -30,7 +30,7 @@ final class DriverTest extends TestCase
 
     public function testStaticException(): void
     {
-        $phoneNumber = new PhoneNumber(18188888888);
+        $phoneNumber = new PhoneNumber(18_188_888_888);
         $message = new Message([]);
         Event::fake();
         Event::shouldReceive('dispatch')->andThrow(new CouldNotSendNotification('test'));

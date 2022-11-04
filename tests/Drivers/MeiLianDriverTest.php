@@ -57,14 +57,14 @@ final class MeiLianDriverTest extends TestCase
                 'msg' => 'ok',
                 'result' => 'success:Missing recipient',
             ],
-            $driver->send(new PhoneNumber(18188888888), $message, $config)
+            $driver->send(new PhoneNumber(18_188_888_888), $message, $config)
         );
 
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionCode(1);
         $this->expectExceptionMessage('error:Missing recipient');
 
-        $driver->send(new PhoneNumber(18188888888), $message, $config);
+        $driver->send(new PhoneNumber(18_188_888_888), $message, $config);
     }
 
     public function testSend2(): void
@@ -100,7 +100,7 @@ final class MeiLianDriverTest extends TestCase
         $this->expectExceptionMessage('meilian response does only seem to accept string.');
         $config = new Config($config);
 
-        $driver->send(new PhoneNumber(18188888888), $message, $config);
+        $driver->send(new PhoneNumber(18_188_888_888), $message, $config);
     }
 
     /**
@@ -148,8 +148,12 @@ final class MeiLianDriverTest extends TestCase
      */
     public function provideNumberAndMessage(): \Iterator
     {
-        yield [18188888888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'];
+        yield [18_188_888_888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'];
 
-        yield [18188888888, '【custom】This is a 【test】 message.', '【custom】This is a 【test】 message.'];
+        yield [
+            18_188_888_888,
+            '【custom】This is a 【test】 message.',
+            '【custom】This is a 【test】 message.',
+        ];
     }
 }

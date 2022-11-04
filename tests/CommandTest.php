@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests;
 
+use Illuminate\Foundation\Application;
 use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
 
 use function config;
@@ -88,11 +89,11 @@ final class CommandTest extends TestCase
 
     private function envPath(): string
     {
-        if (method_exists($this->app, 'environmentFilePath')) {
+        if ($this->app instanceof Application) {
             return $this->app->environmentFilePath();
         }
 
-        return $this->app->basePath('.env');
+        return __DIR__ . \DIRECTORY_SEPARATOR . '.env';
     }
 
     protected function setUp(): void
@@ -105,7 +106,7 @@ final class CommandTest extends TestCase
     /**
      * @var string
      */
-    private $connection;
+    private mixed $connection;
 
     protected function tearDown(): void
     {

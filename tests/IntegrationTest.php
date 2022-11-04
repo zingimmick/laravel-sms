@@ -114,8 +114,8 @@ final class IntegrationTest extends TestCase
 
         try {
             $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test'), $config);
-        } catch (GatewayErrorException $gatewayErrorException) {
-            if (\in_array(HasHttpRequest::class, trait_uses_recursive(\get_class($gateway)), true)) {
+        } catch (GatewayErrorException) {
+            if (\in_array(HasHttpRequest::class, trait_uses_recursive($gateway::class), true)) {
                 self::expectException(GatewayErrorException::class);
                 self::expectExceptionMessage('just for mock request');
             }
@@ -123,13 +123,14 @@ final class IntegrationTest extends TestCase
     }
 
     /**
-     * @param \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway
      * @param array<string, mixed> $options
      *
      * @return \Overtrue\EasySms\Support\Config|\Mockery\MockInterface
      */
-    private function mockConfig($gateway, array $options): \Mockery\LegacyMockInterface
-    {
+    private function mockConfig(
+        \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway,
+        array $options
+    ): \Mockery\LegacyMockInterface {
         $config = \Mockery::mock(Config::class, [$options]);
         foreach ($options as $name => $value) {
             $args = $this->formatArgs($gateway, $name, $value);
@@ -145,13 +146,13 @@ final class IntegrationTest extends TestCase
     }
 
     /**
-     * @param \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway
-     * @param mixed $value
-     *
      * @return array|string[]
      */
-    private function formatArgs($gateway, string $name, $value): array
-    {
+    private function formatArgs(
+        \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway,
+        string $name,
+        mixed $value
+    ): array {
         if ($gateway instanceof ErrorlogGateway && $name === 'file') {
             return [$name, ''];
         }

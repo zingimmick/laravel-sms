@@ -13,24 +13,16 @@ use Zing\LaravelSms\SmsMessage;
 class SmsChannel
 {
     /**
-     * @var \Zing\LaravelSms\SmsManager
-     */
-    protected $smsManager;
-
-    /**
      * Create a new database channel.
      */
-    public function __construct(SmsManager $smsManager)
+    public function __construct(protected SmsManager $smsManager)
     {
-        $this->smsManager = $smsManager;
     }
 
     /**
      * Send the given notification.
-     *
-     * @param mixed $notifiable
      */
-    public function send($notifiable, Notification $notification): void
+    public function send(mixed $notifiable, Notification $notification): void
     {
         $message = $this->getData($notifiable, $notification);
         $receiver = $this->resolveReceiver($notifiable, $notification);
@@ -55,12 +47,7 @@ class SmsChannel
             ->send($receiver, $message);
     }
 
-    /**
-     * @param mixed $notifiable
-     *
-     * @return mixed|null
-     */
-    public function resolveReceiver($notifiable, Notification $notification)
+    public function resolveReceiver(mixed $notifiable, Notification $notification): mixed
     {
         if ($notifiable instanceof AnonymousNotifiable) {
             $receiver = $notifiable->routeNotificationFor(static::class);
@@ -76,12 +63,8 @@ class SmsChannel
 
     /**
      * Get the data for the notification.
-     *
-     * @param mixed $notifiable
-     *
-     * @return mixed
      */
-    protected function getData($notifiable, Notification $notification)
+    protected function getData(mixed $notifiable, Notification $notification): mixed
     {
         if (method_exists($notification, 'toSms')) {
             return $notification->toSms($notifiable);
