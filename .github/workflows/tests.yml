@@ -38,7 +38,7 @@ jobs:
         run: composer require orchestra/testbench:^6.23 ramsey/collection:^1.2 --no-update
 
       - name: Install dependencies
-        uses: ramsey/composer-install@v1
+        uses: ramsey/composer-install@v2
         with:
           dependency-versions: ${{ matrix.stability }}
 
