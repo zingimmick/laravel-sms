@@ -9,8 +9,9 @@ use Zing\LaravelSms\Notifications\VerificationCode;
 
 class VerificationCodeManager
 {
-    public function __construct(protected Repository $cacheRepository)
-    {
+    public function __construct(
+        protected Repository $cacheRepository
+    ) {
     }
 
     protected function getPrefixedKey(SmsNumber|string $number): string

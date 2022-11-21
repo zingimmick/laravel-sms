@@ -7,10 +7,10 @@ namespace Zing\LaravelSms\Tests;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
-use Mockery;
+use Overtrue\EasySms\Contracts\MessageInterface;
+use Overtrue\EasySms\Contracts\PhoneNumberInterface;
 use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
-use RuntimeException;
 use Zing\LaravelSms\Channels\SmsChannel;
 use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Events\SmsSending;
@@ -74,10 +74,8 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testDefaultDriver(
-        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
-        \Overtrue\EasySms\Contracts\MessageInterface|string $message
-    ): void {
+    public function testDefaultDriver(PhoneNumberInterface|string $number, MessageInterface|string $message): void
+    {
         $this->prepareLoggerExpectation()
             ->with($this->sendString($number, $message));
 
@@ -90,8 +88,8 @@ final class SmsManagerTest extends TestCase
      * @param \Overtrue\EasySms\Contracts\MessageInterface|array<string, mixed>|string $message
      */
     private function sendString(
-        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
-        \Overtrue\EasySms\Contracts\MessageInterface|array|string $message
+        PhoneNumberInterface|string $number,
+        MessageInterface|array|string $message
     ): string {
         $message = $this->formatMessage($message);
 
@@ -108,10 +106,8 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testLogChannel(
-        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
-        \Overtrue\EasySms\Contracts\MessageInterface|string $message
-    ): void {
+    public function testLogChannel(PhoneNumberInterface|string $number, MessageInterface|string $message): void
+    {
         config()
             ->set('sms.connections.log.channel', self::CHANNEL);
         $this->prepareLoggerExpectation(self::CHANNEL)
@@ -128,10 +124,8 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testLogLevel(
-        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
-        \Overtrue\EasySms\Contracts\MessageInterface|string $message
-    ): void {
+    public function testLogLevel(PhoneNumberInterface|string $number, MessageInterface|string $message): void
+    {
         config()
             ->set('sms.connections.log.level', self::LEVEL);
         $this->prepareLoggerExpectation(null, self::LEVEL)
@@ -154,7 +148,7 @@ final class SmsManagerTest extends TestCase
     public function testNotifyAlias(): void
     {
         $phone = new Phone('18888888888');
-        $notification = Mockery::mock(VerifyCode::class . '[via]');
+        $notification = \Mockery::mock(VerifyCode::class . '[via]');
         $notification->shouldReceive('via')
             ->andReturn(['sms']);
         $this->prepareLoggerExpectation()
@@ -183,7 +177,7 @@ final class SmsManagerTest extends TestCase
     public function testNotifyString(): void
     {
         $phone = new Phone('18888888888');
-        $notification = Mockery::mock(VerifyCode::class . '[toSms]');
+        $notification = \Mockery::mock(VerifyCode::class . '[toSms]');
         $notification->shouldReceive('toSms')
             ->with($phone)
             ->andReturn('test');
@@ -195,7 +189,7 @@ final class SmsManagerTest extends TestCase
     public function testNotifyInvalidReceiver(): void
     {
         /** @var \Zing\LaravelSms\Tests\Phone|\Mockery\MockInterface $phone */
-        $phone = Mockery::mock(Phone::class . '[routeNotificationForSms]', ['18888888888']);
+        $phone = \Mockery::mock(Phone::class . '[routeNotificationForSms]', ['18888888888']);
         $phone->shouldReceive('routeNotificationForSms')
             ->once()
             ->andReturn('');
@@ -207,7 +201,7 @@ final class SmsManagerTest extends TestCase
     public function testNotifyInvalidMessage(): void
     {
         $phone = new Phone('18888888888');
-        $notification = Mockery::mock(VerifyCode::class . '[toSms]');
+        $notification = \Mockery::mock(VerifyCode::class . '[toSms]');
         $notification->shouldReceive('toSms')
             ->once()
             ->with($phone)
@@ -219,10 +213,10 @@ final class SmsManagerTest extends TestCase
     public function testNotifyNotificationMissingToSmsMethod(): void
     {
         $phone = new Phone('18888888888');
-        $notification = Mockery::mock(\Illuminate\Notifications\Notification::class);
+        $notification = \Mockery::mock(\Illuminate\Notifications\Notification::class);
         $notification->shouldReceive('via')
             ->andReturn(['sms']);
-        $this->expectException(RuntimeException::class);
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Notification is missing toSms method.');
         $phone->notify($notification);
     }
@@ -242,10 +236,8 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testLog(
-        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
-        \Overtrue\EasySms\Contracts\MessageInterface|string $message
-    ): void {
+    public function testLog(PhoneNumberInterface|string $number, MessageInterface|string $message): void
+    {
         $this->prepareLoggerExpectation()
             ->with($this->formatLog($number, $this->formatMessage($message)));
         $sms = app(SmsManager::class);
@@ -258,17 +250,15 @@ final class SmsManagerTest extends TestCase
      */
     private function prepareLoggerExpectation(?string $channel = null, string $level = 'info')
     {
-        Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = Mockery::mock());
+        Log::shouldReceive('channel')->once()->with($channel)->andReturn($logChannel = \Mockery::mock());
         Log::shouldReceive('debug')->withAnyArgs()->twice();
 
         return $logChannel->shouldReceive($level)
             ->once();
     }
 
-    private function formatLog(
-        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
-        \Overtrue\EasySms\Contracts\MessageInterface|string $message
-    ): string {
+    private function formatLog(PhoneNumberInterface|string $number, MessageInterface|string $message): string
+    {
         if (\is_string($message)) {
             return sprintf('number: %s, message: "%s"', $number, $message);
         }
@@ -289,10 +279,8 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testFacade(
-        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
-        \Overtrue\EasySms\Contracts\MessageInterface|string $message
-    ): void {
+    public function testFacade(PhoneNumberInterface|string $number, MessageInterface|string $message): void
+    {
         $this->prepareLoggerExpectation()
             ->with($this->formatLog($number, $this->formatMessage($message)));
         Sms::connection('log')->send($number, $message);
@@ -324,10 +312,8 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testSmsSending(
-        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
-        \Overtrue\EasySms\Contracts\MessageInterface|string $message
-    ): void {
+    public function testSmsSending(PhoneNumberInterface|string $number, MessageInterface|string $message): void
+    {
         $expectedMessage = $this->formatMessage($message);
 
         Event::fake();
@@ -350,9 +336,8 @@ final class SmsManagerTest extends TestCase
      *
      * @return \Overtrue\EasySms\Contracts\MessageInterface|array<string, mixed>
      */
-    private function formatMessage(
-        \Overtrue\EasySms\Contracts\MessageInterface|string|array $message
-    ): array|\Overtrue\EasySms\Contracts\MessageInterface {
+    private function formatMessage(MessageInterface|string|array $message): array|MessageInterface
+    {
         if (\is_string($message)) {
             return new Message([
                 'content' => $message,
@@ -373,10 +358,8 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
-    public function testSmsSent(
-        \Overtrue\EasySms\Contracts\PhoneNumberInterface|string $number,
-        \Overtrue\EasySms\Contracts\MessageInterface|string $message
-    ): void {
+    public function testSmsSent(PhoneNumberInterface|string $number, MessageInterface|string $message): void
+    {
         $expectedMessage = $this->formatMessage($message);
 
         Event::fake();
@@ -394,13 +377,13 @@ final class SmsManagerTest extends TestCase
 
     public function testVia(): void
     {
-        $manager = Mockery::mock(SmsManager::class);
+        $manager = \Mockery::mock(SmsManager::class);
         $manager->shouldReceive('via')
             ->passthru();
         $manager->shouldReceive('connection')
             ->withArgs([self::NAME])
             ->once()
-            ->andReturn(Mockery::mock(Connector::class));
+            ->andReturn(\Mockery::mock(Connector::class));
         $manager->via(self::NAME);
     }
 }

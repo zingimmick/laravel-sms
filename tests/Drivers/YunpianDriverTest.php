@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests\Drivers;
 
-use Mockery;
 use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
@@ -22,7 +21,7 @@ final class YunpianDriverTest extends TestCase
         $config = [
             'api_key' => 'mock-api-key',
         ];
-        $driver = Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = \Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
 
         $driver->shouldReceive('request')
             ->with(
@@ -108,7 +107,7 @@ final class YunpianDriverTest extends TestCase
             // 短信ID
         ];
 
-        $driver = Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = \Mockery::mock(YunpianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
         $driver->shouldReceive('request')
             ->with(
                 'post',
@@ -129,7 +128,7 @@ final class YunpianDriverTest extends TestCase
 
     public function testGetOptions(): void
     {
-        $driver = Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
+        $driver = \Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
         $driver->allows('getBaseUri')
             ->passthru();
         self::assertSame('http://yunpian.com', $driver->getBaseUri());

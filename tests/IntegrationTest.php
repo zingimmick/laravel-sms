@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace Zing\LaravelSms\Tests;
 
 use Composer\ClassMapGenerator\ClassMapGenerator;
+use Illuminate\Support\Collection;
+use Mockery\LegacyMockInterface;
+use Mockery\MockInterface;
 use Overtrue\EasySms\Contracts\GatewayInterface;
 use Overtrue\EasySms\Exceptions\GatewayErrorException;
 use Overtrue\EasySms\Gateways\ErrorlogGateway;
+use Overtrue\EasySms\Gateways\Gateway;
 use Overtrue\EasySms\Gateways\HuaweiGateway;
 use Overtrue\EasySms\Support\Config;
 use Overtrue\EasySms\Traits\HasHttpRequest;
-use ReflectionClass;
 use Zing\LaravelSms\SmsMessage;
 use Zing\LaravelSms\SmsNumber;
 
@@ -50,7 +53,7 @@ final class IntegrationTest extends TestCase
                         return false;
                     }
 
-                    $reflectionClass = new ReflectionClass($name);
+                    $reflectionClass = new \ReflectionClass($name);
                     if (! $reflectionClass->isSubclassOf(GatewayInterface::class)) {
                         return false;
                     }
@@ -67,7 +70,7 @@ final class IntegrationTest extends TestCase
     /**
      * @return \Illuminate\Support\Collection<int, array<string, mixed>>
      */
-    private function getConnections(): \Illuminate\Support\Collection
+    private function getConnections(): Collection
     {
         return collect((array) config('sms.connections'))
             ->filter(
@@ -77,7 +80,7 @@ final class IntegrationTest extends TestCase
                         return false;
                     }
 
-                    $reflectionClass = new ReflectionClass($name);
+                    $reflectionClass = new \ReflectionClass($name);
                     if (! $reflectionClass->isSubclassOf(GatewayInterface::class)) {
                         return false;
                     }
@@ -127,10 +130,8 @@ final class IntegrationTest extends TestCase
      *
      * @return \Overtrue\EasySms\Support\Config|\Mockery\MockInterface
      */
-    private function mockConfig(
-        \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway,
-        array $options
-    ): \Mockery\LegacyMockInterface {
+    private function mockConfig(Gateway|MockInterface $gateway, array $options): LegacyMockInterface
+    {
         $config = \Mockery::mock(Config::class, [$options]);
         foreach ($options as $name => $value) {
             $args = $this->formatArgs($gateway, $name, $value);
@@ -148,11 +149,8 @@ final class IntegrationTest extends TestCase
     /**
      * @return array|string[]
      */
-    private function formatArgs(
-        \Overtrue\EasySms\Gateways\Gateway|\Mockery\MockInterface $gateway,
-        string $name,
-        mixed $value
-    ): array {
+    private function formatArgs(Gateway|MockInterface $gateway, string $name, mixed $value): array
+    {
         if ($gateway instanceof ErrorlogGateway && $name === 'file') {
             return [$name, ''];
         }

@@ -6,6 +6,7 @@ namespace Zing\LaravelSms\Tests;
 
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Overtrue\EasySms\Contracts\MessageInterface;
 use PHPUnit\Framework\Constraint\IsEqual;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\Gateways\LogGateway;
@@ -21,8 +22,8 @@ abstract class TestCase extends BaseTestCase
     private const DRIVER = 'driver';
 
     public static function assertSameMessage(
-        \Overtrue\EasySms\Contracts\MessageInterface|string $expected,
-        \Overtrue\EasySms\Contracts\MessageInterface|string $actual,
+        MessageInterface|string $expected,
+        MessageInterface|string $actual,
         string $message = ''
     ): void {
         static::assertThat($actual, new IsEqual($expected), $message);

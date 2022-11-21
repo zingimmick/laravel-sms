@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests\Drivers;
 
-use Mockery;
 use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
@@ -29,7 +28,7 @@ final class MeiLianDriverTest extends TestCase
             'password' => 'mock-password',
             'api_key' => 'mock-api-key',
         ];
-        $driver = Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = \Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
 
         $driver->shouldReceive('request')
             ->with(
@@ -74,7 +73,7 @@ final class MeiLianDriverTest extends TestCase
             'password' => 'mock-password',
             'api_key' => 'mock-api-key',
         ];
-        $driver = Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = \Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
 
         $driver->shouldReceive('request')
             ->with(
@@ -115,7 +114,7 @@ final class MeiLianDriverTest extends TestCase
             'signature' => '【test】',
         ];
 
-        $driver = Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
+        $driver = \Mockery::mock(MeilianGateway::class . '[request]', [$config])->shouldAllowMockingProtectedMethods();
         $driver->shouldReceive('request')
             ->with(
                 'post',

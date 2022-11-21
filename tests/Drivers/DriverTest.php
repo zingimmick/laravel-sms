@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Zing\LaravelSms\Tests\Drivers;
 
-use Exception;
 use Illuminate\Support\Facades\Event;
 use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
@@ -22,7 +21,7 @@ final class DriverTest extends TestCase
         $phoneNumber = new PhoneNumber(18_188_888_888);
         $message = new Message([]);
         Event::fake();
-        Event::shouldReceive('dispatch')->andThrow(new Exception('test'));
+        Event::shouldReceive('dispatch')->andThrow(new \Exception('test'));
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionMessage('test');
         (new Connector([]))->send($phoneNumber, $message);

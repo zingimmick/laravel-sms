@@ -7,8 +7,6 @@ namespace Zing\LaravelSms\Tests;
 use Illuminate\Foundation\Application;
 use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
 
-use function config;
-
 /**
  * @internal
  */
