@@ -125,6 +125,7 @@ return [
             'driver' => Overtrue\EasySms\Gateways\QcloudGateway::class,
             'secret_id' => env('SMS_QCOULD_SECRET_ID'),
             'secret_key' => env('SMS_QCOULD_SECRET_KEY'),
+            'region' => env('SMS_QCOULD_REGION', 'ap-guangzhou'),
             'sdk_app_id' => env('SMS_QCOULD_SDK_APP_ID'),
             'sign_name' => env('SMS_QCOULD_SIGN_NAME', ''),
         ],
@@ -173,6 +174,12 @@ return [
             'token' => env('SMS_TINIYO_TOKEN'),
             'from' => env('SMS_TINIYO_FROM'),
         ],
+        'tinree' => [
+            'driver' => \Overtrue\EasySms\Gateways\TinreeGateway::class,
+            'accesskey' => env('SMS_TINREE_ACCESSKEY'),
+            'secret' => env('SMS_TINREE_SECRET'),
+            'sign' => env('SMS_TINREE_SIGN'),
+        ],
         'twilio' => [
             'driver' => Overtrue\EasySms\Gateways\TwilioGateway::class,
             'account_sid' => env('SMS_TWILIO_ACCOUNT_SID'),
@@ -190,6 +197,15 @@ return [
             'driver' => Overtrue\EasySms\Gateways\Ue35Gateway::class,
             'username' => env('SMS_UE35_USERNAME'),
             'userpwd' => env('SMS_UE35_USERPWD'),
+        ],
+        'volcengine' => [
+            'driver' => \Overtrue\EasySms\Gateways\VolcengineGateway::class,
+            'access_key_id' => env('SMS_VOLCENGINE_ACCESS_KEY_ID'),
+            'access_key_secret' => env('SMS_VOLCENGINE_ACCESS_KEY_SECRET'),
+            'region_id' => env('SMS_VOLCENGINE_REGION_ID', 'cn-north-1'),
+            'sms_account' => env('SMS_VOLCENGINE_SMS_ACCOUNT'),
+            'sign_name' => env('SMS_VOLCENGINE_SIGN_NAME'),
+            'timeout' => env('SMS_VOLCENGINE_TIMEOUT', 5),
         ],
         'yuntongxun' => [
             'driver' => Overtrue\EasySms\Gateways\YuntongxunGateway::class,
