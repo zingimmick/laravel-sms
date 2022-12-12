@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 6.0.0 - 2022-12-12
+
+<!-- Release notes generated using configuration in .github/release.yml at 6.x -->
+### What's Changed
+
+#### Other Changes
+
+- [GA] Fix input required and not supplied: token by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/249
+- Fix coding style by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/250
+- Remove ignored error pattern not matched in reported by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/254
+- Fix tests for new gateways by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/258
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/5.1.2...6.0.0
+
 ## 5.1.2 - 2022-06-20
 
 <!-- Release notes generated using configuration in .github/release.yml at 5.x -->
