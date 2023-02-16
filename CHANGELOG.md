@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 6.1.0 - 2023-02-16
+
+<!-- Release notes generated using configuration in .github/release.yml at 6.x -->
+### What's Changed
+
+#### Other Changes
+
+- Update license copyright year(s) by @github-actions in https://github.com/zingimmick/laravel-sms/pull/260
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/6.0.0...6.1.0
+
 ## 6.0.0 - 2022-12-12
 
 <!-- Release notes generated using configuration in .github/release.yml at 6.x -->
