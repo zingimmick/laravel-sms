@@ -93,10 +93,6 @@ final class SmsManagerTest extends TestCase
     ): string {
         $message = $this->formatMessage($message);
 
-        if (\is_array($message)) {
-            $message = new Message($message);
-        }
-
         return $this->formatLog($number, $message);
     }
 
@@ -257,12 +253,8 @@ final class SmsManagerTest extends TestCase
             ->once();
     }
 
-    private function formatLog(PhoneNumberInterface|string $number, MessageInterface|string $message): string
+    private function formatLog(PhoneNumberInterface|string $number, MessageInterface $message): string
     {
-        if (\is_string($message)) {
-            return sprintf('number: %s, message: "%s"', $number, $message);
-        }
-
         return sprintf(
             'number: %s, message: "%s", template: "%s", data: %s, type: %s',
             $number,
@@ -331,12 +323,8 @@ final class SmsManagerTest extends TestCase
 
     /**
      * @param \Overtrue\EasySms\Contracts\MessageInterface|string|array<string, mixed> $message
-     *
-     * @phpstan-return ($message is array ? array<string, mixed> : \Overtrue\EasySms\Contracts\MessageInterface)
-     *
-     * @return \Overtrue\EasySms\Contracts\MessageInterface|array<string, mixed>
      */
-    private function formatMessage(MessageInterface|string|array $message): array|MessageInterface
+    private function formatMessage(MessageInterface|string|array $message): MessageInterface
     {
         if (\is_string($message)) {
             return new Message([
