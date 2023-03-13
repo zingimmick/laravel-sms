@@ -59,6 +59,14 @@ return [
             'sign' => env('SMS_CHUANGLAN_SIGN'),
             'unsubscribe' => env('SMS_CHUANGLAN_UNSUBSCRIBE'),
         ],
+        'chuanglanv1' => [
+            'driver' => Overtrue\EasySms\Gateways\Chuanglanv1Gateway::class,
+            'channel' => env('SMS_CHUANGLANV1_CHANNEL', 'send'),
+            'account' => env('SMS_CHUANGLANV1_ACCOUNT'),
+            'password' => env('SMS_CHUANGLANV1_PASSWORD'),
+            'intel_account' => env('SMS_CHUANGLANV1_INTEL_ACCOUNT'),
+            'intel_password' => env('SMS_CHUANGLANV1_INTEL_PASSWORD'),
+        ],
         'errorlog' => [
             'driver' => Overtrue\EasySms\Gateways\ErrorlogGateway::class,
             'file' => env('SMS_ERRORLOG_FILE', '/tmp/easy-sms.log'),
