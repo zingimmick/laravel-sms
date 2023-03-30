@@ -61,11 +61,12 @@ return [
         ],
         'chuanglanv1' => [
             'driver' => Overtrue\EasySms\Gateways\Chuanglanv1Gateway::class,
-            'channel' => env('SMS_CHUANGLANV1_CHANNEL', 'send'),
+            'channel' => env('SMS_CHUANGLANV1_CHANNEL', 'v1/send'),
             'account' => env('SMS_CHUANGLANV1_ACCOUNT'),
             'password' => env('SMS_CHUANGLANV1_PASSWORD'),
             'intel_account' => env('SMS_CHUANGLANV1_INTEL_ACCOUNT'),
             'intel_password' => env('SMS_CHUANGLANV1_INTEL_PASSWORD'),
+            'needstatus' => env('SMS_CHUANGLANV1_NEEDSTATUS'),
         ],
         'errorlog' => [
             'driver' => Overtrue\EasySms\Gateways\ErrorlogGateway::class,
