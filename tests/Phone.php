@@ -18,7 +18,7 @@ class Phone
 
     public function routeNotificationForSms(?Notification $notification = null): string
     {
-        if ($notification !== null) {
+        if ($notification instanceof \Illuminate\Notifications\Notification) {
             return $this->phone;
         }
 
