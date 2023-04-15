@@ -197,7 +197,7 @@ return [
         ],
         'ucloud' => [
             'driver' => Overtrue\EasySms\Gateways\UcloudGateway::class,
-            'sig_content' => env('SMS_UCLOUD_SIG_CONTENT'),
+            'sig_content' => env('SMS_UCLOUD_SIG_CONTENT', ''),
             'public_key' => env('SMS_UCLOUD_PUBLIC_KEY'),
             'project_id' => env('SMS_UCLOUD_PROJECT_ID'),
             'private_key' => env('SMS_UCLOUD_PRIVATE_KEY'),
