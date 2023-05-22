@@ -21,7 +21,7 @@
         "graham-campbell/manager": "^4.3 || ^5.0",
         "illuminate/console": "^8.0 || ^9.0 || ^10.0",
         "illuminate/notifications": "^8.0 || ^9.0 || ^10.0",
-        "overtrue/easy-sms": "^2.0.3"
+        "overtrue/easy-sms": "^2.4.2"
     },
     "require-dev": {
         "composer/class-map-generator": "^1.0",
