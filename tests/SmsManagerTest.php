@@ -59,7 +59,7 @@ final class SmsManagerTest extends TestCase
     ];
 
     /**
-     * @return \Zing\LaravelSms\Tests\iterator<array{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
+     * @return iterable<array{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
      */
     public static function provideNumberAndMessage(): iterable
     {
