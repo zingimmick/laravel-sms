@@ -61,7 +61,7 @@ final class SmsManagerTest extends TestCase
     /**
      * @return iterable<array{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
      */
-    public static function provideNumberAndMessage(): iterable
+    public static function provideNumberAndMessage(): \Iterator
     {
         yield ['18888888888', 'test'];
 
