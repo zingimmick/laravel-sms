@@ -103,7 +103,7 @@ final class MeiLianDriverTest extends TestCase
     }
 
     /**
-     * @dataProvider provideNumberAndMessage
+     * @dataProvider provideDefaultSignatureCases
      */
     public function testDefaultSignature(int $number, string $message, string $expected): void
     {
@@ -145,7 +145,7 @@ final class MeiLianDriverTest extends TestCase
     /**
      * @return \Iterator<array{string|int|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
      */
-    public static function provideNumberAndMessage(): \Iterator
+    public static function provideDefaultSignatureCases(): iterable
     {
         yield [18_188_888_888, 'This is a 【test】 message.', '【test】This is a 【test】 message.'];
 

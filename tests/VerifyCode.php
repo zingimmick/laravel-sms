@@ -21,7 +21,7 @@ class VerifyCode extends Notification
     /**
      * @return \Zing\LaravelSms\SmsMessage|array<string, mixed>|string
      */
-    public function toSms(mixed $notifiable): SmsMessage|array|string
+    public function toSms(mixed $notifiable): array|SmsMessage|string
     {
         if ($notifiable) {
             return SmsMessage::text('')->onConnection('log');

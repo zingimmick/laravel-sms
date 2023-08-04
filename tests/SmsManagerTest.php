@@ -61,7 +61,7 @@ final class SmsManagerTest extends TestCase
     /**
      * @return \Iterator<array{string|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
      */
-    public static function provideNumberAndMessage(): \Iterator
+    public static function provideNumberAndMessage(): iterable
     {
         yield ['18888888888', 'test'];
 
@@ -89,7 +89,7 @@ final class SmsManagerTest extends TestCase
      */
     private function sendString(
         PhoneNumberInterface|string $number,
-        MessageInterface|array|string $message
+        array|MessageInterface|string $message
     ): string {
         $message = $this->formatMessage($message);
 
@@ -324,7 +324,7 @@ final class SmsManagerTest extends TestCase
     /**
      * @param \Overtrue\EasySms\Contracts\MessageInterface|string|array<string, mixed> $message
      */
-    private function formatMessage(MessageInterface|string|array $message): MessageInterface
+    private function formatMessage(array|MessageInterface|string $message): MessageInterface
     {
         if (\is_string($message)) {
             return new Message([

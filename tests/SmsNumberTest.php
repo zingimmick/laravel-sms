@@ -17,7 +17,7 @@ final class SmsNumberTest extends TestCase
     /**
      * @param \Overtrue\EasySms\Contracts\MessageInterface|array<string, string>|string $message
      */
-    private function sendString(SmsNumber $number, MessageInterface|array|string $message): string
+    private function sendString(SmsNumber $number, array|MessageInterface|string $message): string
     {
         if (\is_string($message)) {
             $message = new Message(
