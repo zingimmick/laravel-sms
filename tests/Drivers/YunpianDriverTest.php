@@ -84,7 +84,7 @@ final class YunpianDriverTest extends TestCase
     }
 
     /**
-     * @dataProvider provideNumberAndMessage
+     * @dataProvider provideDefaultSignatureCases
      */
     public function testDefaultSignature(int $number, string $message, string $expected): void
     {
@@ -137,7 +137,7 @@ final class YunpianDriverTest extends TestCase
     /**
      * @return \Iterator<array{string|int|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
      */
-    public static function provideNumberAndMessage(): \Iterator
+    public static function provideDefaultSignatureCases(): \Iterator
     {
         yield [18_188_888_888, 'This is a 【test】 message.', '【default】This is a 【test】 message.'];
 

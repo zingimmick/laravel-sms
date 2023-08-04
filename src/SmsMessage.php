@@ -12,12 +12,12 @@ class SmsMessage extends Message
 {
     use Queueable;
 
-    public static function text(string|callable $content): self
+    public static function text(callable|string $content): self
     {
         return (new self([], MessageInterface::TEXT_MESSAGE))->setContent($content);
     }
 
-    public static function voice(string|callable $content): self
+    public static function voice(callable|string $content): self
     {
         return (new self([], MessageInterface::VOICE_MESSAGE))->setContent($content);
     }
@@ -25,7 +25,7 @@ class SmsMessage extends Message
     /**
      * @param mixed[]|callable $data
      */
-    public static function fromTemplate(string|callable $template, array|callable $data): self
+    public static function fromTemplate(callable|string $template, array|callable $data): self
     {
         return static::text('')->setTemplate($template)->setData($data);
     }

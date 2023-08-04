@@ -71,7 +71,7 @@ class Connector implements ConnectorInterface
         return new $driverClass($config);
     }
 
-    protected function formatPhoneNumber(string|PhoneNumberInterface $number): PhoneNumberInterface
+    protected function formatPhoneNumber(PhoneNumberInterface|string $number): PhoneNumberInterface
     {
         if ($number instanceof PhoneNumberInterface) {
             return $number;
@@ -83,7 +83,7 @@ class Connector implements ConnectorInterface
     /**
      * @param array<string, mixed>|string|\Overtrue\EasySms\Contracts\MessageInterface $message
      */
-    protected function formatMessage(array|string|MessageInterface $message): MessageInterface
+    protected function formatMessage(array|MessageInterface|string $message): MessageInterface
     {
         if (! $message instanceof MessageInterface) {
             if (\is_string($message)) {
@@ -102,7 +102,7 @@ class Connector implements ConnectorInterface
     /**
      * @param array<string, mixed>|string|\Overtrue\EasySms\Contracts\MessageInterface $message
      */
-    public function send(string|PhoneNumberInterface $number, array|string|MessageInterface $message): mixed
+    public function send(PhoneNumberInterface|string $number, array|MessageInterface|string $message): mixed
     {
         $number = $this->formatPhoneNumber($number);
         $message = $this->formatMessage($message);

@@ -26,7 +26,7 @@ abstract class TestCase extends BaseTestCase
         MessageInterface|string $actual,
         string $message = ''
     ): void {
-        static::assertThat($actual, new IsEqual($expected), $message);
+        self::assertThat($actual, new IsEqual($expected), $message);
     }
 
     /**

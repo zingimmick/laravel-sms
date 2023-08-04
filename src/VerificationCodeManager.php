@@ -19,7 +19,7 @@ class VerificationCodeManager
         return config('sms.verification.prefix') . $number;
     }
 
-    public function verify(SmsNumber|string $number, string|int $code): bool
+    public function verify(SmsNumber|string $number, int|string $code): bool
     {
         if (config('sms.verification.debug', false)) {
             return true;
