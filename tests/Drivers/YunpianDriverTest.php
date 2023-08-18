@@ -58,23 +58,20 @@ final class YunpianDriverTest extends TestCase
 
         $message = SmsMessage::text('【test】This is a test message.');
         $config = new Config($config);
-        self::assertSame(
-            [
-                'code' => 0,
-                'msg' => '发送成功',
-                'count' => 1,
-                // 成功发送的短信计费条数
-                'fee' => 0.05,
-                // 扣费条数，70个字一条，超出70个字时按每67字一条计
-                'unit' => 'RMB',
-                // 计费单位
-                'mobile' => '18188888888',
-                // 发送手机号
-                'sid' => 3_310_228_982,
-                // 短信ID
-            ],
-            $driver->send(new PhoneNumber(18_188_888_888), $message, $config)
-        );
+        $this->assertSame([
+            'code' => 0,
+            'msg' => '发送成功',
+            'count' => 1,
+            // 成功发送的短信计费条数
+            'fee' => 0.05,
+            // 扣费条数，70个字一条，超出70个字时按每67字一条计
+            'unit' => 'RMB',
+            // 计费单位
+            'mobile' => '18188888888',
+            // 发送手机号
+            'sid' => 3_310_228_982,
+            // 短信ID
+        ], $driver->send(new PhoneNumber(18_188_888_888), $message, $config));
 
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionCode(100);
@@ -123,7 +120,7 @@ final class YunpianDriverTest extends TestCase
             )->andReturn($response);
         $config = new Config($config);
 
-        self::assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
+        $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
 
     public function testGetOptions(): void
@@ -131,7 +128,7 @@ final class YunpianDriverTest extends TestCase
         $driver = \Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
         $driver->allows('getBaseUri')
             ->passthru();
-        self::assertSame('http://yunpian.com', $driver->getBaseUri());
+        $this->assertSame('http://yunpian.com', $driver->getBaseUri());
     }
 
     /**

@@ -17,7 +17,7 @@ final class ServiceProviderTest extends TestCase
 {
     public function testSms(): void
     {
-        self::assertInstanceOf(Connector::class, Sms::connection());
+        $this->assertInstanceOf(Connector::class, Sms::connection());
     }
 
     public function testSend(): void
@@ -30,7 +30,7 @@ final class ServiceProviderTest extends TestCase
 
     public function testAlias(): void
     {
-        self::assertSame(
+        $this->assertSame(
             forward_static_call([\Sms::class, 'connection']),
             forward_static_call([Sms::class, 'connection'])
         );

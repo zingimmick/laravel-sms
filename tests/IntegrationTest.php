@@ -64,7 +64,7 @@ final class IntegrationTest extends TestCase
             ->sort()
             ->values();
         $diff = $gateways->diff($drivers->sort()->values());
-        self::assertCount(0, $diff, $gateways->diff($drivers->sort()->values())->toJson());
+        $this->assertCount(0, $diff, $gateways->diff($drivers->sort()->values())->toJson());
     }
 
     /**
@@ -74,7 +74,7 @@ final class IntegrationTest extends TestCase
     {
         return collect((array) config('sms.connections'))
             ->filter(
-                static function ($config): bool {
+                static function (array $config): bool {
                     $name = $config['driver'];
                     if (! class_exists($name)) {
                         return false;

@@ -36,7 +36,7 @@ final class CommandTest extends TestCase
                 false
             )
             ->assertExitCode(0);
-        self::assertSame(config('sms.default'), 'default');
+        $this->assertSame(config('sms.default'), 'default');
         $this->artisan(SmsSwitchConnectionCommand::class, [
             'connection' => 'default-2',
         ])->expectsQuestion(
@@ -44,7 +44,7 @@ final class CommandTest extends TestCase
             true
         )
             ->assertExitCode(0);
-        self::assertSame(config('sms.default'), 'default-2');
+        $this->assertSame(config('sms.default'), 'default-2');
         $this->artisan(SmsSwitchConnectionCommand::class, [
             'connection' => null,
         ])
@@ -68,7 +68,7 @@ final class CommandTest extends TestCase
                 '--always-no' => 1,
             ]
         )->expectsOutput('Sms default connection already exists. Skipping...');
-        self::assertSame(config('sms.default'), 'default');
+        $this->assertSame(config('sms.default'), 'default');
     }
 
     public function testForce(): void
@@ -82,7 +82,7 @@ final class CommandTest extends TestCase
             '--force' => true,
         ])
             ->assertExitCode(0);
-        self::assertSame(config('sms.default'), 'default-2');
+        $this->assertSame(config('sms.default'), 'default-2');
     }
 
     private function envPath(): string
