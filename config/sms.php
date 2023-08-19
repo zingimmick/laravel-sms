@@ -130,6 +130,12 @@ return [
             'signId' => env('SMS_MODUYUN_SIGN_ID', ''),
             'type' => env('SMS_MODUYUN_TYPE', 0),
         ],
+        'nowcn' => [
+            'driver' => Overtrue\EasySms\Gateways\NowcnGateway::class,
+            'key' => env('SMS_NOWCN_KEY'),
+            'secret' => env('SMS_NOWCN_SECRET'),
+            'api_type' => env('SMS_NOWCN_API_TYPE'),
+        ],
         'qcloud' => [
             'driver' => Overtrue\EasySms\Gateways\QcloudGateway::class,
             'secret_id' => env('SMS_QCOULD_SECRET_ID'),
