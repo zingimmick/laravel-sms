@@ -50,14 +50,11 @@ final class MeiLianDriverTest extends TestCase
 
         $message = SmsMessage::text('【test】This is a test message.');
         $config = new Config($config);
-        self::assertSame(
-            [
-                'success' => true,
-                'msg' => 'ok',
-                'result' => 'success:Missing recipient',
-            ],
-            $driver->send(new PhoneNumber(18_188_888_888), $message, $config)
-        );
+        $this->assertSame([
+            'success' => true,
+            'msg' => 'ok',
+            'result' => 'success:Missing recipient',
+        ], $driver->send(new PhoneNumber(18_188_888_888), $message, $config));
 
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionCode(1);
@@ -132,14 +129,11 @@ final class MeiLianDriverTest extends TestCase
             )->andReturn(self::RESPONSE);
         $config = new Config($config);
 
-        self::assertSame(
-            [
-                'success' => true,
-                'msg' => 'ok',
-                'result' => self::RESPONSE,
-            ],
-            $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config)
-        );
+        $this->assertSame([
+            'success' => true,
+            'msg' => 'ok',
+            'result' => self::RESPONSE,
+        ], $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
 
     /**
