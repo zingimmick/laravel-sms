@@ -11,7 +11,7 @@ return [
             'level' => env('SMS_LOG_LEVEL', 'info'),
         ],
         'yunpian' => [
-            'driver' => Overtrue\EasySms\Gateways\YunpianGateway::class,
+            'driver' => \Overtrue\EasySms\Gateways\YunpianGateway::class,
             'api_key' => env('SMS_YUNPIAN_API_KEY'),
             'signature' => env('SMS_YUNPIAN_SIGNATURE', ''),
         ],
