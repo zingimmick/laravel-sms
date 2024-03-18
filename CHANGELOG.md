@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 6.4.0 - 2024-03-18
+
+<!-- Release notes generated using configuration in .github/release.yml at 6.x -->
+### What's Changed
+
+#### Other Changes
+
+* Add config for nowcn gateway by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/272
+* Rename skipped rules on $rectorConfig->skip() are changed to different namespace by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/271
+* Support for PHP 8.3 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/275
+* Update license copyright year(s) by @github-actions in https://github.com/zingimmick/laravel-sms/pull/280
+* Support for Laravel 11 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/285
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/6.3.1...6.4.0
+
 ## 6.3.1 - 2023-04-03
 
 <!-- Release notes generated using configuration in .github/release.yml at 6.x -->
