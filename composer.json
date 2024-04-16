@@ -50,9 +50,6 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "5.x-dev"
-        },
         "laravel": {
             "providers": [
                 "Zing\\LaravelSms\\SmsServiceProvider"
