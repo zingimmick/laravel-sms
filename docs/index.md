@@ -1,17 +1,17 @@
-## Laravel Sms
+# Laravel Sms
 
-Laravel Sms is used to notify via sms and send a message.
-
-[![Build Status](https://github.com/zingimmick/laravel-sms/actions/workflows/tests.yml/badge.svg?branch=5.x)](https://github.com/zingimmick/laravel-sms/actions/workflows/tests.yml)
-[![Code Coverage](https://codecov.io/gh/zingimmick/laravel-sms/branch/5.x/graph/badge.svg)](https://codecov.io/gh/zingimmick/laravel-sms)
+[![Tests](https://github.com/zingimmick/laravel-sms/actions/workflows/tests.yml/badge.svg?branch=6.x)](https://github.com/zingimmick/laravel-sms/actions/workflows/tests.yml)
+[![Code Coverage](https://codecov.io/gh/zingimmick/laravel-sms/branch/6.x/graph/badge.svg)](https://codecov.io/gh/zingimmick/laravel-sms)
 [![Latest Stable Version](https://poser.pugx.org/zing/laravel-sms/v/stable.svg)](https://packagist.org/packages/zing/laravel-sms)
 [![Total Downloads](https://poser.pugx.org/zing/laravel-sms/downloads)](https://packagist.org/packages/zing/laravel-sms)
 [![Latest Unstable Version](https://poser.pugx.org/zing/laravel-sms/v/unstable.svg)](https://packagist.org/packages/zing/laravel-sms)
 [![License](https://poser.pugx.org/zing/laravel-sms/license)](https://packagist.org/packages/zing/laravel-sms)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zingimmick/laravel-sms/badges/quality-score.png?b=5.x)](https://scrutinizer-ci.com/g/zingimmick/laravel-sms)
-[![StyleCI Shield](https://github.styleci.io/repos/254559831/shield?branch=5.x)](https://github.styleci.io/repos/254559831)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zingimmick/laravel-sms/badges/quality-score.png?b=6.x)](https://scrutinizer-ci.com/g/zingimmick/laravel-sms)
+[![StyleCI Shield](https://github.styleci.io/repos/254559831/shield?branch=6.x)](https://github.styleci.io/repos/254559831)
 [![Code Climate](https://api.codeclimate.com/v1/badges/9c81b0c9cdebc23ba26f/maintainability)](https://codeclimate.com/github/zingimmick/laravel-sms/maintainability)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms?ref=badge_shield)
+
+Laravel Sms is used to notify via sms and send a message.
 
 ## Thanks
 
@@ -20,14 +20,14 @@ Many thanks to:
 * [JetBrains](https://www.jetbrains.com/?from=LaravelSms) for the excellent
   **PhpStorm IDE** and providing me with an open source license to speed up the
   project development.
- 
+
   [![JetBrains](./jetbrains.svg)](https://www.jetbrains.com/?from=LaravelSms)
 
-## Requirement
+## Requirements
 
-1. PHP >= 7.3
-2. [Composer](https://getcomposer.org)
-3. `ext-json`
+- [PHP 8.0+](https://php.net/releases/)
+- [Composer](https://getcomposer.org)
+- [Laravel 8.0+](https://laravel.com/docs/releases)
 
 ## Installation
 
@@ -178,37 +178,3 @@ Laravel Sms is open-sourced software licensed under the [MIT license](LICENSE).
 
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzingimmick%2Flaravel-sms?ref=badge_large)
-
-<!--
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/zingimmick/laravel-sms/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
--->
