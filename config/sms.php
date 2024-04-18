@@ -222,6 +222,14 @@ return [
             'sign_name' => env('SMS_VOLCENGINE_SIGN_NAME'),
             'timeout' => env('SMS_VOLCENGINE_TIMEOUT', 5),
         ],
+        'yidongmasblack' => [
+            'driver' => \Overtrue\EasySms\Gateways\YidongmasblackGateway::class,
+            'ecName' => env('SMS_YIDONGMAGE_EC_NAME'),
+            'apId' => env('SMS_YIDONGMAGE_AP_ID'),
+            'secretKey' => env('SMS_YIDONGMAGE_SECRET_KEY'),
+            'sign' => env('SMS_YIDONGMAGE_SIGN'),
+            'addSerial' => env('SMS_YIDONGMAGE_ADD_SERIAL'),
+        ],
         'yuntongxun' => [
             'driver' => \Overtrue\EasySms\Gateways\YuntongxunGateway::class,
             'debug' => env('SMS_YUNTONGXUN_DEBUG'),
