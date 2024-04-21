@@ -15,3 +15,4 @@ parameters:
         - '#(.*?)Laravel\\Lumen\\Application(.*?)#'
         - '#Unable to resolve the template type TMock in call to method static method Mockery::mock\(\)#'
         - '#Parameter \#1 ...\$args of static method Mockery::mock\(\) expects array|class-string<(.*?)], string given.#'
+        - '#Class Overtrue\\EasySms\\Gateways\\AvatardataGateway not found.#'
