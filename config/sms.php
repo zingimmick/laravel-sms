@@ -5,6 +5,9 @@ declare(strict_types=1);
 return [
     'default' => env('SMS_CONNECTION', 'log'),
     'connections' => [
+        'null' => [
+            'driver' => \Zing\LaravelSms\Gateways\NullGateway::class,
+        ],
         'log' => [
             'driver' => \Zing\LaravelSms\Gateways\LogGateway::class,
             'channel' => env('SMS_LOG_CHANNEL'),

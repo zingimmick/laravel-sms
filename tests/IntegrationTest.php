@@ -23,10 +23,6 @@ use Zing\LaravelSms\SmsNumber;
  */
 final class IntegrationTest extends TestCase
 {
-    protected function getEnvironmentSetUp($app): void
-    {
-    }
-
     public function testAllDriversImplementsGatewayInterface(): void
     {
         $drivers = collect((array) config('sms.connections'))
