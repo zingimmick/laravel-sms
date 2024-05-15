@@ -21,10 +21,6 @@ final class VerificationCodeManagerTest extends TestCase
      */
     private mixed $verificationCodeManager;
 
-    protected function getEnvironmentSetUp($app): void
-    {
-    }
-
     protected function setUp(): void
     {
         parent::setUp();

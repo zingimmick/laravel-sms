@@ -50,26 +50,4 @@ abstract class TestCase extends BaseTestCase
             'Sms' => Sms::class,
         ];
     }
-
-    protected function getEnvironmentSetUp($app): void
-    {
-        Config::set(
-            'sms',
-            [
-                'default' => env('SMS_CONNECTION', 'log'),
-                'connections' => [
-                    'log' => [
-                        self::DRIVER => LogGateway::class,
-                    ],
-                    'null' => [
-                        self::DRIVER => NullGateway::class,
-                    ],
-                    'yunpian' => [
-                        self::DRIVER => YunpianGateway::class,
-                        'api_key' => env('YUNPIAN_KEY'),
-                    ],
-                ],
-            ]
-        );
-    }
 }
