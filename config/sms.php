@@ -146,6 +146,7 @@ return [
             'region' => env('SMS_QCOULD_REGION', 'ap-guangzhou'),
             'sdk_app_id' => env('SMS_QCOULD_SDK_APP_ID'),
             'sign_name' => env('SMS_QCOULD_SIGN_NAME', ''),
+            'endpoint' => env('SMS_QCOULD_ENDPOINT', 'https://sms.tencentcloudapi.com'),
         ],
         'qiniu' => [
             'driver' => \Overtrue\EasySms\Gateways\QiniuGateway::class,
