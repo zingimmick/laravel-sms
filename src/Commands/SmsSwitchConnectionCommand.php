@@ -106,7 +106,7 @@ class SmsSwitchConnectionCommand extends Command
 
         if (! Str::contains($contents, 'SMS_CONNECTION')) {
             // create new entry
-            file_put_contents($path, PHP_EOL . sprintf('SMS_CONNECTION=%s', $connection) . PHP_EOL, FILE_APPEND);
+            file_put_contents($path, PHP_EOL . \sprintf('SMS_CONNECTION=%s', $connection) . PHP_EOL, FILE_APPEND);
 
             return true;
         }
@@ -138,7 +138,7 @@ class SmsSwitchConnectionCommand extends Command
     {
         Config::set('sms.default', $connection);
 
-        $this->info(sprintf('sms default connection switch to [%s] successfully.', $connection));
+        $this->info(\sprintf('sms default connection switch to [%s] successfully.', $connection));
     }
 
     /**

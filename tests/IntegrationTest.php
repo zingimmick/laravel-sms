@@ -30,7 +30,7 @@ final class IntegrationTest extends TestCase
         $drivers->each(
             static function ($driver): void {
                 if (class_exists($driver)) {
-                    $message = sprintf('%s should implements ', $driver) . GatewayInterface::class;
+                    $message = \sprintf('%s should implements ', $driver) . GatewayInterface::class;
                     self::assertTrue(is_subclass_of($driver, GatewayInterface::class), $message);
                 }
             }

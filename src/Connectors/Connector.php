@@ -65,7 +65,7 @@ class Connector implements ConnectorInterface
                 true
             )
         ) {
-            throw new InvalidArgumentException(sprintf('Unsupported driver [%s].', $driverClass));
+            throw new InvalidArgumentException(\sprintf('Unsupported driver [%s].', $driverClass));
         }
 
         return new $driverClass($config);
@@ -109,7 +109,7 @@ class Connector implements ConnectorInterface
 
         try {
             Event::dispatch(new SmsSending($number, $message));
-            $content = sprintf(
+            $content = \sprintf(
                 'number: %s, message: "%s", template: "%s", data: %s, type: %s',
                 $number,
                 $message->getContent($this->driver),

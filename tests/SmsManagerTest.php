@@ -255,7 +255,7 @@ final class SmsManagerTest extends TestCase
 
     private function formatLog(PhoneNumberInterface|string $number, MessageInterface $message): string
     {
-        return sprintf(
+        return \sprintf(
             'number: %s, message: "%s", template: "%s", data: %s, type: %s',
             $number,
             $message->getContent(),
@@ -290,7 +290,7 @@ final class SmsManagerTest extends TestCase
     public function testConnectionWithWrongDriver(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('Unsupported driver [%s].', self::DRIVER));
+        $this->expectExceptionMessage(\sprintf('Unsupported driver [%s].', self::DRIVER));
         config()
             ->set('sms.connections.test', [
                 'driver' => self::DRIVER,
