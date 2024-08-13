@@ -25,6 +25,6 @@ class VerificationCode extends Notification
 
     public function toSms(): string
     {
-        return sprintf(config('sms.verification.content'), $this->code, $this->ttl);
+        return \sprintf(config('sms.verification.content'), $this->code, $this->ttl);
     }
 }

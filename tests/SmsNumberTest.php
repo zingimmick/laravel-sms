@@ -32,7 +32,7 @@ final class SmsNumberTest extends TestCase
             $message = new Message($message);
         }
 
-        return sprintf(
+        return \sprintf(
             'number: %s, message: "%s", template: "%s", data: %s, type: %s',
             $number,
             $message->getContent(),
