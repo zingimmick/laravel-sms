@@ -20,9 +20,10 @@ final class NullDriverTest extends TestCase
     {
         $phoneNumber = new PhoneNumber(18_188_888_888);
         $message = SmsMessage::text('【test】This is a test message.');
+        $logChannel = \Mockery::mock();
+        $logChannel->shouldReceive('info')->once();
+        Log::shouldReceive('channel')->once()->with(null)->andReturn($logChannel);
         Log::shouldReceive('debug')->withAnyArgs()->twice();
-        Log::shouldReceive('channel')->passthru();
-        Log::shouldReceive('driver')->passthru();
         Sms::connection('null')->send($phoneNumber, $message);
     }
 }
