@@ -20,7 +20,6 @@ final class NullDriverTest extends TestCase
     {
         $phoneNumber = new PhoneNumber(18_188_888_888);
         $message = SmsMessage::text('【test】This is a test message.');
-        Log::shouldReceive('channel')->withAnyArgs()->twice();
         Log::shouldReceive('debug')->withAnyArgs()->twice();
         Sms::connection('null')->send($phoneNumber, $message);
     }
