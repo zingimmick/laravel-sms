@@ -22,6 +22,6 @@ final class NullDriverTest extends TestCase
         $message = SmsMessage::text('【test】This is a test message.');
         Log::shouldReceive('debug')->withAnyArgs()->twice();
         Sms::connection('null')->send($phoneNumber, $message);
-        Log::clearResolvedInstance(Log::getFacadeAccessor());
+        Log::clearResolvedInstance('log');
     }
 }
