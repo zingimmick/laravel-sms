@@ -23,7 +23,7 @@ final class NullDriverTest extends TestCase
         $logChannel = \Mockery::mock();
         $logChannel->shouldReceive('warning')->withArgs(function(){
 var_dump(func_get_args());
-                                                       );
+        }                             );
         Log::shouldReceive('channel')->once()->with('deprecations')->andReturn($logChannel);
         Log::shouldReceive('debug')->withAnyArgs()->twice();
         Sms::connection('null')->send($phoneNumber, $message);
