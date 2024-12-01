@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Log;
 use Overtrue\EasySms\PhoneNumber;
 use Zing\LaravelSms\Facades\Sms;
 use Zing\LaravelSms\SmsMessage;
-use Zing\LaravelSms\Tests\TestCase;
+use Zing\LaravelSms\Tests\TestCase;use PHPUnit\Framework\Attributes\WithoutErrorHandler;
 
 /**
  * @internal
  */
 final class NullDriverTest extends TestCase
 {
+    #[WithoutErrorHandler]
     public function testSend(): void
     {
         $phoneNumber = new PhoneNumber(18_188_888_888);
