@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Zing\LaravelSms\Tests\Drivers;
+
 use Illuminate\Support\Facades\Log;
 use Overtrue\EasySms\PhoneNumber;
 use Zing\LaravelSms\Facades\Sms;
