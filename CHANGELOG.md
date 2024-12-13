@@ -8,6 +8,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 6.5.0 - 2024-12-13
+
+<!-- Release notes generated using configuration in .github/release.yml at 6.x -->
+### What's Changed
+
+#### Other Changes
+
+* Fix badge svg by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/288
+* Allow PHPUnit 11 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/289
+* ci: add .deepsource.toml by @deepsource-autofix in https://github.com/zingimmick/laravel-sms/pull/294
+* Remove empty methods by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/296
+* ci: update .deepsource.toml by @deepsource-autofix in https://github.com/zingimmick/laravel-sms/pull/298
+* ci: update .deepsource.toml by @deepsource-autofix in https://github.com/zingimmick/laravel-sms/pull/299
+* Add default endpoint for qcloud by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/304
+* Remove rules that were never registered by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/305
+* Allow orchestra/testbench 9.0 and nesbot/carbon 3.4 in tests action by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/309
+
+### New Contributors
+
+* @deepsource-autofix made their first contribution in https://github.com/zingimmick/laravel-sms/pull/294
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/6.4.0...6.5.0
+
 ## 6.4.0 - 2024-03-18
 
 <!-- Release notes generated using configuration in .github/release.yml at 6.x -->
