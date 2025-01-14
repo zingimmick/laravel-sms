@@ -15,7 +15,7 @@ final class CommandTest extends TestCase
     public function testCommand(): void
     {
         $this->artisan(SmsSwitchConnectionCommand::class, [
-            'connection' => 'default',
+            'connection' => 'default'
         ])->assertExitCode(0);
         $this->artisan(
             SmsSwitchConnectionCommand::class,
