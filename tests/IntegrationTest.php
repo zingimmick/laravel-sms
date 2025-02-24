@@ -60,7 +60,7 @@ final class IntegrationTest extends TestCase
             ->sort()
             ->values();
         $diff = $gateways->diff($drivers->sort()->values());
-        $this->assertCount(0, $diff, $gateways->diff($drivers->sort()->values())->toJson());
+        $this->assertEmpty($diff, $gateways->diff($drivers->sort()->values())->toJson());
     }
 
     /**
