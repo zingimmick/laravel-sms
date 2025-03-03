@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
+use Rector\PHPUnit\CodeQuality\Rector\MethodCall\AssertCountWithZeroToAssertEmptyRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Privatization\Rector\MethodCall\PrivatizeLocalGetterToPropertyRector;
 use Rector\Set\ValueObject\LevelSetList;
@@ -19,6 +20,7 @@ return static function (RectorConfig $rectorConfig): void {
         RenameParamToMatchTypeRector::class,
         PrivatizeLocalGetterToPropertyRector::class,
         ParamTypeByMethodCallTypeRector::class,
+        AssertCountWithZeroToAssertEmptyRector::class,
     ]);
     $rectorConfig->paths(
         [__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/tests', __DIR__ . '/ecs.php', __DIR__ . '/rector.php']
