@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 6.6.0 - 2025-03-03
+
+<!-- Release notes generated using configuration in .github/release.yml at 6.x -->
+### What's Changed
+
+#### Other Changes
+
+* Update license copyright year(s) by @github-actions in https://github.com/zingimmick/laravel-sms/pull/311
+* Support for PHP 8.4 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/307
+* Update nunomaduro/larastan requirement from ^1.0 || ^2.0 to ^1.0 || ^2.0 || ^3.0 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/312
+* Use larastan/larastan instead of nunomaduro/larastan by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/313
+* Support for Laravel 12 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/314
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/6.5.0...6.6.0
+
 ## 6.5.0 - 2024-12-13
 
 <!-- Release notes generated using configuration in .github/release.yml at 6.x -->
