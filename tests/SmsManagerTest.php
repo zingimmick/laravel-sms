@@ -25,34 +25,16 @@ use Zing\LaravelSms\SmsMessage;
  */
 final class SmsManagerTest extends TestCase
 {
-    /**
-     * @var string
-     */
     private const CHANNEL = 'test';
 
-    /**
-     * @var string
-     */
     private const LEVEL = 'info';
 
-    /**
-     * @var string
-     */
     private const DRIVER = 'driver';
 
-    /**
-     * @var string
-     */
     private const NAME = 'test';
 
-    /**
-     * @var string
-     */
     private const NUMBER = '18888888888';
 
-    /**
-     * @var array<string, string|int[]>
-     */
     private const MESSAGE = [
         'template' => 'aaa',
         'data' => [111],

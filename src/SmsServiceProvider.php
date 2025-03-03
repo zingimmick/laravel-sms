@@ -16,9 +16,6 @@ use Zing\LaravelSms\Facades\Sms;
 
 class SmsServiceProvider extends ServiceProvider
 {
-    /**
-     * @var string
-     */
     private const SMS = 'sms';
 
     public function boot(): void

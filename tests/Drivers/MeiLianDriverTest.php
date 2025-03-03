@@ -16,9 +16,6 @@ use Zing\LaravelSms\Tests\TestCase;
  */
 final class MeiLianDriverTest extends TestCase
 {
-    /**
-     * @var string
-     */
     private const RESPONSE = 'success:Missing recipient';
 
     public function testSend(): void
