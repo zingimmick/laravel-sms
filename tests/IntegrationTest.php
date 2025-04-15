@@ -150,7 +150,7 @@ final class IntegrationTest extends TestCase
     private function formatArgs(Gateway|MockInterface $gateway, string $name, mixed $value): array
     {
         if ($gateway instanceof ErrorlogGateway && $name === 'file') {
-            return [$name, ini_get('error_log')];
+            return [$name, \ini_get('error_log')];
         }
 
         if ($gateway instanceof HuaweiGateway && $name === 'from' && \is_array($value)) {
