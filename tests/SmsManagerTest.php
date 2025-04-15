@@ -11,6 +11,7 @@ use Overtrue\EasySms\Contracts\MessageInterface;
 use Overtrue\EasySms\Contracts\PhoneNumberInterface;
 use Overtrue\EasySms\Message;
 use Overtrue\EasySms\PhoneNumber;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Zing\LaravelSms\Channels\SmsChannel;
 use Zing\LaravelSms\Connectors\Connector;
 use Zing\LaravelSms\Events\SmsSending;
@@ -46,6 +47,7 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
+    #[DataProvider('provideNumberAndMessage')]
     public function testDefaultDriver(PhoneNumberInterface|string $number, MessageInterface|string $message): void
     {
         $this->prepareLoggerExpectation()
@@ -74,6 +76,7 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
+    #[DataProvider('provideNumberAndMessage')]
     public function testLogChannel(PhoneNumberInterface|string $number, MessageInterface|string $message): void
     {
         config()
@@ -92,6 +95,7 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
+    #[DataProvider('provideNumberAndMessage')]
     public function testLogLevel(PhoneNumberInterface|string $number, MessageInterface|string $message): void
     {
         config()
@@ -204,6 +208,7 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
+    #[DataProvider('provideNumberAndMessage')]
     public function testLog(PhoneNumberInterface|string $number, MessageInterface|string $message): void
     {
         $this->prepareLoggerExpectation()
@@ -243,6 +248,7 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
+    #[DataProvider('provideNumberAndMessage')]
     public function testFacade(PhoneNumberInterface|string $number, MessageInterface|string $message): void
     {
         $this->prepareLoggerExpectation()
@@ -276,6 +282,7 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
+    #[DataProvider('provideNumberAndMessage')]
     public function testSmsSending(PhoneNumberInterface|string $number, MessageInterface|string $message): void
     {
         $expectedMessage = $this->formatMessage($message);
@@ -318,6 +325,7 @@ final class SmsManagerTest extends TestCase
      * @param string|\Overtrue\EasySms\PhoneNumber $number
      * @param string|\Zing\LaravelSms\SmsMessage $message
      */
+    #[DataProvider('provideNumberAndMessage')]
     public function testSmsSent(PhoneNumberInterface|string $number, MessageInterface|string $message): void
     {
         $expectedMessage = $this->formatMessage($message);

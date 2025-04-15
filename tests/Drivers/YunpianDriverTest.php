@@ -6,6 +6,7 @@ namespace Zing\LaravelSms\Tests\Drivers;
 
 use Overtrue\EasySms\PhoneNumber;
 use Overtrue\EasySms\Support\Config;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Zing\LaravelSms\Exceptions\CouldNotSendNotification;
 use Zing\LaravelSms\Gateways\YunpianGateway;
 use Zing\LaravelSms\SmsMessage;
@@ -83,6 +84,7 @@ final class YunpianDriverTest extends TestCase
     /**
      * @dataProvider provideDefaultSignatureCases
      */
+    #[DataProvider('provideDefaultSignatureCases')]
     public function testDefaultSignature(int $number, string $message, string $expected): void
     {
         $config = [

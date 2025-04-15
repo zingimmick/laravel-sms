@@ -145,12 +145,12 @@ final class IntegrationTest extends TestCase
     }
 
     /**
-     * @return array|string[]
+     * @return array<int, string|false>
      */
     private function formatArgs(Gateway|MockInterface $gateway, string $name, mixed $value): array
     {
         if ($gateway instanceof ErrorlogGateway && $name === 'file') {
-            return [$name, ''];
+            return [$name, \ini_get('error_log')];
         }
 
         if ($gateway instanceof HuaweiGateway && $name === 'from' && \is_array($value)) {
