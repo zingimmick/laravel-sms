@@ -145,7 +145,7 @@ final class IntegrationTest extends TestCase
     }
 
     /**
-     * @return array|string[]
+     * @return array<int, string|false>
      */
     private function formatArgs(Gateway|MockInterface $gateway, string $name, mixed $value): array
     {
