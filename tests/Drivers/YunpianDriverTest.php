@@ -123,14 +123,6 @@ final class YunpianDriverTest extends TestCase
         $this->assertSame($response, $driver->send(new PhoneNumber($number), SmsMessage::text($message), $config));
     }
 
-    public function testGetOptions(): void
-    {
-        $driver = \Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
-        $driver->allows('getBaseUri')
-            ->passthru();
-        $this->assertSame('http://yunpian.com', $driver->getBaseUri());
-    }
-
     /**
      * @return \Iterator<array{string|int|\Overtrue\EasySms\Contracts\PhoneNumberInterface, string|\Overtrue\EasySms\Contracts\MessageInterface, string|\Overtrue\EasySms\Contracts\MessageInterface}>
      */
@@ -143,5 +135,13 @@ final class YunpianDriverTest extends TestCase
             '【custom】This is a 【test】 message.',
             '【custom】This is a 【test】 message.',
         ];
+    }
+
+    public function testGetOptions(): void
+    {
+        $driver = \Mockery::mock(YunpianGateway::class, [[]])->shouldAllowMockingProtectedMethods();
+        $driver->allows('getBaseUri')
+            ->passthru();
+        $this->assertSame('http://yunpian.com', $driver->getBaseUri());
     }
 }

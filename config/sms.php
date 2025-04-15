@@ -71,6 +71,13 @@ return [
             'intel_password' => env('SMS_CHUANGLANV1_INTEL_PASSWORD'),
             'needstatus' => env('SMS_CHUANGLANV1_NEEDSTATUS'),
         ],
+        'ctyun' => [
+            'driver' => \Overtrue\EasySms\Gateways\CtyunGateway::class,
+            'template_code' => env('SMS_CTYUN_TEMPLATE_CODE'),
+            'sign_name' => env('SMS_CTYUN_SIGN_NAME'),
+            'access_key' => env('SMS_CTYUN_ACCESS_KEY'),
+            'secret_key' => env('SMS_CTYUN_SECRET_KEY'),
+        ],
         'errorlog' => [
             'driver' => \Overtrue\EasySms\Gateways\ErrorlogGateway::class,
             'file' => env('SMS_ERRORLOG_FILE', '/tmp/easy-sms.log'),
