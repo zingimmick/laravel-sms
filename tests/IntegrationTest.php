@@ -112,7 +112,9 @@ final class IntegrationTest extends TestCase
         $gateway->setConfig($config);
 
         try {
-            $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test')->setData(['code' => '']), $config);
+            $gateway->send(new SmsNumber('18888888888'), SmsMessage::text('test')->setData([
+                'code' => '',
+            ]), $config);
         } catch (GatewayErrorException) {
             if (\in_array(HasHttpRequest::class, trait_uses_recursive($gateway::class), true)) {
                 self::expectException(GatewayErrorException::class);
