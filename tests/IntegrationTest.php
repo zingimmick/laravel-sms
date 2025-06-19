@@ -117,8 +117,8 @@ final class IntegrationTest extends TestCase
             ]), $config);
         } catch (GatewayErrorException) {
             if (\in_array(HasHttpRequest::class, trait_uses_recursive($gateway::class), true)) {
-                self::expectException(GatewayErrorException::class);
-                self::expectExceptionMessage('just for mock request');
+                $this->expectException(GatewayErrorException::class);
+                $this->expectExceptionMessage('just for mock request');
             }
         }
     }
