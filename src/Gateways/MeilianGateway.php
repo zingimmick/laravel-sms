@@ -33,7 +33,7 @@ class MeilianGateway extends Gateway
                 'password' => $this->config->get('password'),
                 'apikey' => $this->config->get('api_key'),
                 'mobile' => $to->getUniversalNumber(),
-                'content' => str_starts_with((string)$content, '【') ? $content : $signature . $content,
+                'content' => str_starts_with((string) $content, '【') ? $content : $signature . $content,
             ]
         );
         if (! \is_string($result)) {
