@@ -233,6 +233,12 @@ return [
             'sign_name' => env('SMS_VOLCENGINE_SIGN_NAME'),
             'timeout' => env('SMS_VOLCENGINE_TIMEOUT', 5),
         ],
+        'weiqucloud' => [
+            'driver' => \Overtrue\EasySms\Gateways\WeiqucloudGateway::class,
+            'userId' => env('SMS_WEIQUCLOUD_USER_ID'),
+            'account' => env('SMS_WEIQUCLOUD_ACCOUNT'),
+            'password' => env('SMS_WEIQUCLOUD_PASSWORD'),
+        ],
         'yidongmasblack' => [
             'driver' => \Overtrue\EasySms\Gateways\YidongmasblackGateway::class,
             'ecName' => env('SMS_YIDONGMAGE_EC_NAME'),
