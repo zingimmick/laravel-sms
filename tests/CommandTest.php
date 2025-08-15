@@ -12,7 +12,7 @@ use Zing\LaravelSms\Commands\SmsSwitchConnectionCommand;
  */
 final class CommandTest extends TestCase
 {
-    public function testCommand(): void 
+    public function testCommand(): void
     {
         $this->artisan(SmsSwitchConnectionCommand::class, [
             'connection' => 'default',
