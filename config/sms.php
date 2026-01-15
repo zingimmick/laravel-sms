@@ -27,7 +27,14 @@ return [
             'driver' => \Overtrue\EasySms\Gateways\AliyunGateway::class,
             'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID'),
             'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
-            'sign_name' => env('SMS_ALIYUN_ACCESS_SIGN_NAME'),
+            'sign_name' => env('SMS_ALIYUN_SIGN_NAME'),
+        ],
+        'aliyundypns' => [
+            'driver' => \Overtrue\EasySms\Gateways\AliyundypnsGateway::class,
+            'access_key_id' => env('SMS_ALIYUNDYPNS_ACCESS_KEY_ID'),
+            'access_key_secret' => env('SMS_ALIYUNDYPNS_ACCESS_KEY_SECRET'),
+            'sign_name' => env('SMS_ALIYUNDYPNS_ACCESS_SIGN_NAME'),
+            'scheme_name' => env('SMS_ALIYUNDYPNS_SCHEME_NAME'),
         ],
         'aliyunintl' => [
             'driver' => \Overtrue\EasySms\Gateways\AliyunIntlGateway::class,
