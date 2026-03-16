@@ -46,7 +46,7 @@ jobs:
         run: composer require orchestra/testbench:'^9.6 || ^10.0' laravel/framework:'^10.48.25 || ^11.34.0 || ^12.0' graham-campbell/manager:'^5.1.1' --no-update --dev
 
       - name: Install dependencies
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
         with:
           dependency-versions: ${{ matrix.stability }}
 
