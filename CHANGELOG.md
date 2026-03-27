@@ -8,6 +8,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLinker](https://github.com/Symplify/ChangelogLinker).
 
 <!-- changelog-linker -->
+## 6.7.0 - 2026-03-27
+
+<!-- Release notes generated using configuration in .github/release.yml at 6.x -->
+### What's Changed
+
+#### Other Changes
+
+* Add config for ctyun by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/317
+* Support for PHPUnit 12 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/315
+* Support for PHP 8.5 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/326
+* Update license copyright year(s) by @github-actions[bot] in https://github.com/zingimmick/laravel-sms/pull/329
+* Update orchestra/testbench version constraint by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/330
+* Support for Laravel 13 by @zingimmick in https://github.com/zingimmick/laravel-sms/pull/334
+
+**Full Changelog**: https://github.com/zingimmick/laravel-sms/compare/6.6.0...6.7.0
+
 ## 6.6.0 - 2025-03-03
 
 <!-- Release notes generated using configuration in .github/release.yml at 6.x -->
