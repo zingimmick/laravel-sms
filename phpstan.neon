@@ -13,8 +13,6 @@ parameters:
     ignoreErrors:
         - identifier: larastan.noEnvCallsOutsideOfConfig
           path: config/sms.php
-        - identifier: function.alreadyNarrowedType
-          path: src/Commands/SmsSwitchConnectionCommand.php
         - '#Cannot call method (.*?)\(\) on Illuminate\\(.*?)Testing\\PendingCommand\|int.#'
         - '#(.*?)Laravel\\Lumen\\Application(.*?)#'
         - '#Class Overtrue\\EasySms\\Gateways\\AvatardataGateway not found.#'
