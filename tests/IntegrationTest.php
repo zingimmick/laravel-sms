@@ -89,7 +89,7 @@ final class IntegrationTest extends TestCase
     public function testSend(): void
     {
         $this->getConnections()
-            ->each(function ($options): void {
+            ->each(function (array $options): void {
                 $this->expectOptions($options);
             });
     }
