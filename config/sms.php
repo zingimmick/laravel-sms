@@ -140,6 +140,16 @@ return [
             'api_key' => env('SMS_MEILIAN_API_KEY'),
             'signature' => env('SMS_MEILIAN_SIGNATURE', ''),
         ],
+        'miaoxin' => [
+            'driver' => \Overtrue\EasySms\Gateways\MiaoxinGateway::class,
+            'account' => (string) env('SMS_MIAOXIN_ACCOUNT'),
+            'secret' => (string) env('SMS_MIAOXIN_SECRET'),
+            'endpoint' => env('SMS_MIAOXIN_ENDPOINT'),
+            'signature_id' => env('SMS_MIAOXIN_SIGNATURE_ID'),
+            'ref' => env('SMS_MIAOXIN_REF'),
+            'ext' => env('SMS_MIAOXIN_EXT'),
+            'schedule' => env('SMS_MIAOXIN_SCHEDULE'),
+        ],
         'moduyun' => [
             'driver' => \Overtrue\EasySms\Gateways\ModuyunGateway::class,
             'accesskey' => env('SMS_MODUYUN_ACCESS_KEY'),
