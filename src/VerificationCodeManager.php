@@ -37,9 +37,7 @@ class VerificationCodeManager
     {
         $length = config('sms.verification.length');
         $code = random_int((int) (10 ** ($length - 1)), (int) (10 ** $length) - 1);
-        if ($ttl === null) {
-            $ttl = config('sms.verification.ttl');
-        }
+        $ttl ??= config('sms.verification.ttl');
 
         $key = $this->getPrefixedKey($number);
         if (! $number instanceof SmsNumber) {
