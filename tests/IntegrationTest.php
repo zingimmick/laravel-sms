@@ -157,7 +157,7 @@ final class IntegrationTest extends TestCase
             return [$name];
         }
 
-        if ($gateway instanceof \Overtrue\EasySms\Gateways\MiaoxinGateway && \in_array($name, ['account', 'secret']) && $value === '') {
+        if ($gateway instanceof \Overtrue\EasySms\Gateways\MiaoxinGateway && \in_array($name, ['account', 'secret'], true) && $value === '') {
             return [$name];
         }
 
